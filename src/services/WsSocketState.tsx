@@ -9,11 +9,13 @@ import getSwimStyles from '../utilities/getSwimStyles';
 export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSocketPropsState>
 {
   backend_url: string;
+  context_path: string;
 
   //var backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":4001" : process.env.REACT_APP_BACKEND_URL
 
   constructor(props: WsSocketPropsInterface) {
     super(props);
+    this.context_path = process.env.REACT_APP_BACKEND_CONTEX_PATH === undefined ? "/socket.io" : "/" + process.env.REACT_APP_BACKEND_CONTEX_PATH + "/socket.io"
     var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":4001" : process.env.REACT_APP_BACKEND_URL
     this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":4001" : get_backend_url
     this.state = {
@@ -31,7 +33,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
     const socket = socketIOClient(this.backend_url,
       {
-        path: "/socket.io"
+        path: this.context_path
       });
 
     socket.on('connect', () => {
