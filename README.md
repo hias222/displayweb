@@ -14,3 +14,7 @@ In the project directory, you can run:
 * `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+## Changes
+
+2020/11 update  "react-scripts": "3.4.0" to 4.0.1
