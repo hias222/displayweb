@@ -10,7 +10,7 @@ export default class ClubLogo extends React.Component<clublogoInterface, {}> {
     // https://onlinepngtools.com/create-transparent-png
 
     render() {
-        let logoUrl = "http://" + window.location.hostname + ":" + window.location.port + "/logos/"
+        let logoUrl = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/logos/"
 
         console.log(logoUrl +  this.props.clubId + ".png")
             
