@@ -1,7 +1,11 @@
-$farbeschrift: white;
+
 
 .textlanesvg{
-    font-size: 10;
+    text-align: right;
+    fill: $farbeschrift;
+}
+
+.textnumbersvg{
     text-align: right;
     font-weight: bold;
     fill: $farbeschrift;
@@ -9,6 +13,10 @@ $farbeschrift: white;
   
 .gradient_lane {
     stop-color: #FF0000;
+}
+
+.gradient_name {
+    fill: $lanecolor;
 }
 
 .gradient_place {
@@ -19,5 +27,4 @@ $farbeschrift: white;
     font-size: 10;
     text-align: right;
     font-weight: bold;
-    fill: black;
 }

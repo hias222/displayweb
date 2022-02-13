@@ -8,7 +8,7 @@ interface LaneNumberInterface {
 export default class LaneNumber extends React.Component<LaneNumberInterface, {}> {
 
     render() {
-        let textlanesvg = classnames('textlanesvg');
+        let textnumbersvg = classnames('textnumbersvg');
         let gradient_lane = classnames('gradient_lane');
 
         return (<svg
@@ -22,8 +22,6 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                 <linearGradient id="laneNumberGradient" gradientTransform="rotate(0)">
                     <stop
                         className={gradient_lane}
-                        offset="0"
-                        stopOpacity="1"
                     />
                     <stop
                         className={gradient_lane}
@@ -50,7 +48,7 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                     fill="url(#laneGradientStyle)"
                 />
                 <text
-                    className={textlanesvg}
+                    className={textnumbersvg}
                     y="8"
                     x="1"
                     fontSize="9"

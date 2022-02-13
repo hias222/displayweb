@@ -1,9 +1,8 @@
 import React from "react";
-import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Box } from "@material-ui/core";
+import LaneName from "../svg/LaneName";
 
-import LaneNumber from "./LaneNumber";
+import LaneNumber from "../svg/LaneNumber";
 
 export default class StyledLane extends React.Component<LaneData, {}> {
 
@@ -36,32 +35,18 @@ export default class StyledLane extends React.Component<LaneData, {}> {
 
     formatEntryTime() {
         console.log("- " + this.props.entrytime)
-
         return this.props.entrytime;
     }
 
     render() {
-        let staticlaneeven = classnames('staticlaneeven');
-        let staticbox = classnames('staticbox');
-
-        let correctName = this.checkName();
-
-        // className={staticlaneeven}
-        //borderColor={"green"}
-        return <Grid container >
-            <Grid item xs={1} >
-                <Box text-align={"center"} height={this.box_height} borderTop={1} borderLeft={0} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>  <LaneNumber
-                        laneNumber={this.props.lane} />
-                    </Grid>
-                </Box>
-            </Grid>
-            <Grid item xs={11}>
-                <Box height={this.box_height} borderTop={1} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>  {correctName} ({this.props.swimmer.birthyear}) </Grid>
-                </Box>
-            </Grid>
-        </Grid>
+        let correctName = this.checkName() + " (" + this.props.swimmer.birthyear + ")";
+        return <div>
+            <LaneNumber
+                laneNumber={this.props.lane} />
+            <LaneName
+                LaneName={correctName}
+                laneStartPoint={100} />
+        </div>
 
     }
 }

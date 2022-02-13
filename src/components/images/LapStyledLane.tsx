@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
 import { Grid, Box } from "@material-ui/core";
 import PoolIcon from '@material-ui/icons/Pool';
-import LaneNumber from "./LaneNumber";
+import LaneNumber from "../svg/LaneNumber";
 export default class LapStyledLane extends React.Component<LaneData, {}> {
 
     box_height: number;
