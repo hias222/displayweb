@@ -1,22 +1,21 @@
 import React from "react";
 import { eventHeat } from "../types/EventHeat";
-import { Grid } from "@material-ui/core";
+import classNames from "classnames";
+import HeaderBoxName from "./svg/HeaderBoxName";
 
-import classnames from 'classnames';
 interface HeaderEventHeatInterface {
     EventHeat: eventHeat;
 }
 
-export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface,{}>{
+export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}>{
 
     render() {
-        let staticheatevent = classnames('staticheatevent');
-
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
         return (
-            <Grid container className={staticheatevent}>
-                <Grid item xs={3}>Wettkampf: {this.props.EventHeat.eventnr}</Grid>
-                <Grid item xs={3}>Lauf: {this.props.EventHeat.heatnr}</Grid>
-            </Grid>
+            <div className={noSpaceContainerHorizontal}>
+                <HeaderBoxName HeaderName={"Wettkampf:" + this.props.EventHeat.eventnr} />
+                <HeaderBoxName HeaderName={"Lauf:" + this.props.EventHeat.heatnr} />
+            </div>
         )
     }
 

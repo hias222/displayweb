@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
 import LaneName from "../svg/LaneName";
@@ -40,7 +41,9 @@ export default class StyledLane extends React.Component<LaneData, {}> {
 
     render() {
         let correctName = this.checkName() + " (" + this.props.swimmer.birthyear + ")";
-        return <div>
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+
+        return <div className={noSpaceContainerHorizontal} >
             <LaneNumber
                 laneNumber={this.props.lane} />
             <LaneName

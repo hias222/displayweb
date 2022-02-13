@@ -1,8 +1,19 @@
-
-
 .textlanesvg{
     text-align: right;
     fill: $farbeschrift;
+    font-size: 2em;
+}
+
+.textWKNamesvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: 1.8em;
+}
+
+.textHeaderHeatEventsvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: 1.4em;
 }
 
 .textnumbersvg{
@@ -27,4 +38,10 @@
     font-size: 10;
     text-align: right;
     font-weight: bold;
+}
+
+.headertimeline{
+    fill: $farbeschrift;
+    font-size: 1.2em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
