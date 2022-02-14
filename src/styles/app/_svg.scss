@@ -20,6 +20,14 @@
     text-align: right;
     font-weight: bold;
     fill: $farbeschrift;
+    font-size: 2em;
+}
+
+.textplacesvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschriftplace;
+    font-size: 2em;
 }
   
 .gradient_lane {
@@ -34,11 +42,6 @@
     stop-color:  rgb(0, 255, 0);
 }
 
-.textplacesvg{
-    font-size: 10;
-    text-align: right;
-    font-weight: bold;
-}
 
 .headertimeline{
     fill: $farbeschrift;

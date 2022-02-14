@@ -42,14 +42,18 @@ export default class StyledLane extends React.Component<LaneData, {}> {
     render() {
         let correctName = this.checkName() + " (" + this.props.swimmer.birthyear + ")";
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+        let noFlexHorizontal = classNames("noFlexHorizontal")
 
         return <div className={noSpaceContainerHorizontal} >
-            <LaneNumber
-                laneNumber={this.props.lane} />
-            <LaneName
-                LaneName={correctName}
-                laneStartPoint={100} />
-        </div>
+            <div className={noFlexHorizontal}>
+                <LaneNumber
+                    laneNumber={this.props.lane} />
+                <LaneName
+                    LaneName={correctName}
+                    laneStartPoint={100}
+                    laneEndSpace={0} />
+            </div>
+        </div >
 
     }
 }

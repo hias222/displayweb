@@ -11,13 +11,22 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
         let textnumbersvg = classnames('textnumbersvg');
         let gradient_lane = classnames('gradient_lane');
 
+        let height = 48;
+        let viewBoxSize = "0 0 80 " + height
+
+        let boxwidth = 40
+        let boxheight = 45
+        let diagonal = 15
+        let textfromtop = 35
+        let textfromleft = 5
+        let path_lane = "M 0 0 h " + boxwidth + " l -" + diagonal + "," + boxheight + " h -" + (boxwidth - diagonal) + " z"
+
         return (<svg
             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             id="svg8"
             version="1.1"
-            viewBox="0 0 15.874996 12.7"
-            height="48"
-            width="60">
+            viewBox={viewBoxSize}
+            height={height}>
             <defs>
                 <linearGradient id="laneNumberGradient" gradientTransform="rotate(0)">
                     <stop
@@ -42,16 +51,14 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
             <g
                 id="layer1">
                 <path
-                    transform="scale(0.26458333)"
-                    //d="M 0,50 0,47 0,24 0,0 30,0 c 15,0 29,0.0 29,0 l 0.50,0 -12,23 -12,23 -10,0 c -5,0 -13,0 -17,0 z"
-                    d="M 0 3 h 60 l -30,35 h -30  z"
+                    transform="scale(1)"
+                    d={path_lane}
                     fill="url(#laneGradientStyle)"
                 />
                 <text
                     className={textnumbersvg}
-                    y="8"
-                    x="1"
-                    fontSize="9"
+                    x={textfromleft}
+                    y={textfromtop}
                 >
                     {this.props.laneNumber}</text>
             </g>

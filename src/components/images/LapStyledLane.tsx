@@ -1,32 +1,32 @@
 import React from "react";
-import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Box } from "@material-ui/core";
-import PoolIcon from '@material-ui/icons/Pool';
 import LaneNumber from "../svg/LaneNumber";
+import LaneName from "../svg/LaneName";
+import classNames from "classnames";
+import LaneTime from "../svg/LaneTime";
 export default class LapStyledLane extends React.Component<LaneData, {}> {
 
     box_height: number;
 
-    constructor(props: LaneData){
+    constructor(props: LaneData) {
         super(props)
         this.box_height = process.env.REACT_APP_BOX_HEIGHT !== undefined ? Number(process.env.REACT_APP_BOX_HEIGHT) : 50
     }
 
-    checkName(){
+    checkName() {
         let namelength = 20;
 
-        let sizeName = this.props.swimmer.name.length ;
-        let sizeLastName = (this.props.swimmer.firstName !== undefined ) ? this.props.swimmer.firstName.length : 0
+        let sizeName = this.props.swimmer.name.length;
+        let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
 
 
         if (sizeName > (namelength - 2)) {
-            console.log ("short name")
-            return this.props.swimmer.name.substr(0,(namelength-2));
+            console.log("short name")
+            return this.props.swimmer.name.substr(0, (namelength - 2));
         }
 
         if (sizeName + sizeLastName > namelength) {
-            return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0,1) + ".";
+            return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0, 1) + ".";
         }
 
         let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
@@ -35,46 +35,25 @@ export default class LapStyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let staticlaneeven = classnames('staticlaneeven');
         let correctName = this.checkName();
-        let staticbox = classnames('staticbox');
+        let finishtime = this.props.finishtime === undefined ? "" : this.props.finishtime
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+        let noFlexHorizontal = classNames("noFlexHorizontal")
 
+        return <div className={noSpaceContainerHorizontal} >
 
-        return <Grid container item xs={12}>
-            <Grid item xs={1}>
-                    <Box height={this.box_height}  borderTop={1} borderLeft={0} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                    <LaneNumber
-                        laneNumber={this.props.lane} />
-                        </Grid>
-                    </Box>
-            </Grid>
-            <Grid item xs={1}>
-                    <Box height={this.box_height}  borderTop={1} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        <PoolIcon></PoolIcon>
-                        </Grid>
-                    </Box>
-            </Grid>
-            <Grid item xs={7}>
+            <div className={noFlexHorizontal} >
+                <LaneNumber
+                    laneNumber={this.props.lane} />
 
-                    <Box height={this.box_height}  borderTop={1} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                       {correctName} 
-                       </Grid>
-                    </Box>
+                <LaneName
+                    LaneName={correctName}
+                    laneStartPoint={100}
+                    laneEndSpace={100} />
+                <LaneTime LaneTime={finishtime} laneStartPoint={400}
+                />
+            </div>;
+        </div>;
 
-            </Grid>
-            <Grid item xs={3} text-align={"center"}>
-              
-                    <Box height={this.box_height}  borderTop={1} borderBottom={0} borderRight={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        {this.props.finishtime}
-                        </Grid>
-                    </Box>
-              
-            </Grid>
-        </Grid>;
-        
     }
 }

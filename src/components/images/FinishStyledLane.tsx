@@ -1,8 +1,9 @@
 import React from "react";
-import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Box } from "@material-ui/core";
-import LaneNumberFinish from "./LaneNumberFinish";
+import LaneNumberFinish from "../svg/LaneNumberFinish";
+import classNames from "classnames";
+import LaneName from "../svg/LaneName";
+import LaneTime from "../svg/LaneTime";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     box_height: number;
@@ -33,41 +34,31 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let staticlaneeven = classnames('staticlaneeven');
+
         let correctName = this.checkName();
-        let staticbox = classnames('staticbox');
+        let finishtime = this.props.finishtime === undefined ? "" : this.props.finishtime
 
-        return <Grid container item xs={12}>
-            <Grid item xs={2}>
-                <Box height={this.box_height} borderTop={1} borderLeft={0} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        <LaneNumberFinish
-                            laneNumber={this.props.lane}
-                            place={this.props.place}
-                        />
-                    </Grid>
-                </Box>
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+        let noFlexHorizontal = classNames("noFlexHorizontal")
 
-            </Grid>
-
-            <Grid item xs={7}>
-
-                <Box height={this.box_height} borderTop={1} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        {correctName}
-                    </Grid>
-                </Box>
-
-            </Grid>
-            <Grid item xs={3} text-align={"center"}>
-                <Box height={this.box_height} borderTop={1} borderBottom={0} borderRight={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        {this.props.finishtime}
-                    </Grid>
-                </Box>
-
-            </Grid>
-        </Grid>;
+        return <div className={noSpaceContainerHorizontal} >
+            <div className={noFlexHorizontal} >
+                <LaneNumberFinish
+                    laneNumber={this.props.lane}
+                    place={this.props.place}
+                />
+            </div>
+            <div className={noFlexHorizontal} >
+                <LaneName
+                    LaneName={correctName}
+                    laneStartPoint={100}
+                    laneEndSpace={100} />
+            </div>
+            <div className={noFlexHorizontal} >
+                <LaneTime LaneTime={finishtime} laneStartPoint={400}
+                />
+            </div>
+        </div>;
 
     }
 }
