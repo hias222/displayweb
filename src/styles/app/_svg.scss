@@ -5,9 +5,9 @@
 }
 
 .textWKNamesvg{
-    text-align: right;
     fill: $farbeschrift;
     font-size: 1.8em;
+    text-anchor: middle;
 }
 
 .textHeaderHeatEventsvg{
@@ -35,7 +35,7 @@
 }
 
 .gradient_name {
-    fill: $lanecolor;
+    fill: $farbehintergrund;
 }
 
 .gradient_place {

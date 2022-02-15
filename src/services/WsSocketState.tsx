@@ -16,7 +16,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
     super(props);
     this.context_path = process.env.REACT_APP_BACKEND_CONTEX_PATH === undefined ? "/socket.io" : "/" + process.env.REACT_APP_BACKEND_CONTEX_PATH + "/socket.io"
     this.local_url = process.env.REACT_APP_BACKEND_URL === undefined ? window.location.protocol + "//localhost:" + window.location.port : process.env.REACT_APP_BACKEND_URL
-    this.backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : this.local_url
+    this.backend_url = process.env.REACT_APP_BACKEND_DIRECT !== "false" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : this.local_url
     this.state = {
       WsConnected: false,
       HeatNumber: 0,
@@ -28,7 +28,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
   componentDidMount() {
 
-    console.log("WsSocketState: connect to " + this.backend_url + "/" + this.context_path + "/socket-io");
+    console.log("WsSocketState: connect to " + this.backend_url + "/" + this.context_path );
 
     const socket = socketIOClient(this.backend_url,
       {

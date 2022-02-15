@@ -3,7 +3,7 @@ import { StartStopComponent } from "./StartStopComponent";
 import { BaseFrontendInterface } from "../interfaces/BaseFrontendInterface";
 import { HeaderEventHeatComponent } from "./HeaderEventHeatComponent";
 import { SingleLaneStaticComponent } from "./SingleLaneStaticComponent";
-import EventNameHeader from "./svg/EventNameHeader";
+import TopEventNameHeader from "./svg/TopEventNameHeader";
 import classNames from "classnames";
 
 export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInterface, {}> {
@@ -22,10 +22,11 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
 
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
 
+
         return (
             <div className={noSpaceContainerVertical}>
 
-                <EventNameHeader EventName={EventName} />
+                <TopEventNameHeader EventName={EventName} />
 
                 <HeaderEventHeatComponent
                     EventHeat={this.props.EventHeat}

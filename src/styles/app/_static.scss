@@ -1,5 +1,4 @@
-//$farbehintergrund_alt: rgb(27, 50, 179);
-$farbehintergrund_alt: green;
+
 
 $lanesize: 2em; 
 $smallsize: 0.6em;
@@ -44,7 +43,7 @@ $topsize: 1.4em;
     border-spacing: 0;
     width: 512px;
     height: 384px;
-    background-color: $farbehintergrund_alt;
+    background-color: $farbehintergrund_all;
     border-top: 0;
     border-bottom: 0;
     border-left: 0;

@@ -13,8 +13,10 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
         return (
             <div className={noSpaceContainerHorizontal}>
-                <HeaderBoxName HeaderName={"Wettkampf:" + this.props.EventHeat.eventnr} />
-                <HeaderBoxName HeaderName={"Lauf:" + this.props.EventHeat.heatnr} />
+                <HeaderBoxName HeaderName={"Wettkampf:" + this.props.EventHeat.eventnr}
+                    IsFirstText={true} />
+                <HeaderBoxName HeaderName={"Lauf:" + this.props.EventHeat.heatnr}
+                    IsFirstText={false} />
             </div>
         )
     }

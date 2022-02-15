@@ -1,38 +1,34 @@
 import React from 'react';
 import classnames from 'classnames';
+import windowParameter from '../../utilities/windowParameter';
 
 
 interface EventNameInterface {
     EventName: string;
 }
 
-export default class EventNameHeader extends React.Component<EventNameInterface, {}> {
-
-    window_width: number;
-    window_height: number;
-    //PIXEL_FROM_TOP
-    window_top_pixel: number;
+export default class TopEventNameHeader extends React.Component<EventNameInterface, {}> {
+    windowParams: windowParameter;
 
     constructor(props: EventNameInterface) {
         super(props);
-        this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
-        this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
-        this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        this.windowParams = new windowParameter();
     }
 
     render() {
         let textWKNamesvg = classnames('textWKNamesvg');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.window_width - 10;
+        let length = this.windowParams.getWindowWidth();
         let height = 30;
         let top_space = 3;
         let button_space = height - top_space;
 
 
         let viewBoxSize = "0 0 " + length + " " + height
-        let boxSize = "M 0 " + top_space + " h " + length + " v + " + button_space +  " h -" + length + " z"
-        let boxSizeTop = "M 0 0 h " + length + " v 3 h -" + length + " z"
+        let boxSize = "M " + this.windowParams.getPictureStart() + " " + top_space + " h " + this.windowParams.getPictureLength() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
+
+        console.log(boxSize)
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,23 +38,16 @@ export default class EventNameHeader extends React.Component<EventNameInterface,
             viewBox={viewBoxSize}
             height={height}
         >
-            <g id="layer3">
+            <g id="topeventheadername">
                 <path
                     className={gradient_name}
                     transform="scale(1)"
-                    d={boxSizeTop}
-                />
-            </g>
-            <g id="layer1">
-                <path
-                    transform="scale(1)"
-                    className={gradient_name}
                     d={boxSize}
                 />
                 <text
                     className={textWKNamesvg}
                     y={height - 5}
-                    x="3"
+                    x={this.windowParams.getPictureMiddle()}
                 >
                     {this.props.EventName}</text>
             </g>

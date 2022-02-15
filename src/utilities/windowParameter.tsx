@@ -2,6 +2,7 @@ export default class windowParameter {
     private baxViewheight = 48;
     private boxheight = 45;
     private boxTextfromtop = 35;
+    private spacing = 5;
 
     window_width: number;
     window_height: number;
@@ -13,25 +14,37 @@ export default class windowParameter {
         this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
     }
 
-    public calculateArea(radius:number) {
+    public calculateArea(radius: number) {
         return this.baxViewheight * radius * radius;
     }
 
-    
-    public getBoxheight():number {
+
+    public getBoxheight(): number {
         return this.boxheight
     }
-    
-    public getBoxViewheight():number {
+
+    public getBoxViewheight(): number {
         return this.baxViewheight
     }
 
-    public getWindowWidth():number {
+    public getWindowWidth(): number {
         return this.window_width
     }
 
-    public getBoxTextFromTop():number {
+    public getBoxTextFromTop(): number {
         return this.boxTextfromtop
+    }
+
+    public getPictureStart(): number {
+        return this.spacing
+    }
+
+    public getPictureLength(): number {
+        return this.window_width - (2 * this.spacing)
+    }
+
+    public getPictureMiddle(): number {
+        return this.window_width / 2
     }
 
 }

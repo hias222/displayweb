@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import windowParameter from '../../utilities/windowParameter';
 
 
 interface HeaderTimeInterface {
@@ -8,28 +9,23 @@ interface HeaderTimeInterface {
 }
 
 export default class headertimeline extends React.Component<HeaderTimeInterface, {}> {
-
-    window_width: number;
-    window_height: number;
-    //PIXEL_FROM_TOP
-    window_top_pixel: number;
-
+    windowParams: windowParameter;
     constructor(props: HeaderTimeInterface) {
         super(props);
-        this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
-        this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
-        this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        this.windowParams = new windowParameter();
     }
 
     render() {
         let headertimeline = classnames('headertimeline');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.window_width - 10;
+        let viewlength = this.windowParams.getWindowWidth()
+        let internallength = this.windowParams.getWindowWidth() - (2 * this.windowParams.getPictureStart())
+
         let height = 30;
 
-        let viewBoxSize = "0 0 " + length + " " + height
-        let boxSize = "M 0 0 h " + length + " v " + height + " h -" + length + " z"
+        let viewBoxSize = "0 0 " + viewlength + " " + height
+        let boxSize = "M " + this.windowParams.getPictureStart() + " 0 h " + internallength + " v " + height + " h -" + internallength + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,15 +51,15 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
                 <text
                     className={headertimeline}
                     y={height - 5}
-                    x="3"
+                    x={this.windowParams.getPictureStart() + 3 }
                 >
                     {this.props.EventName}</text>
 
                 <text
                     className={headertimeline}
                     y={height - 5}
-                    x={length}
-                    text-anchor="end"
+                    x={internallength}
+                    textAnchor="end"
                 >
                     {this.props.Time}</text>
             </g>
