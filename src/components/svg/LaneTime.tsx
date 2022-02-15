@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import windowParameter from '../../utilities/windowParameter';
 
 
 interface LaneTimeInterface {
@@ -8,29 +9,22 @@ interface LaneTimeInterface {
 }
 
 export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
-
-    window_width: number;
-    window_height: number;
-    //PIXEL_FROM_TOP
-    window_top_pixel: number;
+    windowParams: windowParameter;
 
     constructor(props: LaneTimeInterface) {
         super(props);
-        this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
-        this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
-        this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        this.windowParams = new windowParameter();
     }
 
     render() {
         let textlanesvg = classnames('textlanesvg');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.window_width - this.props.laneStartPoint
-        let viewHeight = 48
-        let boxheight = 45
+        let length = this.windowParams.getWindowWidth() - this.props.laneStartPoint
+        let boxheight = this.windowParams.getBoxheight()
 
-        let viewBoxSize = "0 0 " + length + " " + viewHeight
-        let boxSize = "M 0 3 h " + length + " v " + boxheight + " h -" + length + " z"
+        let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxViewheight()
+        let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + length + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +32,7 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={viewHeight}
+            height={this.windowParams.getBoxViewheight()}
         >
             <g id="layer1">
                 <path
@@ -48,9 +42,8 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
                 />
                 <text
                     className={textlanesvg}
-                    y="30"
+                    y={this.windowParams.getBoxTextFromTop()}
                     x="3"
-                    fontSize="30"
                 >
                     {this.props.LaneTime}</text>
             </g>

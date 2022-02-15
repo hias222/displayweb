@@ -2,100 +2,6 @@
 $smallsize: 0.9em;
 $normalsize: 1em;
 
-.varfooter{
-    font-size: $smallsize;
-    border-spacing: 0;
-    text-align: center;
-    color: $farbeschrift;
-
-    .a:link {
-        color: white;
-        text-decoration: none;
-      }
-    
-    .a:visited {
-        color: white;
-        text-decoration: none;
-    }
-    .a:hover {
-        color: black;
-        text-decoration: none;
-    }
-    .a:active {
-        color: white;
-        text-decoration: none;
-    }
-}
-
-.varfooter_race{
-    font-size: 1.2em;
-    border-spacing: 0;
-    text-align: center;
-    color: $farbeschrift;
-
-    .a:link {
-        color: white;
-        text-decoration: none;
-      }
-    
-    .a:visited {
-        color: white;
-        text-decoration: none;
-    }
-    .a:hover {
-        color: black;
-        text-decoration: none;
-    }
-    .a:active {
-        color: white;
-        text-decoration: none;
-    }
-}
-
-.headername {
-    color: white;
-    text-align: left;
-}
-
-
-.heatheader_event {
-    font-size: 1.5em;
-    color: $farbegeradeschrift;
-}
-
-.heatheader_heat {
-    font-size: 1.5em;
-    color: $farbegeradeschrift;
-}
-
-.heatheader_time {
-    color: $farbegeradeschrift;
-    text-align: right;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-}
-
-.heatbackground {
-    font-size: 1em;
-
-}
-
-.lane {
-    color: $farbegeradeschrift;
-}
-
-.laneclub {
-    font-size: 0.7em;
-}
-
-.lanetime {
-    text-align: right;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-
-}
-
-// 
-//message
-
 .messagetable{
     border-spacing: 0;
     width: 512px;
@@ -151,9 +57,6 @@ $normalsize: 1em;
     text-align: center;
     font-size: 1.2em;
 }
-
-
-//
 
 .varmessage_clock {
     color: $farbeschrift;

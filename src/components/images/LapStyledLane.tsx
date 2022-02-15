@@ -1,9 +1,9 @@
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
-import LaneNumber from "../svg/LaneNumber";
 import LaneName from "../svg/LaneName";
 import classNames from "classnames";
 import LaneTime from "../svg/LaneTime";
+import LaneNumberFinish from "../svg/LaneNumberFinish";
 export default class LapStyledLane extends React.Component<LaneData, {}> {
 
     box_height: number;
@@ -43,9 +43,8 @@ export default class LapStyledLane extends React.Component<LaneData, {}> {
         return <div className={noSpaceContainerHorizontal} >
 
             <div className={noFlexHorizontal} >
-                <LaneNumber
+                <LaneNumberFinish
                     laneNumber={this.props.lane} />
-
                 <LaneName
                     LaneName={correctName}
                     laneStartPoint={100}

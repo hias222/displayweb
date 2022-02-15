@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import windowParameter from '../../utilities/windowParameter';
 
 interface LaneNumberInterface {
     laneNumber: string;
@@ -7,26 +8,30 @@ interface LaneNumberInterface {
 
 export default class LaneNumber extends React.Component<LaneNumberInterface, {}> {
 
+    windowParams: windowParameter;
+
+    constructor(props: LaneNumberInterface) {
+        super(props);
+        this.windowParams = new windowParameter();
+    }
+
     render() {
         let textnumbersvg = classnames('textnumbersvg');
         let gradient_lane = classnames('gradient_lane');
 
-        let height = 48;
-        let viewBoxSize = "0 0 80 " + height
+        let viewBoxSize = "0 0 48 " + this.windowParams.getBoxViewheight()
 
         let boxwidth = 40
-        let boxheight = 45
         let diagonal = 15
-        let textfromtop = 35
         let textfromleft = 5
-        let path_lane = "M 0 0 h " + boxwidth + " l -" + diagonal + "," + boxheight + " h -" + (boxwidth - diagonal) + " z"
+        let path_lane = "M 0 0 h " + boxwidth + " l -" + diagonal + "," + this.windowParams.getBoxheight() + " h -" + (boxwidth - diagonal) + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={height}>
+            height={this.windowParams.getBoxViewheight()}>
             <defs>
                 <linearGradient id="laneNumberGradient" gradientTransform="rotate(0)">
                     <stop
@@ -58,7 +63,7 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                 <text
                     className={textnumbersvg}
                     x={textfromleft}
-                    y={textfromtop}
+                    y={this.windowParams.getBoxTextFromTop()}
                 >
                     {this.props.laneNumber}</text>
             </g>
