@@ -18,20 +18,25 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
     render() {
         let textnumbersvg = classnames('textnumbersvg');
         let gradient_lane = classnames('gradient_lane');
+        let gradient_name = classnames('gradient_name');
 
-        let viewBoxSize = "0 0 48 " + this.windowParams.getBoxViewheight()
+        let viewBoxSize = "0 0 " + this.windowParams.getBoxNumberWidth() + " " + this.windowParams.getBoxheight()
 
-        let boxwidth = 40
-        let diagonal = 15
-        let textfromleft = 5
-        let path_lane = "M 0 0 h " + boxwidth + " l -" + diagonal + "," + this.windowParams.getBoxheight() + " h -" + (boxwidth - diagonal) + " z"
+        let boxwidth = this.windowParams.getBoxNumberWidth();
+        let diagonal = this.windowParams.getBoxDiaganol();
+        let textfromleft = 7
+
+        let path_lane = "M " + this.windowParams.getPictureStart() + " 0 h " + boxwidth + " l -" + diagonal + "," + this.windowParams.getBoxheight() + " h -" + (boxwidth - diagonal) + " z"
+
+        let fill_start= this.windowParams.getBoxNumberWidth()
+        let path_fill = "M "+ fill_start +" 0 h 0 l 0," + this.windowParams.getBoxheight() + " h -" + diagonal + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={this.windowParams.getBoxViewheight()}>
+            height={this.windowParams.getBoxheight()}>
             <defs>
                 <linearGradient id="laneNumberGradient" gradientTransform="rotate(0)">
                     <stop
@@ -66,6 +71,13 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                     y={this.windowParams.getBoxTextFromTop()}
                 >
                     {this.props.laneNumber}</text>
+            </g>
+            <g id="layerfill">
+                <path
+                    transform="scale(1)"
+                    d={path_fill}
+                    className={gradient_name}
+                />
             </g>
         </svg>
         );

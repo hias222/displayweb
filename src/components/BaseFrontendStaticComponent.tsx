@@ -5,6 +5,7 @@ import { HeaderEventHeatComponent } from "./HeaderEventHeatComponent";
 import { SingleLaneStaticComponent } from "./SingleLaneStaticComponent";
 import TopEventNameHeader from "./svg/TopEventNameHeader";
 import classNames from "classnames";
+import LaneSeparator from "./svg/LaneSeparator";
 
 export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInterface, {}> {
 
@@ -40,12 +41,15 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
 
                 {
                     this.props.lanes.map((lane, index) => (
-                        <SingleLaneStaticComponent
-                            key={index}
-                            lane={lane}
-                            index={index}
-                            displayMode={this.props.displayMode}
-                        />
+                        <div className={noSpaceContainerVertical}>
+                            <LaneSeparator IsEnabled={true} />
+                            <SingleLaneStaticComponent
+                                key={index}
+                                lane={lane}
+                                index={index}
+                                displayMode={this.props.displayMode}
+                            />
+                        </div>
                     ))
                 }
 

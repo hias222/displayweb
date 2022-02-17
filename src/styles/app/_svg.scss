@@ -39,7 +39,12 @@
 }
 
 .gradient_place {
-    stop-color:  rgb(0, 255, 0);
+    stop-color:  rgba(0, 255, 0,1);
+}
+
+.separatorsvg{
+    //fill: $farbeseparator;
+    stop-color:  $farbeseparator;
 }
 
 

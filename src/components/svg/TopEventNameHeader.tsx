@@ -28,8 +28,6 @@ export default class TopEventNameHeader extends React.Component<EventNameInterfa
         let viewBoxSize = "0 0 " + length + " " + height
         let boxSize = "M " + this.windowParams.getPictureStart() + " " + top_space + " h " + this.windowParams.getPictureLength() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
 
-        console.log(boxSize)
-
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMaxYMax meet"

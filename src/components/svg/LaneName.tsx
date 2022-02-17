@@ -1,38 +1,32 @@
 import React from 'react';
 import classnames from 'classnames';
+import windowParameter from '../../utilities/windowParameter';
 
 
 interface LaneNameInterface {
     LaneName: string;
-    laneStartPoint: number;
-    laneEndSpace: number;
+    IsOnlyBox: boolean;
 }
 
 export default class LaneName extends React.Component<LaneNameInterface, {}> {
 
-    window_width: number;
-    window_height: number;
-    //PIXEL_FROM_TOP
-    window_top_pixel: number;
+    windowParams: windowParameter;
 
     constructor(props: LaneNameInterface) {
         super(props);
-        this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
-        this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
-        this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        this.windowParams = new windowParameter();
     }
 
     render() {
         let textlanesvg = classnames('textlanesvg');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.window_width - this.props.laneStartPoint - this.props.laneEndSpace
-        let viewHeight = 48
-        
-        let boxheight = 45
+        let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
+        let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() -  this.windowParams.getBoxNumberWidth() : time_length
+        let boxheight = this.windowParams.getBoxheight();
 
-        let viewBoxSize = "0 0 " + length + " " + viewHeight
-        let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + length + " z"
+        let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
+        let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30)  + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,10 +34,10 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={viewHeight}
+            height={this.windowParams.getBoxheight()}
         >
 
-            <g id="layer1">
+            <g id="LaneName1">
                 <path
                     transform="scale(1)"
                     className={gradient_name}

@@ -4,6 +4,9 @@ export default class windowParameter {
     private boxTextfromtop = 35;
     private spacing = 5;
     private toprowheight = 30
+    private numberboxwidth = 40
+    private boxtimewidth = 120
+    private separator = 2
 
     window_width: number;
     window_height: number;
@@ -24,8 +27,12 @@ export default class windowParameter {
         return this.boxheight
     }
 
-    public getBoxViewheight(): number {
-        return this.baxViewheight
+    public getBoxNumberWidth(): number {
+        return this.numberboxwidth
+    }
+
+    public getBoxDiaganol(): number {
+        return 18
     }
 
     public getWindowWidth(): number {
@@ -34,6 +41,10 @@ export default class windowParameter {
 
     public getBoxWidth(parts: number): number {
         return (this.window_width - (2 * this.spacing)) / parts
+    }
+
+    public getBoxTimeLaneWidth(): number {
+        return this.boxtimewidth
     }
 
     public getBoxTextFromTop(): number {
@@ -50,6 +61,10 @@ export default class windowParameter {
 
     public getPictureMiddle(): number {
         return this.window_width / 2
+    }
+
+    public getSeparatorHeight(): number {
+        return this.separator
     }
 
     public getTopRowHeight() : number {

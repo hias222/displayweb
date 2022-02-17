@@ -49,9 +49,9 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 />
                 <LaneName
                     LaneName={correctName}
-                    laneStartPoint={100}
-                    laneEndSpace={100} />
-                <LaneTime LaneTime={finishtime} laneStartPoint={400}
+                    IsOnlyBox={false}
+                />
+                <LaneTime LaneTime={finishtime}
                 />
             </div>
         </div>;

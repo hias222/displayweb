@@ -42,7 +42,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
             heatnr: "0",
             eventnr: "0"
         }
-        
+
         this.state = {
             startdelayms: 0,
             runningTime: "",
@@ -175,6 +175,9 @@ export default class Lcd extends React.Component<{}, FrontendState> {
 
         let webcontent = <p>starting</p>;
         let statictable = classnames('statictable');
+        let context = classnames('context-container')
+        let area = classnames('area')
+        let circles = classnames('circles')
 
         let buttonfullscreen = <div></div>
 
@@ -206,9 +209,26 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         }
         return (
             <div>
+                <div className={context}>
+                <div className={area} >
+            <ul className={circles}>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+
+                
                 <Box height={this.window_top_pixel}>
                     {buttonfullscreen}
                 </Box>
+
                 <Box width={this.window_width} height={this.window_height} className={statictable}>
                     <WsSocketState onStartStop={this.onStartStop}
                         onEventHeatChange={this.onEventHeatChange}
@@ -217,7 +237,12 @@ export default class Lcd extends React.Component<{}, FrontendState> {
                         onRunningTimeChange={this.onRunningTimeChange}
                         onMessageChange={this.onMessageChange} />
                     {webcontent}
+
                 </Box>
+
+                </div >
+
+                </div>
             </div>
         );
     }

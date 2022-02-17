@@ -50,8 +50,8 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                     laneNumber={this.props.lane} />
                 <LaneName
                     LaneName={correctName}
-                    laneStartPoint={100}
-                    laneEndSpace={0} />
+                    IsOnlyBox={true}
+                    />
             </div>
         </div >
 

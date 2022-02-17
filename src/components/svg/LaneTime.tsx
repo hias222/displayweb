@@ -5,7 +5,6 @@ import windowParameter from '../../utilities/windowParameter';
 
 interface LaneTimeInterface {
     LaneTime: string;
-    laneStartPoint: number;
 }
 
 export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
@@ -20,10 +19,10 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
         let textlanesvg = classnames('textlanesvg');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.windowParams.getWindowWidth() - this.props.laneStartPoint
+        let length = this.windowParams.getBoxTimeLaneWidth()
         let boxheight = this.windowParams.getBoxheight()
 
-        let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxViewheight()
+        let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
         let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + length + " z"
 
         return (<svg
@@ -32,7 +31,7 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={this.windowParams.getBoxViewheight()}
+            height={this.windowParams.getBoxheight()}
         >
             <g id="layer1">
                 <path
@@ -43,7 +42,8 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
                 <text
                     className={textlanesvg}
                     y={this.windowParams.getBoxTextFromTop()}
-                    x="3"
+                    x={this.windowParams.getBoxTimeLaneWidth()}
+                    textAnchor='end'
                 >
                     {this.props.LaneTime}</text>
             </g>

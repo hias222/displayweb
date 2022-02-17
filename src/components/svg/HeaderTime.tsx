@@ -18,6 +18,7 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
 
     render() {
         let headertimeline = classnames('headertimeline');
+                
         let gradient_name = classnames('gradient_name');
 
         let viewlength = this.windowParams.getBoxWidth(this.props.Parts)
@@ -38,13 +39,6 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
             viewBox={viewBoxSize}
             height={height}
         >
-            <g id="layer3">
-                <path
-                    className={gradient_name}
-                    transform="scale(1)"
-                    d={boxSize}
-                />
-            </g>
             <g id="layer1">
                 <path
                     transform="scale(1)"
