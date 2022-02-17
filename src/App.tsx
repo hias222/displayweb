@@ -209,22 +209,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         }
         return (
             <div>
-                <div className={context}>
-                <div className={area} >
-            <ul className={circles}>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
-
-                
+                           
                 <Box height={this.window_top_pixel}>
                     {buttonfullscreen}
                 </Box>
@@ -239,10 +224,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
                     {webcontent}
 
                 </Box>
-
-                </div >
-
-                </div>
+          
             </div>
         );
     }
