@@ -5,6 +5,7 @@ import windowParameter from '../../utilities/windowParameter';
 
 interface HeaderNameInterface {
     HeaderName: string;
+    Parts: number;
     IsFirstText: boolean;
 }
 
@@ -19,9 +20,9 @@ export default class HeaderBoxName extends React.Component<HeaderNameInterface, 
         let textHeaderHeatEventsvg = classnames('textHeaderHeatEventsvg');
         let gradient_name = classnames('gradient_name');
 
-        let internallength = this.windowParams.getWindowWidth() / 2 - this.windowParams.getPictureStart()
-        let viewlength = this.windowParams.getWindowWidth() / 2
-        let height = 30;
+        let internallength = this.props.IsFirstText === true ? this.windowParams.getBoxWidth(this.props.Parts) + this.windowParams.getPictureStart() : this.windowParams.getBoxWidth(this.props.Parts)
+        let viewlength = this.props.IsFirstText === true ? this.windowParams.getBoxWidth(this.props.Parts) + this.windowParams.getPictureStart() : this.windowParams.getBoxWidth(this.props.Parts)
+        let height = this.windowParams.getTopRowHeight();
 
         let startpoint = this.props.IsFirstText === true ? this.windowParams.getPictureStart() : 0
 
@@ -46,7 +47,7 @@ export default class HeaderBoxName extends React.Component<HeaderNameInterface, 
                 <text
                     className={textHeaderHeatEventsvg}
                     y={height - 5}
-                    x={this.windowParams.getPictureStart() + 3 }
+                    x={this.windowParams.getPictureStart() + 3}
                 >
                     {this.props.HeaderName}</text>
             </g>

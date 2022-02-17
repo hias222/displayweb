@@ -8,7 +8,6 @@ import checkUndefined from "../utilities/checkUndefined";
 import getBirthYear from "../utilities/getBirthYear";
 import stringToBoolean from "../utilities/stringToBoolean";
 import StyledLane from "./images/StyledLane";
-import LapStyledLane from "./images/LapStyledLane";
 import FinishStyledLane from "./images/FinishStyledLane";
 
 export class SingleLaneStaticComponent extends React.Component<LaneInterface, LaneState>{
@@ -138,20 +137,19 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   //paste in state
 
   getRaceData() {
-
     if (this.state.islaptime) {
-      return <LapStyledLane
+      return <FinishStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
         finishtime={this.state.laptime}
       />
     } else {
-      return <FinishStyledLane
-        swimmer={this.state.swimmerData}
-        lane={this.state.lane}
-        place={this.state.place}
-        finishtime={this.state.time}
-      />
+    return <FinishStyledLane
+      swimmer={this.state.swimmerData}
+      lane={this.state.lane}
+      place={this.state.place}
+      finishtime={this.state.time}
+    />
     }
 
   }

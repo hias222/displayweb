@@ -3,6 +3,7 @@ export default class windowParameter {
     private boxheight = 45;
     private boxTextfromtop = 35;
     private spacing = 5;
+    private toprowheight = 30
 
     window_width: number;
     window_height: number;
@@ -31,6 +32,10 @@ export default class windowParameter {
         return this.window_width
     }
 
+    public getBoxWidth(parts: number): number {
+        return (this.window_width - (2 * this.spacing)) / parts
+    }
+
     public getBoxTextFromTop(): number {
         return this.boxTextfromtop
     }
@@ -45,6 +50,10 @@ export default class windowParameter {
 
     public getPictureMiddle(): number {
         return this.window_width / 2
+    }
+
+    public getTopRowHeight() : number {
+        return this.toprowheight
     }
 
 }

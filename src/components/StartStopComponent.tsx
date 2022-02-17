@@ -2,7 +2,8 @@ import classNames from "classnames";
 import React from "react";
 import { StartStopInterface } from "../interfaces/StartStopInterface";
 import { StartStopState } from "../state/StartStopState";
-import HeaderTimeLine from "./svg/HeaderTimeLine";
+import HeaderBoxName from "./svg/HeaderBoxName";
+import HeaderTimeLine from "./svg/HeaderTime";
 
 
 export class StartStopComponent extends React.Component<StartStopInterface, StartStopState> {
@@ -113,12 +114,16 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
     render() {
 
-        let noSpaceContainerVertical = classNames("noSpaceContainerVertical");
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
 
         return (
-            <div className={noSpaceContainerVertical} >
-                <HeaderTimeLine EventName={this.props.EventHeat.name}
-                    Time={this.format(this.state.displaytime)} />
+            <div className={noSpaceContainerHorizontal} >
+                <HeaderBoxName HeaderName={"Wettkampf: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
+                <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                <HeaderTimeLine
+                    Time={this.format(this.state.displaytime)}
+                    IsFirstText={false}
+                    Parts={3} />
             </div>
         );
     }

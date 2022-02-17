@@ -4,8 +4,9 @@ import windowParameter from '../../utilities/windowParameter';
 
 
 interface HeaderTimeInterface {
-    EventName: string;
     Time: string;
+    Parts: number;
+    IsFirstText: boolean;
 }
 
 export default class headertimeline extends React.Component<HeaderTimeInterface, {}> {
@@ -19,13 +20,15 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
         let headertimeline = classnames('headertimeline');
         let gradient_name = classnames('gradient_name');
 
-        let viewlength = this.windowParams.getWindowWidth()
-        let internallength = this.windowParams.getWindowWidth() - (2 * this.windowParams.getPictureStart())
+        let viewlength = this.windowParams.getBoxWidth(this.props.Parts)
+        let internallength = this.windowParams.getBoxWidth(this.props.Parts)
+
+        let startpoint = this.props.IsFirstText === true ? this.windowParams.getPictureStart() : 0
 
         let height = 30;
 
         let viewBoxSize = "0 0 " + viewlength + " " + height
-        let boxSize = "M " + this.windowParams.getPictureStart() + " 0 h " + internallength + " v " + height + " h -" + internallength + " z"
+        let boxSize = "M " + startpoint + " 0 h " + internallength + " v " + height + " h -" + internallength + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +51,6 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
                     className={gradient_name}
                     d={boxSize}
                 />
-                <text
-                    className={headertimeline}
-                    y={height - 5}
-                    x={this.windowParams.getPictureStart() + 3 }
-                >
-                    {this.props.EventName}</text>
-
                 <text
                     className={headertimeline}
                     y={height - 5}

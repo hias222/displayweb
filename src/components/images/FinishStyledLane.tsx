@@ -47,14 +47,10 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                     laneNumber={this.props.lane}
                     place={this.props.place}
                 />
-            </div>
-            <div className={noFlexHorizontal} >
                 <LaneName
                     LaneName={correctName}
                     laneStartPoint={100}
                     laneEndSpace={100} />
-            </div>
-            <div className={noFlexHorizontal} >
                 <LaneTime LaneTime={finishtime} laneStartPoint={400}
                 />
             </div>
