@@ -25,7 +25,7 @@ export default class TopEventNameHeader extends React.Component<EventNameInterfa
         let button_space = height - top_space;
 
         let viewBoxSize = "0 0 " + length + " " + height
-        let boxSize = "M " + this.windowParams.getPictureStart() + " " + top_space + " h " + this.windowParams.getHeaderWidth() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
+        let boxSize = "M 0 " + top_space + " h " + this.windowParams.getHeaderWidth() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"

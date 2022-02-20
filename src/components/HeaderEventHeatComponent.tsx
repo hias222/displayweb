@@ -4,7 +4,7 @@ import classNames from "classnames";
 import HeaderBoxName from "./svg/HeaderBoxName";
 import TopEventNameHeader from "./svg/TopEventNameHeader";
 import { StartStopComponent } from "./StartStopComponent";
-import LogoFromImage from "../eventlogos/LogoFromImage";
+import SwimmerLogo from "../eventlogos/SwimmerLogo";
 
 interface HeaderEventHeatInterface {
     EventHeat: eventHeat;
@@ -21,11 +21,12 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
         let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
 
         // <SwimmerLogo />
+        //  <LogoFromImage />
 
         return (
             <div className={noSpaceContainerHorizontal}>
                 <div>
-                    <LogoFromImage />
+                <SwimmerLogo />
                 </div>
                 <div className={noSpaceContainerVertical}>
                     <TopEventNameHeader EventName={EventName} />

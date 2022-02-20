@@ -18,17 +18,18 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
     render() {
         let textnumbersvg = classnames('textnumbersvg');
         let gradient_lane = classnames('gradient_lane');
+        let gradient_lane_stop = classnames('gradient_lane_stop');
         let gradient_name = classnames('gradient_name');
 
         let viewBoxSize = "0 0 " + this.windowParams.getBoxNumberWidth() + " " + this.windowParams.getBoxheight()
 
         let boxwidth = this.windowParams.getBoxNumberWidth();
         let diagonal = this.windowParams.getBoxDiaganol();
-        let textfromleft = 7
+        let textfromleft = this.windowParams.getLaneNumberTextFromLeft();
 
         let path_lane = "M " + this.windowParams.getPictureStart() + " 0 h " + boxwidth + " l -" + diagonal + "," + this.windowParams.getBoxheight() + " h -" + (boxwidth - diagonal) + " z"
 
-        let fill_start= this.windowParams.getBoxNumberWidth()
+        let fill_start= this.windowParams.getBoxNumberWidth() + this.windowParams.getPictureStart()
         let path_fill = "M "+ fill_start +" 0 h 0 l 0," + this.windowParams.getBoxheight() + " h -" + diagonal + " z"
 
         return (<svg
@@ -41,11 +42,11 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                 <linearGradient id="laneNumberGradient" gradientTransform="rotate(0)">
                     <stop
                         className={gradient_lane}
+                        offset="0"
                     />
                     <stop
-                        className={gradient_lane}
-                        offset="1"
-                        stopOpacity="0"
+                        className={gradient_lane_stop}
+                         offset="0"
                     />
                 </linearGradient>
                 <linearGradient
@@ -59,7 +60,7 @@ export default class LaneNumber extends React.Component<LaneNumberInterface, {}>
                 />
             </defs>
             <g
-                id="layer1">
+                id="layernumber1">
                 <path
                     transform="scale(1)"
                     d={path_lane}

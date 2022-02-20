@@ -31,7 +31,13 @@
 }
   
 .gradient_lane {
-    stop-color: #FF0000;
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
+}
+
+.gradient_lane_stop {
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
 }
 
 .gradient_name {
@@ -39,7 +45,19 @@
 }
 
 .gradient_place {
-    stop-color:  rgba(0, 255, 0,1);
+    //stop-color:  rgba(0, 255, 0,1);
+    stop-color: red;
+    stop-opacity: 1;
+}
+
+.gradient_icon {
+    fill: white;
+}
+
+.gradient_place_stop {
+    //stop-color:  rgba(0, 255, 0,1);
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
 }
 
 .separatorsvg{

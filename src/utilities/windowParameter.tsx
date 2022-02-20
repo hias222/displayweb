@@ -7,7 +7,7 @@ export default class windowParameter {
     private numberboxwidth = 40
     private boxtimewidth = 120
     private separator = 2
-    private logospace=100
+    private logospace=80
 
     window_width: number;
     window_height: number;
@@ -42,6 +42,10 @@ export default class windowParameter {
 
     public getBoxWidth(parts: number): number {
         return (this.window_width - this.logospace - (2 * this.spacing)) / parts
+    }
+
+    public getLaneNumberTextFromLeft(): number {
+        return 10
     }
 
     public getBoxTimeLaneWidth(): number {
