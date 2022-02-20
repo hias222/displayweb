@@ -7,8 +7,8 @@ import { LaneState } from "../state/LaneState";
 import checkUndefined from "../utilities/checkUndefined";
 import getBirthYear from "../utilities/getBirthYear";
 import stringToBoolean from "../utilities/stringToBoolean";
-import StyledLane from "./images/StyledLane";
-import FinishStyledLane from "./images/FinishStyledLane";
+import StyledLane from "./lanes/StartStyledLane";
+import FinishStyledLane from "./lanes/FinishStyledLane";
 
 export class SingleLaneStaticComponent extends React.Component<LaneInterface, LaneState>{
 

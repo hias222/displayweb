@@ -175,9 +175,6 @@ export default class Lcd extends React.Component<{}, FrontendState> {
 
         let webcontent = <p>starting</p>;
         let statictable = classnames('statictable');
-        let context = classnames('context-container')
-        let area = classnames('area')
-        let circles = classnames('circles')
 
         let buttonfullscreen = <div></div>
 

@@ -7,6 +7,7 @@ export default class windowParameter {
     private numberboxwidth = 40
     private boxtimewidth = 120
     private separator = 2
+    private logospace=100
 
     window_width: number;
     window_height: number;
@@ -40,7 +41,7 @@ export default class windowParameter {
     }
 
     public getBoxWidth(parts: number): number {
-        return (this.window_width - (2 * this.spacing)) / parts
+        return (this.window_width - this.logospace - (2 * this.spacing)) / parts
     }
 
     public getBoxTimeLaneWidth(): number {
@@ -49,6 +50,10 @@ export default class windowParameter {
 
     public getBoxTextFromTop(): number {
         return this.boxTextfromtop
+    }
+
+    public getHeaderWidth(): number {
+        return this.window_width - (2 * this.spacing) - this.logospace
     }
 
     public getPictureStart(): number {
@@ -60,7 +65,7 @@ export default class windowParameter {
     }
 
     public getPictureMiddle(): number {
-        return this.window_width / 2
+        return (this.window_width - (2 * this.spacing) - this.logospace) / 2
     }
 
     public getSeparatorHeight(): number {

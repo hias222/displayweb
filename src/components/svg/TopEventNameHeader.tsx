@@ -19,14 +19,13 @@ export default class TopEventNameHeader extends React.Component<EventNameInterfa
         let textWKNamesvg = classnames('textWKNamesvg');
         let gradient_name = classnames('gradient_name');
 
-        let length = this.windowParams.getWindowWidth();
+        let length = this.windowParams.getHeaderWidth();
         let height = 30;
         let top_space = 3;
         let button_space = height - top_space;
 
-
         let viewBoxSize = "0 0 " + length + " " + height
-        let boxSize = "M " + this.windowParams.getPictureStart() + " " + top_space + " h " + this.windowParams.getPictureLength() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
+        let boxSize = "M " + this.windowParams.getPictureStart() + " " + top_space + " h " + this.windowParams.getHeaderWidth() + " v " + button_space + " h -" + this.windowParams.getPictureLength() + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"

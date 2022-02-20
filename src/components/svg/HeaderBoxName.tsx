@@ -38,7 +38,7 @@ export default class HeaderBoxName extends React.Component<HeaderNameInterface, 
             viewBox={viewBoxSize}
             height={height}
         >
-            <g id="layer1">
+            <g id="headeboxname">
                 <path
                     transform="scale(1)"
                     className={gradient_name}
