@@ -80,4 +80,30 @@ export default class windowParameter {
         return this.toprowheight
     }
 
+    // Length Names
+
+    public getLengthNameStartlist() : number {
+        return 70
+    }
+
+    public getSpaceNameStartlist() : number {
+        return 380
+    }
+
+    public getLengthClubStartlist() : number {
+        return 60
+    }
+
+    public getLengthNameFinishlist() : number {
+        return 60
+    }
+
+    public getSpaceNameFinishlist() : number {
+        return 300
+    }
+
+    public getLengthClubFinishlist() : number {
+        return 60
+    }
+
 }

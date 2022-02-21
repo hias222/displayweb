@@ -5,6 +5,8 @@ import windowParameter from '../../utilities/windowParameter';
 
 interface LaneNameInterface {
     LaneName: string;
+    AgeText: string;
+    ClubName: string;
     IsOnlyBox: boolean;
 }
 
@@ -16,17 +18,40 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         super(props);
         this.windowParams = new windowParameter();
     }
+    getAgeText(length: number) {
+        if (this.props.IsOnlyBox) {
+            let textlanesvg = classnames('textlanesvg');
+            return <text
+                className={textlanesvg}
+                y={this.windowParams.getBoxTextFromTop()}
+                x={length - 5}
+                text-anchor="end"
+            >
+                {this.props.AgeText}</text>
+        }
+    }
+
+    getClubText(length: number) {
+        let textlanesvg = classnames('textlanesvg');
+        return <text
+            className={textlanesvg}
+            y={this.windowParams.getBoxTextFromTop()}
+            x={this.windowParams.getSpaceNameStartlist() + 4}
+            text-anchor="start"
+        >
+            {this.props.ClubName}</text>
+    }
 
     render() {
         let textlanesvg = classnames('textlanesvg');
         let gradient_name = classnames('gradient_name');
 
         let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
-        let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() -  this.windowParams.getBoxNumberWidth() : time_length
+        let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth() : time_length
         let boxheight = this.windowParams.getBoxheight();
 
         let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
-        let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30)  + " z"
+        let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"
 
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +74,9 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
                     x="0"
                 >
                     {this.props.LaneName}</text>
+                {this.getAgeText(length)}
+                {this.getClubText(length)}
+
             </g>
         </svg>
         );

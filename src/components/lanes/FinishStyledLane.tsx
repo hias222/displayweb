@@ -4,17 +4,18 @@ import LaneNumberFinish from "../svg/LaneNumberFinish";
 import classNames from "classnames";
 import LaneName from "../svg/LaneName";
 import LaneTime from "../svg/LaneTime";
+import windowParameter from "../../utilities/windowParameter";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
-    box_height: number;
+    windowParams: windowParameter;
 
     constructor(props: LaneData) {
         super(props)
-        this.box_height = process.env.REACT_APP_BOX_HEIGHT !== undefined ? Number(process.env.REACT_APP_BOX_HEIGHT) : 50
+        this.windowParams = new windowParameter();
     }
 
     checkName() {
-        let namelength = 20;
+        let namelength = this.windowParams.getLengthNameFinishlist();
 
         let sizeName = this.props.swimmer.name.length;
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
@@ -50,6 +51,8 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 <LaneName
                     LaneName={correctName}
                     IsOnlyBox={false}
+                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                    ClubName={this.props.swimmer.clubname}
                 />
                 <LaneTime LaneTime={finishtime}
                 />

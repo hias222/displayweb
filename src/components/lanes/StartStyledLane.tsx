@@ -1,25 +1,26 @@
 import classNames from "classnames";
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
+import windowParameter from "../../utilities/windowParameter";
 import LaneName from "../svg/LaneName";
 
 import LaneNumber from "../svg/LaneNumber";
 
 export default class StyledLane extends React.Component<LaneData, {}> {
 
-    box_height: number;
+    windowParams: windowParameter;
 
     constructor(props: LaneData) {
         super(props)
-        this.box_height = process.env.REACT_APP_BOX_HEIGHT !== undefined ? Number(process.env.REACT_APP_BOX_HEIGHT) : 50
+        this.windowParams = new windowParameter();
     }
 
     checkName() {
-        let namelength = 20;
+        let namelength = this.windowParams.getLengthNameStartlist();
 
         let sizeName = this.props.swimmer.name.length;
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
-
+       
         if (sizeName > (namelength - 2)) {
             console.log("short name")
             return this.props.swimmer.name.substr(0, (namelength - 2));
@@ -30,8 +31,17 @@ export default class StyledLane extends React.Component<LaneData, {}> {
         }
 
         let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
-
         return name
+    }
+
+    checkClub(){
+        let namelength = this.windowParams.getLengthClubStartlist();
+        let sizeClub = this.props.swimmer.clubname.length;
+
+        if (sizeClub > (namelength - 2)) {
+            return this.props.swimmer.clubname.substr(0, (namelength - 2));
+        }
+        return this.props.swimmer.clubname
     }
 
     formatEntryTime() {
@@ -40,7 +50,7 @@ export default class StyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let correctName = this.checkName() + " (" + this.props.swimmer.birthyear + ")";
+        let correctName = this.checkName();
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         let noFlexHorizontal = classNames("noFlexHorizontal")
 
@@ -51,7 +61,9 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                 <LaneName
                     LaneName={correctName}
                     IsOnlyBox={true}
-                    />
+                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                    ClubName={this.checkClub()}
+                />
             </div>
         </div >
 
