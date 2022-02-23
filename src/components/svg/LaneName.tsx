@@ -32,14 +32,16 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
     }
 
     getClubText(length: number) {
-        let textlanesvg = classnames('textlanesvg');
-        return <text
-            className={textlanesvg}
-            y={this.windowParams.getBoxTextFromTop()}
-            x={this.windowParams.getSpaceNameStartlist() + 4}
-            text-anchor="start"
-        >
-            {this.props.ClubName}</text>
+        if (this.windowParams.showClubs()) {
+            let textlanesvg = classnames('textlanesvg');
+            return <text
+                className={textlanesvg}
+                y={this.windowParams.getBoxTextFromTop()}
+                x={this.windowParams.getSpaceNameStartlist() + 4}
+                text-anchor="start"
+            >
+                {this.props.ClubName}</text>
+        }
     }
 
     render() {

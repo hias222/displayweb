@@ -170,22 +170,34 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         */
     };
 
+    topbuttonfullscreen() {
+        if (this.window_top_pixel > 0) {
+            return <Box height={this.window_top_pixel}>
+                <div>
+                    <button onClick={this.handleFullscreen}>Full screen </button>
+                </div>
+            </Box>
+        }
+    }
+
+    buttonfullscreen() {
+        if (this.window_top_pixel === 0) {
+            return <div>
+                <Box height={30}></Box>
+                <Box height={50}>
+                    <div>
+                        <button onClick={this.handleFullscreen}>Full screen </button>
+                    </div>
+                </Box>
+            </div>
+        }
+    }
+
 
     render() {
 
         let webcontent = <p>starting</p>;
         let statictable = classnames('statictable');
-
-        let buttonfullscreen = <div></div>
-
-        if (this.window_top_pixel > 20) {
-            buttonfullscreen = <div>
-                <button onClick={this.handleFullscreen}>Full screen
-                </button>
-                <a href="/download/index.html">Links - Downloads
-                </a>
-            </div>
-        }
 
         if (this.state.displayMode === 'message' || this.state.displayMode === 'clock' || this.state.displayMode === 'video') {
             webcontent = <MessageFrontendComponent
@@ -206,10 +218,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         }
         return (
             <div>
-                           
-                <Box height={this.window_top_pixel}>
-                    {buttonfullscreen}
-                </Box>
+                {this.topbuttonfullscreen()}
 
                 <Box width={this.window_width} height={this.window_height} className={statictable}>
                     <WsSocketState onStartStop={this.onStartStop}
@@ -221,8 +230,10 @@ export default class Lcd extends React.Component<{}, FrontendState> {
                     {webcontent}
 
                 </Box>
-          
-            </div>
+
+                {this.buttonfullscreen()}
+
+            </div >
         );
     }
 }

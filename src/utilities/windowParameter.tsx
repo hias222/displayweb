@@ -1,5 +1,5 @@
+
 export default class windowParameter {
-    private baxViewheight = 48;
     private boxheight = 45;
     private boxTextfromtop = 35;
     private spacing = 5;
@@ -7,7 +7,17 @@ export default class windowParameter {
     private numberboxwidth = 40
     private boxtimewidth = 120
     private separator = 2
-    private logospace=80
+    private logospace = 80
+
+    private lengthNameStartlist: number = 70;
+    private spaceNameStartlist: number = 380;
+    private lengthClubStartlist: number = 60;
+
+    private lengthNameFinishlist: number = 60;
+    private spaceNameFinishlist: number = 300;
+    private lengthClubFinishlist: number = 60;
+
+    private showClub: boolean = false
 
     window_width: number;
     window_height: number;
@@ -17,10 +27,19 @@ export default class windowParameter {
         this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
         this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
         this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        let window_mode: number = process.env.REACT_APP_SHOW_MODE !== undefined ? Number(process.env.REACT_APP_SHOW_MODE) : 0
+
+        this.setWindowMode(window_mode);
     }
 
-    public calculateArea(radius: number) {
-        return this.baxViewheight * radius * radius;
+    private setWindowMode(windowmode: number) {
+
+        if (windowmode === 1) {
+            this.showClub=true;
+            this.boxheight=48
+            this.toprowheight = 35;
+        }
+
     }
 
 
@@ -76,34 +95,38 @@ export default class windowParameter {
         return this.separator
     }
 
-    public getTopRowHeight() : number {
+    public getTopRowHeight(): number {
         return this.toprowheight
     }
 
     // Length Names
 
-    public getLengthNameStartlist() : number {
-        return 70
+    public showClubs(): boolean {
+        return this.showClub
     }
 
-    public getSpaceNameStartlist() : number {
-        return 380
+    public getLengthNameStartlist(): number {
+        return this.lengthNameStartlist
     }
 
-    public getLengthClubStartlist() : number {
-        return 60
+    public getSpaceNameStartlist(): number {
+        return this.spaceNameStartlist
     }
 
-    public getLengthNameFinishlist() : number {
-        return 60
+    public getLengthClubStartlist(): number {
+        return this.lengthClubStartlist
     }
 
-    public getSpaceNameFinishlist() : number {
-        return 300
+    public getLengthNameFinishlist(): number {
+        return this.lengthNameFinishlist
     }
 
-    public getLengthClubFinishlist() : number {
-        return 60
+    public getSpaceNameFinishlist(): number {
+        return this.spaceNameFinishlist
+    }
+
+    public getLengthClubFinishlist(): number {
+        return this.lengthClubFinishlist
     }
 
 }

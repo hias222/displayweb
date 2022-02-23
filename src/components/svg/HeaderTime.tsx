@@ -26,7 +26,7 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
 
         let startpoint = this.props.IsFirstText === true ? this.windowParams.getPictureStart() : 0
 
-        let height = 30;
+        let height = this.windowParams.getTopRowHeight();
 
         let viewBoxSize = "0 0 " + viewlength + " " + height
         let boxSize = "M " + startpoint + " 0 h " + internallength + " v " + height + " h -" + internallength + " z"
