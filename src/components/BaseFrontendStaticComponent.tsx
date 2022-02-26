@@ -19,24 +19,23 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
 
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
         return (
-            <div className={noSpaceContainerVertical}>
+            <div key="500" className={noSpaceContainerVertical}>
 
                 <HeaderEventHeatComponent
                     EventHeat={this.props.EventHeat}
                     startdelayms={this.props.startdelayms}
                     runningTime={this.props.runningTime}
                 />
-
                 {
                     this.props.lanes.map((lane, index) => (
-                        <div className={noSpaceContainerVertical}>
+                        <div key={index + 200} className={noSpaceContainerVertical}>
                             <SingleLaneStaticComponent
                                 key={index}
                                 lane={lane}
                                 index={index}
                                 displayMode={this.props.displayMode}
                             />
-                            <LaneSeparator IsEnabled={true} />
+                            <LaneSeparator keyindex={index + 100} IsEnabled={true} />
                         </div>
                     ))
                 }

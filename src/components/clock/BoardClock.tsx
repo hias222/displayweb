@@ -4,6 +4,7 @@ import Clock from 'react-clock'
 //import Clock from 'react-clock';
 
 import classnames from 'classnames';
+import MessageLane from '../svg/MessageLane';
 //import Image from '../water2.jpg';
 
 interface ClockInterface {
@@ -132,63 +133,54 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         this.startTimer();
     }
 
-    /*
-    splitMessageLines() {
-        var webcontent = "";
-        let staticmessagetext_main = classnames('staticmessagetext_main');
+    getClockType(newclocktime: Date) {
 
-        var strmessage = this.props.message.toString();
-        var lines = strmessage.split('\\n');
-
-        if (this.props.type === 'message') {
-
-            webcontent = <table >
-                <tbody>
-                    {lines.map((msg, index) => (
-                        <tr className={staticmessagetext_main} key={index}>
-                            <td>{msg}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            return webcontent;
-        }
-
-        return webcontent
-    }
-    */
-
-    render() {
         let staticmessagetable = classnames('staticmessagetable');
         //let staticmessagetable_header = classnames('staticmessagetable_header');
         let staticmessagetext_main = classnames('staticmessagetext_main');
         //let staticmessagetext_header = classnames('staticmessagetext_header');
 
+        if (this.props.type === "digital") {
+            return <MessageLane EventName={newclocktime.toLocaleString('de-DE', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            })} />
+        }
+
+        return <div>
+            <table className={staticmessagetable}>
+                <tbody>
+                    <tr className={staticmessagetext_main}>
+                        <td align='center'>
+                            <Clock
+                                value={newclocktime}
+                                size={this.state.size}
+                                hourHandWidth={this.state.hourHandWidth}
+                                minuteHandWidth={this.state.minuteHandWidth}
+                                className="message_clock"
+                            //react-clock__hand__body
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+    render() {
+
+
         let clocktime = (this.state.unixcompetitiontime * 1000) + this.state.timediff;
         let unixtoshow = isNaN(clocktime) ? 1 : clocktime
         let newclocktime = new Date(unixtoshow);
 
-        console.log("start clock " + this.state.unixcompetitiontime) 
-        
+        console.log("start clock " + this.state.unixcompetitiontime)
+
         return (
-            <div>
-                <table className={staticmessagetable}>
-                    <tbody>
-                        <tr className={staticmessagetext_main}>
-                            <td align='center'>
-                                <Clock
-                                    value={newclocktime}
-                                    size={this.state.size}
-                                    hourHandWidth={this.state.hourHandWidth}
-                                    minuteHandWidth={this.state.minuteHandWidth}
-                                    className="message_clock"
-                                //react-clock__hand__body
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            this.getClockType(newclocktime)
         )
     }
 };

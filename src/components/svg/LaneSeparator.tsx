@@ -4,6 +4,7 @@ import windowParameter from '../../utilities/windowParameter';
 
 
 interface LaneSeparatorInterface {
+    keyindex: number;
     IsEnabled: boolean;
 }
 
@@ -21,6 +22,8 @@ export default class LaneSeparator extends React.Component<LaneSeparatorInterfac
         let length = this.windowParams.getPictureLength();
 
         let separatorsvg = classnames('separatorsvg');
+
+        let seapartorname = this.props.keyindex === undefined ? "separator" : "separator" + this.props.keyindex
 
         let viewBoxSize = "0 0 " + this.windowParams.getWindowWidth() + " " + this.windowParams.getSeparatorHeight()
         let boxSize = "M " + this.windowParams.getPictureStart() + " 0 h " + length + " v " + this.windowParams.getSeparatorHeight() + " h -" + length + " z"
@@ -55,7 +58,7 @@ export default class LaneSeparator extends React.Component<LaneSeparatorInterfac
                     xlinkHref="#separatorGradient"
                 />
             </defs>
-            <g id="Separator1">
+            <g id={seapartorname} >
                 <path
                     transform="scale(1)"
                     className={separatorsvg}

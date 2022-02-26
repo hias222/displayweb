@@ -1,6 +1,8 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
 import classnames from 'classnames';
+import SwimmerLogo from "../../eventlogos/SwimmerLogo";
+import TopEventNameHeader from "../svg/TopEventNameHeader";
+import MessageLane from "../svg/MessageLane";
 import BoardClock from "../clock/BoardClock";
 
 export interface MessageBox {
@@ -19,7 +21,7 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
         super(props)
         this.state = {
             Message: this.props.MessageText,
-            MessageTime: this.props.MessageText
+            MessageTime: this.props.MessageTime
         }
     }
 
@@ -32,29 +34,42 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
 
     splitMessageLines() {
         var webcontent;
-        let messageTextClass = classnames('messagetext');
+        let noSpaceContainerVertical = classnames('noSpaceContainerVertical');
 
         var strmessage = this.state.Message.toString();
         var lines = strmessage.split('\\n');
-        webcontent = <Grid container className={messageTextClass}>
+        webcontent = <div key="500" className={noSpaceContainerVertical}>
             {lines.map((msg, index) => (
-                <Grid item xs={12}>
-                    {msg}
-                </Grid>
+                <div key={index + 700}>
+                    {this.getStandardHeader(msg, index)}
+                </div>
             ))}
-        </Grid>
+        <BoardClock type="digital" unixcompetitiontime={this.props.MessageTime} />
+        </div>
         return webcontent;
 
+    }
+
+    getStandardHeader(EventName: string, index: number) {
+
+        let noSpaceContainerHorizontal = classnames('noSpaceContainerHorizontal');
+
+        if (index < 1) {
+            return <div className={noSpaceContainerHorizontal}>
+                <div>
+                    <SwimmerLogo />
+                </div>
+                <TopEventNameHeader EventName={EventName} />
+            </div>
+        } else {
+            return <MessageLane EventName={EventName} />
+        }
     }
 
     render() {
         return (
             <div>
                 {this.splitMessageLines()}
-                <BoardClock 
-                type={"123"}
-                unixcompetitiontime={this.state.MessageTime}
-                />
             </div>
         )
     }

@@ -26,6 +26,8 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
     }
 
     getVideoUrl() {
+        console.log("init vodeo nr " + this.props.VideoVersion)
+
         if (this.props.VideoVersion === "1") {
             return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
         }
@@ -54,7 +56,6 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "video":
                 switch (this.props.displayFormat) {
                     case "fixed":
-
                         return <VideoFrontendComponent
                             videoURL={this.getVideoUrl()}
                             height="382"
