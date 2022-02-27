@@ -28,11 +28,16 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
     getVideoUrl() {
         console.log("init vodeo nr " + this.props.VideoVersion)
 
+        let backend_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port
+   
+
         if (this.props.VideoVersion === "1") {
-            return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            console.log(backend_url + "/data/video1.mp4")
+            return backend_url + "/data/video1.mp4"
         }
         if (this.props.VideoVersion === "2") {
-            return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            console.log(backend_url + "/data/video2.mp4")
+            return backend_url + "/data/video2.mp4"
         }
         if (this.props.VideoVersion === "3") {
             return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
