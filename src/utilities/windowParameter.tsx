@@ -7,7 +7,7 @@ export default class windowParameter {
     private numberboxwidth = 40
     private boxtimewidth = 120
     private separator = 2
-    private logospace = 80
+    private logospace = 120
 
     private lengthNameStartlist: number = 70;
     private spaceNameStartlist: number = 380;
