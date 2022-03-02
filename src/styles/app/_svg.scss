@@ -13,7 +13,7 @@
 .textHeaderHeatEventsvg{
     text-align: right;
     fill: $farbeschrift;
-    font-size: 1.4em;
+    font-size: 1.8em;
 }
 
 .textnumbersvg{
@@ -46,7 +46,7 @@
 
 .gradient_place {
     //stop-color:  rgba(0, 255, 0,1);
-    stop-color: red;
+    stop-color: #ff0000;
     stop-opacity: 1;
 }
 
@@ -56,7 +56,7 @@
 
 .gradient_place_stop {
     //stop-color:  rgba(0, 255, 0,1);
-    stop-color: black;
+    stop-color: #ff0000;
     stop-opacity: 1;
 }
 
@@ -68,6 +68,6 @@
 
 .headertimeline{
     fill: $farbeschrift;
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }

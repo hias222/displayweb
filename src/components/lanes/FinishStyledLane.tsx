@@ -34,6 +34,16 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         return name
     }
 
+    checkClub(){
+        let namelength = this.windowParams.getLengthClubFinishlist();
+        let sizeClub = this.props.swimmer.clubname.length;
+
+        if (sizeClub > (namelength - 2)) {
+            return this.props.swimmer.clubname.substr(0, (namelength - 2));
+        }
+        return this.props.swimmer.clubname
+    }
+
     render() {
 
         let correctName = this.checkName();
@@ -52,7 +62,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                     LaneName={correctName}
                     IsOnlyBox={false}
                     AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
-                    ClubName={this.props.swimmer.clubname}
+                    ClubName={this.checkClub()}
                 />
                 <LaneTime LaneTime={finishtime}
                 />

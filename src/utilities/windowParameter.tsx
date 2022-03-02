@@ -7,15 +7,15 @@ export default class windowParameter {
     private numberboxwidth = 40
     private boxtimewidth = 120
     private separator = 2
-    private logospace = 120
+    private logospace = 150
 
-    private lengthNameStartlist: number = 70;
+    private lengthNameStartlist: number = 25;
     private spaceNameStartlist: number = 380;
-    private lengthClubStartlist: number = 60;
+    private lengthClubStartlist: number = 25;
 
-    private lengthNameFinishlist: number = 60;
+    private lengthNameFinishlist: number = 25;
     private spaceNameFinishlist: number = 300;
-    private lengthClubFinishlist: number = 60;
+    private lengthClubFinishlist: number = 20;
 
     private showClub: boolean = false
 

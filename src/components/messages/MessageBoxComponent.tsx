@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from 'classnames';
-import SwimmerLogo from "../../eventlogos/SwimmerLogo";
+import SwimmerLogo from "../../eventlogos/SGMittelfranken";
 import TopEventNameHeader from "../svg/TopEventNameHeader";
 import MessageLane from "../svg/MessageLane";
 import BoardClock from "../clock/BoardClock";

@@ -5,7 +5,7 @@ import React from 'react';
 export default class SwimmerLogo extends React.Component<{}, {}> {
 
     render() {
-        return (<svg xmlns="http://www.w3.org/2000/svg" width="120" height="100" viewBox="-50 -100 2910 2200">
+        return (<svg xmlns="http://www.w3.org/2000/svg" width="140" height="100" viewBox="-50 -100 2910 2200">
 
         <g id="layer1">
           <path id="Selection" fill="#ff0000" stroke="black" stroke-width="1" d="M 1374.00,0.00
