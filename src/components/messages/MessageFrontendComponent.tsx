@@ -40,15 +40,15 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             return backend_url + "/data/video2.mp4"
         }
         if (this.props.VideoVersion === "3") {
-            return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            return backend_url + "/data/video3.mp4"
         }
 
         if (this.props.VideoVersion === "4") {
-            return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            return backend_url + "/data/video4.mp4"
         }
 
         if (this.props.VideoVersion === "5") {
-            return "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            return backend_url + "/data/video5.mp4"
         }
         console.log("not found video " + this.props.VideoVersion)
         return ""
