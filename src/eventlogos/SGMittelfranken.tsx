@@ -2,7 +2,7 @@ import React from 'react';
 
 // https://www.svgrepo.com/svg/39643/swimming
 
-export default class SwimmerLogo extends React.Component<{}, {}> {
+export default class SGMittelfranken extends React.Component<{}, {}> {
 
     render() {
         return (<svg xmlns="http://www.w3.org/2000/svg" width="140" height="100" viewBox="-50 -100 2910 2200">

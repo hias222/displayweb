@@ -18,6 +18,7 @@ export default class windowParameter {
     private lengthClubFinishlist: number = 20;
 
     private showClub: boolean = false
+    private logonumber: number = 0
 
     window_width: number;
     window_height: number;
@@ -38,6 +39,14 @@ export default class windowParameter {
             this.showClub=true;
             this.boxheight=48
             this.toprowheight = 35;
+            this.logonumber = 1;
+        }
+
+        if (windowmode === 2) {
+            this.showClub=true;
+            this.boxheight=48
+            this.toprowheight = 35;
+            this.logonumber = 2;
         }
 
     }
@@ -73,6 +82,10 @@ export default class windowParameter {
 
     public getBoxTextFromTop(): number {
         return this.boxTextfromtop
+    }
+
+    public getLogoNumber(): number {
+        return this.logonumber
     }
 
     public getHeaderWidth(): number {
