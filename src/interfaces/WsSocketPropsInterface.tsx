@@ -7,4 +7,5 @@ export interface WsSocketPropsInterface {
     onDisplayModeChange: (displayMode: string) => void;
     onRunningTimeChange: (runningTime: string) => void;
     onMessageChange: (message: string) => void;
+    onResultChange: (message: string) => void;
     }

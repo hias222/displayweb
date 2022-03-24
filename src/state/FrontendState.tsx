@@ -8,6 +8,7 @@ export type FrontendState = {
   runningTime: string;
   displayMode: string;
   MessageText: string;
+  ResultJson: string;
   MessageTime: string;
   VideoVersion: string;
 };

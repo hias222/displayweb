@@ -97,6 +97,12 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
         this.setDisplayMode("clock")
         break;
       }
+      case "result": {
+        // ???
+        this.setDisplayMode("result")
+        this.props.onResultChange(jsondata)
+        break;
+      }
       case "time": {
         this.setRunningTime(jsondata)
         break;

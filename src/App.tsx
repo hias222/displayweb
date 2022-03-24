@@ -8,6 +8,7 @@ import { Box } from '@material-ui/core';
 import { MessageFrontendComponent } from './components/messages/MessageFrontendComponent';
 import { BaseFrontendStaticComponent } from './components/BaseFrontendStaticComponent';
 import { eventHeat } from './types/EventHeat';
+import { ResultFrontendComponent } from './components/result/ResultFrontendComponent';
 
 // https://towardsdatascience.com/passing-data-between-react-components-parent-children-siblings-a64f89e24ecf
 // https://medium.com/@RupaniChirag/parent-child-communication-in-vue-angular-and-react-all-in-typescript-9a47c75cbf74
@@ -35,6 +36,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         this.onLaneChange = this.onLaneChange.bind(this);
         this.onDisplayModeChange = this.onDisplayModeChange.bind(this);
         this.onMessageChange = this.onMessageChange.bind(this);
+        this.onResultChange = this.onResultChange.bind(this);
         this.onRunningTimeChange = this.onRunningTimeChange.bind(this);
 
         this.evenHeat = {
@@ -52,7 +54,8 @@ export default class Lcd extends React.Component<{}, FrontendState> {
             displayMode: "race",
             MessageText: "",
             MessageTime: Date.now().toString(),
-            VideoVersion: ""
+            VideoVersion: "",
+            ResultJson: ""
         };
         this.mylane = [];
         this.correctValueForLaneNull = 0;
@@ -126,6 +129,14 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         this.setState({
             displayMode: displaymode
         })
+    }
+
+    onResultChange(result: any) {
+        if (result !== undefined) {
+            this.setState({
+                ResultJson: result
+            })
+        }
     }
 
     onMessageChange(message: any) {
@@ -207,6 +218,11 @@ export default class Lcd extends React.Component<{}, FrontendState> {
                 VideoVersion={this.state.VideoVersion}
                 displayFormat={"lcd"}
             />
+        } else if (this.state.displayMode === 'result') {
+            webcontent = <ResultFrontendComponent
+                diplayMode={this.state.displayMode}
+                ResultJson={this.state.ResultJson}
+            />
         } else {
             webcontent = <BaseFrontendStaticComponent
                 startdelayms={this.state.startdelayms}
@@ -226,7 +242,9 @@ export default class Lcd extends React.Component<{}, FrontendState> {
                         onLaneChange={this.onLaneChange}
                         onDisplayModeChange={this.onDisplayModeChange}
                         onRunningTimeChange={this.onRunningTimeChange}
-                        onMessageChange={this.onMessageChange} />
+                        onMessageChange={this.onMessageChange}
+                        onResultChange={this.onResultChange}
+                    />
                     {webcontent}
 
                 </Box>
