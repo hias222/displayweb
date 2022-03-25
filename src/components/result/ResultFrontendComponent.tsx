@@ -1,18 +1,21 @@
 import React from "react";
-import { ResultBoxComponent } from "./ResultBoxComponent";
+import RankOthers from "../rank/RankOthers";
+import RankStyledLane from "../rank/RankStyledLane";
+import RankTopHeader from "../rank/RankTopHeader";
+import { eventDefinition } from "./types/eventDefinition";
+import { resultSwimmerData } from "./types/ResultSwimmerData";
 
 export type MessageType = {
     displayMode: string;
     ResultJson: string;
-    swimmerResults: [];
-    eventDefinition: {};
+    swimmerResults: [resultSwimmerData];
+    eventDefinition: eventDefinition;
 }
 
 export interface ResultInterface {
     diplayMode: string;
     ResultJson: string;
 }
-
 
 export class ResultFrontendComponent extends React.Component<ResultInterface, MessageType> {
 
@@ -21,8 +24,19 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         this.state = {
             displayMode: this.props.diplayMode,
             ResultJson: this.props.ResultJson,
-            swimmerResults: [],
-            eventDefinition: {}
+            swimmerResults: [
+                {
+                    firstname: '',
+                    lastname: '',
+                    name: '',
+                    place: ''
+                }
+            ],
+            eventDefinition: {
+                competition: '',
+                eventNumber: '',
+                name: ''
+            }
         }
     }
 
@@ -38,11 +52,31 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
     analyseJson() {
         var jsonResult = JSON.parse(JSON.stringify(this.props.ResultJson));
         this.setState({ eventDefinition: jsonResult.eventDefinition });
-        this.setState({swimmerResults:jsonResult.swimmerResults});
+        this.setState({ swimmerResults: jsonResult.swimmerResults });
+    }
+
+    getFirst3Results(results: [resultSwimmerData]){
+        var  firstResults = results.filter(results => parseInt(results.place,10) < 4)
+        console.log(firstResults)
+        return firstResults
+    }
+
+    getLastResults(results: [resultSwimmerData]){
+        var  lastResults = results.filter(results => parseInt(results.place,10) > 3)
+        return lastResults
     }
 
     render() {
 
-        return <ResultBoxComponent eventDefinition={this.state.eventDefinition} swimmerResults={this.state.swimmerResults} />
+        return (<div>
+            <RankTopHeader eventDefinition={this.state.eventDefinition} />
+            {this.getFirst3Results(this.state.swimmerResults).map((swimmer: resultSwimmerData, index) => (
+                <div key={index}>
+                    <RankStyledLane swimmer={swimmer} />
+                </div>
+            ))}
+            <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)}/>
+        </div>
+        )
     }
 }

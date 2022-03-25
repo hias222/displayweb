@@ -1,21 +1,17 @@
 import React from "react";
 import classNames from "classnames";
 import windowParameter from "../../utilities/windowParameter";
-import RankName from "./svg/RankName";
-import RankNumber from "./svg/RankNumber";
 import { resultSwimmerData } from "../result/types/ResultSwimmerData";
-import RankTime from "./svg/RankTime";
 
-
-export interface RankData {
-    swimmer: resultSwimmerData;
+export interface RankOtherData {
+    swimmerResults: resultSwimmerData[];
 }
 
-export default class RankStyledLane extends React.Component<RankData, {}> {
+export default class RankOthers extends React.Component<RankOtherData, {}> {
 
     windowParams: windowParameter;
 
-    constructor(props: RankData) {
+    constructor(props: RankOtherData) {
         super(props)
         this.windowParams = new windowParameter();
     }
@@ -25,21 +21,27 @@ export default class RankStyledLane extends React.Component<RankData, {}> {
         return endTime
     }
 
+    getMarqueeString() {
+        var marqueeText = '';
+        this.props.swimmerResults.map((swimmer: resultSwimmerData, index) => (
+            marqueeText = marqueeText + " " + swimmer.place + '. ' + swimmer.firstname + " " +  swimmer.lastname + " - " + swimmer.name
+        ))
+        return marqueeText
+    }
+
     render() {
 
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         let noFlexHorizontal = classNames("noFlexHorizontal")
+        let marquee = classNames('marquee')
 
         return <div className={noSpaceContainerHorizontal} >
             <div className={noFlexHorizontal} >
-                <RankNumber laneNumber={this.props.swimmer.place} />
-                <RankName
-                    Name={this.props.swimmer.firstname + ' ' + this.props.swimmer.lastname}
-                    IsOnlyBox={false}
-                />
-                <RankTime Time={this.getResultime(this.props.swimmer.swimtime)} IsOnlyBox={false} />
-
+                <div id="marquee" className={marquee}><span>
+                    {this.getMarqueeString()}
+                </span></div>
             </div>
+
         </div>;
 
     }
