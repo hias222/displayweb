@@ -20,6 +20,8 @@ export default class windowParameter {
     private showClub: boolean = false
     private logonumber: number = 0
 
+    private scalefactor = 1;
+
     window_width: number;
     window_height: number;
     window_top_pixel: number;
@@ -36,17 +38,37 @@ export default class windowParameter {
     private setWindowMode(windowmode: number) {
 
         if (windowmode === 1) {
-            this.showClub=true;
-            this.boxheight=48
+            this.showClub = true;
+            this.boxheight = 48
             this.toprowheight = 35;
             this.logonumber = 1;
         }
 
         if (windowmode === 2) {
-            this.showClub=true;
-            this.boxheight=48
+            this.showClub = true;
+            this.boxheight = 48
             this.toprowheight = 35;
             this.logonumber = 2;
+        }
+
+        if (windowmode === 3) {
+            this.showClub = true;
+            this.boxheight = 100
+            this.toprowheight = 80;
+            this.logonumber = 0;
+            this.lengthNameStartlist = 50;
+            this.spaceNameStartlist = 800;
+            this.lengthClubStartlist = 30;
+         
+            this.boxTextfromtop = 80;
+            this.numberboxwidth = 80;
+
+            this.lengthNameFinishlist = 50;
+            this.spaceNameFinishlist = 600;
+            this.lengthClubFinishlist = 35;
+
+            this.boxtimewidth = 320;
+            this.scalefactor = 2.5;
         }
 
     }
@@ -59,6 +81,11 @@ export default class windowParameter {
     public getBoxNumberWidth(): number {
         return this.numberboxwidth
     }
+
+    public getBoxScaleFactorh(): number {
+        return this.scalefactor;
+    }
+
 
     public getBoxDiaganol(): number {
         return 18
