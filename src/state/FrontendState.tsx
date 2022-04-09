@@ -11,5 +11,6 @@ export type FrontendState = {
   ResultJson: string;
   MessageTime: string;
   VideoVersion: string;
+  Fullscreen: boolean;
 };
 

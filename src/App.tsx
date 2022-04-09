@@ -55,7 +55,8 @@ export default class Lcd extends React.Component<{}, FrontendState> {
             MessageText: "",
             MessageTime: Date.now().toString(),
             VideoVersion: "",
-            ResultJson: ""
+            ResultJson: "",
+            Fullscreen: false
         };
         this.mylane = [];
         this.correctValueForLaneNull = 0;
@@ -166,6 +167,10 @@ export default class Lcd extends React.Component<{}, FrontendState> {
     }
 
     handleFullscreen = (e: any) => {
+        //Fullscreen
+        this.setState({
+            Fullscreen: true
+        })
         const el = document.documentElement;
         if (el.requestFullscreen) {
             el.requestFullscreen();
@@ -192,7 +197,7 @@ export default class Lcd extends React.Component<{}, FrontendState> {
     }
 
     buttonfullscreen() {
-        if (this.window_top_pixel === 0) {
+        if (this.window_top_pixel === 0 && !this.state.Fullscreen) {
             return <div>
                 <Box height={30}></Box>
                 <Box height={50}>

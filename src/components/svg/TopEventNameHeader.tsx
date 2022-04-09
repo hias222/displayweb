@@ -20,7 +20,7 @@ export default class TopEventNameHeader extends React.Component<EventNameInterfa
         let gradient_name = classnames('gradient_name');
 
         let length = this.windowParams.getHeaderWidth();
-        let height = 30;
+        let height = this.windowParams.getTopRowHeight();
         let top_space = 3;
         let button_space = height - top_space;
 
