@@ -5,8 +5,15 @@ TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
 NGINX_DIR=/usr/share/nginx/html
 APP_NAME=display
-REMOTE_SERVER_NAME=ubuntu
-REMOTE_SERVER_USER=ubuntu
+# need ssh certs
+REMOTE_SERVER_NAME=swim.fritz.box
+REMOTE_SERVER_USER=pi
+
+# linux set time
+ACTUAL_TIME=$(date)
+echo Time $ACTUAL_TIME
+ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo date --set=\"$ACTUAL_TIME\"
+ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo timedatectl
 
 cd $BASE_DIR
 
