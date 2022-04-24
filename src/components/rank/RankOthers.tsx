@@ -24,7 +24,7 @@ export default class RankOthers extends React.Component<RankOtherData, {}> {
     getMarqueeString() {
         var marqueeText = '';
         this.props.swimmerResults.map((swimmer: resultSwimmerData, index) => (
-            marqueeText = marqueeText + " " + swimmer.place + '. ' + swimmer.firstname + " " +  swimmer.lastname + " - " + swimmer.name
+            marqueeText = marqueeText + " " + swimmer.place + '. ' + swimmer.firstname + " " +  swimmer.lastname + " " + swimmer.name + "  - "
         ))
         return marqueeText
     }

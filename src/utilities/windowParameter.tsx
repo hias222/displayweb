@@ -59,16 +59,17 @@ export default class windowParameter {
             this.lengthNameStartlist = 50;
             this.spaceNameStartlist = 800;
             this.lengthClubStartlist = 30;
-         
+
             this.boxTextfromtop = 80;
             this.numberboxwidth = 80;
 
-            this.lengthNameFinishlist = 50;
+            this.lengthNameFinishlist = 30;
             this.spaceNameFinishlist = 600;
-            this.lengthClubFinishlist = 35;
 
-            this.boxtimewidth = 320;
+            this.boxtimewidth = 220;
             this.scalefactor = 2.5;
+
+            this.spacing = 10;
         }
 
     }

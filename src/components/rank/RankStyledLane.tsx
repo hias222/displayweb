@@ -29,16 +29,18 @@ export default class RankStyledLane extends React.Component<RankData, {}> {
 
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         let noFlexHorizontal = classNames("noFlexHorizontal")
+        console.log(this.props.swimmer)
 
         return <div className={noSpaceContainerHorizontal} >
             <div className={noFlexHorizontal} >
                 <RankNumber laneNumber={this.props.swimmer.place} />
                 <RankName
                     Name={this.props.swimmer.firstname + ' ' + this.props.swimmer.lastname}
+                    Birthdate={this.props.swimmer.birthdate + ' '}
+                    Club={this.props.swimmer.name}
                     IsOnlyBox={false}
-                />
+                />          
                 <RankTime Time={this.getResultime(this.props.swimmer.swimtime)} IsOnlyBox={false} />
-
             </div>
         </div>;
 

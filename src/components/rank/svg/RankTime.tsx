@@ -46,7 +46,7 @@ export default class RankTime extends React.Component<RankTimeInterface, {}> {
                 <text
                     className={textlanesvg}
                     y={this.windowParams.getBoxTextFromTop()}
-                    x="0"
+                    x={this.windowParams.getPictureStart()}
                 >
                     {this.props.Time}</text>
 

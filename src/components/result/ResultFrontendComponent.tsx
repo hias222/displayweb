@@ -1,4 +1,6 @@
+import { Box } from "@material-ui/core";
 import React from "react";
+import RankBox from "../rank/RankBox";
 import RankOthers from "../rank/RankOthers";
 import RankStyledLane from "../rank/RankStyledLane";
 import RankTopHeader from "../rank/RankTopHeader";
@@ -55,14 +57,14 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         this.setState({ swimmerResults: jsonResult.swimmerResults });
     }
 
-    getFirst3Results(results: [resultSwimmerData]){
-        var  firstResults = results.filter(results => parseInt(results.place,10) < 4)
+    getFirst3Results(results: [resultSwimmerData]) {
+        var firstResults = results.filter(results => parseInt(results.place, 10) < 4)
         console.log(firstResults)
         return firstResults
     }
 
-    getLastResults(results: [resultSwimmerData]){
-        var  lastResults = results.filter(results => parseInt(results.place,10) > 3)
+    getLastResults(results: [resultSwimmerData]) {
+        var lastResults = results.filter(results => parseInt(results.place, 10) > 3)
         return lastResults
     }
 
@@ -70,12 +72,14 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
 
         return (<div>
             <RankTopHeader eventDefinition={this.state.eventDefinition} />
+            <RankBox />
             {this.getFirst3Results(this.state.swimmerResults).map((swimmer: resultSwimmerData, index) => (
                 <div key={index}>
                     <RankStyledLane swimmer={swimmer} />
                 </div>
             ))}
-            <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)}/>
+            <RankBox />
+            <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)} />
         </div>
         )
     }

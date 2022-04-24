@@ -1,15 +1,15 @@
 .marquee {
-    max-width: 500vw; /* iOS braucht das */
+    max-width: 600vw; /* iOS braucht das */
     white-space: nowrap;
     overflow: hidden;
     color: $farbeschrift;
-    font-size: 1.8em;
+    font-size: 4em;
     /* hier evtl. noch font-size, color usw. */
 }
 
 .marquee span {
     display: inline-block;
-    padding-left: 10%; /* die zusätzlichen 5% erzeugen einen verzögerten Start und vermeiden so ein Ruckeln auf langsamen Seiten */
+    padding-left: 40%; /* die zusätzlichen 5% erzeugen einen verzögerten Start und vermeiden so ein Ruckeln auf langsamen Seiten */
     animation: marquee 30s linear infinite;
 }
 
