@@ -118,7 +118,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
         return (
             <div className={noSpaceContainerHorizontal} >
-                <HeaderBoxName HeaderName={"Wettkampf: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
+                <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
                 <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
                 <HeaderTimeLine
                     Time={this.format(this.state.displaytime)}

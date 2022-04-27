@@ -38,6 +38,9 @@ export default class windowParameter {
     private setWindowMode(windowmode: number) {
 
         if (windowmode === 1) {
+            // Mode 1 16:9 SGM
+            this.window_width = 896
+            this.window_height = 512
             this.showClub = true;
             this.boxheight = 48
             this.toprowheight = 35;
@@ -45,6 +48,9 @@ export default class windowParameter {
         }
 
         if (windowmode === 2) {
+            //Mode 2 16:9 FCN
+            this.window_width = 896
+            this.window_height = 512
             this.showClub = true;
             this.boxheight = 48
             this.toprowheight = 35;
@@ -52,6 +58,9 @@ export default class windowParameter {
         }
 
         if (windowmode === 3) {
+            // Mode 3 1080p
+            this.window_width = 1919
+            this.window_height = 1079
             this.showClub = true;
             this.boxheight = 100
             this.toprowheight = 80;
@@ -72,8 +81,19 @@ export default class windowParameter {
             this.spacing = 10;
         }
 
-    }
+        if (windowmode === 4) {
+            //Anzeige Fürth
+            this.window_width = 512
+            this.window_height = 384
+            this.showClub = false;
+            this.boxheight = 45
+            this.toprowheight = 30;
+            this.boxTextfromtop = 32;
+            this.logonumber = 0;
+            this.logospace = 100
+        }
 
+    }
 
     public getBoxheight(): number {
         return this.boxheight
@@ -87,13 +107,20 @@ export default class windowParameter {
         return this.scalefactor;
     }
 
-
     public getBoxDiaganol(): number {
         return 18
     }
 
     public getWindowWidth(): number {
         return this.window_width
+    }
+
+    public getWindowHeight(): number {
+        return this.window_height
+    }
+
+    public getWindowTopEmptyPixel(): number {
+        return this.window_top_pixel
     }
 
     public getBoxWidth(parts: number): number {

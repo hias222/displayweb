@@ -9,6 +9,7 @@ import { MessageFrontendComponent } from './components/messages/MessageFrontendC
 import { BaseFrontendStaticComponent } from './components/BaseFrontendStaticComponent';
 import { eventHeat } from './types/EventHeat';
 import { ResultFrontendComponent } from './components/result/ResultFrontendComponent';
+import windowParameter from './utilities/windowParameter';
 
 // https://towardsdatascience.com/passing-data-between-react-components-parent-children-siblings-a64f89e24ecf
 // https://medium.com/@RupaniChirag/parent-child-communication-in-vue-angular-and-react-all-in-typescript-9a47c75cbf74
@@ -23,6 +24,9 @@ export default class Lcd extends React.Component<{}, FrontendState> {
     correctValueForLaneNull: number;
     evenHeat: eventHeat;
 
+    windowParams: windowParameter;
+
+
     window_width: number;
     window_height: number;
     //PIXEL_FROM_TOP
@@ -31,6 +35,9 @@ export default class Lcd extends React.Component<{}, FrontendState> {
 
     constructor(props: {}) {
         super(props);
+
+        this.windowParams = new windowParameter();
+        
         this.onStartStop = this.onStartStop.bind(this);
         this.onEventHeatChange = this.onEventHeatChange.bind(this);
         this.onLaneChange = this.onLaneChange.bind(this);
@@ -60,9 +67,9 @@ export default class Lcd extends React.Component<{}, FrontendState> {
         };
         this.mylane = [];
         this.correctValueForLaneNull = 0;
-        this.window_width = process.env.REACT_APP_PIXEL_WIDTH !== undefined ? Number(process.env.REACT_APP_PIXEL_WIDTH) : 512
-        this.window_height = process.env.REACT_APP_PIXEL_HEIGHT !== undefined ? Number(process.env.REACT_APP_PIXEL_HEIGHT) : 384
-        this.window_top_pixel = process.env.REACT_APP_PIXEL_FROM_TOP !== undefined ? Number(process.env.REACT_APP_PIXEL_FROM_TOP) : 0
+        this.window_width = this.windowParams.getWindowWidth()
+        this.window_height = this.windowParams.getWindowHeight()
+        this.window_top_pixel = this.windowParams.getWindowTopEmptyPixel();
 
     }
     async onStartStop(startdelayms: number) {
