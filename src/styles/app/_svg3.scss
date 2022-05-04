@@ -73,3 +73,12 @@
     font-size: 4em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
+
+.marquee {
+    max-width: 600vw; /* iOS braucht das */
+    white-space: nowrap;
+    overflow: hidden;
+    color: $farbeschrift;
+    font-size: 4em;
+    /* hier evtl. noch font-size, color usw. */
+}
