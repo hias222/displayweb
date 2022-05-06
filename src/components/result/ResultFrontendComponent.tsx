@@ -26,7 +26,7 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
     constructor(props: ResultInterface) {
         super(props)
         this.SHOW_NUMBER_PLACES = process.env.REACT_APP_SHOW_NUMBER_PLACES === undefined ? 3 : parseInt(process.env.REACT_APP_SHOW_NUMBER_PLACES)
-   
+
         this.state = {
             displayMode: this.props.diplayMode,
             ResultJson: this.props.ResultJson,
@@ -72,6 +72,12 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         return lastResults
     }
 
+    getOthers() {
+        if (this.SHOW_NUMBER_PLACES < 4) {
+            return <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)} />
+        }
+    }
+
     render() {
 
         return (<div>
@@ -83,7 +89,7 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
                 </div>
             ))}
             <RankBox />
-            <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)} />
+            {this.getOthers()}
         </div>
         )
     }
