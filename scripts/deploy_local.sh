@@ -6,8 +6,11 @@ REMOTE_TMP=/tmp
 NGINX_DIR=/usr/share/nginx/html
 APP_NAME=display
 # need ssh certs
-REMOTE_SERVER_NAME=swim.fritz.box
-REMOTE_SERVER_USER=pi
+REMOTE_SERVER_NAME=max-jetson.fritz.box
+REMOTE_SERVER_USER=max
+
+#REMOTE_SERVER_NAME=192.168.188.35
+#REMOTE_SERVER_USER=pi
 
 # linux set time
 ACTUAL_TIME=$(date)

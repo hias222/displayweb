@@ -75,7 +75,7 @@
 }
 
 .marquee {
-    max-width: 400vw; /* iOS braucht das */
+    max-width: 100vw; /* iOS braucht das */
     white-space: nowrap;
     overflow: hidden;
     color: $farbeschrift;

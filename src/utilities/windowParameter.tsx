@@ -18,6 +18,7 @@ export default class windowParameter {
     private lengthClubFinishlist: number = 20;
 
     private showClub: boolean = false
+    private showAgeResult: boolean = true
     private logonumber: number = 0
 
     private scalefactor = 1;
@@ -91,6 +92,7 @@ export default class windowParameter {
             this.boxTextfromtop = 32;
             this.logonumber = 0;
             this.logospace = 100
+            this.showAgeResult = false
         }
 
     }
@@ -171,6 +173,10 @@ export default class windowParameter {
 
     public showClubs(): boolean {
         return this.showClub
+    }
+
+    public showAgeResults(): boolean {
+        return this.showAgeResult
     }
 
     public getLengthNameStartlist(): number {

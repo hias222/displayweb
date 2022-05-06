@@ -21,17 +21,20 @@ export default class RankName extends React.Component<RankInterface, {}> {
 
 
     getAgeText(length: number) {
-        let textlanesvg = classnames('textlanesvg');
-        return <text
-            className={textlanesvg}
-            y={this.windowParams.getBoxTextFromTop()}
-            x={length - this.windowParams.getPictureStart() - 10}
-            text-anchor="end"
-        >
-            {this.props.Birthdate}</text>
+
+        if (this.windowParams.showAgeResults()) {
+            let textlanesvg = classnames('textlanesvg');
+            return <text
+                className={textlanesvg}
+                y={this.windowParams.getBoxTextFromTop()}
+                x={length - this.windowParams.getPictureStart() - 10}
+                text-anchor="end"
+            >
+                {this.props.Birthdate}</text>
+        }
     }
 
-    checkName(){
+    checkName() {
         let namelength = this.windowParams.getLengthNameFinishlist();
         let sizeClub = this.props.Name.length;
 
@@ -41,7 +44,7 @@ export default class RankName extends React.Component<RankInterface, {}> {
         return this.props.Name
     }
 
-    checkClub(){
+    checkClub() {
         let namelength = this.windowParams.getLengthClubFinishlist();
         let sizeClub = this.props.Club.length;
 

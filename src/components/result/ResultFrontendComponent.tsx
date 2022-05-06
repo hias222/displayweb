@@ -20,8 +20,13 @@ export interface ResultInterface {
 
 export class ResultFrontendComponent extends React.Component<ResultInterface, MessageType> {
 
+    //REACT_APP_SHOW_NUMBER_PLACES
+    SHOW_NUMBER_PLACES: number;
+
     constructor(props: ResultInterface) {
         super(props)
+        this.SHOW_NUMBER_PLACES = process.env.REACT_APP_SHOW_NUMBER_PLACES === undefined ? 3 : parseInt(process.env.REACT_APP_SHOW_NUMBER_PLACES)
+   
         this.state = {
             displayMode: this.props.diplayMode,
             ResultJson: this.props.ResultJson,
@@ -57,7 +62,7 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
     }
 
     getFirst3Results(results: [resultSwimmerData]) {
-        var firstResults = results.filter(results => parseInt(results.place, 10) < 4)
+        var firstResults = results.filter(results => parseInt(results.place, 10) < this.SHOW_NUMBER_PLACES + 1)
         console.log(firstResults)
         return firstResults
     }
