@@ -1,6 +1,6 @@
 import React from "react";
 import { MessageInterface } from "../../interfaces/MessageInterface";
-// import { VideoFrontendComponent } from "./VideoFrontendComponent";
+import { VideoFrontendComponent } from "./VideoFrontendComponent";
 import BoardClock from "../clock/BoardClock";
 import { MessageBoxComponent } from "./MessageBoxComponent";
 import { ObsFrontendComponent } from "./ObsFrontendComponent";
@@ -26,11 +26,27 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
         })
     }
 
+    getVideoType() {
+        if (this.props.VideoVersion === "5" || this.props.VideoVersion === "4") {
+            return <ObsFrontendComponent
+                videoURL={this.getVideoUrl()}
+                height="100%"
+                width="100%"
+            />
+        } else {
+            return <VideoFrontendComponent
+                videoURL={this.getVideoUrl()}
+                height="100%"
+                width="100%"
+            />
+        }
+    }
+
     getVideoUrl() {
         console.log("init vodeo nr " + this.props.VideoVersion)
 
         let backend_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port
-   
+
 
         if (this.props.VideoVersion === "1") {
             console.log(backend_url + "/data/video1.mp4")
@@ -65,17 +81,13 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "video":
                 switch (this.props.displayFormat) {
                     case "fixed":
-                        return <ObsFrontendComponent
+                        return <VideoFrontendComponent
                             videoURL={this.getVideoUrl()}
                             height="382"
                             width="510"
                         />
                     default:
-                        return <ObsFrontendComponent
-                            videoURL={this.getVideoUrl()}
-                            height="100%"
-                            width="100%"
-                        />
+                        return this.getVideoType()
                 }
             case "message":
                 return <MessageBoxComponent

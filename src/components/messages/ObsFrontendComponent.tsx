@@ -22,7 +22,6 @@ export class ObsFrontendComponent extends React.Component<VideoInterface, {}> {
                 width={this.props.width}
                 ref="vidRef"
                 url={this.props.videoURL}
-                autoPlay={true}
                 playing={true}
             />
         )
