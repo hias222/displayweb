@@ -45,12 +45,14 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
         }
 
         if (this.props.VideoVersion === "4") {
-            return backend_url + "/data/video4.mp4"
+            //return backend_url + "/data/video4.mp4"
+            return backend_url + "/hls/obs_stream.m3u8"
         }
 
         if (this.props.VideoVersion === "5") {
             //return "https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd"
-            return "https://swim.fritz.box/dash/obs_stream.mpd"
+            //return "https://swim.fritz.box/dash/obs_stream.mpd"
+            return backend_url + "/dash/obs_stream.mpd"
         }
         console.log("not found video " + this.props.VideoVersion)
         return ""
