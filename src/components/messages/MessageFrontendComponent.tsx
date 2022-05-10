@@ -1,8 +1,9 @@
 import React from "react";
 import { MessageInterface } from "../../interfaces/MessageInterface";
-import { VideoFrontendComponent } from "./VideoFrontendComponent";
+// import { VideoFrontendComponent } from "./VideoFrontendComponent";
 import BoardClock from "../clock/BoardClock";
 import { MessageBoxComponent } from "./MessageBoxComponent";
+import { ObsFrontendComponent } from "./ObsFrontendComponent";
 
 export type MessageType = {
     displayMode: string;
@@ -48,7 +49,8 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
         }
 
         if (this.props.VideoVersion === "5") {
-            return backend_url + "/data/video5.mp4"
+            //return "https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd"
+            return "https://swim.fritz.box/dash/obs_stream.mpd"
         }
         console.log("not found video " + this.props.VideoVersion)
         return ""
@@ -61,13 +63,13 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "video":
                 switch (this.props.displayFormat) {
                     case "fixed":
-                        return <VideoFrontendComponent
+                        return <ObsFrontendComponent
                             videoURL={this.getVideoUrl()}
                             height="382"
                             width="510"
                         />
                     default:
-                        return <VideoFrontendComponent
+                        return <ObsFrontendComponent
                             videoURL={this.getVideoUrl()}
                             height="100%"
                             width="100%"

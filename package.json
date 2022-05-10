@@ -18,6 +18,7 @@
     "react-clock": "^2.4.0",
     "react-dom": "^16.13.0",
     "react-image": "^2.4.0",
+    "react-player": "^2.10.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "sass": "^1.0.0",

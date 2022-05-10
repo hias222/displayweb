@@ -6,8 +6,8 @@ REMOTE_TMP=/tmp
 NGINX_DIR=/usr/share/nginx/html
 APP_NAME=display
 # need ssh certs
-REMOTE_SERVER_NAME=max-jetson.fritz.box
-REMOTE_SERVER_USER=max
+REMOTE_SERVER_NAME=ubuntu.fritz.box
+REMOTE_SERVER_USER=ubuntu
 
 #REMOTE_SERVER_NAME=192.168.188.35
 #REMOTE_SERVER_USER=pi
