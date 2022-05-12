@@ -16,7 +16,7 @@ export default class RankNumber extends React.Component<LaneNumberInterface, {}>
     }
 
     render() {
-        let textnumbersvg = classnames('textnumbersvg');
+        let textranksvg = classnames('textranksvg');
         let gradient_lane = classnames('gradient_lane');
         let gradient_lane_stop = classnames('gradient_lane_stop');
         let gradient_name = classnames('gradient_name');
@@ -67,7 +67,7 @@ export default class RankNumber extends React.Component<LaneNumberInterface, {}>
                     fill="url(#laneGradientStyle)"
                 />
                 <text
-                    className={textnumbersvg}
+                    className={textranksvg}
                     x={textfromleft}
                     y={this.windowParams.getBoxTextFromTop()}
                 >

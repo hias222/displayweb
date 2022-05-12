@@ -18,7 +18,7 @@ export default class RankTime extends React.Component<RankTimeInterface, {}> {
     }
     
     render() {
-        let textlanesvg = classnames('textlanesvg');
+        let textranksvg = classnames('textranksvg');
         let gradient_name = classnames('gradient_name');
 
         let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
@@ -44,7 +44,7 @@ export default class RankTime extends React.Component<RankTimeInterface, {}> {
                     d={boxSize}
                 />
                 <text
-                    className={textlanesvg}
+                    className={textranksvg}
                     y={this.windowParams.getBoxTextFromTop()}
                     x={this.windowParams.getPictureStart()}
                 >

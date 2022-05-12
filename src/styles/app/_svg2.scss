@@ -4,6 +4,12 @@
     font-size: 2em;
 }
 
+.textranksvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: 2.1em;
+}
+
 .textWKNamesvg{
     fill: $farbeschrift;
     font-size: 1.6em;
@@ -79,6 +85,6 @@
     white-space: nowrap;
     overflow: hidden;
     color: $farbeschrift;
-    font-size: 4em;
+    font-size: 2em;
     /* hier evtl. noch font-size, color usw. */
 }

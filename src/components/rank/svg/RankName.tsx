@@ -23,9 +23,9 @@ export default class RankName extends React.Component<RankInterface, {}> {
     getAgeText(length: number) {
 
         if (this.windowParams.showAgeResults()) {
-            let textlanesvg = classnames('textlanesvg');
+            let textranksvg = classnames('textranksvg');
             return <text
-                className={textlanesvg}
+                className={textranksvg}
                 y={this.windowParams.getBoxTextFromTop()}
                 x={length - this.windowParams.getPictureStart() - 10}
                 text-anchor="end"
@@ -56,9 +56,9 @@ export default class RankName extends React.Component<RankInterface, {}> {
 
     getClubText() {
         if (this.windowParams.showClubs()) {
-            let textlanesvg = classnames('textlanesvg');
+            let textranksvg = classnames('textranksvg');
             return <text
-                className={textlanesvg}
+                className={textranksvg}
                 y={this.windowParams.getBoxTextFromTop()}
                 x={this.windowParams.getSpaceNameStartlist() + 4}
             >
@@ -67,14 +67,12 @@ export default class RankName extends React.Component<RankInterface, {}> {
     }
 
     render() {
-        let textlanesvg = classnames('textlanesvg');
+        let textranksvg = classnames('textranksvg');
         let gradient_name = classnames('gradient_name');
 
         let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
         let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth() : time_length
         let boxheight = this.windowParams.getBoxheight();
-
-        console.log(length)
 
         let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
         let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"
@@ -95,7 +93,7 @@ export default class RankName extends React.Component<RankInterface, {}> {
                     d={boxSize}
                 />
                 <text
-                    className={textlanesvg}
+                    className={textranksvg}
                     y={this.windowParams.getBoxTextFromTop()}
                     x="0"
                 >

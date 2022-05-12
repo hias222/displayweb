@@ -22,10 +22,12 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
 
     //REACT_APP_SHOW_NUMBER_PLACES
     SHOW_NUMBER_PLACES: number;
+    SHOW_MARQUEE: string;
 
     constructor(props: ResultInterface) {
         super(props)
         this.SHOW_NUMBER_PLACES = process.env.REACT_APP_SHOW_NUMBER_PLACES === undefined ? 3 : parseInt(process.env.REACT_APP_SHOW_NUMBER_PLACES)
+        this.SHOW_MARQUEE = process.env.REACT_APP_SHOW_MARQUEE === undefined ? 'false' : process.env.REACT_APP_SHOW_MARQUEE
 
         this.state = {
             displayMode: this.props.diplayMode,
@@ -72,9 +74,26 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         return lastResults
     }
 
+    checkShowMarquee(results: [resultSwimmerData]) {
+
+        if (this.SHOW_MARQUEE === 'false') {
+            return false;
+        } else {
+            if (results[0].lastname !== '') {
+                console.log('show')
+                return true
+            } else {
+                return false
+            }
+        }
+
+    }
+
     getOthers() {
         if (this.SHOW_NUMBER_PLACES < 4) {
-            return <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)} />
+            if (this.checkShowMarquee(this.state.swimmerResults)) {
+                return <RankOthers swimmerResults={this.getLastResults(this.state.swimmerResults)} />
+            }
         }
     }
 
