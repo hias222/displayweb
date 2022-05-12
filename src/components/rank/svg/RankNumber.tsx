@@ -71,7 +71,7 @@ export default class RankNumber extends React.Component<LaneNumberInterface, {}>
                     x={textfromleft}
                     y={this.windowParams.getBoxTextFromTop()}
                 >
-                    {this.props.laneNumber}</text>
+                    {this.props.laneNumber}.</text>
             </g>
             <g id="layerfill">
                 <path

@@ -4,18 +4,18 @@ export default class windowParameter {
     private boxTextfromtop = 35;
     private spacing = 5;
     private toprowheight = 30
-    private numberboxwidth = 40
+    private numberboxwidth = 42
     private boxtimewidth = 120
     private separator = 2
     private logospace = 150
 
     private lengthNameStartlist: number = 25;
     private spaceNameStartlist: number = 380;
-    private lengthClubStartlist: number = 25;
+    private lengthClubStartlist: number = 27;
 
     private lengthNameFinishlist: number = 25;
     private spaceNameFinishlist: number = 300;
-    private lengthClubFinishlist: number = 20;
+    private lengthClubFinishlist: number = 21;
 
     private showClub: boolean = false
     private showAgeResult: boolean = true
@@ -56,6 +56,7 @@ export default class windowParameter {
             this.boxheight = 48
             this.toprowheight = 35;
             this.logonumber = 2;
+            this.showAgeResult = false
         }
 
         if (windowmode === 3) {
