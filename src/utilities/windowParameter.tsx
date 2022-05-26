@@ -23,6 +23,8 @@ export default class windowParameter {
 
     private scalefactor = 1;
 
+    private detailedheader = true;
+
     window_width: number;
     window_height: number;
     window_top_pixel: number;
@@ -81,6 +83,8 @@ export default class windowParameter {
             this.scalefactor = 2.5;
 
             this.spacing = 10;
+            this.detailedheader = false;
+            this.toprowheight = 120;
         }
 
         if (windowmode === 4) {
@@ -202,6 +206,10 @@ export default class windowParameter {
 
     public getLengthClubFinishlist(): number {
         return this.lengthClubFinishlist
+    }
+
+    public getDetailsInHeader(): boolean {
+        return this.detailedheader
     }
 
 }

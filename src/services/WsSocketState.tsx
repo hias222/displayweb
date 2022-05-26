@@ -11,12 +11,17 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
   backend_url: string;
   context_path: string;
   local_url: string;
+  clearstartlistonstart: string;
+  frozendisplay: boolean;
 
   constructor(props: WsSocketPropsInterface) {
     super(props);
     this.context_path = process.env.REACT_APP_BACKEND_CONTEX_PATH === undefined ? "/socket.io" : "/" + process.env.REACT_APP_BACKEND_CONTEX_PATH + "/socket.io"
     this.local_url = process.env.REACT_APP_BACKEND_URL === undefined ? window.location.protocol + "//localhost:" + window.location.port : process.env.REACT_APP_BACKEND_URL
     this.backend_url = process.env.REACT_APP_BACKEND_DIRECT !== "false" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port : this.local_url
+    this.clearstartlistonstart = process.env.REACT_APP_CLEAR_START_LIST_ON_START === undefined ? "true" : process.env.REACT_APP_CLEAR_START_LIST_ON_START
+    this.frozendisplay = false;
+
     this.state = {
       WsConnected: false,
       HeatNumber: 0,
@@ -28,7 +33,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
   componentDidMount() {
 
-    console.log("WsSocketState: connect to " + this.backend_url + "/" + this.context_path );
+    console.log("WsSocketState: connect to " + this.backend_url + "/" + this.context_path);
 
     const socket = socketIOClient(this.backend_url,
       {
@@ -59,17 +64,30 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
   checkIncoming(jsondata: any) {
     var messageType = jsondata.type
+    //finishtime: "undefined"
     switch (messageType) {
       case "start": {
         this.setStartMode(jsondata.diff)
+        if (this.clearstartlistonstart === 'false') {
+          // wait and than set
+          setTimeout(() => {
+            this.frozendisplay = false
+            console.log('auto frozen')
+          }, 5000);
+
+        }
         break;
       }
       case "stop": {
         this.props.onStartStop(-1)
+        if (this.clearstartlistonstart === 'false') {
+          this.frozendisplay = true;
+        }
         break;
       }
       case "header": {
         this.setHeaderInfo(jsondata);
+        this.frozendisplay = false;
         break;
       }
       case "lane": {
@@ -162,27 +180,34 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
   }
 
   setLaneInfo(jsondata: any) {
-    //locklanes = true;
-    if (jsondata.place === '0') {
-      var laptime = "{ \"laptime\": \"" + Date.now() + "\",\"lap\": \"true\" }"
-      var newjsondata = { ...jsondata, ...JSON.parse(laptime) }
-      //activelapdata = true;
-      this.props.onLaneChange(jsondata.lane, newjsondata)
-      if (this.state.DisplayMode !== 'race') {
-        this.setDisplayMode('race')
-      }
-    } else {
-      var laptime2 = "{ \"lap\": \"false\" }"
-      var newjsondata2 = { ...jsondata, ...JSON.parse(laptime2) }
-      this.props.onLaneChange(jsondata.lane, newjsondata2)
 
-      if (jsondata.finishtime === "undefined" || !jsondata.finishtime) {
-        if (this.state.DisplayMode !== 'startlist' && this.state.DisplayMode !== 'race') {
-          this.setDisplayMode('startlist')
-        }
-      } else {
+    //this.clearstartlistonstart === 'false' && 
+
+    if (this.frozendisplay) {
+      console.log('ignore time ' + jsondata.finishtime)
+    } else {
+      //locklanes = true;
+      if (jsondata.place === '0') {
+        var laptime = "{ \"laptime\": \"" + Date.now() + "\",\"lap\": \"true\" }"
+        var newjsondata = { ...jsondata, ...JSON.parse(laptime) }
+        //activelapdata = true;
+        this.props.onLaneChange(jsondata.lane, newjsondata)
         if (this.state.DisplayMode !== 'race') {
           this.setDisplayMode('race')
+        }
+      } else {
+        var laptime2 = "{ \"lap\": \"false\" }"
+        var newjsondata2 = { ...jsondata, ...JSON.parse(laptime2) }
+        this.props.onLaneChange(jsondata.lane, newjsondata2)
+
+        if (jsondata.finishtime === "undefined" || !jsondata.finishtime) {
+          if (this.state.DisplayMode !== 'startlist' && this.state.DisplayMode !== 'race') {
+            this.setDisplayMode('startlist')
+          }
+        } else {
+          if (this.state.DisplayMode !== 'race') {
+            this.setDisplayMode('race')
+          }
         }
       }
     }
@@ -207,9 +232,11 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
   setStartMode(startdelay: number) {
     var calcstartdelay = typeof (startdelay) != 'undefined' ? startdelay : 100
-    //if (this.state.DisplayMode === 'message' || this.state.DisplayMode === 'clock' || this.state.DisplayMode === 'video') {
-    this.setDisplayMode('startlist')
-    //}
+
+    if (this.clearstartlistonstart === 'true') {
+      this.setDisplayMode('startlist')
+    }
+
     this.props.onStartStop(calcstartdelay)
   }
 

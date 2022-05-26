@@ -5,6 +5,7 @@ import HeaderBoxName from "./svg/HeaderBoxName";
 import TopEventNameHeader from "./svg/TopEventNameHeader";
 import { StartStopComponent } from "./StartStopComponent";
 import SwimmerLogo from "../eventlogos/SwimmerLogo";
+import windowParameter from "../utilities/windowParameter";
 
 interface HeaderEventHeatInterface {
     EventHeat: eventHeat;
@@ -14,37 +15,77 @@ interface HeaderEventHeatInterface {
 
 export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}>{
 
-    render() {
+    windowParams: windowParameter;
+
+    constructor(props: HeaderEventHeatInterface) {
+        super(props)
+        this.windowParams = new windowParameter();
+    }
+
+    getShow() {
+
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
 
         let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
 
-        // <SwimmerLogo />
-        //  <LogoFromImage />
+        if (this.windowParams.getDetailsInHeader()) {
 
-        return (
-            <div className={noSpaceContainerHorizontal}>
-                <div>
-                <SwimmerLogo />
+            return (
+                <div className={noSpaceContainerHorizontal}>
+                    <div>
+                        <SwimmerLogo />
+                    </div>
+                    <div className={noSpaceContainerVertical}>
+                        <TopEventNameHeader EventName={EventName} />
+
+                        <HeaderBoxName HeaderName={this.props.EventHeat.name}
+                            IsFirstText={true}
+                            Parts={1} />
+
+                        <div className={noSpaceContainerHorizontal}>
+                            <StartStopComponent
+                                startdelayms={this.props.startdelayms}
+                                EventHeat={this.props.EventHeat}
+                                runningTime={this.props.runningTime}
+                            />
+                        </div>
+                    </div >
                 </div>
-                <div className={noSpaceContainerVertical}>
-                    <TopEventNameHeader EventName={EventName} />
+            )
 
-                    <HeaderBoxName HeaderName={this.props.EventHeat.name}
-                        IsFirstText={true}
-                        Parts={1} />
+        } else {
 
-                    <div className={noSpaceContainerHorizontal}>
+            return (
+                <div className={noSpaceContainerHorizontal}>
+                    <div className={noSpaceContainerVertical}>
+
+                        <HeaderBoxName HeaderName={this.props.EventHeat.name}
+                            IsFirstText={true}
+                            Parts={1} />
+
                         <StartStopComponent
                             startdelayms={this.props.startdelayms}
                             EventHeat={this.props.EventHeat}
                             runningTime={this.props.runningTime}
                         />
-                    </div>
-                </div >
-            </div>
-        )
+                    </div >
+                </div>
+            )
+        }
+
+    }
+
+    render() {
+        //  let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
+        //  let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
+
+        //let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
+
+        // <SwimmerLogo />
+        //  <LogoFromImage />
+
+        return this.getShow()
     }
 
 }

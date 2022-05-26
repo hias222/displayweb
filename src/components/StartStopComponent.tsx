@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import { StartStopInterface } from "../interfaces/StartStopInterface";
 import { StartStopState } from "../state/StartStopState";
+import windowParameter from "../utilities/windowParameter";
 import HeaderBoxName from "./svg/HeaderBoxName";
 import HeaderTimeLine from "./svg/HeaderTime";
 
@@ -10,8 +11,11 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
     clocktimerid?: NodeJS.Timeout;
 
+    windowParams: windowParameter;
+
     constructor(props: StartStopInterface) {
         super(props);
+        this.windowParams = new windowParameter();
 
         this.state = {
             displaytime: 0,
@@ -111,10 +115,11 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         }
     }
 
-
-    render() {
+    getShow() {
 
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+
+        if (this.windowParams.getDetailsInHeader()) {
 
         return (
             <div className={noSpaceContainerHorizontal} >
@@ -125,6 +130,25 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                     IsFirstText={false}
                     Parts={3} />
             </div>
-        );
+        )
+        }else {
+            return (
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderBoxName HeaderName={"L: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Parts={3} />
+                </div>
+            )
+        }
+
+
+    }
+
+
+    render() {
+        return this.getShow()
     }
 }
