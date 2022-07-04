@@ -18,7 +18,7 @@ export default class LaneNumberFinish extends React.Component<LaneNumberFinishIn
     getSwimmerSVG() {
         let gradient_icon = classnames('gradient_icon');
         let let_transform_1 = this.windowParams.getBoxNumberWidth()
-        let let_transform_2 = 15
+        let let_transform_2 = Math.round(this.windowParams.getBoxheight() / 3) // 15
         let scale_factor = this.windowParams.getBoxScaleFactorh()
         let transform = "translate(" + let_transform_1 + "," + let_transform_2 + ") rotate(0) scale(" + scale_factor + ")"
         //let let_transform_1=40
