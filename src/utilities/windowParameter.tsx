@@ -114,6 +114,7 @@ export default class windowParameter {
             this.scalefactor = 0.9;
             this.boxTextfromtop = 30;
             this.toprowheight = 28
+            this.logonumber = 5
         }
 
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import windowParameter from '../utilities/windowParameter';
 import FCNLogo from './FCNLogo';
+import SGFLogo from './SGFLogo';
 import SGMittelfranken from './SGMittelfranken';
 import Swimmer from './Swimmer';
 
@@ -26,6 +27,10 @@ export default class SwimmerLogo extends React.Component<{}, {}> {
 
         if (this.windowParams.getLogoNumber() === 2) {
             return <FCNLogo />
+        }
+
+        if (this.windowParams.getLogoNumber() === 5) {
+            return <SGFLogo />
         }
 
     }
