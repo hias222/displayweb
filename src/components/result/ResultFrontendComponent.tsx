@@ -80,11 +80,15 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         if (this.SHOW_MARQUEE === 'false') {
             return false;
         } else {
-            if (results[0].lastname !== '') {
-                console.log('show')
-                return true
+            if (results[0] !== undefined ) {
+                if (results[0].lastname !== '') {
+                    console.log('show')
+                    return true
+                } else {
+                    return false
+                }
             } else {
-                return false
+                return false;
             }
         }
 
