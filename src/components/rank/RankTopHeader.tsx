@@ -20,7 +20,7 @@ export default class RankTopHeader extends React.Component<RankEvent, {}> {
     }
 
     render() {
-
+        
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         //let noFlexHorizontal = classNames("noFlexHorizontal")
 
@@ -31,6 +31,7 @@ export default class RankTopHeader extends React.Component<RankEvent, {}> {
             <div>
                 <TopEventNameHeader EventName={this.props.eventDefinition.competition} />
                 <TopEventNameHeader EventName={this.props.eventDefinition.name} />
+                <TopEventNameHeader EventName={this.props.eventDefinition.age} />
             </div>
         </div>
 

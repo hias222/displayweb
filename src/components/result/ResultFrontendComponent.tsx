@@ -43,7 +43,8 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
             eventDefinition: {
                 competition: '',
                 eventNumber: '',
-                name: ''
+                name: '',
+                age: ''
             }
         }
     }
