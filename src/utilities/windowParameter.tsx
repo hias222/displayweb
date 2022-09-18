@@ -117,6 +117,30 @@ export default class windowParameter {
             this.logonumber = 5
         }
 
+        if (windowmode === 6) {
+            //Mode 2 16:9 FCN
+            this.window_width = 896
+            this.window_height = 512
+            this.showClub = true;
+            this.boxheight = 60
+            this.boxTextfromtop = 46;
+            this.toprowheight = 45;
+            this.logonumber = 2;
+            this.scalefactor = 1.3;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 20;
+            this.spaceNameStartlist = 380;
+            this.lengthClubStartlist = 15;
+
+            this.lengthNameFinishlist = 16;
+            this.spaceNameFinishlist = 300;
+            this.lengthClubFinishlist = 12;
+
+            this.boxtimewidth=160;
+            this.numberboxwidth=50;
+        }
+
     }
 
     public getBoxheight(): number {
