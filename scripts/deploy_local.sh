@@ -9,7 +9,7 @@ APP_NAME=display
 REMOTE_SERVER_NAME=jetson.fritz.box
 REMOTE_SERVER_USER=jetson
 
-#REMOTE_SERVER_NAME=192.168.188.35
+#REMOTE_SERVER_NAME=swim.fritz.box
 #REMOTE_SERVER_USER=pi
 
 # linux set time
