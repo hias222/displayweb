@@ -4,7 +4,7 @@ import classNames from "classnames";
 import HeaderBoxName from "./svg/HeaderBoxName";
 import TopEventNameHeader from "./svg/TopEventNameHeader";
 import { StartStopComponent } from "./StartStopComponent";
-import SwimmerLogo from "../eventlogos/SwimmerLogo";
+import SwimmerLogo from "../eventlogos/SGFLogo";
 import windowParameter from "../utilities/windowParameter";
 
 interface HeaderEventHeatInterface {
