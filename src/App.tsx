@@ -11,13 +11,6 @@ import { eventHeat } from './types/EventHeat';
 import { ResultFrontendComponent } from './components/result/ResultFrontendComponent';
 import windowParameter from './utilities/windowParameter';
 
-// https://towardsdatascience.com/passing-data-between-react-components-parent-children-siblings-a64f89e24ecf
-// https://medium.com/@RupaniChirag/parent-child-communication-in-vue-angular-and-react-all-in-typescript-9a47c75cbf74
-///type FrontendState = {
-//  event: string;
-//};
-
-
 export default class Lcd extends React.Component<{}, FrontendState> {
 
     mylane: string[];
@@ -25,7 +18,6 @@ export default class Lcd extends React.Component<{}, FrontendState> {
     evenHeat: eventHeat;
 
     windowParams: windowParameter;
-
 
     window_width: number;
     window_height: number;
