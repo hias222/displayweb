@@ -25,7 +25,7 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
                 className={textlanesvg}
                 y={this.windowParams.getBoxTextFromTop()}
                 x={length - 5}
-                text-anchor="end"
+                textAnchor="end"
             >
                 {this.props.AgeText}</text>
         }
