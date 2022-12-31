@@ -1,10 +1,10 @@
 import React from "react";
-import { WsSocketPropsInterface } from "../interfaces/WsSocketPropsInterface";
+import { WsSocketPropsInterface } from "../../interfaces/WsSocketPropsInterface";
 
 import socketIOClient from "socket.io-client";
-import { WsSocketPropsState } from "../state/WsSocketPropsState";
+import { WsSocketPropsState } from "../../state/WsSocketPropsState";
 
-import getSwimStyles from '../utilities/getSwimStyles';
+import getSwimStyles from '../../utilities/getSwimStyles';
 
 export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSocketPropsState>
 {

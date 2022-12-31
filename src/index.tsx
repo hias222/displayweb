@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import WsConnect from './services/WsConnect';
 import * as serviceWorker from './serviceWorker';
 
 import { Route, BrowserRouter } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 const routing = (
     <BrowserRouter basename="/display">
-        <Route path="/" exact component={App} />
+        <Route path="/" exact component={WsConnect} />
     </BrowserRouter>
 )
 

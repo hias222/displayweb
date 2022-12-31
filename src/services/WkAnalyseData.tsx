@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { eventHeat } from '../../shared/types/EventHeat';
+import { eventHeat } from '../types/EventHeat';
 import getSwimStyles from '../utilities/getSwimStyles';
 import DataMapper from './DataMapper';
 
-import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
-import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
-import { Grid, Typography } from '@mui/material';
+import SignalWifiStatusbar4BarIcon from '@material-ui/icons/SignalWifi4Bar';
+import PortableWifiOffIcon from '@material-ui/icons/PortableWifiOff';
+import { Grid, Typography } from '@material-ui/core';
+import React from 'react';
 
 /*
  this.state = {
@@ -209,8 +210,7 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
     }, [model.message, model.connected]);
 
     let connect_status = connectstate === true ? <SignalWifiStatusbar4BarIcon /> : <PortableWifiOffIcon />
-    var document_title = process.env.REACT_APP_SITE_TITLE === undefined ? "Timing" : process.env.REACT_APP_SITE_TITLE
-
+ 
     function getDataMapper() {
         if (connectstate) {
             return (<Grid item xs={12}>
@@ -227,37 +227,19 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
             return (
                 <div>
                     <Grid item  >
-                        <Typography sx={{ mb: 1.0 }} color="text.primary" gutterBottom align="center">
+                    {connect_status}
+                        <Typography>
                             Keine Verbindung zur Zeitnahme
                         </Typography>
                     </Grid>
-                    {/*
-                    <DataMapper
-                        CompetitionName={CompetitionName}
-                        DisplayMode={DisplayMode}
-                        jsonData={JsonData}
-                        startdelayms={startdelayms}
-                        runningtime={runningTime}
-                        eventheat={eventheat}
-                    />
-            */}
                 </div>)
         }
     }
 
     return (
-        <Grid container justifyContent="center">
-            <Grid item xs={10} display="flex" justifyContent={'center'}>
-                <Typography variant="h6" component="div" gutterBottom align="center">
-                    {document_title}
-                </Typography>
-            </Grid>
-            <Grid item xs={2} display="flex" justifyContent={'flex-end'}>
-                {connect_status}
-            </Grid>
+        <div>
             {getDataMapper()}
-        </Grid>
-
+        </div>
     );
 }
 

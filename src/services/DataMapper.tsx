@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { eventHeat } from '../..//shared/types/EventHeat';
-import { LaneState } from '../../shared/state/LaneState'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { eventHeat } from '../types/EventHeat';
+//import { LaneState } from '../state/LaneState'
 import { BaseFrontendComponent } from '../components/BaseFrontendComponent';
+import React from 'react';
 
 let correctValueForLaneNull = 0;
+const mylane: any[] = [];
+/*
 const mylane: [LaneState] = [{
     changed: 0,
     finishtime: '',
@@ -19,9 +23,8 @@ const mylane: [LaneState] = [{
         }
     
 }];
+*/
 
-//function DataMapper({ jsonData }: { jsonData: any }, { DisplayMode }: { DisplayMode: string },
-//  { heatNumber }: { heatNumber: string }, { eventNumber }: { eventNumber: string }) {
 function DataMapper(model: {
     CompetitionName: string;
     jsonData: any;
@@ -32,7 +35,7 @@ function DataMapper(model: {
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
-    const [lanes, setLanes] = useState<[LaneState] | []>([])
+    const [lanes, setLanes] = useState<any | []>([])
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
 
