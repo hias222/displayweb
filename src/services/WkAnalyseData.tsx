@@ -3,9 +3,9 @@ import { eventHeat } from '../types/EventHeat';
 import getSwimStyles from '../utilities/getSwimStyles';
 import DataMapper from './DataMapper';
 
-import SignalWifiStatusbar4BarIcon from '@material-ui/icons/SignalWifi4Bar';
-import PortableWifiOffIcon from '@material-ui/icons/PortableWifiOff';
-import { Grid, Typography } from '@material-ui/core';
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifi4Bar';
+import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
 /*

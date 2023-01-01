@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import classNames from 'classnames';
 import React from 'react';
 import logo from './images/SGF.png';

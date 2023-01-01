@@ -1,6 +1,6 @@
 import React from "react";
 import windowParameter from "../../utilities/windowParameter";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 
 
 export default class RankBox extends React.Component<{}, {}> {
