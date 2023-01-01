@@ -1,13 +1,13 @@
 import { useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { eventHeat } from '../types/EventHeat';
-//import { LaneState } from '../state/LaneState'
+import { LaneState } from '../state/LaneState'
 import { BaseFrontendComponent } from '../components/BaseFrontendComponent';
 import React from 'react';
 
 let correctValueForLaneNull = 0;
-const mylane: any[] = [];
-/*
+//const mylane: any[] = [];
+
 const mylane: [LaneState] = [{
     changed: 0,
     finishtime: '',
@@ -23,7 +23,6 @@ const mylane: [LaneState] = [{
         }
     
 }];
-*/
 
 function DataMapper(model: {
     CompetitionName: string;
@@ -35,17 +34,14 @@ function DataMapper(model: {
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
-    const [lanes, setLanes] = useState<any | []>([])
+    const [lanes, setLanes] = useState<[LaneState] | []>([])
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
-     
         console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr )
         console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.heatnr )
-
         setEventHeat(model.eventheat);
-
     }
 
     if (model.DisplayMode !== displayMode) {
@@ -54,12 +50,12 @@ function DataMapper(model: {
     }
 
     function onLaneChange(lane: number, LaneData: any) {
+        //console.log("onLaneChange " + lane)
         if (lane === -1) {
             console.log("+++++ clear all")
             correctValueForLaneNull = 0;
             setLanes([])
         } else {
-
             // eslint-disable-next-line
             if (lane == 0 && correctValueForLaneNull != 1) {
                 console.log("+++++ 0")
@@ -70,11 +66,12 @@ function DataMapper(model: {
             var sizeLanes = lengthLanes - correctValueForLaneNull
 
             if (lane > sizeLanes) {
-                console.log(lane + ": new (" + correctValueForLaneNull + ")")
+                console.log(lane + " new lane array")
                 mylane.push(LaneData)
             } else {
                 mylane[lane - 1 + correctValueForLaneNull] = (LaneData)
-                //console.log(lane + ": lane change (" + correctValueForLaneNull + ")")
+                //console.log(LaneData)
+                console.log(lane + " change lane array")
             }
             setLanes(mylane)
         }
@@ -84,7 +81,7 @@ function DataMapper(model: {
         if (model.jsonData.lane !== undefined) {
             if (model.jsonData !== jsonData) {
                 setJsonData(model.jsonData)
-                //console.log('DataMapper jsondata ' + model.jsonData.lane)
+                console.log('DataMapper jsondata ' + model.jsonData.lane)
                 onLaneChange(model.jsonData.lane,model.jsonData)
             }
         }

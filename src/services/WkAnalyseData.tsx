@@ -7,6 +7,8 @@ import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifi4Bar';
 import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
+import { LaneState } from "../state/LaneState";
+//import { LaneData } from '../interfaces/lanedatainterface';
 
 /*
  this.state = {
@@ -18,12 +20,13 @@ import React from 'react';
     }
     */
 
-function WkAnalyseData(model: { message: string, connected: boolean }) {
+function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }) {
 
     const [connectstate, setConnectstate] = useState<boolean>(false)
     const [DisplayMode, setDisplayMode] = useState('');
     const [CompetitionName, setCompetitionName] = useState('')
     const [JsonData, setJsonData] = useState('');
+    const [Jsonlanes, setJasonLanes] = useState<[LaneState] | []>([])
     const [startdelayms, setStartdelayms] = useState<number>(0);
     const [runningTime, setRunningTime] = useState('0');
     const [eventheat, setEventHeat] = useState<eventHeat>({
@@ -35,7 +38,6 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
     function setHeaderInfo(jsondata: any) {
 
         if (jsondata.heat !== eventheat.heatnr || jsondata.event !== eventheat.eventnr) {
-
             setDisplayMode('startlist')
             var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
                 ? jsondata.name : jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle)
@@ -55,16 +57,17 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
 
             setJsonData(jsondata)
             setCompetitionName(jsondata.competition)
-
             console.log('WSAnaylseData ------> Heat' + jsondata.heat)
-
         } else {
             console.log("header no event or heat change ")
         }
         //setTimeout(this.activatePage, 500);
     }
 
-    function setLaneInfo(jsondata: any) {
+    function setLaneInfo(jsondata: any, lanes: []) {
+        console.log(lanes)
+
+
         //locklanes = true;
         if (jsondata.place === '0') {
             var laptime = "{ \"laptime\": \"" + Date.now() + "\",\"lap\": \"true\" }"
@@ -110,7 +113,7 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
         }
     }
 
-    function checkIncoming(jsondata: any) {
+    function checkIncoming(jsondata: any, lanes: []) {
         //console.log(jsondata)
         var messageType = jsondata.type
         //console.log("message type: " + messageType)
@@ -129,7 +132,7 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
                 break;
             }
             case "lane": {
-                setLaneInfo(jsondata)
+                setLaneInfo(jsondata, lanes)
                 break;
             }
             case "clear": {
@@ -195,19 +198,15 @@ function WkAnalyseData(model: { message: string, connected: boolean }) {
 
         setConnectstate(model.connected)
 
-        const messageListener = (message: any) => {
+        const messageListener = (message: any, lanes: []) => {
             //var jsondata = JSON.parse(message)
             //if (!connectstate) setConnectstate(true)
-            checkIncoming(message)
+            checkIncoming(message, lanes)
         };
-        messageListener(model.message);
-        /*
-                return () => {
-                    console.log('finish WSanalyse')
-                };
-                */
+        messageListener(model.message, model.lanes);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [model.message, model.connected]);
+    }, [model.message, model.connected, model.lanes]);
 
     let connect_status = connectstate === true ? <SignalWifiStatusbar4BarIcon /> : <PortableWifiOffIcon />
  
