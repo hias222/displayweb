@@ -63,6 +63,12 @@ function WsConnect() {
   const [message, setMessage] = useState("");
   const [connected, setConnected] = useState(false);
   const [lanes, setLanes] = useState([]);
+  //setCount(0);
+
+  useEffect(() => {
+    console.log(message)
+    setLanes(allLaneData)
+  },[message]);
 
   useEffect(() => {
     console.log(backend_url + " Context " + context_path);
@@ -72,21 +78,20 @@ function WsConnect() {
 
     const messageListener = (newmessage) => {
       var jsondata = JSON.parse(newmessage);
+      // lane data -> store in array
+      // sonst kommt nur die letzte bahn in den hook -> zu schnell
       if (jsondata.lane !== undefined) {
         if (jsondata.lane === 0 && correctValueForLaneNull !== 1) {
           console.log("+++++ 0");
           correctValueForLaneNull = 1;
         }
-        var lengthLanes = allLaneData !== undefined ? allLaneData.length : 0;
-        var sizeLanes = lengthLanes - correctValueForLaneNull
+        //var lengthLanes = lanes !== undefined ? lanes.length : 0;
+        var sizeLanes = allLaneData.length - correctValueForLaneNull;
         if (jsondata.lane > sizeLanes) {
-          console.log(jsondata.lane + " new lane array")
           allLaneData.push(jsondata);
         } else {
-          console.log(jsondata.lane + " change lane array")
           allLaneData[jsondata.lane - 1 + correctValueForLaneNull] = jsondata;
         }
-        setLanes(allLaneData);
       }
       setMessage(jsondata);
     };

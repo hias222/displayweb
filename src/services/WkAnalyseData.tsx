@@ -8,6 +8,7 @@ import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { LaneState } from "../state/LaneState";
+import { any } from '@tensorflow/tfjs';
 //import { LaneData } from '../interfaces/lanedatainterface';
 
 /*
@@ -26,7 +27,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
     const [DisplayMode, setDisplayMode] = useState('');
     const [CompetitionName, setCompetitionName] = useState('')
     const [JsonData, setJsonData] = useState('');
-    const [Jsonlanes, setJasonLanes] = useState<[LaneState] | []>([])
+    const [Jsonlanes, setJsonLanes] = useState<LaneState[] | []>([])
     const [startdelayms, setStartdelayms] = useState<number>(0);
     const [runningTime, setRunningTime] = useState('0');
     const [eventheat, setEventHeat] = useState<eventHeat>({
@@ -64,9 +65,18 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         //setTimeout(this.activatePage, 500);
     }
 
-    function setLaneInfo(jsondata: any, lanes: []) {
-        console.log(lanes)
+    async function setLaneInfo(jsondata: any, lanes: []) {
 
+        // Inhalt noch editieren
+
+        let newLanes: LaneState[] = [];
+        await Promise.all(
+            lanes.map(async (item) => {
+                newLanes.push(correctItem(item))
+            })
+        )
+        setJsonLanes(newLanes);
+        console.log(newLanes)
 
         //locklanes = true;
         if (jsondata.place === '0') {
@@ -209,7 +219,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
     }, [model.message, model.connected, model.lanes]);
 
     let connect_status = connectstate === true ? <SignalWifiStatusbar4BarIcon /> : <PortableWifiOffIcon />
- 
+
     function getDataMapper() {
         if (connectstate) {
             return (<Grid item xs={12}>
@@ -226,7 +236,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
             return (
                 <div>
                     <Grid item  >
-                    {connect_status}
+                        {connect_status}
                         <Typography>
                             Keine Verbindung zur Zeitnahme
                         </Typography>
@@ -243,3 +253,33 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
 }
 
 export default WkAnalyseData;
+
+function getIsLap(place: any): boolean {
+
+    if (place === '0') {
+        return true
+    } else {
+        return false
+    }
+}
+
+function correctItem(jsondata: any): LaneState {
+
+    let laneState: LaneState =
+    {
+        changed: 0,
+        finishtime: jsondata.finishtime,
+        islaptime: getIsLap(jsondata.place),
+        lane: jsondata.lane,
+        laptime: Date.now().toString(),
+        place: jsondata.place,
+        swimmerData: {
+            clubid: jsondata.code,
+            clubname: jsondata.name,
+            name: jsondata.lastname,
+        },
+    }
+
+    return laneState
+
+}
