@@ -31,10 +31,11 @@ function DataMapper(model: {
     startdelayms: number;
     runningtime: string;
     eventheat: eventHeat;
+    Jsonlanes: LaneState[];
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
-    const [lanes, setLanes] = useState<[LaneState] | []>([])
+    const [lanes, setLanes] = useState<LaneState[] | []>([])
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
 
@@ -49,8 +50,13 @@ function DataMapper(model: {
         setDisplayMode(model.DisplayMode)
     }
 
+    function setLanesData(Jsonlanes: LaneState[]){
+        console.log(Jsonlanes);
+        setLanes(Jsonlanes)
+    }
+
     function onLaneChange(lane: number, LaneData: any) {
-        //console.log("onLaneChange " + lane)
+        console.log("onLaneChange " + lane)
         if (lane === -1) {
             console.log("+++++ clear all")
             correctValueForLaneNull = 0;
@@ -73,7 +79,8 @@ function DataMapper(model: {
                 //console.log(LaneData)
                 console.log(lane + " change lane array")
             }
-            setLanes(mylane)
+            //setLanes(mylane)
+            console.log(mylane)
         }
     }
 
@@ -82,7 +89,8 @@ function DataMapper(model: {
             if (model.jsonData !== jsonData) {
                 setJsonData(model.jsonData)
                 console.log('DataMapper jsondata ' + model.jsonData.lane)
-                onLaneChange(model.jsonData.lane,model.jsonData)
+                //onLaneChange(model.jsonData.lane,model.jsonData)
+                setLanesData(model.Jsonlanes);
             }
         }
     }

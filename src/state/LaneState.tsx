@@ -10,3 +10,4 @@ export type LaneState = {
     entrytime?: string;
     swimmerData: swimmerData;
 };
+

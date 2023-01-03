@@ -5,8 +5,6 @@ import { LaneInterface } from "../interfaces/LaneInterface";
 import { LaneState } from "../state/LaneState";
 
 import checkUndefined from "../utilities/checkUndefined";
-import getBirthYear from "../utilities/getBirthYear";
-import stringToBoolean from "../utilities/stringToBoolean";
 import StyledLane from "./lanes/StartStyledLane";
 import FinishStyledLane from "./lanes/FinishStyledLane";
 
@@ -73,7 +71,10 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   }
 
   updateData() {
-    if (this.props.lane.lastname !== undefined) {
+    console.log(this.props.lane)
+    if (this.props.lane.swimmerData.name !== undefined) {
+      this.setState(this.props.lane)
+      /*
       this.setState({
         swimmerData: {
           birthyear: getBirthYear(this.props.lane.birthdate),
@@ -85,6 +86,7 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
         lane: this.props.lane.lane,
         changed: Date.now(),
       })
+      */
     } else {
       this.setState({
         swimmerData: {
@@ -98,21 +100,21 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
         changed: Date.now(),
       })
     }
+    /*
 
     if (this.props.lane.entrytime !== undefined) {
       this.setState({
         entrytime: this.props.lane.entrytime
       })
     }
+    */
 
-    if (stringToBoolean(this.props.lane.lap)) {
+    if (this.props.lane.islaptime) {
       this.setState({
-        islaptime: true,
         laptime: checkUndefined(this.props.lane.finishtime),
       })
     } else {
       this.setState({
-        islaptime: false,
         place: checkUndefined(this.props.lane.place),
         finishtime: checkUndefined(this.props.lane.finishtime),
       })

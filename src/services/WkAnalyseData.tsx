@@ -8,18 +8,7 @@ import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { LaneState } from "../state/LaneState";
-import { any } from '@tensorflow/tfjs';
-//import { LaneData } from '../interfaces/lanedatainterface';
-
-/*
- this.state = {
-      WsConnected: false,
-      HeatNumber: 0,
-      EventNumber: 0,
-      CompetitionName: 'new',
-      DisplayMode: 'race'
-    }
-    */
+import { correctItem } from '../utilities/checkLaneData';
 
 function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }) {
 
@@ -66,8 +55,6 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
     }
 
     async function setLaneInfo(jsondata: any, lanes: []) {
-
-        // Inhalt noch editieren
 
         let newLanes: LaneState[] = [];
         await Promise.all(
@@ -230,6 +217,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                     startdelayms={startdelayms}
                     runningtime={runningTime}
                     eventheat={eventheat}
+                    Jsonlanes={Jsonlanes}
                 />
             </Grid>)
         } else {
@@ -253,33 +241,3 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
 }
 
 export default WkAnalyseData;
-
-function getIsLap(place: any): boolean {
-
-    if (place === '0') {
-        return true
-    } else {
-        return false
-    }
-}
-
-function correctItem(jsondata: any): LaneState {
-
-    let laneState: LaneState =
-    {
-        changed: 0,
-        finishtime: jsondata.finishtime,
-        islaptime: getIsLap(jsondata.place),
-        lane: jsondata.lane,
-        laptime: Date.now().toString(),
-        place: jsondata.place,
-        swimmerData: {
-            clubid: jsondata.code,
-            clubname: jsondata.name,
-            name: jsondata.lastname,
-        },
-    }
-
-    return laneState
-
-}

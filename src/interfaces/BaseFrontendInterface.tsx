@@ -4,7 +4,7 @@ import { LaneState } from "../state/LaneState";
 export interface BaseFrontendInterface {
     startdelayms: number;
     EventHeat: eventHeat;
-    lanes: [LaneState] | [];
+    lanes: LaneState[] | [];
     displayMode: string;
     runningTime: string;
 }
