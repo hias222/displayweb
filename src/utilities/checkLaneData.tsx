@@ -39,16 +39,21 @@ function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: an
 
 export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
 
+    var emptySwimmer: swimmerData = {clubid: '', clubname: '', name: '', heat: 0 , event: 0}
+
     var oldChange = Jsonlane === undefined ? Date.now() : Jsonlane.changed
     var KeyJsomlanes = Jsonlane === undefined ? '' : Jsonlane.lane + Jsonlane.finishtime + Jsonlane.swimmerData.name + Jsonlane.place
     var Keyjsondata = jsondata === undefined ? '' : jsondata.lane + jsondata.finishtime + jsondata.lastname + jsondata.place
 
     //console.log(checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata));
 
+    var finishtime = Jsonlane === undefined ? "undefined" : Jsonlane.finishtime
+    var swimmer: swimmerData =  Jsonlane === undefined ? emptySwimmer : Jsonlane.swimmerData
+
     let laneState: LaneState =
     {
         changed: getChangedate(KeyJsomlanes, Keyjsondata, oldChange),
-        finishtime: checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata),
+        finishtime: checkExistingEndTime(finishtime, swimmer, jsondata),
         islaptime: getIsLap(jsondata.place),
         lane: jsondata.lane,
         laptime: "",
