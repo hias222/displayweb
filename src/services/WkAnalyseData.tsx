@@ -98,6 +98,8 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
             })
         )
         setJsonLanes(newLanes);
+
+        //console.log(jsondata)
         // needed for push - BUG
         setJsonData(jsondata)
     }
@@ -106,7 +108,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         var calcstartdelay = typeof (startdelay) != 'undefined' ? startdelay : 100
         console.log('startdelay ' + calcstartdelay)
         //if (this.state.DisplayMode === 'message' || this.state.DisplayMode === 'clock' || this.state.DisplayMode === 'video') {
-        setDisplayMode('startlist')
+        //setDisplayMode('startlist')
         //}
         setStartdelayms(calcstartdelay)
     }
@@ -137,7 +139,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         //console.log(jsondata)
         var messageType = jsondata.type
         setMessageChange(jsondata)
-        //console.log("message type: " + messageType)
+        console.log("message type: " + messageType)
         switch (messageType) {
             case "start": {
                 setStartMode(jsondata.diff)

@@ -1,4 +1,5 @@
 import { LaneState } from "../state/LaneState";
+import { swimmerData } from "../types/SwimmerData";
 import getBirthYear from "./getBirthYear";
 import getEntryTime from "./getEntryTime";
 
@@ -22,18 +23,32 @@ function getChangedate(KeyJsomlanes: string, Keyjsondata: string, oldchangeDate:
 
 }
 
+function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: any) {
+    // Wenn der Lauf sich nicht ändert löscht er die Zeit nicht (Platz wird gelöscht)
+    //man könnte abhägig vond er laufenden Zeit, wenn länger als 1 Minute die Ziet behalten (zu spät lauf weitergesachaltet)
+    // bräuchte man die Info über die aktuell Laufzeit -> ToDo
+    if (endTime !== "undefined") {
+        if (swimmer.heat === newData.heat && swimmer.event === newData.event) {
+            return endTime
+        } else {
+            return newData.finishtime
+        }
+    }
+    return newData.finishtime
+}
+
 export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
 
     var oldChange = Jsonlane === undefined ? Date.now() : Jsonlane.changed
     var KeyJsomlanes = Jsonlane === undefined ? '' : Jsonlane.lane + Jsonlane.finishtime + Jsonlane.swimmerData.name + Jsonlane.place
     var Keyjsondata = jsondata === undefined ? '' : jsondata.lane + jsondata.finishtime + jsondata.lastname + jsondata.place
 
-    var newDate = getChangedate(KeyJsomlanes, Keyjsondata, oldChange)
+    //console.log(checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata));
 
     let laneState: LaneState =
     {
-        changed: newDate,
-        finishtime: jsondata.finishtime,
+        changed: getChangedate(KeyJsomlanes, Keyjsondata, oldChange),
+        finishtime: checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata),
         islaptime: getIsLap(jsondata.place),
         lane: jsondata.lane,
         laptime: "",
@@ -45,6 +60,8 @@ export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
             name: jsondata.lastname,
             birthyear: getBirthYear(jsondata.birthdate),
             firstName: jsondata.firstname,
+            heat: jsondata.heat,
+            event: jsondata.event,
         },
     }
     return laneState

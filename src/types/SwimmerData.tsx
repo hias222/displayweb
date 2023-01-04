@@ -4,4 +4,6 @@ export type swimmerData ={
     birthyear?: string;
     clubid: string;
     clubname: string;
+    heat?: number;
+    event?: number;
 }
