@@ -9,6 +9,8 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { LaneState } from "../state/LaneState";
 import { correctItem, correctDisplaymode } from '../utilities/checkLaneData';
+import { TextMessageType } from '../types/TextMessageType';
+
 
 function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }) {
 
@@ -24,6 +26,29 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         heatnr: '0',
         name: '0',
     });
+
+    const [textMessage, setTextmessage] = useState<TextMessageType>({
+        diplayMode: '',
+        displayFormat: '',
+        MessageText: '',
+        MessageTime: '',
+        VideoVersion: '',
+    })
+
+    function resetHeaderInfo() {
+        setEventHeat(
+            {
+                name: '',
+                eventnr: '0',
+                heatnr: '0',
+                competition: CompetitionName,
+                distance: '0',
+                gender: '0',
+                relaycount: '0',
+                round: '0',
+                swimstyle: '0'
+            })
+    }
 
     function setHeaderInfo(jsondata: any) {
 
@@ -88,9 +113,24 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         }
     }
 
+    function setMessageChange(message: any) {
+
+        var newMessage: TextMessageType = {
+            diplayMode: message.type !== undefined ? message.type : '',
+            displayFormat: message.size !== undefined ? message.size : '',
+            MessageText: message.value !== undefined ? message.value : '',
+            MessageTime: message.time !== undefined ? message.time : Date.now().toString(),
+            VideoVersion: message.version !== undefined ? message.version : '',
+        }
+
+        setTextmessage(newMessage)
+ 
+    }
+
     function checkIncoming(jsondata: any, lanes: []) {
         //console.log(jsondata)
         var messageType = jsondata.type
+        setMessageChange(jsondata)
         //console.log("message type: " + messageType)
         switch (messageType) {
             case "start": {
@@ -113,7 +153,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
             case "clear": {
                 //state.lanes = []
                 //this.clearAll()
-                //this.setDisplayMode("clear")
+                setDisplayMode("clear")
                 console.log('clear')
                 break;
             }
@@ -121,6 +161,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                 // ???
                 if (DisplayMode !== 'startlist') {
                     setDisplayMode("startlist")
+                    setMessageChange(jsondata)
                     console.log('startlist')
                 }
                 break;
@@ -132,33 +173,36 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                 break;
             }
             case "clock": {
-                // ???
-                //this.setDisplayMode("clock")
+                setDisplayMode("clock")
+                resetHeaderInfo()
                 console.log('clock')
                 break;
             }
             case "time": {
                 setRunningTimeString(jsondata)
-                console.log('running - time ' + jsondata.value)
+                console.log('--> running - time ' + jsondata.value)
                 break;
             }
             case "message": {
-                //this.setDisplayMode("message")
-                //this.props.onMessageChange(jsondata)
-                console.log('message')
+                resetHeaderInfo()
+                setDisplayMode("message")
+                console.log('->message')
                 break;
             }
             case "lenex": {
-                //this.setDisplayMode("message")
-                //this.props.onMessageChange(jsondata)
-                console.log('lenex')
+                resetHeaderInfo()
+                setDisplayMode("message")
+                console.log('--> lenex')
                 break;
             }
             case "video": {
+                resetHeaderInfo()
+                setDisplayMode("video")
+                setMessageChange(jsondata)
                 // ???
                 //this.setDisplayMode("video")
                 //this.props.onMessageChange(jsondata)
-                console.log('video')
+                console.log('->video')
                 break;
             }
             default: {
@@ -194,6 +238,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                     runningtime={runningTime}
                     eventheat={eventheat}
                     Jsonlanes={Jsonlanes}
+                    TextMessage={textMessage}
                 />
             </Grid>)
         } else {

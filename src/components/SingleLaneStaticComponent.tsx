@@ -61,7 +61,7 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
       var changesinceseconds = Date.now() - this.state.changed
       //console.log("lap " + this.state.lane + " changed since " + changesinceseconds)
       if (changesinceseconds > 15000) {
-        console.log("lap " + this.state.lane + " changed since " + changesinceseconds)
+        //console.log("lap " + this.state.lane + " changed since " + changesinceseconds)
         this.setState({
           laptime: "",
           place: "",
@@ -74,7 +74,7 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
 
   updateData() {
     //console.log(this.props.lane)
-    console.log("update " + this.props.lane.lane)
+    //console.log("update " + this.props.lane.lane)
     if (this.props.lane.swimmerData.name !== undefined) {
       this.setState(this.props.lane)
       /*
@@ -144,14 +144,14 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   getRaceData() {
     //console.log(this.state.finishtime + " - " + this.state.laptime)
     if (this.state.islaptime && (Date.now() - this.state.changed) < 15000) {
-      console.log("getRaceData lap " + this.state.lane + ' ' + this.state.laptime + ' ' + this.state.islaptime )
+      //console.log("getRaceData lap " + this.state.lane + ' ' + this.state.laptime + ' ' + this.state.islaptime )
       return <FinishStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
         finishtime={this.state.laptime}
       />
     } else {
-      console.log("getRaceData finish " + this.state.lane + ' ' + this.state.place)
+      //console.log("getRaceData finish " + this.state.lane + ' ' + this.state.place)
     return <FinishStyledLane
       swimmer={this.state.swimmerData}
       lane={this.state.lane}
