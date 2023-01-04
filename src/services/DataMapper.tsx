@@ -5,9 +5,9 @@ import { LaneState } from '../state/LaneState'
 import { BaseFrontendComponent } from '../components/BaseFrontendComponent';
 import React from 'react';
 
-let correctValueForLaneNull = 0;
+//let correctValueForLaneNull = 0;
 //const mylane: any[] = [];
-
+/*
 const mylane: [LaneState] = [{
     changed: 0,
     finishtime: '',
@@ -23,7 +23,7 @@ const mylane: [LaneState] = [{
         }
     
 }];
-
+*/
 function DataMapper(model: {
     CompetitionName: string;
     jsonData: any;
@@ -51,10 +51,11 @@ function DataMapper(model: {
     }
 
     function setLanesData(Jsonlanes: LaneState[]){
-        console.log(Jsonlanes);
+        //console.log(Jsonlanes);
         setLanes(Jsonlanes)
     }
 
+    /*
     function onLaneChange(lane: number, LaneData: any) {
         console.log("onLaneChange " + lane)
         if (lane === -1) {
@@ -83,12 +84,13 @@ function DataMapper(model: {
             console.log(mylane)
         }
     }
+    */
 
     if (model.jsonData !== undefined) {
         if (model.jsonData.lane !== undefined) {
             if (model.jsonData !== jsonData) {
                 setJsonData(model.jsonData)
-                console.log('DataMapper jsondata ' + model.jsonData.lane)
+                //console.log('DataMapper jsondata ' + model.jsonData.lane)
                 //onLaneChange(model.jsonData.lane,model.jsonData)
                 setLanesData(model.Jsonlanes);
             }

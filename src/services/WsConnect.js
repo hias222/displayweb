@@ -66,7 +66,7 @@ function WsConnect() {
   //setCount(0);
 
   useEffect(() => {
-    console.log(message)
+    //console.log(message)
     setLanes(allLaneData)
   },[message]);
 

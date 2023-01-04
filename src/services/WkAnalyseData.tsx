@@ -8,12 +8,12 @@ import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { LaneState } from "../state/LaneState";
-import { correctItem } from '../utilities/checkLaneData';
+import { correctItem, correctDisplaymode } from '../utilities/checkLaneData';
 
 function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }) {
 
     const [connectstate, setConnectstate] = useState<boolean>(false)
-    const [DisplayMode, setDisplayMode] = useState('');
+    const [DisplayMode, setDisplayMode] = useState<string>('');
     const [CompetitionName, setCompetitionName] = useState('')
     const [JsonData, setJsonData] = useState('');
     const [Jsonlanes, setJsonLanes] = useState<LaneState[] | []>([])
@@ -57,40 +57,18 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
     async function setLaneInfo(jsondata: any, lanes: []) {
 
         let newLanes: LaneState[] = [];
+        let newDisplayMode: string = DisplayMode;
         await Promise.all(
-            lanes.map(async (item) => {
-                newLanes.push(correctItem(item))
+            lanes.map(async (item, index) => {
+                newLanes.push(correctItem(item, Jsonlanes[index]))
+                newDisplayMode = (correctDisplaymode(item, newDisplayMode))
+                setDisplayMode(newDisplayMode)
+                //console.log('mode found ' + newDisplayMode)
             })
         )
         setJsonLanes(newLanes);
-        console.log(newLanes)
-
-        //locklanes = true;
-        if (jsondata.place === '0') {
-            var laptime = "{ \"laptime\": \"" + Date.now() + "\",\"lap\": \"true\" }"
-            var newjsondata = { ...jsondata, ...JSON.parse(laptime) }
-            //activelapdata = true;
-            //this.props.onLaneChange(jsondata.lane, newjsondata)
-            setJsonData(newjsondata)
-            if (DisplayMode !== 'race') {
-                setDisplayMode('race')
-            }
-        } else {
-            var laptime2 = "{ \"lap\": \"false\" }"
-            var newjsondata2 = { ...jsondata, ...JSON.parse(laptime2) }
-            //this.props.onLaneChange(jsondata.lane, newjsondata2)
-            setJsonData(newjsondata2)
-
-            if (jsondata.finishtime === "undefined" || !jsondata.finishtime) {
-                if (DisplayMode !== 'startlist' && DisplayMode !== 'race') {
-                    setDisplayMode('startlist')
-                }
-            } else {
-                if (DisplayMode !== 'race') {
-                    setDisplayMode('race')
-                }
-            }
-        }
+        // needed for push - BUG
+        setJsonData(jsondata)
     }
 
     function setStartMode(startdelay: number) {
@@ -184,9 +162,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                 break;
             }
             default: {
-                console.log('default')
-                console.log(jsondata.type)
-                console.log(jsondata)
+                console.log('case default type ' + jsondata)
             }
         }
     }

@@ -71,7 +71,8 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   }
 
   updateData() {
-    console.log(this.props.lane)
+    //console.log(this.props.lane)
+    //console.log("update " + this.props.lane.lane)
     if (this.props.lane.swimmerData.name !== undefined) {
       this.setState(this.props.lane)
       /*
@@ -139,13 +140,16 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   //paste in state
 
   getRaceData() {
+    //console.log(this.state.finishtime + " - " + this.state.laptime)
     if (this.state.islaptime) {
+      //console.log("getRaceData lap " + this.state.lane )
       return <FinishStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
         finishtime={this.state.laptime}
       />
     } else {
+      //console.log("getRaceData !lap" + this.state.lane)
     return <FinishStyledLane
       swimmer={this.state.swimmerData}
       lane={this.state.lane}
