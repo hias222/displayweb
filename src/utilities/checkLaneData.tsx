@@ -16,7 +16,7 @@ function getChangedate(KeyJsomlanes: string, Keyjsondata: string, oldchangeDate:
     if (KeyJsomlanes === Keyjsondata) {
         return oldchangeDate
     } else {
-        console.log('change')
+        //console.log('change ' + Keyjsondata)
         return Date.now()
     }
 
