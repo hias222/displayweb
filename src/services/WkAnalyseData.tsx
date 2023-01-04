@@ -36,6 +36,12 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
     })
 
     function resetHeaderInfo() {
+        
+        setStartdelayms(-1);
+        let newLanes: LaneState[] = [];
+        setJsonLanes(newLanes);
+        setJsonData('')
+
         setEventHeat(
             {
                 name: '',

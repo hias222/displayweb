@@ -1,63 +1,69 @@
+import Box from "@mui/material/Box";
 import React from "react";
+import { useEffect, useState } from "react";
 import { ChooseInterface } from "../interfaces/ChooseInterface";
+import windowParameter from "../utilities/windowParameter";
+import classnames from 'classnames';
 import { BaseFrontendComponent } from "./BaseFrontendComponent";
 import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
 
-export class ChooseComponent extends React.Component<ChooseInterface, {}> {
+function ChooseComponent(model: ChooseInterface) {
+    //extends React.Component<ChooseInterface, {}> {
 
+    const [chooseComponent, setChooseComponent] = useState<ChooseInterface>();
 
-    getDisplayData() {
+    var windowParams: windowParameter = new windowParameter();
+    var statictable = classnames('statictable');
 
-
-        if (this.props.displayMode === 'message' || this.props.displayMode === 'clock' || this.props.displayMode === 'video') {
-            return (
-                <MessageFrontendComponent
-                    diplayMode={this.props.displayMode}
-                    MessageText={this.props.messageText.MessageText}
-                    MessageTime={this.props.messageText.MessageTime}
-                    VideoVersion={this.props.messageText.VideoVersion}
-                    displayFormat={"lcd"}
-                />
-            )
-        } else if (this.props.displayMode === 'result') {
-            return (
-                <ResultFrontendComponent
-                    diplayMode={this.props.displayMode}
-                    ResultJson=' todo this.props.ResultJson' 
-                />
-            )
+    function getDisplayData() {
+        if (chooseComponent !== undefined) {
+            if (chooseComponent?.displayMode === 'message' || chooseComponent?.displayMode === 'clock' || chooseComponent?.displayMode === 'video') {
+                return (
+                    <MessageFrontendComponent
+                        diplayMode={chooseComponent.messageText.diplayMode}
+                        MessageText={chooseComponent.messageText.MessageText}
+                        MessageTime={chooseComponent.messageText.MessageTime}
+                        VideoVersion={chooseComponent.messageText.VideoVersion}
+                        displayFormat={"lcd"}
+                    />
+                )
+            } else if (chooseComponent.displayMode === 'result') {
+                return (
+                    <ResultFrontendComponent
+                        diplayMode={chooseComponent.displayMode}
+                        ResultJson=' todo this.props.ResultJson'
+                    />
+                )
+            } else {
+                return (
+                    <BaseFrontendComponent
+                        startdelayms={chooseComponent.startdelayms}
+                        EventHeat={chooseComponent.EventHeat}
+                        lanes={chooseComponent.lanes}
+                        displayMode={chooseComponent.displayMode}
+                        runningTime={chooseComponent.startdelayms.toString()}
+                    />)
+            }
         } else {
             return (
-                <BaseFrontendComponent
-                    startdelayms={this.props.startdelayms}
-                    EventHeat={this.props.EventHeat}
-                    lanes={this.props.lanes}
-                    displayMode={this.props.displayMode}
-                    runningTime={this.props.startdelayms.toString()}
-                />)
+                <div> No Data</div>
+            )
         }
     }
 
-    render() {
+    useEffect(() => {
+        setChooseComponent(model)
+        //console.log(model)
+    }, [model]);
 
-        console.log(this.props.messageText)
-        console.log('Display Mode: ' + this.props.displayMode)
-
-        return (
-            this.getDisplayData()
-        )
-    }
+    return (
+        <div>
+            <Box width={windowParams.window_width} height={windowParams.window_height} className={statictable}>
+                {getDisplayData()}
+            </Box>
+        </div >
+    );
 }
 
-
-/*
-
-            <BaseFrontendComponent
-                startdelayms={this.props.startdelayms}
-                EventHeat={this.props.EventHeat}
-                lanes={this.props.lanes}
-                displayMode={this.props.displayMode}
-                runningTime={this.props.startdelayms.toString()}
-            />
-            */
+export default ChooseComponent;

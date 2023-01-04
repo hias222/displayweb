@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { eventHeat } from '../types/EventHeat';
 import { LaneState } from '../state/LaneState'
 import React from 'react';
-import { ChooseComponent } from '../components/ChooseCompoent';
+import ChooseComponent from '../components/ChooseCompoent';
 import { TextMessageType } from '../types/TextMessageType';
 
 
@@ -24,8 +24,8 @@ function DataMapper(model: {
     const [displayMode, setDisplayMode] = useState('')
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
-        console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr )
-        console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.heatnr )
+        console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
+        console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.heatnr)
         setEventHeat(model.eventheat);
     }
 
@@ -34,7 +34,7 @@ function DataMapper(model: {
         setDisplayMode(model.DisplayMode)
     }
 
-    function setLanesData(Jsonlanes: LaneState[]){
+    function setLanesData(Jsonlanes: LaneState[]) {
         //console.log(Jsonlanes);
         setLanes(Jsonlanes)
     }
@@ -52,6 +52,7 @@ function DataMapper(model: {
     }
 
     return (
+        <div>
             <ChooseComponent
                 startdelayms={model.startdelayms}
                 EventHeat={eventHeat}
@@ -60,6 +61,7 @@ function DataMapper(model: {
                 runningTime={'100'}
                 messageText={model.TextMessage}
             />
+        </div>
     );
 }
 
