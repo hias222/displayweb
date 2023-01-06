@@ -43,35 +43,28 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
     }
 
     getVideoUrl() {
-        console.log("init vodeo nr " + this.props.VideoVersion)
-
+        console.log("init vodeo filename " + this.props.VideoVersion)
         let backend_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port
-
-
-        if (this.props.VideoVersion === "1") {
-            console.log(backend_url + "/data/video1.mp4")
-            return backend_url + "/data/video1.mp4"
-        }
-        if (this.props.VideoVersion === "2") {
-            console.log(backend_url + "/data/video2.mp4")
-            return backend_url + "/data/video2.mp4"
-        }
-        if (this.props.VideoVersion === "3") {
-            return backend_url + "/data/video3.mp4"
-        }
 
         if (this.props.VideoVersion === "4") {
             //return backend_url + "/data/video4.mp4"
+            console.log("/hls/obs_stream.m3u8")
             return backend_url + "/hls/obs_stream.m3u8"
-        }
-
-        if (this.props.VideoVersion === "5") {
+            
+        } else if (this.props.VideoVersion === "5") {
             //return "https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd"
             //return "https://swim.fritz.box/dash/obs_stream.mpd"
+            console.log("/dash/obs_stream.mpd")
             return backend_url + "/dash/obs_stream.mpd"
+        } else if (this.props.VideoVersion !== undefined && this.props.VideoVersion !== "") {
+            var video_url = backend_url + "/data/" + this.props.VideoVersion
+            console.log(video_url)
+            return video_url
+        } else {
+            console.log(backend_url + "/data/video1.mp4")
+            return backend_url + "/data/video1.mp4"
         }
-        console.log("not found video " + this.props.VideoVersion)
-        return ""
+
     }
 
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4

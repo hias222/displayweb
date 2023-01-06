@@ -139,7 +139,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         //console.log(jsondata)
         var messageType = jsondata.type
         setMessageChange(jsondata)
-        console.log("message type: " + messageType)
+        //console.log("message type: " + messageType)
         switch (messageType) {
             case "start": {
                 setStartMode(jsondata.diff)
@@ -210,7 +210,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                 // ???
                 //this.setDisplayMode("video")
                 //this.props.onMessageChange(jsondata)
-                console.log('->video')
+                console.log('--> video')
                 break;
             }
             default: {
