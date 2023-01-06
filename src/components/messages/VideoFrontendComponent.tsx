@@ -6,6 +6,7 @@ export interface VideoInterface {
     videoURL: string;
     width: string;
     height: string;
+    type: string;
 }
 
 export class VideoFrontendComponent extends React.Component<VideoInterface, {}> {
