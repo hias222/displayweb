@@ -43,7 +43,7 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
     }
 
     getVideoUrl() {
-        console.log("init vodeo filename " + this.props.VideoVersion)
+        console.log("video filename " + this.props.VideoVersion)
         let backend_url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port
 
         if (this.props.VideoVersion === "4") {
