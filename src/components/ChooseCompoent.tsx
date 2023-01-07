@@ -8,6 +8,8 @@ import { BaseFrontendComponent } from "./BaseFrontendComponent";
 import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
 
+
+
 function ChooseComponent(model: ChooseInterface) {
     //extends React.Component<ChooseInterface, {}> {
 
@@ -15,6 +17,40 @@ function ChooseComponent(model: ChooseInterface) {
 
     var windowParams: windowParameter = new windowParameter();
     var statictable = classnames('statictable');
+
+    const handleFullscreen = () => (event: any) => {
+        //Fullscreen
+        console.log('Fullscreen' + event)
+        
+        const el = document.documentElement;
+        if (el.requestFullscreen) {
+            el.requestFullscreen();
+        }
+        
+        /*
+        else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen()
+        } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen()
+        } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen()
+        }
+        */
+        
+    };
+
+
+    const buttonfullscreen = () =>  {
+        return ( <div>
+            <Box height={30}></Box>
+            <Box height={50}>
+                <div>
+                    <button onClick={handleFullscreen()}>Full screen </button>
+                </div>
+            </Box>
+        </div>);
+    }
+
 
     function getDisplayData() {
         if (chooseComponent !== undefined) {
@@ -61,6 +97,9 @@ function ChooseComponent(model: ChooseInterface) {
         <div>
             <Box width={windowParams.window_width} height={windowParams.window_height} className={statictable}>
                 {getDisplayData()}
+            </Box>
+            <Box>
+                {buttonfullscreen()}
             </Box>
         </div >
     );
