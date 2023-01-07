@@ -12,7 +12,7 @@ import { correctItem, correctDisplaymode } from '../utilities/checkLaneData';
 import { TextMessageType } from '../types/TextMessageType';
 
 
-function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }) {
+function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], header: string }) {
 
     const [connectstate, setConnectstate] = useState<boolean>(false)
     const [DisplayMode, setDisplayMode] = useState<string>('');
@@ -151,11 +151,13 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
                 break;
             }
             case "header": {
-                setHeaderInfo(jsondata);
+                //setHeaderInfo(jsondata);
+                //not needed over useEffect
                 break;
             }
             case "lane": {
-                setLaneInfo(jsondata, lanes)
+                // not needed useEffect
+                //setLaneInfo(jsondata, lanes)
                 break;
             }
             case "clear": {
@@ -231,7 +233,17 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [] }
         messageListener(model.message, model.lanes);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [model.message, model.connected, model.lanes]);
+    }, [model.message, model.connected]);
+
+    useEffect(() => {
+        setHeaderInfo(model.header);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [model.header]);
+
+    useEffect(() => {
+        setLaneInfo(model.message, model.lanes)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(model.lanes)]);
 
     let connect_status = connectstate === true ? <SignalWifiStatusbar4BarIcon /> : <PortableWifiOffIcon />
 

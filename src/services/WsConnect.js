@@ -7,7 +7,7 @@ import "../styles/App.scss";
 
 let correctValueForLaneNull = 0;
 
-const allLaneData = []
+const allLaneData = [];
 /*
 = [
   {
@@ -63,12 +63,13 @@ function WsConnect() {
   const [message, setMessage] = useState("");
   const [connected, setConnected] = useState(false);
   const [lanes, setLanes] = useState([]);
+  const [header, setHeader] = useState("");
   //setCount(0);
 
   useEffect(() => {
     //console.log(message)
-    setLanes(allLaneData)
-  },[message]);
+    setLanes(allLaneData);
+  }, [message]);
 
   useEffect(() => {
     console.log(backend_url + " Context " + context_path);
@@ -80,17 +81,37 @@ function WsConnect() {
       var jsondata = JSON.parse(newmessage);
       // lane data -> store in array
       // sonst kommt nur die letzte bahn in den hook -> zu schnell
-      if (jsondata.lane !== undefined) {
-        if (jsondata.lane === 0 && correctValueForLaneNull !== 1) {
-          console.log("+++++ 0");
-          correctValueForLaneNull = 1;
-        }
-        //var lengthLanes = lanes !== undefined ? lanes.length : 0;
-        var sizeLanes = allLaneData.length - correctValueForLaneNull;
-        if (jsondata.lane > sizeLanes) {
-          allLaneData.push(jsondata);
-        } else {
-          allLaneData[jsondata.lane - 1 + correctValueForLaneNull] = jsondata;
+      if (jsondata.type === "header") {
+        setHeader(jsondata)
+        //console.log(jsondata);
+      }
+
+      /*
+      if (jsondata.type === "clear") {
+        console.log('clear connect')
+        allLaneData.map(lane => {
+          console.log(lane)
+          lane.finishtime = "undefined"
+        })
+        //setLanes(allLaneData);
+      }
+      */
+      
+      
+
+      if (jsondata.type === "lane") {
+        if (jsondata.lane !== undefined) {
+          if (jsondata.lane === 0 && correctValueForLaneNull !== 1) {
+            console.log("+++++ 0");
+            correctValueForLaneNull = 1;
+          }
+          //var lengthLanes = lanes !== undefined ? lanes.length : 0;
+          var sizeLanes = allLaneData.length - correctValueForLaneNull;
+          if (jsondata.lane > sizeLanes) {
+            allLaneData.push(jsondata);
+          } else {
+            allLaneData[jsondata.lane - 1 + correctValueForLaneNull] = jsondata;
+          }
         }
       }
       setMessage(jsondata);
@@ -126,7 +147,7 @@ function WsConnect() {
   return (
     <div>
       <div className="chat-container">
-        <WkAnalyseData message={message} connected={connected} lanes={lanes} />
+        <WkAnalyseData message={message} connected={connected} lanes={lanes} header={header} />
       </div>
     </div>
   );

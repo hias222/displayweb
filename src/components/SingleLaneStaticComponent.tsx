@@ -91,6 +91,8 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
       })
       */
     } else {
+      //this.setState(this.props.lane)
+      
       this.setState({
         swimmerData: {
           birthyear: " ",
@@ -100,8 +102,10 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
           clubname: ""
         },
         lane: this.props.lane.lane,
-        changed: Date.now(),
+        islaptime: this.props.lane.islaptime,
+        changed:this.props.lane.changed,
       })
+      
     }
     /*
 
@@ -142,24 +146,32 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   //paste in state
 
   getRaceData() {
-    //console.log(this.state.finishtime + " - " + this.state.laptime)
+    console.log(this.state.finishtime + " - " + this.state.laptime + ' is lap ' + this.state.islaptime)
     if (this.state.islaptime && (Date.now() - this.state.changed) < 15000) {
-      //console.log("getRaceData lap " + this.state.lane + ' ' + this.state.laptime + ' ' + this.state.islaptime )
+      //console.log("getRaceData lap " + this.state.lane + ' ' + this.state.laptime + ' ' + this.state.islaptime)
       return <FinishStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
         finishtime={this.state.laptime}
       />
+    } else if (this.state.islaptime) {
+      //console.log("getRaceData finish " + this.state.lane + ' ' + this.state.place + ' lap? ' + this.state.islaptime)
+      return <FinishStyledLane
+        swimmer={this.state.swimmerData}
+        lane={this.state.lane}
+        place=''
+        finishtime=''
+      />
     } else {
-      //console.log("getRaceData finish " + this.state.lane + ' ' + this.state.place)
-    return <FinishStyledLane
-      swimmer={this.state.swimmerData}
-      lane={this.state.lane}
-      place={this.state.place}
-      finishtime={this.state.finishtime}
-    />
-    }
+      //console.log("getRaceData finish " + this.state.lane + ' ' + this.state.place + ' lap? ' + this.state.islaptime)
+      return <FinishStyledLane
+        swimmer={this.state.swimmerData}
+        lane={this.state.lane}
+        place={this.state.place}
+        finishtime={this.state.finishtime}
+      />
 
+    }
   }
 
   render() {

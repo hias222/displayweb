@@ -27,19 +27,21 @@ function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: an
     // Wenn der Lauf sich nicht ändert löscht er die Zeit nicht (Platz wird gelöscht)
     //man könnte abhägig vond er laufenden Zeit, wenn länger als 1 Minute die Ziet behalten (zu spät lauf weitergesachaltet)
     // bräuchte man die Info über die aktuell Laufzeit -> ToDo
+    //console.log(endTime + ' ' + newData.finishtime)
     if (endTime !== "undefined") {
         if (swimmer.heat === newData.heat && swimmer.event === newData.event) {
             return endTime
         } else {
             return newData.finishtime
         }
+    } else {
+        return newData.finishtime
     }
-    return newData.finishtime
 }
 
 export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
 
-    var emptySwimmer: swimmerData = {clubid: '', clubname: '', name: '', heat: 0 , event: 0}
+    var emptySwimmer: swimmerData = { clubid: '', clubname: '', name: '', heat: 0, event: 0 }
 
     var oldChange = Jsonlane === undefined ? Date.now() : Jsonlane.changed
     var KeyJsomlanes = Jsonlane === undefined ? '' : Jsonlane.lane + Jsonlane.finishtime + Jsonlane.swimmerData.name + Jsonlane.place
@@ -47,13 +49,15 @@ export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
 
     //console.log(checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata));
 
-    var finishtime = Jsonlane === undefined ? "undefined" : Jsonlane.finishtime
-    var swimmer: swimmerData =  Jsonlane === undefined ? emptySwimmer : Jsonlane.swimmerData
+    //klappt nicht bei neuen Zeiten ...
+    //var finishtime = Jsonlane === undefined ? "undefined" : Jsonlane.finishtime
+    //var swimmer: swimmerData = Jsonlane === undefined ? emptySwimmer : Jsonlane.swimmerData
+    //checkExistingEndTime(finishtime, swimmer, jsondata),
 
     let laneState: LaneState =
     {
         changed: getChangedate(KeyJsomlanes, Keyjsondata, oldChange),
-        finishtime: checkExistingEndTime(finishtime, swimmer, jsondata),
+        finishtime: jsondata.finishtime,
         islaptime: getIsLap(jsondata.place),
         lane: jsondata.lane,
         laptime: "",
