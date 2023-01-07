@@ -146,7 +146,7 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   //paste in state
 
   getRaceData() {
-    console.log(this.state.finishtime + " - " + this.state.laptime + ' is lap ' + this.state.islaptime)
+    //console.log(this.state.finishtime + " - " + this.state.laptime + ' is lap ' + this.state.islaptime)
     if (this.state.islaptime && (Date.now() - this.state.changed) < 15000) {
       //console.log("getRaceData lap " + this.state.lane + ' ' + this.state.laptime + ' ' + this.state.islaptime)
       return <FinishStyledLane

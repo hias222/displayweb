@@ -83,22 +83,23 @@ function WsConnect() {
       // sonst kommt nur die letzte bahn in den hook -> zu schnell
       if (jsondata.type === "header") {
         setHeader(jsondata)
-        //console.log(jsondata);
       }
-
-      /*
+      
       if (jsondata.type === "clear") {
         console.log('clear connect')
-        allLaneData.map(lane => {
-          console.log(lane)
-          lane.finishtime = "undefined"
-        })
-        //setLanes(allLaneData);
-      }
-      */
-      
-      
+        setLanes([]);
 
+        const d = new Date();
+        var stopmessage ={
+          type: 'stop',
+          time: Math.round(d.getTime()/1000).toString(),
+          diff: '0'
+        }
+        //console.log(stopmessage)
+        setMessage(stopmessage);
+        return
+      }
+  
       if (jsondata.type === "lane") {
         if (jsondata.lane !== undefined) {
           if (jsondata.lane === 0 && correctValueForLaneNull !== 1) {

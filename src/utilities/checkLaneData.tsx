@@ -23,13 +23,32 @@ function getChangedate(KeyJsomlanes: string, Keyjsondata: string, oldchangeDate:
 
 }
 
+function checkExistingEndPlace(endPlace: string, swimmer: swimmerData, newData: any) {
+    // Wenn der Lauf sich nicht ändert löscht er die Zeit nicht (Platz wird gelöscht)
+    //man könnte abhägig vond er laufenden Zeit, wenn länger als 1 Minute die Ziet behalten (zu spät lauf weitergesachaltet)
+    // bräuchte man die Info über die aktuell Laufzeit -> ToDo
+    //console.log(endTime + ' ' + newData.finishtime)
+    if (endPlace !== "undefined") {
+        if (swimmer.heat === newData.heat && swimmer.event === newData.event && newData.place === "undefined") {
+            //console.log('correct')
+            return endPlace
+        } else {
+            return newData.place
+        }
+    } else {
+        return newData.place
+    }
+}
+
+
 function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: any) {
     // Wenn der Lauf sich nicht ändert löscht er die Zeit nicht (Platz wird gelöscht)
     //man könnte abhägig vond er laufenden Zeit, wenn länger als 1 Minute die Ziet behalten (zu spät lauf weitergesachaltet)
     // bräuchte man die Info über die aktuell Laufzeit -> ToDo
     //console.log(endTime + ' ' + newData.finishtime)
     if (endTime !== "undefined") {
-        if (swimmer.heat === newData.heat && swimmer.event === newData.event) {
+        if (swimmer.heat === newData.heat && swimmer.event === newData.event && newData.finishtime === "undefined") {
+            //console.log('correct')
             return endTime
         } else {
             return newData.finishtime
@@ -50,18 +69,19 @@ export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
     //console.log(checkExistingEndTime(Jsonlane.finishtime, Jsonlane.swimmerData, jsondata));
 
     //klappt nicht bei neuen Zeiten ...
-    //var finishtime = Jsonlane === undefined ? "undefined" : Jsonlane.finishtime
-    //var swimmer: swimmerData = Jsonlane === undefined ? emptySwimmer : Jsonlane.swimmerData
+    var finishtime = Jsonlane === undefined ? "undefined" : Jsonlane.finishtime
+    var endplace = Jsonlane === undefined ? "undefined" : Jsonlane.place
+    var swimmer: swimmerData = Jsonlane === undefined ? emptySwimmer : Jsonlane.swimmerData
     //checkExistingEndTime(finishtime, swimmer, jsondata),
 
     let laneState: LaneState =
     {
         changed: getChangedate(KeyJsomlanes, Keyjsondata, oldChange),
-        finishtime: jsondata.finishtime,
+        finishtime: checkExistingEndTime(finishtime, swimmer, jsondata),
         islaptime: getIsLap(jsondata.place),
         lane: jsondata.lane,
         laptime: "",
-        place: jsondata.place,
+        place: checkExistingEndPlace(endplace,swimmer,jsondata),
         entrytime: getEntryTime(jsondata.entrytime),
         swimmerData: {
             clubid: jsondata.code,
