@@ -57,13 +57,15 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
             this.startTimer()
         } else {
             var timeReceived = getMilliSecondsFromTimeString(newTime)
-            var diff = Math.abs(timeReceived - this.state.displaytime);
-            if (diff > 1000) {
-                console.log('Correct Time, diff lt 1s')
-                this.setState({
-                    displaytime: timeReceived,
-                    start: Date.now() - timeReceived,
-                })
+            if (timeReceived > 1000) {
+                var diff = Math.abs(timeReceived - this.state.displaytime);
+                if (diff > 1000) {
+                    console.log('Correct Time, diff lt 1s')
+                    this.setState({
+                        displaytime: timeReceived,
+                        start: Date.now() - timeReceived,
+                    })
+                }
             }
         }
     }
