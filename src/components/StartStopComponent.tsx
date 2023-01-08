@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import { StartStopInterface } from "../interfaces/StartStopInterface";
 import { StartStopState } from "../state/StartStopState";
+import getMilliSecondsFromTimeString from "../utilities/getMilliSecondsFromTimeString";
 import windowParameter from "../utilities/windowParameter";
 import HeaderBoxName from "./svg/HeaderBoxName";
 import HeaderTimeLine from "./svg/HeaderTime";
@@ -51,7 +52,20 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
     }
 
     correctTimer(newTime: string) {
-        console.log(newTime + " " + this.format(this.state.displaytime))
+        if (getMilliSecondsFromTimeString(newTime) > 2000 && !this.state.isOn) {
+            console.log('missed start')
+            this.startTimer()
+        } else {
+            var timeReceived = getMilliSecondsFromTimeString(newTime)
+            var diff = Math.abs(timeReceived - this.state.displaytime);
+            if (diff > 1000) {
+                console.log('Correct Time, diff lt 1s')
+                this.setState({
+                    displaytime: timeReceived,
+                    start: Date.now() - timeReceived,
+                })
+            }
+        }
     }
 
     async stopTimer() {
@@ -103,9 +117,9 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         if (prevProps.runningTime !== this.props.runningTime) {
 
             this.correctTimer(this.props.runningTime);
-            this.setState({
-                runningTime: this.props.runningTime
-            })
+            //this.setState({
+            //    runningTime: this.props.runningTime
+            //})
         }
     }
 
@@ -121,17 +135,17 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
         if (this.windowParams.getDetailsInHeader()) {
 
-        return (
-            <div className={noSpaceContainerHorizontal} >
-                <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
-                <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
-                <HeaderTimeLine
-                    Time={this.format(this.state.displaytime)}
-                    IsFirstText={false}
-                    Parts={3} />
-            </div>
-        )
-        }else {
+            return (
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
+                    <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Parts={3} />
+                </div>
+            )
+        } else {
             return (
                 <div className={noSpaceContainerHorizontal} >
                     <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>

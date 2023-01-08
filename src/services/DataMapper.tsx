@@ -16,6 +16,7 @@ function DataMapper(model: {
     eventheat: eventHeat;
     Jsonlanes: LaneState[];
     TextMessage: TextMessageType;
+    Result: string;
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
@@ -58,8 +59,9 @@ function DataMapper(model: {
                 EventHeat={eventHeat}
                 lanes={lanes}
                 displayMode={displayMode}
-                runningTime={'100'}
+                runningTime={model.runningtime}
                 messageText={model.TextMessage}
+                result={model.Result}
             />
         </div>
     );

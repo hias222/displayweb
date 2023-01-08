@@ -16,6 +16,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     const [connectstate, setConnectstate] = useState<boolean>(false)
     const [DisplayMode, setDisplayMode] = useState<string>('');
+    const [Result, setResult] = useState<string>('');
     const [CompetitionName, setCompetitionName] = useState('')
     const [JsonData, setJsonData] = useState('');
     const [Jsonlanes, setJsonLanes] = useState<LaneState[] | []>([])
@@ -205,6 +206,12 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 console.log('--> lenex')
                 break;
             }
+            case "result": {
+                setDisplayMode("result")
+                setResult(jsondata)                
+                console.log('--> result')
+                break;
+            }
             case "video": {
                 resetHeaderInfo()
                 setDisplayMode("video")
@@ -216,7 +223,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 break;
             }
             default: {
-                console.log('case default type ' + jsondata)
+                console.log('case default type ' + JSON.stringify(jsondata))
             }
         }
     }
@@ -259,6 +266,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                     eventheat={eventheat}
                     Jsonlanes={Jsonlanes}
                     TextMessage={textMessage}
+                    Result={Result}
                 />
             </Grid>)
         } else {

@@ -68,7 +68,7 @@ function ChooseComponent(model: ChooseInterface) {
                 return (
                     <ResultFrontendComponent
                         diplayMode={chooseComponent.displayMode}
-                        ResultJson=' todo this.props.ResultJson'
+                        ResultJson={chooseComponent.result}
                     />
                 )
             } else {
@@ -78,7 +78,7 @@ function ChooseComponent(model: ChooseInterface) {
                         EventHeat={chooseComponent.EventHeat}
                         lanes={chooseComponent.lanes}
                         displayMode={chooseComponent.displayMode}
-                        runningTime={chooseComponent.startdelayms.toString()}
+                        runningTime={chooseComponent.runningTime}
                     />)
             }
         } else {

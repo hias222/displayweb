@@ -9,4 +9,5 @@ export interface ChooseInterface {
     displayMode: string;
     runningTime: string;
     messageText: TextMessageType;
+    result: string;
 }

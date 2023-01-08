@@ -66,12 +66,12 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
 
     getFirst3Results(results: [resultSwimmerData]) {
         var firstResults = results.filter(results => parseInt(results.place, 10) < this.SHOW_NUMBER_PLACES + 1)
-        console.log(firstResults)
+        //console.log(firstResults + ' ' + this.SHOW_NUMBER_PLACES)
         return firstResults
     }
 
     getLastResults(results: [resultSwimmerData]) {
-        var lastResults = results.filter(results => parseInt(results.place, 10) > 3)
+        var lastResults = results.filter(results => parseInt(results.place, 10) > this.SHOW_NUMBER_PLACES)
         return lastResults
     }
 
@@ -80,9 +80,8 @@ export class ResultFrontendComponent extends React.Component<ResultInterface, Me
         if (this.SHOW_MARQUEE === 'false') {
             return false;
         } else {
-            if (results[0] !== undefined ) {
+            if (results[0] !== undefined) {
                 if (results[0].lastname !== '') {
-                    console.log('show')
                     return true
                 } else {
                     return false
