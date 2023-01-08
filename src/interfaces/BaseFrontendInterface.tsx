@@ -7,4 +7,5 @@ export interface BaseFrontendInterface {
     lanes: LaneState[] | [];
     displayMode: string;
     runningTime: string;
+    round: number;
 }

@@ -17,6 +17,7 @@ function DataMapper(model: {
     Jsonlanes: LaneState[];
     TextMessage: TextMessageType;
     Result: string;
+    Round :number;
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
@@ -62,6 +63,7 @@ function DataMapper(model: {
                 runningTime={model.runningtime}
                 messageText={model.TextMessage}
                 result={model.Result}
+                round={model.Round}
             />
         </div>
     );

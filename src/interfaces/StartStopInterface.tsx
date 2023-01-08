@@ -4,4 +4,5 @@ export interface StartStopInterface {
     startdelayms: number;
     EventHeat: eventHeat;
     runningTime: string;
+    round: number;
 }

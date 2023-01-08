@@ -79,6 +79,7 @@ function ChooseComponent(model: ChooseInterface) {
                         lanes={chooseComponent.lanes}
                         displayMode={chooseComponent.displayMode}
                         runningTime={chooseComponent.runningTime}
+                        round={chooseComponent.round}
                     />)
             }
         } else {

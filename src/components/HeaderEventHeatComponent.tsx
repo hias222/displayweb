@@ -11,6 +11,7 @@ interface HeaderEventHeatInterface {
     EventHeat: eventHeat;
     startdelayms: number;
     runningTime: string;
+    round: number;
 }
 
 export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}>{
@@ -48,6 +49,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                                 startdelayms={this.props.startdelayms}
                                 EventHeat={this.props.EventHeat}
                                 runningTime={this.props.runningTime}
+                                round={this.props.round}
                             />
                         </div>
                     </div >
@@ -68,6 +70,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                             startdelayms={this.props.startdelayms}
                             EventHeat={this.props.EventHeat}
                             runningTime={this.props.runningTime}
+                            round={this.props.round}
                         />
                     </div >
                 </div>

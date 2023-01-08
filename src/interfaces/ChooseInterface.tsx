@@ -10,4 +10,5 @@ export interface ChooseInterface {
     runningTime: string;
     messageText: TextMessageType;
     result: string;
+    round: number;
 }

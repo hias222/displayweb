@@ -17,6 +17,7 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
                     EventHeat={this.props.EventHeat}
                     startdelayms={this.props.startdelayms}
                     runningTime={this.props.runningTime}
+                    round={this.props.round}
                 />
                 {
                     this.props.lanes.map((lane, index) => (

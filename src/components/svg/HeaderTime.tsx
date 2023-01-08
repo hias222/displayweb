@@ -7,6 +7,7 @@ interface HeaderTimeInterface {
     Time: string;
     Parts: number;
     IsFirstText: boolean;
+    Round: number;
 }
 
 export default class headertimeline extends React.Component<HeaderTimeInterface, {}> {
@@ -16,9 +17,17 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
         this.windowParams = new windowParameter();
     }
 
+    getRoundValue() {
+        if (this.props.Round > 0) {
+            return this.props.Round.toString() + 'm'
+        } else {
+            return ''
+        }
+    }
+
     render() {
         let headertimeline = classnames('headertimeline');
-                
+
         let gradient_name = classnames('gradient_name');
 
         let viewlength = this.windowParams.getBoxWidth(this.props.Parts)
@@ -52,6 +61,14 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
                     textAnchor="end"
                 >
                     {this.props.Time}</text>
+
+                <text
+                    className={headertimeline}
+                    y={height - 5}
+                    x={0}
+                    textAnchor="begin"
+                >
+                    {this.getRoundValue()}</text>
             </g>
         </svg>
         );

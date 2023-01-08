@@ -131,6 +131,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         }
     }
 
+
     getShow() {
 
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
@@ -144,6 +145,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                     <HeaderTimeLine
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
+                        Round={this.props.round}
                         Parts={3} />
                 </div>
             )
@@ -155,6 +157,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                     <HeaderTimeLine
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
+                        Round={this.props.round}
                         Parts={3} />
                 </div>
             )

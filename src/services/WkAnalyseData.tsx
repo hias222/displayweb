@@ -11,6 +11,11 @@ import { LaneState } from "../state/LaneState";
 import { correctItem, correctDisplaymode } from '../utilities/checkLaneData';
 import { TextMessageType } from '../types/TextMessageType';
 
+//REACT_APP_ROUND_LENGTH
+var ROUND_LENGTH =
+process.env.REACT_APP_ROUND_LENGTH === undefined
+  ? "33"
+  : process.env.REACT_APP_ROUND_LENGTH;
 
 function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], header: string }) {
 
@@ -21,6 +26,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     const [JsonData, setJsonData] = useState('');
     const [Jsonlanes, setJsonLanes] = useState<LaneState[] | []>([])
     const [startdelayms, setStartdelayms] = useState<number>(0);
+    const [Round, setRound] = useState<number>(0);
     const [runningTime, setRunningTime] = useState('0');
     const [eventheat, setEventHeat] = useState<eventHeat>({
         eventnr: '0',
@@ -36,8 +42,20 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         VideoVersion: '',
     })
 
+    function setRoundValue(round: string) {
+        console.log('Round ' + round)
+        try {
+            var roundNumber = parseInt(round)
+            var roundLength = parseInt(ROUND_LENGTH)
+            setRound(roundNumber * roundLength)
+        } catch {
+            return 0
+        }
+
+    }
+
     function resetHeaderInfo() {
-        
+
         setStartdelayms(-1);
         let newLanes: LaneState[] = [];
         setJsonLanes(newLanes);
@@ -133,7 +151,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         }
 
         setTextmessage(newMessage)
- 
+
     }
 
     function checkIncoming(jsondata: any, lanes: []) {
@@ -144,11 +162,15 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         switch (messageType) {
             case "start": {
                 setStartMode(jsondata.diff)
+                // reset Round
+                setRound(0)
                 break;
             }
             case "stop": {
                 console.log('stop')
                 setStartdelayms(-1);
+                // reset Round
+                setRound(0)
                 break;
             }
             case "header": {
@@ -162,6 +184,8 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 break;
             }
             case "clear": {
+                // reset Round
+                setRound(0)
                 //state.lanes = []
                 //this.clearAll()
                 setDisplayMode("clear")
@@ -169,6 +193,8 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 break;
             }
             case "startlist": {
+                // reset Round
+                setRound(0)
                 // ???
                 if (DisplayMode !== 'startlist') {
                     setDisplayMode("startlist")
@@ -208,7 +234,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
             }
             case "result": {
                 setDisplayMode("result")
-                setResult(jsondata)                
+                setResult(jsondata)
                 console.log('--> result')
                 break;
             }
@@ -216,10 +242,12 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 resetHeaderInfo()
                 setDisplayMode("video")
                 setMessageChange(jsondata)
-                // ???
-                //this.setDisplayMode("video")
-                //this.props.onMessageChange(jsondata)
                 console.log('--> video')
+                break;
+            }
+            case "round": {
+                setRoundValue(jsondata.value)
+                console.log('--> round')
                 break;
             }
             default: {
@@ -267,6 +295,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                     Jsonlanes={Jsonlanes}
                     TextMessage={textMessage}
                     Result={Result}
+                    Round={Round}
                 />
             </Grid>)
         } else {
