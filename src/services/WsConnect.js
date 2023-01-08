@@ -67,8 +67,9 @@ function WsConnect() {
   //setCount(0);
 
   useEffect(() => {
-    //console.log(message)
+    //console.log('update allLaneData')
     setLanes(allLaneData);
+    //console.log(lanes)
   }, [message]);
 
   useEffect(() => {
@@ -101,6 +102,7 @@ function WsConnect() {
       }
   
       if (jsondata.type === "lane") {
+        //console.log(jsondata.lane)
         if (jsondata.lane !== undefined) {
           if (jsondata.lane === 0 && correctValueForLaneNull !== 1) {
             console.log("+++++ 0");

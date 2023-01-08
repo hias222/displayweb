@@ -1,4 +1,5 @@
 import { LaneState } from "../state/LaneState";
+import { eventHeat } from "../types/EventHeat";
 import { swimmerData } from "../types/SwimmerData";
 import getBirthYear from "./getBirthYear";
 import getEntryTime from "./getEntryTime";
@@ -48,7 +49,9 @@ function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: an
     //console.log(endTime + ' ' + newData.finishtime)
     if (endTime !== "undefined") {
         if (swimmer.heat === newData.heat && swimmer.event === newData.event && newData.finishtime === "undefined") {
-            //console.log('correct')
+            console.log('correct time ')
+            console.log(newData)
+            console.log(swimmer)
             return endTime
         } else {
             return newData.finishtime
@@ -81,7 +84,7 @@ export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
         islaptime: getIsLap(jsondata.place),
         lane: jsondata.lane,
         laptime: "",
-        place: checkExistingEndPlace(endplace,swimmer,jsondata),
+        place: checkExistingEndPlace(endplace, swimmer, jsondata),
         entrytime: getEntryTime(jsondata.entrytime),
         swimmerData: {
             clubid: jsondata.code,
@@ -96,8 +99,12 @@ export function correctItem(jsondata: any, Jsonlane: LaneState): LaneState {
     return laneState
 }
 
-export function correctDisplaymode(jsondata: any, DisplayMode: string): string {
+export function correctDisplaymode(jsondata: any, DisplayMode: string, eventheat: eventHeat): string {
+    //console.log(DisplayMode)
+    //console.log(eventheat)
     if (jsondata.place === '0') {
+       // console.log(jsondata)
+       // console.log('set to race')
         return 'race'
     } else if (jsondata.finishtime === "undefined" || !jsondata.finishtime) {
         if (DisplayMode !== 'startlist' && DisplayMode !== 'race') {
@@ -105,8 +112,13 @@ export function correctDisplaymode(jsondata: any, DisplayMode: string): string {
         } else {
             return DisplayMode
         }
-    } else {
+    } else if (jsondata.event !== eventheat.eventnr || jsondata.heat !== eventheat.heatnr) {
+        return DisplayMode
+    }
+    else {
         if (DisplayMode !== 'race') {
+         //   console.log(jsondata)
+         //   console.log('set to race else')
             return 'race'
         }
         return DisplayMode

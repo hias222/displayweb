@@ -91,7 +91,8 @@ function ChooseComponent(model: ChooseInterface) {
 
     useEffect(() => {
         setChooseComponent(model)
-        //console.log(model)
+        //console.log('model change')
+        //console.log(model.lanes)
     }, [model]);
 
     return (

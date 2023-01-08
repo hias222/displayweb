@@ -111,8 +111,9 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         await Promise.all(
             lanes.map(async (item, index) => {
                 newLanes.push(correctItem(item, Jsonlanes[index]))
-                newDisplayMode = (correctDisplaymode(item, newDisplayMode))
+                newDisplayMode = (correctDisplaymode(item, newDisplayMode, eventheat))
                 setDisplayMode(newDisplayMode)
+                return
                 //console.log('mode found ' + newDisplayMode)
             })
         )
@@ -217,7 +218,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
             }
             case "time": {
                 setRunningTimeString(jsondata)
-                console.log('--> running - time ' + jsondata.value)
+                //console.log('--> running - time ' + jsondata.value)
                 break;
             }
             case "message": {
@@ -277,6 +278,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     useEffect(() => {
         setLaneInfo(model.message, model.lanes)
+        //console.log('lane update')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [JSON.stringify(model.lanes)]);
 
