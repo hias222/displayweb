@@ -169,16 +169,10 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         </div>
     }
 
-
     render() {
-
-
         let clocktime = (this.state.unixcompetitiontime * 1000) + this.state.timediff;
         let unixtoshow = isNaN(clocktime) ? 1 : clocktime
         let newclocktime = new Date(unixtoshow);
-
-        console.log("start clock " + this.state.unixcompetitiontime)
-
         return (
             this.getClockType(newclocktime)
         )

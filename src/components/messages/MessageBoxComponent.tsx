@@ -4,6 +4,7 @@ import SwimmerLogo from "../../eventlogos/SwimmerLogo";
 import TopEventNameHeader from "../svg/TopEventNameHeader";
 import MessageLane from "../svg/MessageLane";
 import BoardClock from "../clock/BoardClock";
+import windowParameter from "../../utilities/windowParameter";
 
 export interface MessageBox {
     MessageText: string;
@@ -16,6 +17,8 @@ export type MessageState = {
 }
 
 export class MessageBoxComponent extends React.Component<MessageBox, MessageState>{
+
+    windowParams: windowParameter = new windowParameter();
 
     constructor(props: MessageBox) {
         super(props)
@@ -44,7 +47,7 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
                     {this.getStandardHeader(msg, index)}
                 </div>
             ))}
-        <BoardClock type="digital" unixcompetitiontime={this.props.MessageTime} />
+            <BoardClock type="digital" unixcompetitiontime={this.props.MessageTime} />
         </div>
         return webcontent;
 
@@ -54,19 +57,30 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
 
         let noSpaceContainerHorizontal = classnames('noSpaceContainerHorizontal');
 
-        if (index < 1) {
-            return <div className={noSpaceContainerHorizontal}>
-                <div>
-                    <SwimmerLogo />
+        if (this.windowParams.getOnlyLaneAndPlace()) {
+            if (index < 1) {
+                return <div className={noSpaceContainerHorizontal}>
+                    <div>
+                        <SwimmerLogo />
+                    </div>
                 </div>
-                <TopEventNameHeader EventName={EventName} />
-            </div>
+            }
         } else {
-            return <MessageLane EventName={EventName} />
+            if (index < 1) {
+                return <div className={noSpaceContainerHorizontal}>
+                    <div>
+                        <SwimmerLogo />
+                    </div>
+                    <TopEventNameHeader EventName={EventName} />
+                </div>
+            } else {
+                return <MessageLane EventName={EventName} />
+            }
         }
     }
 
     render() {
+        console.log('MessageBoxComponent')
         return (
             <div>
                 {this.splitMessageLines()}

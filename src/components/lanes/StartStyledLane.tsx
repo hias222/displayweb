@@ -20,7 +20,7 @@ export default class StyledLane extends React.Component<LaneData, {}> {
 
         let sizeName = this.props.swimmer.name.length;
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
-       
+
         if (sizeName > (namelength - 2)) {
             console.log("short name")
             return this.props.swimmer.name.substr(0, (namelength - 2));
@@ -34,7 +34,7 @@ export default class StyledLane extends React.Component<LaneData, {}> {
         return name
     }
 
-    checkClub(){
+    checkClub() {
         let namelength = this.windowParams.getLengthClubStartlist();
         let sizeClub = this.props.swimmer.clubname.length;
 
@@ -54,18 +54,25 @@ export default class StyledLane extends React.Component<LaneData, {}> {
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         let noFlexHorizontal = classNames("noFlexHorizontal")
 
-        return <div className={noSpaceContainerHorizontal} >
-            <div className={noFlexHorizontal}>
+        if (this.windowParams.getOnlyLaneAndPlace()) {
+            return <div className={noSpaceContainerHorizontal} >
                 <LaneNumber
                     laneNumber={this.props.lane} />
-                <LaneName
-                    LaneName={correctName}
-                    IsOnlyBox={true}
-                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
-                    ClubName={this.checkClub()}
-                />
             </div>
-        </div >
+        } else {
+            return <div className={noSpaceContainerHorizontal} >
+                <div className={noFlexHorizontal}>
+                    <LaneNumber
+                        laneNumber={this.props.lane} />
+                    <LaneName
+                        LaneName={correctName}
+                        IsOnlyBox={true}
+                        AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                        ClubName={this.checkClub()}
+                    />
+                </div>
+            </div >
+        }
 
     }
 }

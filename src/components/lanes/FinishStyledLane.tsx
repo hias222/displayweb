@@ -5,6 +5,7 @@ import classNames from "classnames";
 import LaneName from "../svg/LaneName";
 import LaneTime from "../svg/LaneTime";
 import windowParameter from "../../utilities/windowParameter";
+import LaneNumberFinishEasy from "../svg/LaneNumberFinishEasy";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     windowParams: windowParameter;
@@ -34,7 +35,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         return name
     }
 
-    checkClub(){
+    checkClub() {
         let namelength = this.windowParams.getLengthClubFinishlist();
         let sizeClub = this.props.swimmer.clubname.length;
 
@@ -52,22 +53,35 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         let noFlexHorizontal = classNames("noFlexHorizontal")
 
-        return <div className={noSpaceContainerHorizontal} >
-            <div className={noFlexHorizontal} >
-                <LaneNumberFinish
+        if (this.windowParams.getOnlyLaneAndPlace()) {
+            return <div className={noSpaceContainerHorizontal} >
+                <LaneNumberFinishEasy
                     laneNumber={this.props.lane}
                     place={this.props.place}
                 />
-                <LaneName
-                    LaneName={correctName}
-                    IsOnlyBox={false}
-                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
-                    ClubName={this.checkClub()}
-                />
                 <LaneTime LaneTime={finishtime}
-                />
+                    />
             </div>
-        </div>;
+        } else {
+
+
+            return <div className={noSpaceContainerHorizontal} >
+                <div className={noFlexHorizontal} >
+                    <LaneNumberFinish
+                        laneNumber={this.props.lane}
+                        place={this.props.place}
+                    />
+                    <LaneName
+                        LaneName={correctName}
+                        IsOnlyBox={false}
+                        AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                        ClubName={this.checkClub()}
+                    />
+                    <LaneTime LaneTime={finishtime}
+                    />
+                </div>
+            </div>;
+        }
 
     }
 }

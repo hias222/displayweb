@@ -1,4 +1,3 @@
-
 export default class windowParameter {
     private boxheight = 45;
     private boxTextfromtop = 35;
@@ -9,6 +8,7 @@ export default class windowParameter {
     private separator = 2
     private logospace = 150
 
+    private laneNumberTextFromLeft: number = 10;
     private lengthNameStartlist: number = 25;
     private spaceNameStartlist: number = 380;
     private lengthClubStartlist: number = 27;
@@ -17,6 +17,7 @@ export default class windowParameter {
     private spaceNameFinishlist: number = 300;
     private lengthClubFinishlist: number = 21;
 
+    private onlyLaneAndPlace = false
     private showClub: boolean = false
     private showAgeResult: boolean = true
     private logonumber: number = 0
@@ -137,8 +138,37 @@ export default class windowParameter {
             this.spaceNameFinishlist = 300;
             this.lengthClubFinishlist = 11;
 
-            this.boxtimewidth=170;
-            this.numberboxwidth=50;
+            this.boxtimewidth = 170;
+            this.numberboxwidth = 50;
+        }
+
+        if (windowmode === 7) {
+            //Mode 2 16:9 FCN
+            this.window_width = 128
+            this.window_height = 256
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 5
+
+            this.boxheight = 32
+            this.boxTextfromtop = 22;
+            this.toprowheight = 22;
+            this.logonumber = 1;
+            this.scalefactor = 0.6;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 80;
+            this.numberboxwidth = 20;
         }
 
     }
@@ -172,11 +202,16 @@ export default class windowParameter {
     }
 
     public getBoxWidth(parts: number): number {
-        return (this.window_width - this.logospace - (2 * this.spacing)) / parts
+        if (this.onlyLaneAndPlace) {
+            return (this.window_width -(2 * this.spacing)) / parts
+        } else {
+            return (this.window_width - this.logospace - (2 * this.spacing)) / parts
+        }
+
     }
 
     public getLaneNumberTextFromLeft(): number {
-        return 10
+        return this.laneNumberTextFromLeft
     }
 
     public getBoxTimeLaneWidth(): number {
@@ -251,6 +286,10 @@ export default class windowParameter {
 
     public getDetailsInHeader(): boolean {
         return this.detailedheader
+    }
+
+    public getOnlyLaneAndPlace(): boolean {
+        return this.onlyLaneAndPlace
     }
 
 }

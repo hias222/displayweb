@@ -135,10 +135,12 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
     getShow() {
 
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
+        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
 
         if (this.windowParams.getDetailsInHeader()) {
 
             return (
+
                 <div className={noSpaceContainerHorizontal} >
                     <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
                     <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
@@ -149,7 +151,23 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Parts={3} />
                 </div>
             )
-        } else {
+        } else if (this.windowParams.getOnlyLaneAndPlace()) {
+            return (
+                <div className={noSpaceContainerVertical}>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
+                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
+                    </div>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderTimeLine
+                            Time={this.format(this.state.displaytime)}
+                            IsFirstText={true}
+                            Round={this.props.round}
+                            Parts={1} />
+                    </div>
+                </div>)
+        }
+        else {
             return (
                 <div className={noSpaceContainerHorizontal} >
                     <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>

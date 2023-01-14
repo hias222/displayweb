@@ -31,7 +31,6 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
         let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
 
         if (this.windowParams.getDetailsInHeader()) {
-
             return (
                 <div className={noSpaceContainerHorizontal}>
                     <div>
@@ -56,16 +55,23 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                 </div>
             )
 
+        } else if (this.windowParams.getOnlyLaneAndPlace()) {
+            console.log('getOnlyLaneAndPlace')
+            return (<div>
+                <StartStopComponent
+                    startdelayms={this.props.startdelayms}
+                    EventHeat={this.props.EventHeat}
+                    runningTime={this.props.runningTime}
+                    round={this.props.round}
+                />
+            </div>)
         } else {
-
             return (
                 <div className={noSpaceContainerHorizontal}>
                     <div className={noSpaceContainerVertical}>
-
                         <HeaderBoxName HeaderName={this.props.EventHeat.name}
                             IsFirstText={true}
                             Parts={1} />
-
                         <StartStopComponent
                             startdelayms={this.props.startdelayms}
                             EventHeat={this.props.EventHeat}
@@ -80,14 +86,6 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
     }
 
     render() {
-        //  let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
-        //  let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
-
-        //let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
-
-        // <SwimmerLogo />
-        //  <LogoFromImage />
-
         return this.getShow()
     }
 

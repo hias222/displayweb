@@ -3,6 +3,8 @@ import { eventHeat } from '../types/EventHeat';
 import getSwimStyles from '../utilities/getSwimStyles';
 import DataMapper from './DataMapper';
 
+import classnames from 'classnames';
+
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifi4Bar';
 import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import { Grid, Typography } from '@mui/material';
@@ -301,11 +303,14 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 />
             </Grid>)
         } else {
+            let statictable = classnames('statictable');
+            let messagetext_main = classnames('messagetext_main');
+
             return (
-                <div>
+                <div className={statictable}>
                     <Grid item  >
                         {connect_status}
-                        <Typography>
+                        <Typography className={messagetext_main}>
                             Keine Verbindung zur Zeitnahme
                         </Typography>
                     </Grid>
