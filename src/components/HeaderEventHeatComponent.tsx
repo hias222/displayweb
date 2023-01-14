@@ -56,7 +56,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
             )
 
         } else if (this.windowParams.getOnlyLaneAndPlace()) {
-            console.log('getOnlyLaneAndPlace')
+            //console.log('getOnlyLaneAndPlace')
             return (<div>
                 <StartStopComponent
                     startdelayms={this.props.startdelayms}
