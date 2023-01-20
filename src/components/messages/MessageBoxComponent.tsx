@@ -80,7 +80,7 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
     }
 
     render() {
-        console.log('MessageBoxComponent')
+        //console.log('MessageBoxComponent')
         return (
             <div>
                 {this.splitMessageLines()}

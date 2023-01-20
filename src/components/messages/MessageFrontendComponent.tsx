@@ -6,6 +6,8 @@ import { MessageBoxComponent } from "./MessageBoxComponent";
 import { ObsFrontendComponent } from "./ObsFrontendComponent";
 import TopEventNameHeader from "../svg/TopEventNameHeader";
 import { ImageFrontendComponent } from "./ImageFrontendComponent";
+import classnames from "classnames";
+import { Grid, Typography } from "@mui/material";
 
 export type MessageType = {
     displayMode: string;
@@ -108,7 +110,7 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             console.log(video_url)
             return video_url
         } else {
-            console.log(backend_url + "/data/video1.mp4")
+            console.log("Fallback ---> " + backend_url + "/data/video1.mp4 (" + this.props.VideoVersion + ")")
             return backend_url + "/data/video1.mp4"
         }
 
@@ -130,13 +132,18 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
                     unixcompetitiontime={this.props.MessageTime}
                 />
             default:
-                return <h1>not defined - this.state.displayMode</h1>
+                let messagetext_main = classnames('messagetext_main');
+                return <Grid item  >
+                    <Typography className={messagetext_main}>
+                        undefined <br></br> mode <br></br> {this.state.displayMode}
+                    </Typography>
+                </Grid>
         }
     }
 
     componentDidUpdate(prevProps: MessageInterface) {
         if (prevProps.diplayMode !== this.props.diplayMode) {
-            console.log("update diplayMode " + this.props.diplayMode)
+            console.log("update diplayMode " + this.props.diplayMode + "(" + prevProps.diplayMode + ")")
             this.setFrontend(this.props.diplayMode)
             return
         }

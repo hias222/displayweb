@@ -54,14 +54,15 @@ function ChooseComponent(model: ChooseInterface) {
 
     function getDisplayData() {
         if (chooseComponent !== undefined) {
+            //console.log('set displaymode ChooseComponent ' + chooseComponent.displayMode  + " Version " + chooseComponent.messageText.VideoVersion)
             if (chooseComponent?.displayMode === 'message' || chooseComponent?.displayMode === 'clock' || chooseComponent?.displayMode === 'video') {
                 return (
                     <MessageFrontendComponent
-                        diplayMode={chooseComponent.messageText.diplayMode}
+                        diplayMode={chooseComponent.displayMode}
                         MessageText={chooseComponent.messageText.MessageText}
                         MessageTime={chooseComponent.messageText.MessageTime}
                         VideoVersion={chooseComponent.messageText.VideoVersion}
-                        displayFormat={"lcd"}
+                        displayFormat={chooseComponent.messageText.diplayMode}
                     />
                 )
             } else if (chooseComponent.displayMode === 'result') {
@@ -72,6 +73,7 @@ function ChooseComponent(model: ChooseInterface) {
                     />
                 )
             } else {
+              //  console.log('set displaymode ChooseComponent else  ' + chooseComponent?.displayMode )
                 return (
                     <BaseFrontendComponent
                         startdelayms={chooseComponent.startdelayms}
