@@ -6,6 +6,7 @@ import LaneName from "../svg/LaneName";
 import LaneTime from "../svg/LaneTime";
 import windowParameter from "../../utilities/windowParameter";
 import LaneNumberFinishEasy from "../svg/LaneNumberFinishEasy";
+import getFinishTime from "../../utilities/getFinishTime";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     windowParams: windowParameter;
@@ -58,7 +59,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                     laneNumber={this.props.lane}
                     place={this.props.place}
                 />
-                <LaneTime LaneTime={finishtime}
+                <LaneTime LaneTime={getFinishTime(finishtime)}
                     />
             </div>
         } else {
@@ -76,7 +77,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                         AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
                         ClubName={this.checkClub()}
                     />
-                    <LaneTime LaneTime={finishtime}
+                    <LaneTime LaneTime={getFinishTime(finishtime)}
                     />
                 </div>
             </div>;

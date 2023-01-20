@@ -1,39 +1,42 @@
+$schriftgr_8: 1.7em;
+$farbehintergrundplace_8: red;
+
 .textlanesvg{
     text-align: right;
     fill: $farbeschrift;
-    font-size: 1.4em;
+    font-size: $schriftgr_8;
 }
 
 .textranksvg{
     text-align: right;
     fill: $farbeschrift;
-    font-size: 1.4em;
+    font-size: $schriftgr_8;
 }
 
 .textWKNamesvg{
     fill: $farbeschrift;
-    font-size: 1.4em;
+    font-size: $schriftgr_8;
     text-anchor: middle;
 }
 
 .textHeaderHeatEventsvg{
     text-align: right;
     fill: $farbeschrift;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .textnumbersvg{
     text-align: right;
     font-weight: bold;
     fill: $farbeschrift;
-    font-size: 1.4em;
+    font-size: $schriftgr_8;
 }
 
 .textplacesvg{
     text-align: right;
     font-weight: bold;
     fill: $farbeschriftplace;
-    font-size: 1.4em;
+    font-size: $schriftgr_8;
 }
   
 .gradient_lane {
@@ -51,9 +54,7 @@
 }
 
 .gradient_place {
-    //stop-color:  rgba(0, 255, 0,1);
-    stop-color: $farbehintergrundplace;
-    //stop-color: #ff0000;
+    stop-color: $farbehintergrundplace_8;
     stop-opacity: 1;
 }
 
@@ -62,9 +63,7 @@
 }
 
 .gradient_place_stop {
-    //stop-color:  rgba(0, 255, 0,1);
-    stop-color: $farbehintergrundplace;
-    //stop-color: #ff0000;
+    stop-color: $farbehintergrundplace_8;
     stop-opacity: 1;
 }
 
@@ -75,7 +74,7 @@
 
 .headertimeline{
     fill: $farbeschrift;
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 

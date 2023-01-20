@@ -149,13 +149,13 @@ export default class windowParameter {
             this.onlyLaneAndPlace = true
             this.showClub = false;
 
-            this.laneNumberTextFromLeft = 5
+            this.laneNumberTextFromLeft = 3
 
             this.boxheight = 32
-            this.boxTextfromtop = 22;
+            this.boxTextfromtop = 25;
             this.toprowheight = 22;
             this.logonumber = 0;
-            this.scalefactor = 0.6;
+            this.scalefactor = 0.7;
             this.showAgeResult = false
 
             this.lengthNameStartlist = 0;
@@ -166,8 +166,8 @@ export default class windowParameter {
             this.spaceNameFinishlist = 0;
             this.lengthClubFinishlist = 0;
 
-            this.boxtimewidth = 80;
-            this.numberboxwidth = 20;
+            this.boxtimewidth = 86;
+            this.numberboxwidth = 21;
         }
 
         if (windowmode === 8) {
