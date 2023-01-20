@@ -1,5 +1,5 @@
 $schriftgr_8: 1.7em;
-$farbehintergrundplace_8: red;
+$farbehintergrundplace_8: rgb(130, 0, 0);
 
 .textlanesvg{
     text-align: right;
@@ -15,14 +15,14 @@ $farbehintergrundplace_8: red;
 
 .textWKNamesvg{
     fill: $farbeschrift;
-    font-size: $schriftgr_8;
+    font-size: 1.5em;
     text-anchor: middle;
 }
 
 .textHeaderHeatEventsvg{
     text-align: right;
     fill: $farbeschrift;
-    font-size: 1.3em;
+    font-size: 1.6em;
 }
 
 .textnumbersvg{

@@ -17,7 +17,7 @@ export default class LaneNumberFinishEasy extends React.Component<LaneNumberFini
 
     getSwimmerSVG() {
         let gradient_icon = classnames('gradient_icon');
-        let let_transform_1 = this.windowParams.getBoxNumberWidth() + this.windowParams.getLaneNumberTextFromLeft()
+        let let_transform_1 = this.windowParams.getBoxNumberWidth() + this.windowParams.getLaneNumberTextFromLeft() + 1
         let let_transform_2 = Math.round(this.windowParams.getBoxheight() / 3) // 15
         let scale_factor = this.windowParams.getBoxScaleFactorh()
         let transform = "translate(" + let_transform_1 + "," + let_transform_2 + ") rotate(0) scale(" + scale_factor + ")"
@@ -51,13 +51,13 @@ export default class LaneNumberFinishEasy extends React.Component<LaneNumberFini
         let textplacesvg = classnames('textplacesvg');
         let gradient_name = classnames('gradient_name');
 
-       let textfromleft = this.windowParams.getLaneNumberTextFromLeft();
+        let textfromleft = this.windowParams.getLaneNumberTextFromLeft();
 
         let viewBoxSize = "0 0 " + (2 * this.windowParams.getBoxNumberWidth()) + "  " + this.windowParams.getBoxheight()
 
         let path_lane = "M " + this.windowParams.getPictureStart() + "  0 h " + this.windowParams.getBoxNumberWidth() + " l -0," + this.windowParams.getBoxheight() + " h -" + (this.windowParams.getBoxNumberWidth()) + " z"
-        let path_place = "M " + (this.windowParams.getBoxNumberWidth() + this.windowParams.getPictureStart()) + " 0 h " + (this.windowParams.getBoxNumberWidth() - this.windowParams.getPictureStart()) +
-            " l -0," + this.windowParams.getBoxheight() + " h -" + (this.windowParams.getBoxNumberWidth() - this.windowParams.getPictureStart()) + " z"
+        let path_place = "M " + (this.windowParams.getBoxNumberWidth() + this.windowParams.getPictureStart() - 3) + " 0 h " + (this.windowParams.getBoxNumberWidth() - this.windowParams.getPictureStart() + 2) +
+            " l -0," + this.windowParams.getBoxheight() + " h -" + (this.windowParams.getBoxNumberWidth() - this.windowParams.getPictureStart() + 2) + " z"
 
         let fill_start = 2 * this.windowParams.getBoxNumberWidth()
         let path_fill = "M " + fill_start + " 0 h 0 l 0," + this.windowParams.getBoxheight() + " h -0 z"

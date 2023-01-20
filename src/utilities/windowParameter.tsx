@@ -149,11 +149,11 @@ export default class windowParameter {
             this.onlyLaneAndPlace = true
             this.showClub = false;
 
-            this.laneNumberTextFromLeft = 3
+            this.laneNumberTextFromLeft = 1
 
             this.boxheight = 32
-            this.boxTextfromtop = 25;
-            this.toprowheight = 22;
+            this.boxTextfromtop = 27;
+            this.toprowheight = 26;
             this.logonumber = 0;
             this.scalefactor = 0.7;
             this.showAgeResult = false
