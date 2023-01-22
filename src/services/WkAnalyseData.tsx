@@ -145,9 +145,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     function setMessageChange(message: any) {
 
-
         console.log(message)
-
         var newMessage: TextMessageType = {
             diplayMode: message.type !== undefined ? message.type : '',
             displayFormat: message.size !== undefined ? message.size : '',
@@ -156,7 +154,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
             VideoVersion: message.version !== undefined ? message.version : '',
         }
 
-        // wird die ZEt aktualisiert
+        // wird die Zeit aktualisiert
         if (message.type === 'time') {
             if (DisplayMode === 'clear' || DisplayMode === 'race' || DisplayMode === 'startlist') {
                 console.log("save message " + DisplayMode + " --> " + message.type)

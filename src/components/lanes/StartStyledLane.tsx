@@ -22,7 +22,7 @@ export default class StyledLane extends React.Component<LaneData, {}> {
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
 
         if (sizeName > (namelength - 2)) {
-            console.log("short name")
+            //console.log("short name")
             return this.props.swimmer.name.substr(0, (namelength - 2));
         }
 

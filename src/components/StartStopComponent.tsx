@@ -11,7 +11,6 @@ import HeaderTimeLine from "./svg/HeaderTime";
 export class StartStopComponent extends React.Component<StartStopInterface, StartStopState> {
 
     clocktimerid?: NodeJS.Timeout;
-
     windowParams: windowParameter;
 
     constructor(props: StartStopInterface) {
@@ -52,6 +51,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
     }
 
     correctTimer(newTime: string) {
+
         if (getMilliSecondsFromTimeString(newTime) > 2000 && !this.state.isOn) {
             console.log('missed start')
             this.startTimer()
@@ -105,6 +105,21 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
     componentDidUpdate(prevProps: StartStopInterface) {
 
+        if ((getMilliSecondsFromTimeString(this.props.runningTime) === 0)) {
+            var diff = Date.now() - this.state.start
+            if (this.state.isOn && diff > 5000) {
+                console.log('reset timer ' + this.state.displaytime + ' ' +  this.props.runningTime)
+                this.stopTimer()
+                /*
+                this.setState({
+                    isOn: false,
+                    displaytime: 0,
+                    start: Date.now() - this.props.startdelayms,
+                })
+                */
+            }
+        }
+
         if (prevProps.startdelayms !== this.props.startdelayms) {
 
             if (this.props.startdelayms === -1) {
@@ -117,7 +132,6 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         }
 
         if (prevProps.runningTime !== this.props.runningTime) {
-
             this.correctTimer(this.props.runningTime);
             //this.setState({
             //    runningTime: this.props.runningTime
@@ -183,7 +197,6 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
 
     }
-
 
     render() {
         return this.getShow()

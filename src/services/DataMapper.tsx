@@ -50,8 +50,7 @@ function DataMapper(model: {
 
     useEffect(() => {
         setJsonData(model.jsonData)
-    }, [model.jsonData]);
-
+    }, [model.jsonData, model.TextMessage]);
 
     useEffect(() => {
         if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
