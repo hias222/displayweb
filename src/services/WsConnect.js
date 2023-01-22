@@ -73,7 +73,7 @@ function WsConnect() {
   }, [message]);
 
   useEffect(() => {
-    console.log(backend_url + " Context " + context_path);
+    console.log(backend_url + " Context " + context_path + " ->  REACT_APP_BACKEND_DIRECT " + process.env.REACT_APP_BACKEND_DIRECT);
     const newSocket = socketIOClient(backend_url, {
       path: context_path,
     });
