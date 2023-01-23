@@ -58,13 +58,7 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
         let noSpaceContainerHorizontal = classnames('noSpaceContainerHorizontal');
 
         if (this.windowParams.getOnlyLaneAndPlace()) {
-            if (index < 1) {
-                return <div className={noSpaceContainerHorizontal}>
-                    <div>
-                        <SwimmerLogo />
-                    </div>
-                </div>
-            }
+            return <MessageLane EventName={EventName} />
         } else {
             if (index < 1) {
                 return <div className={noSpaceContainerHorizontal}>

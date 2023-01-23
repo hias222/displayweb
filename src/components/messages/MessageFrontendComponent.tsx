@@ -123,10 +123,12 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "video":
                 return this.getVideoType()
             case "message":
+                console.log('message')
                 return <MessageBoxComponent
                     MessageText={this.props.MessageText}
                     MessageTime={this.props.MessageTime} />
             case "clock":
+                console.log('clock')
                 return <BoardClock
                     type="123"
                     unixcompetitiontime={this.props.MessageTime}

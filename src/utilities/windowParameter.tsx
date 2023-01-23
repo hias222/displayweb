@@ -232,7 +232,7 @@ export default class windowParameter {
 
     public getBoxWidth(parts: number): number {
         if (this.onlyLaneAndPlace) {
-            return (this.window_width -(2 * this.spacing)) / parts
+            return (this.window_width - (2 * this.spacing)) / parts
         } else {
             return (this.window_width - this.logospace - (2 * this.spacing)) / parts
         }
@@ -268,7 +268,11 @@ export default class windowParameter {
     }
 
     public getPictureMiddle(): number {
-        return (this.window_width - (2 * this.spacing) - this.logospace) / 2
+        if (this.onlyLaneAndPlace) {
+            return (this.window_width) / 2
+        } else {
+            return (this.window_width - (2 * this.spacing) - this.logospace) / 2
+        }
     }
 
     public getSeparatorHeight(): number {
