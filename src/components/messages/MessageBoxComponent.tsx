@@ -3,8 +3,8 @@ import classnames from 'classnames';
 import SwimmerLogo from "../../eventlogos/SwimmerLogo";
 import TopEventNameHeader from "../svg/TopEventNameHeader";
 import MessageLane from "../svg/MessageLane";
-import BoardClock from "../clock/BoardClock";
 import windowParameter from "../../utilities/windowParameter";
+import AnalogClock from "../clock/BoardClock";
 
 export interface MessageBox {
     MessageText: string;
@@ -47,7 +47,7 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
                     {this.getStandardHeader(msg, index)}
                 </div>
             ))}
-            <BoardClock type="digital" unixcompetitiontime={this.props.MessageTime} />
+            <AnalogClock type="digital" unixcompetitiontime={this.props.MessageTime} />
         </div>
         return webcontent;
 

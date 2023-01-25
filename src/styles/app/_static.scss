@@ -41,14 +41,17 @@ $topsize: 1.4em;
 //message
 .staticmessagetable{
     border-spacing: 0;
-    width: 512px;
-    height: 334px;
+    //width: 512px;
+    width: 112px;
+    //height: 334px;
+    height: 112px;
     background-color: $farbehintergrund
 }
 
 .staticmessagetable_header{
     border-spacing: 0;
-    width: 512px;
+    //width: 512px;
+    width: 112px;
     height: 50px;
     background-color: $farbehintergrund
 }

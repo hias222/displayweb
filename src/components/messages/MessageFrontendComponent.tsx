@@ -1,13 +1,14 @@
 import React from "react";
 import { MessageInterface } from "../../interfaces/MessageInterface";
 import { VideoFrontendComponent } from "./VideoFrontendComponent";
-import BoardClock from "../clock/BoardClock";
 import { MessageBoxComponent } from "./MessageBoxComponent";
 import { ObsFrontendComponent } from "./ObsFrontendComponent";
 import TopEventNameHeader from "../svg/TopEventNameHeader";
 import { ImageFrontendComponent } from "./ImageFrontendComponent";
 import classnames from "classnames";
 import { Grid, Typography } from "@mui/material";
+import AnalogClock from "../clock/AnalogClock";
+import windowParameter from "../../utilities/windowParameter";
 
 export type MessageType = {
     displayMode: string;
@@ -17,12 +18,15 @@ export type MessageType = {
 export class MessageFrontendComponent extends React.Component<MessageInterface, MessageType> {
 
     web_data_url: string;
+    windowParams: windowParameter = new windowParameter();
+
     constructor(props: MessageInterface) {
         super(props)
         this.state = {
             displayMode: this.props.diplayMode,
             Message: this.props.MessageText
         }
+
 
         this.web_data_url =
             process.env.REACT_APP_WEB_DATA_URL === undefined
@@ -123,15 +127,14 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "video":
                 return this.getVideoType()
             case "message":
-                console.log('message')
+                //console.log('message')
                 return <MessageBoxComponent
                     MessageText={this.props.MessageText}
                     MessageTime={this.props.MessageTime} />
             case "clock":
-                console.log('clock')
-                return <BoardClock
-                    type="123"
-                    unixcompetitiontime={this.props.MessageTime}
+                //console.log('clock')
+                return <AnalogClock
+                 size={this.windowParams.getMaxPixelLength()}
                 />
             default:
                 let messagetext_main = classnames('messagetext_main');
@@ -155,3 +158,6 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
         return this.getFrontend()
     }
 }
+
+//type="analog"
+//unixcompetitiontime={this.props.MessageTime}

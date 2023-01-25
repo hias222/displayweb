@@ -289,6 +289,14 @@ export default class windowParameter {
         return this.showClub
     }
 
+    public getMaxPixelLength(): number {
+        if (this.window_height > this.window_width){
+            return this.window_width
+        } else {
+            return this.window_height
+        }
+    }
+
     public showAgeResults(): boolean {
         return this.showAgeResult
     }

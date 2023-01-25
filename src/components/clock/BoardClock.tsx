@@ -3,7 +3,6 @@ import React from 'react'
 import Clock from 'react-clock'
 //import Clock from 'react-clock';
 
-import classnames from 'classnames';
 import MessageLane from '../svg/MessageLane';
 //import Image from '../water2.jpg';
 
@@ -41,7 +40,7 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
             startcompetition: 0,
             hourHandWidth: 5,
             minuteHandWidth: 5,
-            size: 200,
+            size: 50,
             timediff: 0,
             datestart: Date.now(),
             type: this.props.type
@@ -67,6 +66,7 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         })
 
         console.log("clock " + parseInt(this.props.unixcompetitiontime) + " " + this.props.unixcompetitiontime)
+        console.log(this.state)
 
         if (this.props.type === 'message') {
             this.setState({
@@ -76,7 +76,9 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
             })
         } else {
             this.setState({
-                size: 290
+                size: 90,
+                hourHandWidth: 1,
+                minuteHandWidth: 1
             })
         }
     }
@@ -135,11 +137,6 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
 
     getClockType(newclocktime: Date) {
 
-        let staticmessagetable = classnames('staticmessagetable');
-        //let staticmessagetable_header = classnames('staticmessagetable_header');
-        let staticmessagetext_main = classnames('staticmessagetext_main');
-        //let staticmessagetext_header = classnames('staticmessagetext_header');
-
         if (this.props.type === "digital") {
             return <MessageLane EventName={newclocktime.toLocaleString('de-DE', {
                 hour: '2-digit',
@@ -150,10 +147,10 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         }
 
         return <div>
-            <table className={staticmessagetable}>
+      {/*       <table className={staticmessagetable}>
                 <tbody>
                     <tr className={staticmessagetext_main}>
-                        <td align='center'>
+                        <td align='center'> */}
                             <Clock
                                 value={newclocktime}
                                 size={this.state.size}
@@ -162,10 +159,11 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
                                 className="message_clock"
                             //react-clock__hand__body
                             />
-                        </td>
+       {/*                  </td>
                     </tr>
                 </tbody>
             </table>
+        </div> */}
         </div>
     }
 
