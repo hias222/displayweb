@@ -314,18 +314,17 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 />
             </Grid>)
         } else {
-            let statictable = classnames('statictable');
             let messagetext_main = classnames('messagetext_main');
 
             return (
-                <div className={statictable}>
-                    <Grid item  >
-                        {connect_status}
-                        <Typography className={messagetext_main}>
-                            Keine Verbindung zur Zeitnahme
-                        </Typography>
-                    </Grid>
-                </div>)
+                <Grid item  >
+                    {connect_status}
+                    <Typography className={messagetext_main}>
+                        Keine Verbindung zur Zeitnahme
+                    </Typography>
+                </Grid>
+            )
+
         }
     }
 

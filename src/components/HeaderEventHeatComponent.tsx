@@ -17,11 +17,11 @@ interface HeaderEventHeatInterface {
 export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}>{
 
     windowParams: windowParameter;
-
     constructor(props: HeaderEventHeatInterface) {
         super(props)
         this.windowParams = new windowParameter();
     }
+
 
     getShow() {
 
@@ -32,8 +32,9 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
 
         if (this.windowParams.getDetailsInHeader()) {
             return (
+
                 <div className={noSpaceContainerHorizontal}>
-                    <div>
+                    <div >
                         <SwimmerLogo />
                     </div>
                     <div className={noSpaceContainerVertical}>
@@ -53,6 +54,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                         </div>
                     </div >
                 </div>
+
             )
 
         } else if (this.windowParams.getOnlyLaneAndPlace()) {

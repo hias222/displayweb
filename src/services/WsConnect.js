@@ -46,18 +46,18 @@ function WsConnect() {
   var get_backend_url =
     process.env.REACT_APP_BACKEND_DIRECT === "true"
       ? window.location.protocol +
-        "//" +
-        window.location.hostname +
-        ":" +
-        window.location.port
+      "//" +
+      window.location.hostname +
+      ":" +
+      window.location.port
       : process.env.REACT_APP_BACKEND_URL;
   var backend_url =
     get_backend_url === undefined
       ? window.location.protocol +
-        "//" +
-        window.location.hostname +
-        ":" +
-        get_backend_port
+      "//" +
+      window.location.hostname +
+      ":" +
+      get_backend_port
       : get_backend_url;
 
   const [message, setMessage] = useState("");
@@ -85,22 +85,22 @@ function WsConnect() {
       if (jsondata.type === "header") {
         setHeader(jsondata)
       }
-      
+
       if (jsondata.type === "clear") {
         console.log('clear connect')
         setLanes([]);
 
         const d = new Date();
-        var stopmessage ={
+        var stopmessage = {
           type: 'stop',
-          time: Math.round(d.getTime()/1000).toString(),
+          time: Math.round(d.getTime() / 1000).toString(),
           diff: '0'
         }
         //console.log(stopmessage)
         setMessage(stopmessage);
         return
       }
-  
+
       if (jsondata.type === "lane") {
         //console.log(jsondata.lane)
         if (jsondata.lane !== undefined) {
@@ -148,11 +148,7 @@ function WsConnect() {
   }, []);
 
   return (
-    <div>
-      <div className="chat-container">
-        <WkAnalyseData message={message} connected={connected} lanes={lanes} header={header} />
-      </div>
-    </div>
+      <WkAnalyseData message={message} connected={connected} lanes={lanes} header={header} />
   );
 }
 

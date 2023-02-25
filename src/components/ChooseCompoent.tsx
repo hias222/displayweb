@@ -21,12 +21,12 @@ function ChooseComponent(model: ChooseInterface) {
     const handleFullscreen = () => (event: any) => {
         //Fullscreen
         console.log('Fullscreen' + event)
-        
+
         const el = document.documentElement;
         if (el.requestFullscreen) {
             el.requestFullscreen();
         }
-        
+
         /*
         else if (el.mozRequestFullScreen) {
             el.mozRequestFullScreen()
@@ -36,12 +36,12 @@ function ChooseComponent(model: ChooseInterface) {
             el.msRequestFullscreen()
         }
         */
-        
+
     };
 
 
-    const buttonfullscreen = () =>  {
-        return ( <div>
+    const buttonfullscreen = () => {
+        return (<div>
             <Box height={30}></Box>
             <Box height={50}>
                 <div>
@@ -73,7 +73,7 @@ function ChooseComponent(model: ChooseInterface) {
                     />
                 )
             } else {
-              //  console.log('set displaymode ChooseComponent else  ' + chooseComponent?.displayMode )
+                //  console.log('set displaymode ChooseComponent else  ' + chooseComponent?.displayMode )
                 return (
                     <BaseFrontendComponent
                         startdelayms={chooseComponent.startdelayms}

@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
 import classNames from 'classnames';
 import React from 'react';
-import logo from './images/Lebkuchen.png';
+import logo from './images/FCNLogo.png';
+// 172 200
 export default class LebkuchenLogo extends React.Component {
     render() {
         // 172*200
@@ -15,7 +16,7 @@ export default class LebkuchenLogo extends React.Component {
             <img
                 src={logo}
                 alt=""
-                width="136"
+                width="86"
                 height="100"
             />
             <div>
