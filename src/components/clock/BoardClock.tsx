@@ -1,10 +1,6 @@
 import React from 'react'
-
 import Clock from 'react-clock'
-//import Clock from 'react-clock';
-
 import MessageLane from '../svg/MessageLane';
-//import Image from '../water2.jpg';
 
 interface ClockInterface {
     unixcompetitiontime: string,
@@ -147,19 +143,17 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         }
 
         return <div>
-      {/*       <table className={staticmessagetable}>
+            {/*       <table className={staticmessagetable}>
                 <tbody>
                     <tr className={staticmessagetext_main}>
                         <td align='center'> */}
-                            <Clock
-                                value={newclocktime}
-                                size={this.state.size}
-                                hourHandWidth={this.state.hourHandWidth}
-                                minuteHandWidth={this.state.minuteHandWidth}
-                                className="message_clock"
-                            //react-clock__hand__body
-                            />
-       {/*                  </td>
+            <Clock
+                value={newclocktime}
+                size={this.state.size}
+                className="message_clock"
+            //react-clock__hand__body
+            />
+            {/*                  </td>
                     </tr>
                 </tbody>
             </table>
