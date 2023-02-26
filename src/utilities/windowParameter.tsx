@@ -9,13 +9,13 @@ export default class windowParameter {
     private logospace = 150
 
     private laneNumberTextFromLeft: number = 10;
-    private lengthNameStartlist: number = 25;
-    private spaceNameStartlist: number = 350;
-    private lengthClubStartlist: number = 27;
+    private lengthNameStartlist: number = 22;
+    private spaceNameStartlist: number = 365;
+    private lengthClubStartlist: number = 26;
 
-    private lengthNameFinishlist: number = 22;
-    private spaceNameFinishlist: number = 290;
-    private lengthClubFinishlist: number = 25;
+    private lengthNameFinishlist: number = 21;
+    private spaceNameFinishlist: number = 315;
+    private lengthClubFinishlist: number = 22;
 
     private lengthMedalFinishList = 40;
 
