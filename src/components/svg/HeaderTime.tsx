@@ -8,6 +8,7 @@ interface HeaderTimeInterface {
     Parts: number;
     IsFirstText: boolean;
     Round: number;
+    Distance: string;
 }
 
 export default class headertimeline extends React.Component<HeaderTimeInterface, {}> {
@@ -19,8 +20,10 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
 
     getRoundValue() {
         if (this.props.Round > 0) {
+            console.log("distance " + this.props.Distance)
             return this.props.Round.toString() + 'm'
         } else {
+            console.log("distance else " + this.props.Distance + " - " + this.props.Round)
             return ''
         }
     }

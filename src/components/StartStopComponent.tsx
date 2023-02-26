@@ -162,6 +162,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
                         Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
                         Parts={3} />
                 </div>
             )
@@ -177,6 +178,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                             Time={this.format(this.state.displaytime)}
                             IsFirstText={true}
                             Round={this.props.round}
+                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
                             Parts={1} />
                     </div>
                 </div>)
@@ -190,6 +192,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
                         Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
                         Parts={3} />
                 </div>
             )

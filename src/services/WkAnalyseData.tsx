@@ -45,11 +45,16 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     })
 
     function setRoundValue(round: string) {
-        console.log('Round ' + round)
+        console.log('Round ' + round + " " + eventheat.distance)
         try {
             var roundNumber = parseInt(round)
             var roundLength = parseInt(ROUND_LENGTH)
-            setRound(roundNumber * roundLength)
+            var distancelength = parseInt(eventheat.distance !== undefined ? eventheat.distance : "50" )
+            if (roundNumber * roundLength > distancelength) {
+                setRound(distancelength)
+            } else {
+                setRound(roundNumber * roundLength)
+            }
         } catch {
             return 0
         }
