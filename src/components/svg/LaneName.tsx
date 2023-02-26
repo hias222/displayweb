@@ -31,13 +31,16 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         }
     }
 
-    getClubText(length: number) {
+    getClubText(length: number) {    
+        
+        var startrNameSpace = this.props.IsOnlyBox ? this.windowParams.getSpaceNameStartlist() + 4 : this.windowParams.getSpaceNameFinishlist() + 4
+
         if (this.windowParams.showClubs()) {
             let textlanesvg = classnames('textlanesvg');
             return <text
                 className={textlanesvg}
                 y={this.windowParams.getBoxTextFromTop()}
-                x={this.windowParams.getSpaceNameStartlist() + 4}
+                x={startrNameSpace}
             >
                 {this.props.ClubName}</text>
         }
@@ -47,7 +50,7 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         let textlanesvg = classnames('textlanesvg');
         let gradient_name = classnames('gradient_name');
 
-        let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
+        let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth() - this.windowParams.getlengthMedalFinishList();
         let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth() : time_length
         let boxheight = this.windowParams.getBoxheight();
 

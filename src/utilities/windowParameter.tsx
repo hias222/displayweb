@@ -4,18 +4,20 @@ export default class windowParameter {
     private spacing = 5;
     private toprowheight = 30
     private numberboxwidth = 42
-    private boxtimewidth = 120
+    private boxtimewidth = 110
     private separator = 2
     private logospace = 150
 
     private laneNumberTextFromLeft: number = 10;
     private lengthNameStartlist: number = 25;
-    private spaceNameStartlist: number = 380;
+    private spaceNameStartlist: number = 350;
     private lengthClubStartlist: number = 27;
 
-    private lengthNameFinishlist: number = 25;
-    private spaceNameFinishlist: number = 300;
-    private lengthClubFinishlist: number = 21;
+    private lengthNameFinishlist: number = 22;
+    private spaceNameFinishlist: number = 290;
+    private lengthClubFinishlist: number = 25;
+
+    private lengthMedalFinishList = 40;
 
     private onlyLaneAndPlace = false
     private showClub: boolean = false
@@ -60,6 +62,7 @@ export default class windowParameter {
             this.toprowheight = 35;
             this.logonumber = 2;
             this.showAgeResult = false
+
         }
 
         if (windowmode === 3) {
@@ -249,6 +252,10 @@ export default class windowParameter {
 
     public getBoxTextFromTop(): number {
         return this.boxTextfromtop
+    }
+
+    public getlengthMedalFinishList(): number {
+        return this.lengthMedalFinishList
     }
 
     public getLogoNumber(): number {
