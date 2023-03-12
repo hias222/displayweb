@@ -49,7 +49,7 @@ function DataMapper(model: {
 
     async function setDisplaymodeAndHeader() {
         console.log('new Displaymode change');
-        await delay(1000);
+        await delay(500);
         setChangeMode(false)
     }
 
