@@ -6,6 +6,9 @@ import React from 'react';
 import ChooseComponent from '../components/ChooseCompoent';
 import { TextMessageType } from '../types/TextMessageType';
 
+function delay(time: number) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
 
 function DataMapper(model: {
     CompetitionName: string;
@@ -17,29 +20,37 @@ function DataMapper(model: {
     Jsonlanes: LaneState[];
     TextMessage: TextMessageType;
     Result: string;
-    Round :number;
+    Round: number;
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
     const [lanes, setLanes] = useState<LaneState[] | []>([])
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
+    const [changedMode, setChangeMode] = useState(false)
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
         console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
         console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
-        setEventHeat(model.eventheat);
+        setEventHeat(model.eventheat)
     }
+
 
     if (model.DisplayMode !== displayMode) {
         console.log('DataMapper changed displaymode to ' + model.DisplayMode)
         setDisplayMode(model.DisplayMode)
+        setChangeMode(true)
+        setDisplaymodeAndHeader()
     }
 
     function setLanesData(Jsonlanes: LaneState[]) {
-        //console.log('Mapper')
-        //console.log(Jsonlanes);
         setLanes(Jsonlanes)
+    }
+
+    async function setDisplaymodeAndHeader() {
+        console.log('new Displaymode change');
+        await delay(1000);
+        setChangeMode(false)
     }
 
     useEffect(() => {
@@ -54,12 +65,12 @@ function DataMapper(model: {
 
     useEffect(() => {
         if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
-            console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
-            console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
+            console.log('DataMapper useEffect old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
+            console.log('DataMapper useEffect new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
             setEventHeat(model.eventheat);
         }
     }, [model.eventheat.eventnr, model.eventheat.heatnr, model.eventheat, eventHeat.heatnr, eventHeat.eventnr]);
-   
+
 
     if (model.jsonData !== undefined) {
         if (model.jsonData.lane !== undefined) {
@@ -75,6 +86,7 @@ function DataMapper(model: {
     return (
         <div>
             <ChooseComponent
+                ChangeMode={changedMode}
                 startdelayms={model.startdelayms}
                 EventHeat={eventHeat}
                 lanes={lanes}

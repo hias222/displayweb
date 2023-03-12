@@ -8,18 +8,25 @@ import LaneSeparator from "./svg/LaneSeparator";
 export class BaseFrontendComponent extends React.Component<BaseFrontendInterface, {}> {
 
     dynamictable = classNames('dynamic_base');
-
     componentDidUpdate(prevProps: BaseFrontendInterface) {
-
         if (prevProps.EventHeat.heatnr !== this.props.EventHeat.heatnr || prevProps.EventHeat.eventnr !== this.props.EventHeat.eventnr) {
-            //console.log("diff update " + this.props.displayMode + " " + JSON.stringify(this.props.lane))
+            console.log("diff heatnr " + prevProps.displayMode + " " + this.props.displayMode + " ")
             this.resetClass();
             this.delay(200).then(() =>
                 this.updateClass()
             )
-
         }
+        // console.log(this.props)
 
+        if (prevProps.changeMode !== this.props.changeMode) {
+            console.log("diff displayMode " + this.props.displayMode + " ")
+            if (!this.props.changeMode) {
+                //this.resetClass();
+                this.delay(200).then(() =>
+                    this.updateClass()
+                )
+            }
+        }
     }
 
     delay(time: number) {

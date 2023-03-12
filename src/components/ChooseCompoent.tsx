@@ -8,8 +8,6 @@ import { BaseFrontendComponent } from "./BaseFrontendComponent";
 import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
 
-
-
 function ChooseComponent(model: ChooseInterface) {
     //extends React.Component<ChooseInterface, {}> {
 
@@ -76,6 +74,7 @@ function ChooseComponent(model: ChooseInterface) {
                 //  console.log('set displaymode ChooseComponent else  ' + chooseComponent?.displayMode )
                 return (
                     <BaseFrontendComponent
+                        changeMode={chooseComponent.ChangeMode}
                         startdelayms={chooseComponent.startdelayms}
                         EventHeat={chooseComponent.EventHeat}
                         lanes={chooseComponent.lanes}

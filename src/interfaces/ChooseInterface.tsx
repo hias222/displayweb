@@ -3,6 +3,7 @@ import { LaneState } from "../state/LaneState";
 import { TextMessageType } from "../types/TextMessageType";
 
 export interface ChooseInterface {
+    ChangeMode: boolean;
     startdelayms: number;
     EventHeat: eventHeat;
     lanes: LaneState[] | [];
