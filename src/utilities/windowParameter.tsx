@@ -26,6 +26,7 @@ export default class windowParameter {
 
     private scalefactor = 1;
 
+    private showHeader = true;
     private detailedheader = true;
 
     window_width: number;
@@ -203,6 +204,35 @@ export default class windowParameter {
             this.numberboxwidth = 20;
         }
 
+        if (windowmode === 9) {
+            this.window_width = 128
+            this.window_height = 256
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 1
+
+            this.boxheight = 30
+            this.boxTextfromtop = 25;
+            this.toprowheight = 26;
+            this.logonumber = 0;
+            this.scalefactor = 0.7;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 86;
+            this.numberboxwidth = 21;
+            this.showHeader = false;
+        }
+
     }
 
     public getBoxheight(): number {
@@ -338,6 +368,10 @@ export default class windowParameter {
 
     public getOnlyLaneAndPlace(): boolean {
         return this.onlyLaneAndPlace
+    }
+
+    public getshowHeader(): boolean {
+        return this.showHeader
     }
 
 }
