@@ -20,8 +20,18 @@ export default class windowParameter {
     private lengthMedalFinishList = 40;
 
     private onlyLaneAndPlace = false
+    private separateSmallWindow = false
     private showClub: boolean = false
     private showAgeResult: boolean = true
+    /*
+    0  <Swimmer></Swimmer>
+    1    return <SGMittelfranken />
+    2    return <FCNLogo />
+    3    return <LebkuchenLogo />
+    5    return <SGFLogo />
+    */
+
+
     private logonumber: number = 0
 
     private scalefactor = 1;
@@ -100,7 +110,7 @@ export default class windowParameter {
             this.boxheight = 45
             this.toprowheight = 30;
             this.boxTextfromtop = 32;
-            this.logonumber = 0;
+            this.logonumber = 5;
             this.logospace = 100
             this.showAgeResult = false
         }
@@ -113,7 +123,6 @@ export default class windowParameter {
             this.boxheight = 35
             this.toprowheight = 30;
             this.boxTextfromtop = 32;
-            this.logonumber = 0;
             this.logospace = 95
             this.showAgeResult = false
             this.scalefactor = 0.9;
@@ -158,7 +167,6 @@ export default class windowParameter {
             this.boxheight = 32
             this.boxTextfromtop = 27;
             this.toprowheight = 26;
-            this.logonumber = 0;
             this.scalefactor = 0.7;
             this.showAgeResult = false
 
@@ -188,7 +196,6 @@ export default class windowParameter {
             this.boxheight = 32
             this.boxTextfromtop = 22;
             this.toprowheight = 22;
-            this.logonumber = 1;
             this.scalefactor = 0.6;
             this.showAgeResult = false
 
@@ -209,6 +216,7 @@ export default class windowParameter {
             this.window_height = 256
             this.detailedheader = false
             this.onlyLaneAndPlace = true
+            this.separateSmallWindow = true
             this.showClub = false;
 
             this.laneNumberTextFromLeft = 1
@@ -216,7 +224,6 @@ export default class windowParameter {
             this.boxheight = 30
             this.boxTextfromtop = 25;
             this.toprowheight = 26;
-            this.logonumber = 0;
             this.scalefactor = 0.7;
             this.showAgeResult = false
 
@@ -368,6 +375,10 @@ export default class windowParameter {
 
     public getOnlyLaneAndPlace(): boolean {
         return this.onlyLaneAndPlace
+    }
+
+    public getSeparateSmallWindow(): boolean {
+        return this.separateSmallWindow
     }
 
     public getshowHeader(): boolean {

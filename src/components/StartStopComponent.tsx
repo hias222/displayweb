@@ -108,7 +108,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         if ((getMilliSecondsFromTimeString(this.props.runningTime) === 0)) {
             var diff = Date.now() - this.state.start
             if (this.state.isOn && diff > 5000) {
-                console.log('reset timer ' + this.state.displaytime + ' ' +  this.props.runningTime)
+                console.log('reset timer ' + this.state.displaytime + ' ' + this.props.runningTime)
                 this.stopTimer()
                 /*
                 this.setState({
@@ -162,7 +162,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
                         Round={this.props.round}
-                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
                         Parts={3} />
                 </div>
             )
@@ -178,7 +178,23 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                             Time={this.format(this.state.displaytime)}
                             IsFirstText={true}
                             Round={this.props.round}
-                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
+                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                            Parts={1} />
+                    </div>
+                </div>)
+        } else if (this.windowParams.getSeparateSmallWindow()) {
+            return (
+                <div className={noSpaceContainerVertical}>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
+                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
+                    </div>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderTimeLine
+                            Time={this.format(this.state.displaytime)}
+                            IsFirstText={true}
+                            Round={this.props.round}
+                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
                             Parts={1} />
                     </div>
                 </div>)
@@ -192,7 +208,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Time={this.format(this.state.displaytime)}
                         IsFirstText={false}
                         Round={this.props.round}
-                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99" }
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
                         Parts={3} />
                 </div>
             )

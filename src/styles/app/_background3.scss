@@ -10,11 +10,16 @@
 
 @keyframes move-background2 {
   from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: matrix3d(
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, 0,
+      0, 0, 0, 2
+    );
   }
 
   to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
   }
 }
 
@@ -50,5 +55,5 @@
 
 .dynamic_effect {
   opacity: 1; 
-  animation: flyin 1s linear normal;
+  animation: move-background2 0.4s linear normal;
 }

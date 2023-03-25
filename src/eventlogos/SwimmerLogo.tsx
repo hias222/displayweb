@@ -4,6 +4,7 @@ import FCNLogo from './FCNLogo';
 import SGFLogo from './SGFLogo';
 import SGMittelfranken from './SGMittelfranken';
 import Swimmer from './Swimmer';
+import LebkuchenLogo from './LebkuchenLogo';
 
 // https://www.svgrepo.com/svg/39643/swimming
 
@@ -27,6 +28,10 @@ export default class SwimmerLogo extends React.Component<{}, {}> {
 
         if (this.windowParams.getLogoNumber() === 2) {
             return <FCNLogo />
+        }
+
+        if (this.windowParams.getLogoNumber() === 3) {
+            return <LebkuchenLogo />
         }
 
         if (this.windowParams.getLogoNumber() === 5) {
