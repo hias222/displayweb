@@ -63,19 +63,18 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
             var distance = this.props.EventHeat.distance !== undefined ? this.props.EventHeat.distance + "m" : ""
             var style = this.props.EventHeat.swimstyle !== undefined ? getSwimStyle(this.props.EventHeat.swimstyle) : ""
             return (<div>
-                <SwimmerLogo />
-                <HeaderBoxName HeaderName={distance}
-                    IsFirstText={true}
-                    Parts={1} />
-                <HeaderBoxName HeaderName={style}
-                    IsFirstText={true}
-                    Parts={1} />
                 <StartStopComponent
                     startdelayms={this.props.startdelayms}
                     EventHeat={this.props.EventHeat}
                     runningTime={this.props.runningTime}
                     round={this.props.round}
                 />
+                <HeaderBoxName HeaderName={distance}
+                    IsFirstText={true}
+                    Parts={1} />
+                <HeaderBoxName HeaderName={style}
+                    IsFirstText={true}
+                    Parts={1} />
             </div>)
         } else if (this.windowParams.getOnlyLaneAndPlace()) {
             //console.log('getOnlyLaneAndPlace')

@@ -222,9 +222,9 @@ export default class windowParameter {
             this.laneNumberTextFromLeft = 1
 
             this.boxheight = 30
-            this.boxTextfromtop = 25;
-            this.toprowheight = 26;
-            this.scalefactor = 0.7;
+            this.boxTextfromtop = 26;
+            this.toprowheight = 28;
+            this.scalefactor = 1;
             this.showAgeResult = false
 
             this.lengthNameStartlist = 0;

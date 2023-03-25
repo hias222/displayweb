@@ -6,6 +6,7 @@ import getMilliSecondsFromTimeString from "../utilities/getMilliSecondsFromTimeS
 import windowParameter from "../utilities/windowParameter";
 import HeaderBoxName from "./svg/HeaderBoxName";
 import HeaderTimeLine from "./svg/HeaderTime";
+import HeaderBoxNameLarge from "./svg/HeaderBoxNameLarge";
 
 
 export class StartStopComponent extends React.Component<StartStopInterface, StartStopState> {
@@ -166,29 +167,13 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                         Parts={3} />
                 </div>
             )
-        } else if (this.windowParams.getOnlyLaneAndPlace()) {
-            return (
-                <div className={noSpaceContainerVertical}>
-                    <div className={noSpaceContainerHorizontal} >
-                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
-                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
-                    </div>
-                    <div className={noSpaceContainerHorizontal} >
-                        <HeaderTimeLine
-                            Time={this.format(this.state.displaytime)}
-                            IsFirstText={true}
-                            Round={this.props.round}
-                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                            Parts={1} />
-                    </div>
-                </div>)
         } else if (this.windowParams.getSeparateSmallWindow()) {
             return (
                 <div className={noSpaceContainerVertical}>
-                    <div className={noSpaceContainerHorizontal} >
-                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
-                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
-                    </div>
+                    <HeaderBoxName HeaderName={"Wettkampf"} IsFirstText={true} Parts={1}></HeaderBoxName>
+                    <HeaderBoxNameLarge HeaderName={ this.props.EventHeat.eventnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
+                    <HeaderBoxName HeaderName={"Lauf"} IsFirstText={true} Parts={1}></HeaderBoxName>
+                    <HeaderBoxNameLarge HeaderName={ this.props.EventHeat.heatnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
                     <div className={noSpaceContainerHorizontal} >
                         <HeaderTimeLine
                             Time={this.format(this.state.displaytime)}
@@ -199,7 +184,23 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
                     </div>
                 </div>)
         }
-        else {
+        else if (this.windowParams.getOnlyLaneAndPlace()) {
+            return (
+                <div className={noSpaceContainerVertical}>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
+                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
+                    </div>
+                    <div className={noSpaceContainerHorizontal} >
+                        <HeaderTimeLine
+                            Time={this.format(this.state.displaytime)}
+                            IsFirstText={true}
+                            Round={this.props.round}
+                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                            Parts={1} />
+                    </div>
+                </div>)
+        } else {
             return (
                 <div className={noSpaceContainerHorizontal} >
                     <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>
