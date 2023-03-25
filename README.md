@@ -17,3 +17,13 @@ In the project directory, you can run:
 ## Changes
 
 2020/11 update  "react-scripts": "3.4.0" to 4.0.1
+
+
+## deploy under mode
+
+Change this files and add folder/APP Number
+
+* deploy_local.sh
+* package.json
+* ./env.production
+* App.scss
