@@ -32,7 +32,7 @@
 .textplacesvg{
     text-align: right;
     font-weight: bold;
-    fill: $farbeschriftplace;
+    fill: RGBA( 255, 20, 20, 1 );
     font-size: 1.9em;
 }
   
@@ -51,9 +51,7 @@
 }
 
 .gradient_place {
-    //stop-color:  rgba(0, 255, 0,1);
-    stop-color: rgba(51, 142, 53, 1);
-    //stop-color: #ff0000;
+    stop-color:  rgba(0, 145, 224, 0.5);
     stop-opacity: 1;
 }
 
@@ -62,9 +60,7 @@
 }
 
 .gradient_place_stop {
-    //stop-color:  rgba(0, 255, 0,1);
-    stop-color: rgba(51, 142, 53, 1);
-    //stop-color: #ff0000;
+    stop-color:  rgba(0, 145, 224, 0.5);
     stop-opacity: 1;
 }
 
@@ -72,7 +68,6 @@
     //fill: $farbeseparator;
     stop-color:  $farbeseparator;
 }
-
 
 .headertimeline{
     fill: $farbeschrift;
