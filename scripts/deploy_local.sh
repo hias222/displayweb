@@ -3,7 +3,7 @@
 REMOTE_SERVER_NAME=rockpi-4b.fritz.box
 REMOTE_SERVER_USER=rock
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
-APP_MODE=0
+APP_MODE=10
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp

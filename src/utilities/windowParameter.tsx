@@ -240,6 +240,21 @@ export default class windowParameter {
             this.showHeader = false;
         }
 
+        if (windowmode === 10) {
+            //Anzeige Fürth
+            this.window_width = 512
+            this.window_height = 384
+            this.showClub = false;
+            this.boxheight = 35
+            this.toprowheight = 30;
+            this.boxTextfromtop = 32;
+            this.logospace = 160
+            this.showAgeResult = false
+            this.scalefactor = 0.9;
+            this.boxTextfromtop = 30;
+            this.toprowheight = 28
+            this.logonumber = 10
+        }
     }
 
     public getBoxheight(): number {
@@ -383,6 +398,10 @@ export default class windowParameter {
 
     public getshowHeader(): boolean {
         return this.showHeader
+    }
+
+    public getLogoSpace(): number {
+        return this.logospace;
     }
 
 }

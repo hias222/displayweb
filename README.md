@@ -1,5 +1,11 @@
 # displayweb
 
+## Change modes
+
+* package.json
+* utilities -> windowParameter
+* add styles number in styles
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Project frontend for colorado, React TS
 
