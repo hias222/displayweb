@@ -38,6 +38,8 @@ export default class windowParameter {
 
     private showHeader = true;
     private detailedheader = true;
+    private twopartsheader = false;
+    private showonlyClub = false;
 
     window_width: number;
     window_height: number;
@@ -254,6 +256,25 @@ export default class windowParameter {
             this.boxTextfromtop = 30;
             this.toprowheight = 28
             this.logonumber = 10
+            this.twopartsheader = true
+        }
+
+        if (windowmode === 11) {
+            //Anzeige Fürth
+            this.window_width = 512
+            this.window_height = 384
+            this.showClub = false;
+            this.showonlyClub = true;
+            this.boxheight = 35
+            this.toprowheight = 30;
+            this.boxTextfromtop = 32;
+            this.logospace = 160
+            this.showAgeResult = false
+            this.scalefactor = 0.9;
+            this.boxTextfromtop = 30;
+            this.toprowheight = 28
+            this.logonumber = 10
+            this.twopartsheader = true
         }
     }
 
@@ -386,6 +407,14 @@ export default class windowParameter {
 
     public getDetailsInHeader(): boolean {
         return this.detailedheader
+    }
+
+    public getShowOnlyClub(): boolean {
+        return this.showonlyClub
+    }
+
+    public getTwoPArtsHeader(): boolean {
+        return this.twopartsheader
     }
 
     public getOnlyLaneAndPlace(): boolean {

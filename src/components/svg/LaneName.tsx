@@ -18,6 +18,26 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         super(props);
         this.windowParams = new windowParameter();
     }
+
+    getNameText() {
+        let textlanesvg = classnames('textlanesvg');
+        if (this.windowParams.getShowOnlyClub()) {
+            return <text
+            className={textlanesvg}
+            y={this.windowParams.getBoxTextFromTop()}
+            x="0"
+        >
+            {this.props.ClubName}</text>
+        } else {
+            return <text
+                className={textlanesvg}
+                y={this.windowParams.getBoxTextFromTop()}
+                x="0"
+            >
+                {this.props.LaneName}</text>
+        }
+
+    }
     getAgeText(length: number) {
         if (this.props.IsOnlyBox) {
             let textlanesvg = classnames('textlanesvg');
@@ -31,8 +51,8 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         }
     }
 
-    getClubText(length: number) {    
-        
+    getClubText(length: number) {
+
         var startrNameSpace = this.props.IsOnlyBox ? this.windowParams.getSpaceNameStartlist() + 4 : this.windowParams.getSpaceNameFinishlist() + 4
 
         if (this.windowParams.showClubs()) {
@@ -47,7 +67,7 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
     }
 
     render() {
-        let textlanesvg = classnames('textlanesvg');
+
         let gradient_name = classnames('gradient_name');
 
         let time_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth() - this.windowParams.getlengthMedalFinishList();
@@ -72,15 +92,9 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
                     className={gradient_name}
                     d={boxSize}
                 />
-                <text
-                    className={textlanesvg}
-                    y={this.windowParams.getBoxTextFromTop()}
-                    x="0"
-                >
-                    {this.props.LaneName}</text>
+                {this.getNameText()}
                 {this.getAgeText(length)}
                 {this.getClubText(length)}
-
             </g>
         </svg>
         );

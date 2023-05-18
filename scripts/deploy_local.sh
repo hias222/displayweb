@@ -1,6 +1,8 @@
 #!/bin/bash
 
-REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+# change folder in package.json
+
+REMOTE_SERVER_NAME=rockpie.fritz.box
 REMOTE_SERVER_USER=rock
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 APP_MODE=10
