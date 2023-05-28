@@ -276,6 +276,37 @@ export default class windowParameter {
             this.logonumber = 10
             this.twopartsheader = true
         }
+
+        if (windowmode === 12) {
+            //Anzeige Fürth
+            this.window_width = 128
+            this.window_height = 288
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.showClub = false;
+
+            //this.showHeader = false;
+            //this.separateSmallWindow = false;
+
+            this.laneNumberTextFromLeft = 1
+
+            this.boxheight = 28
+            this.boxTextfromtop = 24;
+            this.toprowheight = 24;
+            this.scalefactor = 1;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 86;
+            this.numberboxwidth = 21;
+        }
     }
 
     public getBoxheight(): number {
