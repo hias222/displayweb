@@ -5,8 +5,9 @@ import { SingleLaneStaticComponent } from "./SingleLaneStaticComponent";
 import classNames from "classnames";
 import LaneSeparator from "./svg/LaneSeparator";
 import windowParameter from "../utilities/windowParameter";
+import SingleLaneDisplay from "./lanes/SingleLaneDisplay";
 
-export class BaseFrontendComponent extends React.Component<BaseFrontendInterface, {}> {
+export class SingleLaneFrontendComponent extends React.Component<BaseFrontendInterface, {}> {
 
     dynamictable = classNames('dynamic_base');
     windowParams: windowParameter;
@@ -17,46 +18,18 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     }
 
     componentDidUpdate(prevProps: BaseFrontendInterface) {
-        if (prevProps.EventHeat.heatnr !== this.props.EventHeat.heatnr || prevProps.EventHeat.eventnr !== this.props.EventHeat.eventnr) {
-            console.log("diff heatnr " + prevProps.displayMode + " " + this.props.displayMode + " ")
-
+        if (prevProps.displayMode !== this.props.displayMode) {
+            console.log("displayMode " + prevProps.displayMode + " " + this.props.displayMode + " ")
+            
             this.resetClass();
             this.delay(200).then(() =>
                 this.updateClass()
             )
-
-        } else if (this.props.changeMode) {
-            if (prevProps.displayMode !== 'startlist') {
+            
+        } else if (prevProps.lastUpdate !== this.props.lastUpdate) {
                 this.updateClass()
-            }
         }
-
-        if (this.props.changeMode) {
-
-            if (prevProps.displayMode !== 'race' && this.props.displayMode !== 'startlist') {
-                this.updateClass()
-            } else if (prevProps.displayMode === 'startlist') {
-                this.delay(200).then(() =>
-                    this.updateClass()
-                )
-            }
-        }
-
-        //console.log("changemode  " + this.props.changeMode + " new " + this.props.displayMode + " ")
-
-        /*
-        if (prevProps.changeMode !== this.props.changeMode) {
-            console.log("diff displayMode " + this.props.displayMode + " ")
-            if (!this.props.changeMode) {
-                
-                //this.resetClass();
-                this.delay(200).then(() =>
-                    this.updateClass()
-                )
-
-            }
-        }
-        */
+        // console.log(this.props)
     }
 
     delay(time: number) {
@@ -118,20 +91,22 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     }
 
     getbodyData() {
+        var laneNumber = parseInt(this.props.displayMode.slice(4)) - 1
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
-        return (
-            this.props.lanes.map((lane, index) => (
-                <div key={index + 200} className={noSpaceContainerVertical}>
-                    <SingleLaneStaticComponent
-                        key={index}
-                        lane={lane}
-                        index={index}
-                        displayMode={this.props.displayMode}
-                    />
-                    <LaneSeparator keyindex={index + 100} IsEnabled={true} />
-                </div>
-            ))
-        )
+        var laneObject = Object.values(this.props.lanes)[laneNumber]
+        if (laneObject !== undefined) {
+            //console.log(laneObject)
+            return (
+                     //<div key={laneNumber + 250} className={noSpaceContainerVertical}>
+                        <SingleLaneDisplay
+                            key={laneNumber}
+                            lane={laneObject.lane}
+                            swimmer={laneObject.swimmerData}
+                            entrytime={laneObject.entrytime}
+                        />
+                    //</div>
+                )
+        }
     }
 
     getOnlyOneData() {
@@ -168,11 +143,12 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     render() {
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
         return (
-            <div id='effectComponent' className={this.dynamictable}>
-                <div key="500" className={noSpaceContainerVertical}>
+            <div id='effectComponent' className={this.dynamictable}>              
                     {this.getAllData()}
-                </div >
             </div>
         )
     }
 }
+
+
+//  <div key="500" className={noSpaceContainerVertical}>

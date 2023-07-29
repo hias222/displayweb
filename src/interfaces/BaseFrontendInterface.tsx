@@ -9,4 +9,5 @@ export interface BaseFrontendInterface {
     displayMode: string;
     runningTime: string;
     round: number;
+    lastUpdate?: Date;
 }

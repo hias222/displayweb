@@ -30,7 +30,7 @@ function DataMapper(model: {
     const [changedMode, setChangeMode] = useState(false)
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
-        console.log('DataMapper old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
+        console.log('DataMapper.tsx old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
         console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
         setEventHeat(model.eventheat)
     }
@@ -38,6 +38,7 @@ function DataMapper(model: {
 
     if (model.DisplayMode !== displayMode) {
         console.log('DataMapper changed displaymode to ' + model.DisplayMode)
+        setEventHeat(model.eventheat)
         setDisplayMode(model.DisplayMode)
         setChangeMode(true)
         setDisplaymodeAndHeader()

@@ -83,9 +83,10 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setHeaderInfo(jsondata: any) {
+        // if header info -> switch to mode Startlist
+        setDisplayMode('startlist')
 
         if (jsondata.heat !== eventheat.heatnr || jsondata.event !== eventheat.eventnr) {
-            setDisplayMode('startlist')
             var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
                 ? jsondata.name : jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle)
 
@@ -106,9 +107,8 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
             setCompetitionName(jsondata.competition)
             console.log('WSAnaylseData ------> Heat' + jsondata.heat)
         } else {
-            console.log("header no event or heat change ")
+            console.log("header no event or heat change - Displaymode " + DisplayMode)
         }
-        //setTimeout(this.activatePage, 500);
     }
 
     async function setLaneInfo(jsondata: any, lanes: []) {
@@ -149,8 +149,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setMessageChange(message: any) {
-
-        console.log(message)
+        //console.log(message)
         var newMessage: TextMessageType = {
             diplayMode: message.type !== undefined ? message.type : '',
             displayFormat: message.size !== undefined ? message.size : '',
@@ -168,9 +167,6 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         } else {
             setTextmessage(newMessage)
         }
-
-
-
     }
 
     function checkIncoming(jsondata: any, lanes: []) {
@@ -269,6 +265,17 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 console.log('--> round')
                 break;
             }
+            case "presentlane": {
+                setDisplayMode("lane" + jsondata.value)
+                console.log('--> presentlane ' + jsondata.value)
+                break;
+            }
+            case "best3": {
+                setDisplayMode("best3")
+                console.log('--> best3')
+                break;
+            }
+
             default: {
                 console.log('case default type ' + JSON.stringify(jsondata))
             }

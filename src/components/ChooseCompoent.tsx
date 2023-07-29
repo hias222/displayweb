@@ -7,10 +7,10 @@ import classnames from 'classnames';
 import { BaseFrontendComponent } from "./BaseFrontendComponent";
 import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
+import { SingleLaneFrontendComponent } from "./SingleLaneFrontendComponent";
 
 function ChooseComponent(model: ChooseInterface) {
-    //extends React.Component<ChooseInterface, {}> {
-
+   
     const [chooseComponent, setChooseComponent] = useState<ChooseInterface>();
 
     var windowParams: windowParameter = new windowParameter();
@@ -70,8 +70,21 @@ function ChooseComponent(model: ChooseInterface) {
                         ResultJson={chooseComponent.result}
                     />
                 )
+            } else if (chooseComponent.displayMode.startsWith('lane')) {
+                //console.log('set displaymode ChooseComponent lane ' + chooseComponent?.displayMode )
+                return (
+                    <SingleLaneFrontendComponent
+                        changeMode={chooseComponent.ChangeMode}
+                        startdelayms={chooseComponent.startdelayms}
+                        EventHeat={chooseComponent.EventHeat}
+                        lanes={chooseComponent.lanes}
+                        displayMode={chooseComponent.displayMode}
+                        runningTime={chooseComponent.runningTime}
+                        round={chooseComponent.round}
+                        lastUpdate={new Date()}
+                    />)
             } else {
-                //  console.log('set displaymode ChooseComponent else  ' + chooseComponent?.displayMode )
+                //console.log('set displaymode ChooseComponent default ' + chooseComponent?.displayMode )
                 return (
                     <BaseFrontendComponent
                         changeMode={chooseComponent.ChangeMode}
@@ -81,6 +94,7 @@ function ChooseComponent(model: ChooseInterface) {
                         displayMode={chooseComponent.displayMode}
                         runningTime={chooseComponent.runningTime}
                         round={chooseComponent.round}
+                        lastUpdate={new Date()}
                     />)
             }
         } else {
@@ -92,7 +106,7 @@ function ChooseComponent(model: ChooseInterface) {
 
     useEffect(() => {
         setChooseComponent(model)
-        //console.log('model change')
+        
         //console.log(model.lanes)
     }, [model]);
 
