@@ -8,6 +8,7 @@ import { BaseFrontendComponent } from "./BaseFrontendComponent";
 import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
 import { SingleLaneFrontendComponent } from "./SingleLaneFrontendComponent";
+import { Best3FrontendComponent } from "./Best3FrontendComponent";
 
 function ChooseComponent(model: ChooseInterface) {
    
@@ -70,6 +71,19 @@ function ChooseComponent(model: ChooseInterface) {
                         ResultJson={chooseComponent.result}
                     />
                 )
+            } else if (chooseComponent.displayMode === 'best3') {
+                return (
+                    <Best3FrontendComponent
+                        changeMode={chooseComponent.ChangeMode}
+                        startdelayms={chooseComponent.startdelayms}
+                        EventHeat={chooseComponent.EventHeat}
+                        lanes={chooseComponent.lanes}
+                        displayMode={chooseComponent.displayMode}
+                        runningTime={chooseComponent.runningTime}
+                        round={chooseComponent.round}
+                        lastUpdate={new Date()}
+                    />)
+                
             } else if (chooseComponent.displayMode.startsWith('lane')) {
                 //console.log('set displaymode ChooseComponent lane ' + chooseComponent?.displayMode )
                 return (

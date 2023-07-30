@@ -2,9 +2,6 @@ import classNames from "classnames";
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
 import windowParameter from "../../utilities/windowParameter";
-import LaneName from "../svg/LaneName";
-
-import LaneNumber from "../svg/LaneNumber";
 import FullDisplayName from "../svg/FullDisplayName";
 
 export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
@@ -17,32 +14,40 @@ export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
     }
 
     checkName() {
-        let namelength = this.windowParams.getLengthNameStartlist();
+        if (this.props.swimmer.name !== undefined) {
+            let namelength = this.windowParams.getLengthNameStartlist();
 
-        let sizeName = this.props.swimmer.name.length;
-        let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
+            let sizeName = this.props.swimmer.name.length;
+            let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
 
-        if (sizeName > (namelength - 2)) {
-            //console.log("short name")
-            return this.props.swimmer.name.substr(0, (namelength - 2));
+            if (sizeName > (namelength - 2)) {
+                //console.log("short name")
+                return this.props.swimmer.name.substr(0, (namelength - 2));
+            }
+
+            if (sizeName + sizeLastName > namelength) {
+                return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0, 1) + ".";
+            }
+
+            let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
+            return name
+        } else {
+            return ""
         }
-
-        if (sizeName + sizeLastName > namelength) {
-            return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0, 1) + ".";
-        }
-
-        let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
-        return name
     }
 
     checkClub() {
-        let namelength = this.windowParams.getLengthClubStartlist();
-        let sizeClub = this.props.swimmer.clubname.length;
+        if (this.props.swimmer.clubname !== undefined) {
+            let namelength = this.windowParams.getLengthClubStartlist();
+            let sizeClub = this.props.swimmer.clubname.length;
 
-        if (sizeClub > (namelength - 2)) {
-            return this.props.swimmer.clubname.substr(0, (namelength - 2));
+            if (sizeClub > (namelength - 2)) {
+                return this.props.swimmer.clubname.substr(0, (namelength - 2));
+            }
+            return this.props.swimmer.clubname
+        } else {
+            return ""
         }
-        return this.props.swimmer.clubname
     }
 
     formatEntryTime() {
