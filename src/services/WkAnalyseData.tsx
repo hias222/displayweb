@@ -84,7 +84,9 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     function setHeaderInfo(jsondata: any) {
         // if header info -> switch to mode Startlist
-        setDisplayMode('startlist')
+        if (DisplayMode !== 'race') {
+            setDisplayMode('startlist')
+        }
 
         if (jsondata.heat !== eventheat.heatnr || jsondata.event !== eventheat.eventnr) {
             var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
