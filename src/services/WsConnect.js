@@ -6,6 +6,7 @@ import "../styles/App.scss";
 //import { LaneState } from "../state/LaneState";
 
 let correctValueForLaneNull = 0;
+let waittimervar = false;
 
 const allLaneData = [];
 /*
@@ -60,15 +61,81 @@ function WsConnect() {
       get_backend_port
       : get_backend_url;
 
+  var wait_on_stop =
+    process.env.REACT_APP_WAIT_ON_STOP === undefined ? false : process.env.REACT_APP_WAIT_ON_STOP
+
   const [message, setMessage] = useState("");
   const [connected, setConnected] = useState(false);
   const [lanes, setLanes] = useState([]);
   const [header, setHeader] = useState("");
+  const [waitTimerDate, setWaitTimerDate] = useState(Date.now());
+
+
   //setCount(0);
+
+  function setPrehandlerLanes(allLaneData) {
+    if (wait_on_stop) {
+      waitUntilEnd(waittimervar).then(() => {
+        setLanes(allLaneData)
+      })
+    } else {
+      setLanes(allLaneData)
+    }
+  }
+
+  function setPrehandlerMessage(jsondata) {
+    if (wait_on_stop) {
+      var randomnumber = Math.floor(Math.random() * 100)
+      var diff = Date.now() - waitTimerDate
+      console.log("start ... " + randomnumber + " " + diff)
+      waitUntilEnd(waittimervar).then(() => {
+        setMessage(jsondata)
+        var diff2 = Date.now() - waitTimerDate
+        console.log(".... push " + randomnumber + " " + diff2)
+      })
+    } else {
+      setLanes(jsondata)
+    }
+  }
+
+  function setHPreHandlerHeader(jsondata) {
+    if (wait_on_stop) {
+      waitUntilEnd(waittimervar).then(() => {
+        setHeader(jsondata)
+      })
+    } else {
+      setHeader(jsondata)
+    }
+  }
+
+  function delay(number) {
+    return new Promise(resolve => setTimeout(resolve, number));
+  }
+
+  function waitUntilEnd(waittimer) {
+    console.log(waittimer + " waitUntilEnd --" + waittimervar)
+    if (waittimervar) {
+      return new Promise(resolve => setTimeout(resolve, 20000));
+    } else {
+      return new Promise(resolve => setTimeout(resolve, 10));
+    }
+  }
+
+  function setWaitEvent() {
+    console.log("Wait Timer ------>")
+    waittimervar = true
+    setWaitTimerDate(Date.now())
+    //delay
+    delay(20000).then(() => {
+      waittimervar = false
+      console.log("<------ Wait Timer End ")
+    })
+
+  }
 
   useEffect(() => {
     //console.log('update allLaneData')
-    setLanes(allLaneData);
+    setPrehandlerLanes(allLaneData);
     //console.log(lanes)
   }, [message]);
 
@@ -83,12 +150,19 @@ function WsConnect() {
       // lane data -> store in array
       // sonst kommt nur die letzte bahn in den hook -> zu schnell
       if (jsondata.type === "header") {
-        setHeader(jsondata)
+        setHPreHandlerHeader(jsondata)
+      }
+
+      if (jsondata.type === "stop") {
+        setMessage(jsondata)
+        if (wait_on_stop) {
+          setWaitEvent()
+        }
       }
 
       if (jsondata.type === "clear") {
         console.log('clear connect')
-        setLanes([]);
+        setPrehandlerLanes([]);
 
         const d = new Date();
         var stopmessage = {
@@ -117,7 +191,8 @@ function WsConnect() {
           }
         }
       }
-      setMessage(jsondata);
+
+      setPrehandlerMessage(jsondata);
     };
 
     newSocket.on("FromAPI", messageListener);
@@ -148,7 +223,7 @@ function WsConnect() {
   }, []);
 
   return (
-      <WkAnalyseData message={message} connected={connected} lanes={lanes} header={header} />
+    <WkAnalyseData message={message} connected={connected} lanes={lanes} header={header} />
   );
 }
 

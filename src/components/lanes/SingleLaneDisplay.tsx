@@ -51,7 +51,7 @@ export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
     }
 
     formatEntryTime() {
-        console.log("- " + this.props.entrytime)
+        //console.log("- " + this.props.entrytime)
         return this.props.entrytime;
     }
 

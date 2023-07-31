@@ -49,9 +49,9 @@ function checkExistingEndTime(endTime: string, swimmer: swimmerData, newData: an
     //console.log(endTime + ' ' + newData.finishtime)
     if (endTime !== "undefined") {
         if (swimmer.heat === newData.heat && swimmer.event === newData.event && newData.finishtime === "undefined") {
-            console.log('correct time ')
-            console.log(newData)
-            console.log(swimmer)
+            //console.log('correct time ')
+            //console.log(newData)
+            //console.log(swimmer)
             return endTime
         } else {
             return newData.finishtime

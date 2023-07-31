@@ -300,6 +300,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     useEffect(() => {
         setHeaderInfo(model.header);
+        console.log("--> model.header")
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [model.header]);
 
