@@ -7,34 +7,11 @@ import "../styles/App.scss";
 
 let correctValueForLaneNull = 0;
 let waittimervar = false;
+let waitTimerDate = Date.now();
+//let maxDelayTimeMS = 30000
 
 const allLaneData = [];
-/*
-= [
-  {
-    changed: 0,
-    finishtime: "",
-    islaptime: false,
-    lane: "0",
-    laptime: "",
-    place: "",
-    swimmerData: {
-      clubid: "",
-      clubname: "",
-      name: "",
-    },
-  },
-];
-*/
-/*
-this.state = {
-  WsConnected: false,
-  HeatNumber: 0,
-  EventNumber: 0,
-  CompetitionName: 'new',
-  DisplayMode: 'race'
-}
-*/
+
 function WsConnect() {
   var context_path =
     process.env.REACT_APP_BACKEND_CONTEX_PATH === undefined
@@ -64,14 +41,40 @@ function WsConnect() {
   var wait_on_stop =
     process.env.REACT_APP_WAIT_ON_STOP === undefined ? false : process.env.REACT_APP_WAIT_ON_STOP
 
+  var maxDelayTimeMS =
+    process.env.REACT_APP_WAIT_MS === undefined ? 25000 : process.env.REACT_APP_WAIT_MS
+
   const [message, setMessage] = useState("");
   const [connected, setConnected] = useState(false);
   const [lanes, setLanes] = useState([]);
   const [header, setHeader] = useState("");
-  const [waitTimerDate, setWaitTimerDate] = useState(Date.now());
 
+  function checkDelayMessage(jsondata) {
 
-  //setCount(0);
+    if (wait_on_stop) {
+      let msg_type = jsondata.type
+      if (msg_type !== undefined) {
+        if (msg_type === "lane" || msg_type === "header" || msg_type === "round" || msg_type === "start" || msg_type === "time") {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+
+  }
+
+  function getWaitTime() {
+    var diff = Math.ceil((Date.now() - waitTimerDate) / 1.2)
+    var delay_Time = maxDelayTimeMS - diff
+    if (delay_Time < 100) delay_Time = 1
+    if (delay_Time > maxDelayTimeMS) delay_Time = maxDelayTimeMS
+    return delay_Time
+  }
 
   function setPrehandlerLanes(allLaneData) {
     if (wait_on_stop) {
@@ -84,23 +87,22 @@ function WsConnect() {
   }
 
   function setPrehandlerMessage(jsondata) {
-    if (wait_on_stop) {
-      var randomnumber = Math.floor(Math.random() * 100)
-      var diff = Date.now() - waitTimerDate
-      console.log("start ... " + randomnumber + " " + diff)
-      waitUntilEnd(waittimervar).then(() => {
+    var checkbool = checkDelayMessage(jsondata)
+    //console.log("direct +++++++ " + checkbool)
+    if (checkbool) {
+      waitUntilEnd().then(() => {
         setMessage(jsondata)
-        var diff2 = Date.now() - waitTimerDate
-        console.log(".... push " + randomnumber + " " + diff2)
       })
     } else {
-      setLanes(jsondata)
+      setMessage(jsondata)
     }
   }
 
   function setHPreHandlerHeader(jsondata) {
-    if (wait_on_stop) {
-      waitUntilEnd(waittimervar).then(() => {
+    var checkbool = checkDelayMessage(jsondata)
+    //console.log("direct +++++++ " + checkbool)
+    if (checkDelayMessage(jsondata)) {
+      waitUntilEnd().then(() => {
         setHeader(jsondata)
       })
     } else {
@@ -112,21 +114,22 @@ function WsConnect() {
     return new Promise(resolve => setTimeout(resolve, number));
   }
 
-  function waitUntilEnd(waittimer) {
-    console.log(waittimer + " waitUntilEnd --" + waittimervar)
+  function waitUntilEnd() {
+    var waitime = getWaitTime()
+    //console.log("waitime " + waitime + " "+ waittimervar)
     if (waittimervar) {
-      return new Promise(resolve => setTimeout(resolve, 20000));
+      return new Promise(resolve => setTimeout(resolve, waitime));
     } else {
-      return new Promise(resolve => setTimeout(resolve, 10));
+      return new Promise(resolve => setTimeout(resolve, 1));
     }
   }
 
   function setWaitEvent() {
     console.log("Wait Timer ------>")
     waittimervar = true
-    setWaitTimerDate(Date.now())
+    waitTimerDate = Date.now()
     //delay
-    delay(20000).then(() => {
+    delay(maxDelayTimeMS).then(() => {
       waittimervar = false
       console.log("<------ Wait Timer End ")
     })
