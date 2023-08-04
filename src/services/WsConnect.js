@@ -99,7 +99,7 @@ function WsConnect() {
   }
 
   function setHPreHandlerHeader(jsondata) {
-    var checkbool = checkDelayMessage(jsondata)
+    //var checkbool = checkDelayMessage(jsondata)
     //console.log("direct +++++++ " + checkbool)
     if (checkDelayMessage(jsondata)) {
       waitUntilEnd().then(() => {
