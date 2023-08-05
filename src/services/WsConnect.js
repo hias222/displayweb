@@ -49,13 +49,23 @@ function WsConnect() {
   const [lanes, setLanes] = useState([]);
   const [header, setHeader] = useState("");
 
+  function getMessageType(jsondata) {
+    let msg_type = jsondata.type
+    if (msg_type !== undefined) {
+      return msg_type
+    } else {
+      return "unknown"
+    }
+  }
+
   function checkDelayMessage(jsondata) {
 
     if (wait_on_stop) {
       let msg_type = jsondata.type
       if (msg_type !== undefined) {
         if (msg_type === "lane" || msg_type === "header" || msg_type === "round" || msg_type === "start" || msg_type === "time") {
-          return true
+          var overall_wait = waittimervar ? true : false
+          return overall_wait
         } else {
           return false
         }
@@ -68,17 +78,23 @@ function WsConnect() {
 
   }
 
-  function getWaitTime() {
-    var diff = Math.ceil((Date.now() - waitTimerDate) / 1.2)
+  function getWaitTime(msgType) {
+    var diff = msgType === "header" ? Math.ceil(Date.now() - waitTimerDate) : Math.ceil((Date.now() - waitTimerDate) / 1.2)
     var delay_Time = maxDelayTimeMS - diff
-    if (delay_Time < 100) delay_Time = 1
-    if (delay_Time > maxDelayTimeMS) delay_Time = maxDelayTimeMS
-    return delay_Time
+    if (msgType === 'manual') {
+      return 1000
+    } else if (delay_Time < 100) {
+      return 1
+    } else if (delay_Time > maxDelayTimeMS) {
+      return maxDelayTimeMS
+    } else {
+      return delay_Time
+    }
   }
 
   function setPrehandlerLanes(allLaneData) {
     if (wait_on_stop) {
-      waitUntilEnd(waittimervar).then(() => {
+      waitUntilEnd("alllanes").then(() => {
         setLanes(allLaneData)
       })
     } else {
@@ -87,22 +103,23 @@ function WsConnect() {
   }
 
   function setPrehandlerMessage(jsondata) {
+    var msg_typ = getMessageType(jsondata)
     var checkbool = checkDelayMessage(jsondata)
-    //console.log("direct +++++++ " + checkbool)
     if (checkbool) {
-      waitUntilEnd().then(() => {
-        setMessage(jsondata)
-      })
+      if (msg_typ !== 'time') {
+        waitUntilEnd(msg_typ).then(() => {
+          setMessage(jsondata)
+        })
+      } 
     } else {
       setMessage(jsondata)
     }
   }
 
   function setHPreHandlerHeader(jsondata) {
-    //var checkbool = checkDelayMessage(jsondata)
-    //console.log("direct +++++++ " + checkbool)
+    var msg_typ = getMessageType(jsondata)
     if (checkDelayMessage(jsondata)) {
-      waitUntilEnd().then(() => {
+      waitUntilEnd(msg_typ).then(() => {
         setHeader(jsondata)
       })
     } else {
@@ -114,14 +131,10 @@ function WsConnect() {
     return new Promise(resolve => setTimeout(resolve, number));
   }
 
-  function waitUntilEnd() {
-    var waitime = getWaitTime()
-    //console.log("waitime " + waitime + " "+ waittimervar)
-    if (waittimervar) {
-      return new Promise(resolve => setTimeout(resolve, waitime));
-    } else {
-      return new Promise(resolve => setTimeout(resolve, 1));
-    }
+  function waitUntilEnd(msgType) {
+    var waitime = getWaitTime(msgType)
+    console.log("wait? " + waittimervar + " waitime " + waitime + " " + msgType)
+    return new Promise(resolve => setTimeout(resolve, waitime));
   }
 
   function setWaitEvent() {
@@ -157,9 +170,17 @@ function WsConnect() {
       }
 
       if (jsondata.type === "stop") {
-        setMessage(jsondata)
+        // müssen mal 0 schicken
         if (wait_on_stop) {
+          var null_vallue = {type: 'time', value: '00:00,0'}
+          console.log(null_vallue)
+          setMessage(null_vallue)
           setWaitEvent()
+          waitUntilEnd('manual').then(() => {
+            setMessage(jsondata)
+          })
+        } else {
+          setMessage(jsondata)
         }
       }
 
