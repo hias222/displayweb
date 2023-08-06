@@ -9,6 +9,7 @@ import classnames from "classnames";
 import { Grid, Typography } from "@mui/material";
 import AnalogClock from "../clock/AnalogClock";
 import windowParameter from "../../utilities/windowParameter";
+import  VideoPlaylistComponent  from "./VideoPlaylistComponent";
 
 export type MessageType = {
     displayMode: string;
@@ -52,6 +53,8 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
                 height="100%"
                 width="100%"
             />
+        } else if (this.props.VideoVersion === "1") {
+            return <VideoPlaylistComponent         />
         } else {
             switch (videoformat) {
                 case "video":
@@ -101,7 +104,6 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
     getVideoUrl() {
         console.log("video filename " + this.props.VideoVersion)
         let backend_url = this.web_data_url
-
         if (this.props.VideoVersion === "4") {
             //return backend_url + "/data/video4.mp4"
             console.log("/hls/obs_stream.m3u8")
@@ -117,7 +119,6 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             console.log("Fallback ---> " + backend_url + "/data/video1.mp4 (" + this.props.VideoVersion + ")")
             return backend_url + "/data/video1.mp4"
         }
-
     }
 
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4
@@ -134,7 +135,7 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
             case "clock":
                 //console.log('clock')
                 return <AnalogClock
-                 size={this.windowParams.getMaxPixelLength()}
+                    size={this.windowParams.getMaxPixelLength()}
                 />
             default:
                 let messagetext_main = classnames('messagetext_main');
