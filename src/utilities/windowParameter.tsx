@@ -157,7 +157,7 @@ export default class windowParameter {
             this.numberboxwidth = 50;
         }
 
-        if (windowmode === 7) {
+        if (windowmode === 7 || windowmode === 11) {
             this.window_width = 128
             this.window_height = 256
             this.detailedheader = false
@@ -247,24 +247,6 @@ export default class windowParameter {
             this.window_width = 512
             this.window_height = 384
             this.showClub = false;
-            this.boxheight = 35
-            this.toprowheight = 30;
-            this.boxTextfromtop = 32;
-            this.logospace = 160
-            this.showAgeResult = false
-            this.scalefactor = 0.9;
-            this.boxTextfromtop = 30;
-            this.toprowheight = 28
-            this.logonumber = 10
-            this.twopartsheader = true
-        }
-
-        if (windowmode === 11) {
-            //Anzeige Fürth
-            this.window_width = 512
-            this.window_height = 384
-            this.showClub = false;
-            this.showonlyClub = true;
             this.boxheight = 35
             this.toprowheight = 30;
             this.boxTextfromtop = 32;

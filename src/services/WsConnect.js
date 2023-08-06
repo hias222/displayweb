@@ -133,7 +133,7 @@ function WsConnect() {
 
   function waitUntilEnd(msgType) {
     var waitime = getWaitTime(msgType)
-    console.log("wait? " + waittimervar + " waitime " + waitime + " " + msgType)
+    //console.log("wait? " + waittimervar + " waitime " + waitime + " " + msgType)
     return new Promise(resolve => setTimeout(resolve, waitime));
   }
 

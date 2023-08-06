@@ -5,7 +5,7 @@
 REMOTE_SERVER_NAME=rockpie.fritz.box
 REMOTE_SERVER_USER=rock
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
-APP_MODE=2
+APP_MODE=0
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
