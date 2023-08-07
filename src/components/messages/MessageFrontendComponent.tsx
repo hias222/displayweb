@@ -54,7 +54,7 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
                 width="100%"
             />
         } else if (this.props.VideoVersion === "1") {
-            return <VideoPlaylistComponent         />
+            return <VideoPlaylistComponent/>
         } else {
             switch (videoformat) {
                 case "video":
