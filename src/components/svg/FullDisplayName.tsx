@@ -3,37 +3,51 @@ import classnames from 'classnames';
 import windowParameter from '../../utilities/windowParameter';
 
 
-interface LaneNameInterface {
+interface FullDisplayNameInterface {
     LaneName: string;
+    LaneNumber: string;
     AgeText: string;
     ClubName: string;
     IsOnlyBox: boolean;
     EntryTime?: string;
 }
 
-export default class FullDisplayName extends React.Component<LaneNameInterface, {}> {
+export default class FullDisplayName extends React.Component<FullDisplayNameInterface, {}> {
 
     windowParams: windowParameter;
 
-    constructor(props: LaneNameInterface) {
+    constructor(props: FullDisplayNameInterface) {
         super(props);
         this.windowParams = new windowParameter();
     }
 
+    getNameNumber() {
+        let textplacesvg = classnames('textplacesvg');
+
+        return <text
+                className={textplacesvg}
+                y={this.windowParams.getBoxTextFromTop()}
+                x={this.windowParams.getPictureLength()/2}
+                textAnchor="middle"
+            >
+                Bahn {this.props.LaneNumber}:</text>
+
+    }
+
     getNameText() {
-        let textlanesvg = classnames('textlanesvg');
+        let textplacesvg = classnames('textplacesvg');
         if (this.windowParams.getShowOnlyClub()) {
             return <text
-            className={textlanesvg}
+            className={textplacesvg}
             y={this.windowParams.getBoxTextFromTop()}
             x="0"
         >
             {this.props.ClubName}</text>
         } else {
             return <text
-                className={textlanesvg}
-                y={this.windowParams.getBoxTextFromTop()}
-                x={this.windowParams.getPictureLength()/2}
+                className={textplacesvg}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight()}
+                x={this.windowParams.getPictureLength()/2 }
                 textAnchor="middle"
             >
                 {this.props.LaneName}</text>
@@ -42,26 +56,24 @@ export default class FullDisplayName extends React.Component<LaneNameInterface, 
 
     getAgeText(length: number) {
         if (this.props.IsOnlyBox) {
-            let textlanesvg = classnames('textlanesvg');
+            let textHeaderHeatEventsvg = classnames('textHeaderHeatEventsvg');
             return <text
-                className={textlanesvg}
-                y={300}
+                className={textHeaderHeatEventsvg}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 2.5}
                 x={this.windowParams.getPictureLength()/2}
                 textAnchor="middle"
             >
-                {this.props.AgeText}</text>
+                Jahrgang {this.props.AgeText}</text>
         }
     }
 
     getClubText(length: number) {
-
-        //var startrNameSpace = this.props.IsOnlyBox ? this.windowParams.getSpaceNameStartlist() + 4 : this.windowParams.getSpaceNameFinishlist() + 4
-
+  
         if (this.windowParams.showClubs()) {
-            let textlanesvg = classnames('textlanesvg');
+            let textWKNamesvg = classnames('textWKNamesvg');
             return <text
-                className={textlanesvg}
-                y={100}
+                className={textWKNamesvg}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 2}
                 x={this.windowParams.getPictureLength()/2}
                 textAnchor="middle"
             >
@@ -75,7 +87,7 @@ export default class FullDisplayName extends React.Component<LaneNameInterface, 
             let textlanesvg = classnames('textlanesvg');
             return <text
                 className={textlanesvg}
-                y={250}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 3.5}
                 x={this.windowParams.getPictureLength()/2}
                 textAnchor="middle"
             >
@@ -112,6 +124,7 @@ export default class FullDisplayName extends React.Component<LaneNameInterface, 
                     className={gradient_name}
                     d={boxSize}
                 />
+                {this.getNameNumber()}
                 {this.getNameText()}
                 {this.getAgeText(length)}
                 {this.getClubText(length)}

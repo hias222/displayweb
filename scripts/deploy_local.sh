@@ -2,8 +2,8 @@
 
 # change folder in package.json
 
-REMOTE_SERVER_NAME=rockpie.fritz.box
-REMOTE_SERVER_USER=rock
+REMOTE_SERVER_NAME=jetson.fritz.box
+REMOTE_SERVER_USER=jetson
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 APP_MODE=0
 

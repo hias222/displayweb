@@ -7,6 +7,8 @@ export interface PlaylistInterface {
     resultdataURL: string;
 }
 
+var runningFile = ""
+
 export default function MediaData() {
 
     const [mediaFiles, setMediaFiles] = useState([]);
@@ -28,6 +30,7 @@ export default function MediaData() {
             setNumberFile(0)
             if (data[0] !== undefined) setPlayingFile(web_data_url + "/data/" + data[0])
         })
+        // only once
         // eslint-disable-next-line
     }, []);
 
@@ -42,15 +45,17 @@ export default function MediaData() {
         var newNumber = numberFile + 1
         if (newNumber > length - 1) {
             setNumberFile(0)
+            runningFile = (web_data_url + "/data/" + mediaFiles[numberFile])
         } else {
             setNumberFile(newNumber)
+            runningFile = (web_data_url + "/data/" + mediaFiles[numberFile])
         }
     }
 
     let videotable = classnames('videotable-variable');
 
     function getVideoData() {
-        console.log("Video " + playingFile)
+        //console.log("Video " + playingFile)
         return (
             < video className={videotable}
                 onEnded={handleChangeEnd}
@@ -74,13 +79,15 @@ export default function MediaData() {
     }
 
     function getImageData() {
-
         //5s warten 
-        setTimeout(() => {
-            handleChangeEnd()
-        }, 5000)
+        if( playingFile.localeCompare(runningFile)){
+            console.log("Image wait 5s")
+            setTimeout(() => {
+                handleChangeEnd()
+            }, 5000)
+        }
 
-        console.log("image " + playingFile)
+        //console.log("image " + playingFile)
 
         return (
             <img

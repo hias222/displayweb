@@ -15,7 +15,7 @@ export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
 
     checkName() {
         if (this.props.swimmer.name !== undefined) {
-            let namelength = this.windowParams.getLengthNameStartlist();
+            let namelength = this.windowParams.getLengthNameStartlist() +10;
 
             let sizeName = this.props.swimmer.name.length;
             let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
@@ -38,7 +38,7 @@ export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
 
     checkClub() {
         if (this.props.swimmer.clubname !== undefined) {
-            let namelength = this.windowParams.getLengthClubStartlist();
+            let namelength = this.windowParams.getLengthClubStartlist() +10;
             let sizeClub = this.props.swimmer.clubname.length;
 
             if (sizeClub > (namelength - 2)) {
@@ -64,6 +64,7 @@ export default class SingleLaneDisplay extends React.Component<LaneData, {}> {
             <div className={noFlexHorizontal}>
                 <FullDisplayName
                     LaneName={correctName}
+                    LaneNumber={this.props.lane.toString()}
                     IsOnlyBox={true}
                     AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
                     ClubName={this.checkClub()}
