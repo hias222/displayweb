@@ -59,7 +59,7 @@ export default class FullDisplayName extends React.Component<FullDisplayNameInte
             let textHeaderHeatEventsvg = classnames('textHeaderHeatEventsvg');
             return <text
                 className={textHeaderHeatEventsvg}
-                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 2.5}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 2.8}
                 x={this.windowParams.getPictureLength()/2}
                 textAnchor="middle"
             >
@@ -87,7 +87,7 @@ export default class FullDisplayName extends React.Component<FullDisplayNameInte
             let textlanesvg = classnames('textlanesvg');
             return <text
                 className={textlanesvg}
-                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 3.5}
+                y={this.windowParams.getBoxTextFromTop() + this.windowParams.getBoxheight() * 4}
                 x={this.windowParams.getPictureLength()/2}
                 textAnchor="middle"
             >
