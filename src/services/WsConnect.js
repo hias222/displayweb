@@ -63,7 +63,7 @@ function WsConnect() {
     if (wait_on_stop) {
       let msg_type = jsondata.type
       if (msg_type !== undefined) {
-        if (msg_type === "lane" || msg_type === "header" || msg_type === "round" || msg_type === "start" || msg_type === "time") {
+        if (msg_type === "lane" || msg_type === "header" || msg_type === "round" || msg_type === "start" || msg_type === "time" || msg_type === "best3") {
           var overall_wait = waittimervar ? true : false
           return overall_wait
         } else {
@@ -103,10 +103,14 @@ function WsConnect() {
   }
 
   function setPrehandlerMessage(jsondata) {
+
+    // sollen alle Nachrichten geschickt werden z.B best3 oder presentlane
+    // todo mit parameter properties
+
     var msg_typ = getMessageType(jsondata)
     var checkbool = checkDelayMessage(jsondata)
     if (checkbool) {
-      if (msg_typ !== 'time') {
+      if (msg_typ !== 'time' && msg_typ !== 'best3') {
         waitUntilEnd(msg_typ).then(() => {
           setMessage(jsondata)
         })

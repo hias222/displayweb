@@ -4,8 +4,9 @@
 
 REMOTE_SERVER_NAME=jetson.fritz.box
 REMOTE_SERVER_USER=jetson
-BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
-APP_MODE=0
+# BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
+BASE_DIR=/home/ubuntu/github/displayweb
+APP_MODE=11
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp

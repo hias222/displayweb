@@ -19,6 +19,9 @@ export default class Best3LaneDisplay extends React.Component<LaneData, {}> {
     checkName() {
         let namelength = this.windowParams.getLengthNameStartlist() + 5;
 
+        //check not null swimmer ?
+        // ToDo
+
         let sizeName = this.props.swimmer.name.length;
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
 
