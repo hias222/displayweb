@@ -55,7 +55,7 @@ export default function MediaData() {
     let videotable = classnames('videotable-variable');
 
     function getVideoData() {
-        //console.log("Video " + playingFile)
+        console.log("Video " + playingFile)
         return (
             < video className={videotable}
                 onEnded={handleChangeEnd}
@@ -82,13 +82,11 @@ export default function MediaData() {
     function getImageData() {
         //5s warten 
         if( playingFile.localeCompare(runningFile)){
-            console.log("Image wait 5s")
+            console.log("Image wait 5s " + playingFile)
             setTimeout(() => {
                 handleChangeEnd()
             }, 5000)
         }
-
-        //console.log("image " + playingFile)
 
         return (
             <img
