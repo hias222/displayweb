@@ -69,7 +69,8 @@ export default function MediaData() {
     }
 
     function getEmptyData() {
-        console.log("Empty " + playingFile)
+        console.log("Empty please check backend - " + playingFile)
+        console.log(web_data_url)
         setTimeout(() => {
             handleChangeEnd()
         }, 1000)

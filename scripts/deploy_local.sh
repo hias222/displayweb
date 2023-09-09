@@ -2,11 +2,11 @@
 
 # change folder in package.json
 
-REMOTE_SERVER_NAME=jetson.fritz.box
-REMOTE_SERVER_USER=jetson
+REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+REMOTE_SERVER_USER=rock
 # BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 BASE_DIR=/home/ubuntu/github/displayweb
-APP_MODE=11
+APP_MODE=0
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
