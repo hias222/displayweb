@@ -6,7 +6,7 @@ REMOTE_SERVER_NAME=rockpi-4b.fritz.box
 REMOTE_SERVER_USER=rock
 # BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 BASE_DIR=/home/ubuntu/github/displayweb
-APP_MODE=0
+APP_MODE=6
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
