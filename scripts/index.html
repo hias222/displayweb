@@ -1,30 +1,160 @@
 <html>
-  <head>
-    <title>Timing</title>
-  </head>
-  <body>
-    <a href="/mode/1">Mode 1 16:9 SGM 896*512 8 Bahnen</a>
-    <br>
-    <a href="/mode/2">Mode 2 16:9 FCN 896*512 8 Bahnen</a>
-    <br>
-    <a href="/mode/3">Mode 3 1080p</a>
-    <br>
-    <a href="/mode/4">Mode 4 512*384 6 Bahnen</a>
-    <br>
-    <a href="/mode/5">Mode 5 512*384 8 Bahnen</a>
-    <br>
-    <a href="/mode/6">Mode 6 16:9 FCN 896*512 6 Bahnen</a>
-    <br>
-    <a href="/mode/7">Mode 7 2 Panels 128*256 6 Bahnen</a>
-    <br>
-    <a href="/mode/8">Mode 8 2 Panels 256*128 6 Bahnen</a>
-    <br>
-    <a href="/mode/9">Mode 9 2 Panels 128*256 8 Bahnen</a>
-    <br>
-    <a href="/mode/10">Mode 10 SAD 512*384 8 Bahnen</a>
-    <br>
-    <a href="/mode/11">Mode 11 2 Panels 128*256 6 Bahnen mit 25s Pause nach start</a>
-    <br>
-    <a href="/mode/12">Mode 12 128*288 8 Bahnen</a>
-  </body>
+
+<head>
+  <title>Timing</title>
+  <style type="text/css" media="screen">
+    table {
+      border-collapse: collapse;
+      border: 1px solid #FF0000;
+    }
+
+    table td {
+      border: 1px solid #FF0000;
+      padding: 5px;
+      text-align: left;
+    }
+
+    table th {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>896*512</h2>
+  <table>
+    <tr>
+      <th>Mode</th>
+      <th>wait at start</th>
+      <th>lanes</th>
+      <th>Length</th>
+      <th>Link</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>no</td>
+      <td>8</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/1">Mode 1 SGM </a>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>no</td>
+      <td>8</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/2">Mode 2 FCN </a>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>no</td>
+      <td>6</td>
+      <td>25</td>
+      <td>
+        <a href="/mode/6">Mode 6 FCN 6 Bahnen</a>
+      </td>
+    </tr>
+  </table>
+
+  <h2>1080p</h2>
+  <a href="/mode/3">Mode 3 1080p</a>
+  <br>
+
+  <h2>512*384</h2>
+  <a href="/mode/4">Mode 4 512*384 6 Bahnen</a>
+  <br>
+  <a href="/mode/5">Mode 5 512*384 8 Bahnen</a>
+  <br>
+  <a href="/mode/10">Mode 10 SAD 512*384 8 Bahnen</a>
+  <br>
+  <h2>128*256</h2>
+
+
+  <table>
+    <tr>
+      <th>Mode</th>
+      <th>wait at start</th>
+      <th>lanes</th>
+      <th>Length</th>
+      <th>Link</th>
+    </tr>
+    
+    <tr>
+      <td>9</td>
+      <td>no</td>
+      <td>8</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/9">Mode 9</a>
+      </td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>no</td>
+      <td>8</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/12">Mode 12 - not ready</a>
+      </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>no</td>
+      <td>6</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/7">Mode 7</a>
+      </td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>yes</td>
+      <td>6</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/11">Mode 11</a>
+      </td>
+    </tr>
+   
+    <tr>
+      <td>13</td>
+      <td>no</td>
+      <td>5</td>
+      <td>25</td>
+      <td>
+        <a href="/mode/13">Mode 13 not ready</a>
+      </td>
+    </tr>
+  </table>
+
+  <h2>256*128</h2>
+
+
+  <table>
+    <tr>
+      <th>Mode</th>
+      <th>wait at start</th>
+      <th>lanes</th>
+      <th>Length</th>
+      <th>Link</th>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>no</td>
+      <td>6</td>
+      <td>50</td>
+      <td>
+        <a href="/mode/8">Mode 8</a>
+      </td>
+    </tr>
+  
+  </table>
+
+</body>
+
 </html>

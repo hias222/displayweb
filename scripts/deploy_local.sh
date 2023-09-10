@@ -1,21 +1,48 @@
 #!/bin/bash
 
 # change mode in package.json same as APP_MODE
+# change 2 times (issue with run build)
+APP_MODE=12
+#######
 
 REMOTE_SERVER_NAME=rockpi-4b.fritz.box
 REMOTE_SERVER_USER=rock
-# BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
-BASE_DIR=/home/ubuntu/github/displayweb
-APP_MODE=6
+
+# need ssh certs
+#REMOTE_SERVER_NAME=jetson.fritz.box
+#REMOTE_SERVER_USER=jetson
+
+#REMOTE_SERVER_NAME=swim.fritz.box
+#REMOTE_SERVER_USER=pi
+
+
+BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
+# BASE_DIR=/home/ubuntu/github/displayweb
+
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
 NGINX_DIR=/usr/share/nginx/html
 APP_NAME=display
 
-# need ssh certs
-#REMOTE_SERVER_NAME=jetson.fritz.box
-#REMOTE_SERVER_USER=jetson
+. ../.env
+. ../.env.production
+
+echo "Layout:                         $APP_MODE"
+echo "Bahn:                           $REACT_APP_ROUND_LENGTH"
+echo "Clear Startlist:                $REACT_APP_CLEAR_START_LIST_ON_START"
+echo "Base:                           $BASE_DIR"
+echo "Remote:                         $REMOTE_SERVER_USER@$REMOTE_SERVER_NAME"
+
+read -p "Go on (y/n)? " answer
+case ${answer:0:1} in
+    y|Y )
+        echo ...
+    ;;
+    * )
+        exit 0
+    ;;
+esac
 
 APP_DIR=$APP_NAME
 
@@ -24,9 +51,6 @@ if [[ $APP_MODE -gt 0 ]]; then
 fi
 
 echo "set APP_DIR to $APP_DIR"
-
-#REMOTE_SERVER_NAME=swim.fritz.box
-#REMOTE_SERVER_USER=pi
 
 # linux set time
 ACTUAL_TIME=$(date)
