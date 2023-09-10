@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# change folder in package.json
+# change mode in package.json same as APP_MODE
 
 REMOTE_SERVER_NAME=rockpi-4b.fritz.box
 REMOTE_SERVER_USER=rock

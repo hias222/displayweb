@@ -1,8 +1,12 @@
+
+
 import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import WkAnalyseData from "./WkAnalyseData";
 import React from "react";
-import "../styles/App.scss";
+//import "../styles/dynamic/App6.scss"
+
+//import(utilsPath);
 //import { LaneState } from "../state/LaneState";
 
 let correctValueForLaneNull = 0;
@@ -13,6 +17,11 @@ let waitTimerDate = Date.now();
 const allLaneData = [];
 
 function WsConnect() {
+
+  let styleMode = process.env.REACT_APP_SHOW_MODE
+  console.log("style " + styleMode)
+
+  import("../styles/dynamic/App" + styleMode + ".scss");
   var context_path =
     process.env.REACT_APP_BACKEND_CONTEX_PATH === undefined
       ? "/ws2/socket.io"
@@ -114,7 +123,7 @@ function WsConnect() {
         waitUntilEnd(msg_typ).then(() => {
           setMessage(jsondata)
         })
-      } 
+      }
     } else {
       setMessage(jsondata)
     }
@@ -176,7 +185,7 @@ function WsConnect() {
       if (jsondata.type === "stop") {
         // müssen mal 0 schicken
         if (wait_on_stop) {
-          var null_vallue = {type: 'time', value: '00:00,0'}
+          var null_vallue = { type: 'time', value: '00:00,0' }
           console.log(null_vallue)
           setMessage(null_vallue)
           setWaitEvent()
