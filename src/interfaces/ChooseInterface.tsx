@@ -1,6 +1,7 @@
 import { eventHeat } from "../types/EventHeat";
 import { LaneState } from "../state/LaneState";
 import { TextMessageType } from "../types/TextMessageType";
+import { HiitState } from "../state/HiitState";
 
 export interface ChooseInterface {
     ChangeMode: boolean;
@@ -12,4 +13,5 @@ export interface ChooseInterface {
     messageText: TextMessageType;
     result: string;
     round: number;
+    hiit: HiitState;
 }

@@ -12,6 +12,7 @@ import React from 'react';
 import { LaneState } from "../state/LaneState";
 import { correctItem, correctDisplaymode } from '../utilities/checkLaneData';
 import { TextMessageType } from '../types/TextMessageType';
+import { HiitState } from '../state/HiitState';
 
 //REACT_APP_ROUND_LENGTH
 var ROUND_LENGTH =
@@ -35,6 +36,11 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         heatnr: '0',
         name: '0',
     });
+    const [hiit, setHiit] = useState<HiitState>({
+        event: 'config',
+        slow: '99',
+        shigh: '99'
+    });
 
     const [textMessage, setTextmessage] = useState<TextMessageType>({
         diplayMode: '',
@@ -49,7 +55,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         try {
             var roundNumber = parseInt(round)
             var roundLength = parseInt(ROUND_LENGTH)
-            var distancelength = parseInt(eventheat.distance !== undefined ? eventheat.distance : "50" )
+            var distancelength = parseInt(eventheat.distance !== undefined ? eventheat.distance : "50")
             if (roundNumber * roundLength > distancelength) {
                 setRound(distancelength)
             } else {
@@ -59,6 +65,10 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
             return 0
         }
 
+    }
+
+    function setHiitData(hiit: any) {
+        setHiit({ event: hiit.event, shigh: hiit.shigh, slow: hiit.slow })
     }
 
     function resetHeaderInfo() {
@@ -243,6 +253,13 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 console.log('->message')
                 break;
             }
+            case "hiit": {
+                resetHeaderInfo()
+                setDisplayMode("hiit")
+                setHiitData(jsondata)
+                console.log('->hiit')
+                break;
+            }
             case "lenex": {
                 resetHeaderInfo()
                 setDisplayMode("message")
@@ -326,6 +343,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                     TextMessage={textMessage}
                     Result={Result}
                     Round={Round}
+                    Hiit={hiit}
                 />
             </Grid>)
         } else {

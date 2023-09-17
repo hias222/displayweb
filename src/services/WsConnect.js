@@ -166,6 +166,7 @@ function WsConnect() {
     //console.log('update allLaneData')
     setPrehandlerLanes(allLaneData);
     //console.log(lanes)
+  // eslint-disable-next-line
   }, [message]);
 
   useEffect(() => {
@@ -175,6 +176,7 @@ function WsConnect() {
     });
 
     const messageListener = (newmessage) => {
+      //console.log(newmessage)
       var jsondata = JSON.parse(newmessage);
       // lane data -> store in array
       // sonst kommt nur die letzte bahn in den hook -> zu schnell

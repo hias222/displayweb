@@ -5,6 +5,7 @@ import { LaneState } from '../state/LaneState'
 import React from 'react';
 import ChooseComponent from '../components/ChooseCompoent';
 import { TextMessageType } from '../types/TextMessageType';
+import { HiitState } from '../state/HiitState';
 
 function delay(time: number) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -21,6 +22,7 @@ function DataMapper(model: {
     TextMessage: TextMessageType;
     Result: string;
     Round: number;
+    Hiit: HiitState;
 }) {
 
     const [eventHeat, setEventHeat] = useState<eventHeat>({ eventnr: '0', heatnr: '0', name: '' });
@@ -28,13 +30,14 @@ function DataMapper(model: {
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
     const [changedMode, setChangeMode] = useState(false)
+    const [hiit, setHiit] = useState<HiitState>({ event: 'config', slow: '10', shigh: '30' });
+
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
         console.log('DataMapper.tsx old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
         console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
         setEventHeat(model.eventheat)
     }
-
 
     if (model.DisplayMode !== displayMode) {
         console.log('DataMapper changed displaymode to ' + model.DisplayMode)
@@ -63,6 +66,10 @@ function DataMapper(model: {
     useEffect(() => {
         setJsonData(model.jsonData)
     }, [model.jsonData, model.TextMessage]);
+
+    useEffect(() => {
+        setHiit(model.Hiit)
+    }, [model.Hiit]);
 
     useEffect(() => {
         if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
@@ -96,6 +103,7 @@ function DataMapper(model: {
                 messageText={model.TextMessage}
                 result={model.Result}
                 round={model.Round}
+                hiit={hiit}
             />
         </div>
     );

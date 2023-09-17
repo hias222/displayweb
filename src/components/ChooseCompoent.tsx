@@ -9,6 +9,7 @@ import { MessageFrontendComponent } from "./messages/MessageFrontendComponent";
 import { ResultFrontendComponent } from "./result/ResultFrontendComponent";
 import { SingleLaneFrontendComponent } from "./SingleLaneFrontendComponent";
 import { Best3FrontendComponent } from "./Best3FrontendComponent";
+import { HiitFrontendComponent } from "./hiit/HiitFrontendComponent";
 
 function ChooseComponent(model: ChooseInterface) {
    
@@ -64,7 +65,14 @@ function ChooseComponent(model: ChooseInterface) {
                         displayFormat={chooseComponent.messageText.diplayMode}
                     />
                 )
-            } else if (chooseComponent.displayMode === 'result') {
+            } else if (chooseComponent.displayMode === 'hiit') {
+                return (
+                    <HiitFrontendComponent
+                        HiitState={chooseComponent.hiit}
+                    />
+                )
+            } 
+            else if (chooseComponent.displayMode === 'result') {
                 return (
                     <ResultFrontendComponent
                         diplayMode={chooseComponent.displayMode}
