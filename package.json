@@ -5,7 +5,7 @@
   },
   "version": "1.0.0",
   "private": true,
-  "homepage": "/mode/12",
+  "homepage": "/displayweb",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
