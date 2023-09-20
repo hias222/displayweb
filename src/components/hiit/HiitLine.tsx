@@ -2,6 +2,7 @@ import React from "react"
 import classnames from "classnames";
 import windowParameter from "../../utilities/windowParameter";
 import classNames from "classnames";
+import { swimmerPosition } from "../../types/SwimmerPosition";
 // model: {message: string}
 
 var windowParams: windowParameter = new windowParameter()
@@ -18,15 +19,36 @@ function getLaneText(laneText: string) {
 
 }
 
-export default function HiitLine(model: { message: string }) {
+
+function getIntense(roundticker: number, varianz: number, order: number, intensity: number, departure: number): number {
+
+    console.log(order + ":" + departure + "/" + intensity)
+
+    if (roundticker >= (departure - 5)) {
+        return 3
+    } else if (roundticker >= intensity + varianz ) {
+        return 2
+    } else if (roundticker >= intensity - varianz ) {
+        return 1
+    }
+    return 0
+
+}
+
+export default function HiitLine(model: { ticker: number, departure: number, gap: number, varianz: number, swimmerPos: swimmerPosition }) {
 
 
     var gradient_name = classnames('messagetext_main');
 
-    let length = windowParams.getPictureLength() ;
+    let length = windowParams.getPictureLength();
     let boxheight = windowParams.getBoxheight();
 
-    let text = model.message;
+    var round = Math.floor((model.ticker - ((model.swimmerPos.order - 1) * model.gap)) / model.departure)
+    console.log(model.swimmerPos.order + ":" + round + " " + model.departure + "/" + model.swimmerPos.intensity)
+    var roundTicker = model.ticker - (round * model.departure) - ((model.swimmerPos.order - 1) * model.gap)
+
+    let intense = getIntense(roundTicker, model.varianz, model.swimmerPos.order, model.swimmerPos.intensity, model.departure)
+    let text = roundTicker + " " + intense;
 
     let viewBoxSize = "0 0 " + length + " " + windowParams.getBoxheight()
     let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"
@@ -37,25 +59,25 @@ export default function HiitLine(model: { message: string }) {
     return (
 
         <div className={noSpaceContainerHorizontal} >
-        <div className={noFlexHorizontal}>
+            <div className={noFlexHorizontal}>
 
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMaxYMax meet"
-            id="svg8"
-            version="1.1"
-            viewBox={viewBoxSize}
-            height={windowParams.getBoxheight()}
-        >
-            <g id="LaneName1">
-                <path
-                    transform="scale(1)"
-                    className={gradient_name}
-                    d={boxSize}
-                />
-                {getLaneText(text)}
-            </g>
-        </svg>
-        </div></div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMaxYMax meet"
+                    id="svg8"
+                    version="1.1"
+                    viewBox={viewBoxSize}
+                    height={windowParams.getBoxheight()}
+                >
+                    <g id="LaneName1">
+                        <path
+                            transform="scale(1)"
+                            className={gradient_name}
+                            d={boxSize}
+                        />
+                        {getLaneText(text)}
+                    </g>
+                </svg>
+            </div></div>
     );
 }

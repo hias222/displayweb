@@ -1,6 +1,9 @@
 export type HiitState = {
-    slow: string;
-    shigh: string;
-    event: string;
+    event: string,
+    departure: string,
+    intensity: string,
+    order: string;
+    gap: string;
+    varianz: string;
 };
 

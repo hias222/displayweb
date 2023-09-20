@@ -2,14 +2,16 @@ import React from "react";
 import { HiitState } from "../../state/HiitState";
 import HiitLine from "./HiitLine";
 import classNames from "classnames";
+import { swimmerPosition } from "../../types/SwimmerPosition";
+import HiitHeader from "./HiitHeader";
 
 export type HiitType = {
-    slow: number;
-    shigh: number;
     ticker: number;
-    intense: number;
+    departure: number;
     varianz: number;
     round: number;
+    gap: number;
+    position: swimmerPosition;
 }
 
 export interface HiitInterface {
@@ -28,10 +30,13 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
         this.timerseconds = 0;
 
         this.state = {
-            slow: 10,
-            shigh: 30,
+            position: {
+                order: 1,
+                intensity: 20
+            },
+            gap: 5,
+            departure: 30,
             ticker: 0,
-            intense: 0,
             varianz: 1,
             round: 0
         }
@@ -40,11 +45,14 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
     componentDidUpdate(prevProps: HiitInterface) {
 
         if (prevProps !== this.props) {
+            
 
             if (this.props.HiitState.event === 'config') {
                 console.log('config')
-                this.setState({ slow: Number.parseFloat(this.props.HiitState.slow) })
-                this.setState({ shigh: Number.parseFloat(this.props.HiitState.shigh) })
+                console.log(this.props.HiitState)
+                this.setState({ position: { intensity: Number.parseFloat(this.props.HiitState.intensity), order: 1 } })
+                this.setState({ departure: Number.parseFloat(this.props.HiitState.departure) })
+                this.setState({ varianz: Number.parseFloat(this.props.HiitState.varianz) })
             }
 
             if (this.props.HiitState.event === 'start') {
@@ -77,27 +85,10 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
     checkState(ticker: number) {
 
-        var roundTicker = ticker - (this.state.round * (this.state.shigh + this.state.slow))
+        var roundTicker = ticker - (this.state.round * this.state.departure )
 
-        if (roundTicker >= this.state.shigh - this.state.varianz - 1) {
-            this.setState({ "intense": 1 })
-        }
-
-        if (roundTicker > this.state.shigh + this.state.varianz - 1) {
-            this.setState({ "intense": 2 })
-        }
-
-        if (roundTicker >= (this.state.shigh + this.state.slow - 5)) {
-            this.setState({ "intense": 3 })
-        }
-
-        if (roundTicker >= (this.state.shigh + this.state.slow)) {
+        if (roundTicker >= (this.state.departure)) {
             this.setState({ "round": this.state.round + 1 })
-            this.setState({ "intense": 0 })
-        }
-
-        if (roundTicker < this.state.shigh - 1) {
-            this.setState({ "intense": 0 })
         }
 
     }
@@ -130,8 +121,8 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
     }
 
     render() {
-        var roundTicker = this.state.ticker - (this.state.round * (this.state.shigh + this.state.slow))
-        var countdown = (this.state.shigh + this.state.slow) - roundTicker
+        var roundTicker = this.state.ticker - (this.state.round * (this.state.departure + this.state.position.intensity))
+        var countdown = (this.state.departure + this.state.position.intensity) - roundTicker
         var abgang = countdown > 5 ? "" : countdown
 
         /*
@@ -148,8 +139,9 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
         return (
             <div key={200} className={noSpaceContainerVertical}>
-                <HiitLine message={this.state.ticker + ":"}></HiitLine>
-                <HiitLine message={roundTicker + " : " + this.state.intense + " " + abgang}></HiitLine>
+                <HiitHeader ticker={this.state.ticker} round={this.state.round}></HiitHeader>
+                <HiitLine ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
+                    swimmerPos={this.state.position}></HiitLine>
             </div>
         )
     }

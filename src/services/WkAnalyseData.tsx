@@ -38,8 +38,11 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     });
     const [hiit, setHiit] = useState<HiitState>({
         event: 'config',
-        slow: '99',
-        shigh: '99'
+        departure: '120',
+        intensity: '99',
+        gap: '5',
+        order: '1',
+        varianz: '1'
     });
 
     const [textMessage, setTextmessage] = useState<TextMessageType>({
@@ -68,7 +71,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setHiitData(hiit: any) {
-        setHiit({ event: hiit.event, shigh: hiit.shigh, slow: hiit.slow })
+        setHiit({ event: hiit.event, departure: hiit.departure, intensity: hiit.intensity, order: hiit.order, gap: hiit.gap, varianz: hiit.varianz  })
     }
 
     function resetHeaderInfo() {
