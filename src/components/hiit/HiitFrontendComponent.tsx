@@ -1,8 +1,7 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import classnames from "classnames";
 import { HiitState } from "../../state/HiitState";
+import HiitLine from "./HiitLine";
+import classNames from "classnames";
 
 export type HiitType = {
     slow: number;
@@ -131,23 +130,27 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
     }
 
     render() {
-        let messagetext_main = classnames('messagetext_main');
         var roundTicker = this.state.ticker - (this.state.round * (this.state.shigh + this.state.slow))
         var countdown = (this.state.shigh + this.state.slow) - roundTicker
         var abgang = countdown > 5 ? "" : countdown
 
+        /*
+                            Mode HIIT
+                            <br></br>
+                            {this.state.shigh} - {this.state.slow}
+                            <br></br>
+                            {roundTicker}: {this.state.intense} - {abgang}
+                            <br></br>
+                            {this.state.ticker} - {this.state.round + 1}
+                            */
+
+        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
+
         return (
-            <Grid item  >
-                <Typography className={messagetext_main}>
-                    Mode HIIT
-                    <br></br>
-                    {this.state.shigh} - {this.state.slow}
-                    <br></br>
-                    {roundTicker}: {this.state.intense} - {abgang}
-                    <br></br>
-                    {this.state.ticker} - {this.state.round + 1}
-                </Typography>
-            </Grid>
+            <div key={200} className={noSpaceContainerVertical}>
+                <HiitLine message={this.state.ticker + ":"}></HiitLine>
+                <HiitLine message={roundTicker + " : " + this.state.intense + " " + abgang}></HiitLine>
+            </div>
         )
     }
 }
