@@ -37,6 +37,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         name: '0',
     });
     const [hiit, setHiit] = useState<HiitState>({
+        mode: 'data',
         event: 'config',
         departure: '120',
         gap: '5',
@@ -70,7 +71,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setHiitData(hiit: any) {
-        setHiit({ event: hiit.event, departure: hiit.departure, gap: hiit.gap, varianz: hiit.varianz, rows: hiit.rows  })
+        setHiit({ mode: hiit.mode, event: hiit.event, departure: hiit.departure, gap: hiit.gap, varianz: hiit.varianz, rows: hiit.rows  })
     }
 
     function resetHeaderInfo() {
@@ -333,7 +334,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     function getDataMapper() {
         if (connectstate) {
-            return (<Grid item xs={12}>
+            return ( <Grid item xs={12}>
                 <DataMapper
                     CompetitionName={CompetitionName}
                     DisplayMode={DisplayMode}

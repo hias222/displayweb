@@ -2,13 +2,12 @@ import React from "react"
 import classnames from "classnames";
 import windowParameter from "../../utilities/windowParameter";
 import classNames from "classnames";
-import { swimmerPosition } from "../../types/SwimmerPosition";
 // model: {message: string}
 
 var windowParams: windowParameter = new windowParameter()
 
 function getLeftText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
         y={windowParams.getBoxTextFromTop()}
@@ -19,7 +18,7 @@ function getLeftText(laneText: string) {
 }
 
 function getRoundText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
         y={windowParams.getBoxTextFromTop()}
@@ -31,7 +30,7 @@ function getRoundText(laneText: string) {
 }
 
 function getTimeText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
         y={windowParams.getBoxTextFromTop()}
@@ -42,14 +41,12 @@ function getTimeText(laneText: string) {
 
 }
 
-export default function HiitHeader(model: { departure: number, ticker: number, round: number }) {
+export default function HiitHeader(model: { departure: string, ticker: string, round: string }) {
 
-    var gradient_name = classnames('messagetext_main');
+    var texthiitsvg = classnames('textbacksvg');
 
     let length = windowParams.getPictureLength() ;
     let boxheight = windowParams.getBoxheight();
-
-    let text = model.ticker + " " + model.round;
 
     let viewBoxSize = "0 0 " + length + " " + windowParams.getBoxheight()
     let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"
@@ -73,12 +70,12 @@ export default function HiitHeader(model: { departure: number, ticker: number, r
             <g id="LaneName1">
                 <path
                     transform="scale(1)"
-                    className={gradient_name}
+                    className={texthiitsvg}
                     d={boxSize}
                 />
-                {getLeftText(model.departure.toString())}
-                {getRoundText(model.round.toString())}
-                {getTimeText(model.ticker.toString())}
+                {getLeftText(model.departure)}
+                {getRoundText(model.round)}
+                {getTimeText(model.ticker)}
             </g>
         </svg>
         </div></div>

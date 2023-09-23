@@ -30,7 +30,7 @@ function DataMapper(model: {
     const [jsonData, setJsonData] = useState('')
     const [displayMode, setDisplayMode] = useState('')
     const [changedMode, setChangeMode] = useState(false)
-    const [hiit, setHiit] = useState<HiitState>({ event: 'config', departure: '30',gap: '5', varianz: '1', rows: [] });
+    const [hiit, setHiit] = useState<HiitState>({ mode: 'send', event: 'config', departure: '30',gap: '5', varianz: '1', rows: [] });
 
 
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {

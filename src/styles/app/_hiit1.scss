@@ -1,13 +1,11 @@
-.texttimesvg{
-    text-align: right;
+.texthiitsvg{    
     fill: $farbeschrift;
-    font-size: 2em;
+    font-size: 1.2em;
 }
 
-.textroundsvg{
-    text-align: right;
-    fill: $farbeschrift;
-    font-size: 2em;
+.textbacksvg{    
+    fill: $farbehintergrund;
+    font-size: 1em;
 }
 
 
@@ -25,6 +23,10 @@
 
 .gradient_intense_3 {
     fill: rgba(103, 107, 62, 0.403);
+}
+
+.gradient_intense_4 {
+    fill: rgba(0, 0, 180, 0.8);
 }
 
 .gradient_lane_stop {
