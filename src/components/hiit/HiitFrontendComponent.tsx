@@ -141,7 +141,7 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
         if (this.state.mode === 'data') {
 
             return <div key={200} className={noSpaceContainerVertical}>
-                <HiitHeader departure={this.state.departure.toString()} ticker={this.state.ticker.toString()} round={this.state.round.toString()}></HiitHeader>
+                <HiitHeader departure={this.state.departure.toString()} ticker={this.state.ticker.toString()} round={(this.state.round + 1).toString()}></HiitHeader>
                 {this.state.position.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
                     <HiitLine key={index} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
                         swimmerPos={row}></HiitLine>
