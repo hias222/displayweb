@@ -11,7 +11,7 @@ export type HiitType = {
     varianz: number;
     round: number;
     gap: number;
-    position: swimmerPosition;
+    position: swimmerPosition[];
 }
 
 export interface HiitInterface {
@@ -30,10 +30,11 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
         this.timerseconds = 0;
 
         this.state = {
-            position: {
+            position: [{
                 order: 1,
-                intensity: 20
-            },
+                intensity: '20',
+                id: '1'
+            }],
             gap: 5,
             departure: 30,
             ticker: 0,
@@ -45,12 +46,12 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
     componentDidUpdate(prevProps: HiitInterface) {
 
         if (prevProps !== this.props) {
-            
+
 
             if (this.props.HiitState.event === 'config') {
                 console.log('config')
                 console.log(this.props.HiitState)
-                this.setState({ position: { intensity: Number.parseFloat(this.props.HiitState.intensity), order: 1 } })
+                this.setState({ position: this.props.HiitState.rows })
                 this.setState({ departure: Number.parseFloat(this.props.HiitState.departure) })
                 this.setState({ varianz: Number.parseFloat(this.props.HiitState.varianz) })
             }
@@ -85,7 +86,7 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
     checkState(ticker: number) {
 
-        var roundTicker = ticker - (this.state.round * this.state.departure )
+        var roundTicker = ticker - (this.state.round * this.state.departure)
 
         if (roundTicker >= (this.state.departure)) {
             this.setState({ "round": this.state.round + 1 })
@@ -121,27 +122,15 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
     }
 
     render() {
-        var roundTicker = this.state.ticker - (this.state.round * (this.state.departure + this.state.position.intensity))
-        var countdown = (this.state.departure + this.state.position.intensity) - roundTicker
-        var abgang = countdown > 5 ? "" : countdown
-
-        /*
-                            Mode HIIT
-                            <br></br>
-                            {this.state.shigh} - {this.state.slow}
-                            <br></br>
-                            {roundTicker}: {this.state.intense} - {abgang}
-                            <br></br>
-                            {this.state.ticker} - {this.state.round + 1}
-                            */
-
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
 
         return (
             <div key={200} className={noSpaceContainerVertical}>
-                <HiitHeader ticker={this.state.ticker} round={this.state.round}></HiitHeader>
-                <HiitLine ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
-                    swimmerPos={this.state.position}></HiitLine>
+                <HiitHeader departure={this.state.departure} ticker={this.state.ticker} round={this.state.round}></HiitHeader>
+                {this.state.position.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
+                    <HiitLine key={index} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
+                        swimmerPos={row}></HiitLine>
+                ))}
             </div>
         )
     }

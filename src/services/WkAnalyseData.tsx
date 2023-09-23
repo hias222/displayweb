@@ -39,10 +39,9 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     const [hiit, setHiit] = useState<HiitState>({
         event: 'config',
         departure: '120',
-        intensity: '99',
         gap: '5',
-        order: '1',
-        varianz: '1'
+        varianz: '1',
+        rows:[]
     });
 
     const [textMessage, setTextmessage] = useState<TextMessageType>({
@@ -71,7 +70,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setHiitData(hiit: any) {
-        setHiit({ event: hiit.event, departure: hiit.departure, intensity: hiit.intensity, order: hiit.order, gap: hiit.gap, varianz: hiit.varianz  })
+        setHiit({ event: hiit.event, departure: hiit.departure, gap: hiit.gap, varianz: hiit.varianz, rows: hiit.rows  })
     }
 
     function resetHeaderInfo() {

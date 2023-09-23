@@ -1,4 +1,5 @@
 export type swimmerPosition = {
-    intensity: number;
+    id: string;
     order: number;
+    intensity: string;
 }

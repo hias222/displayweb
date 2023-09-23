@@ -7,7 +7,18 @@ import { swimmerPosition } from "../../types/SwimmerPosition";
 
 var windowParams: windowParameter = new windowParameter()
 
-function getLaneText(laneText: string) {
+function getLeftText(laneText: string) {
+    let textplacesvg = classnames('textplacesvg');
+    return <text
+        className={textplacesvg}
+        y={windowParams.getBoxTextFromTop()}
+        x={0}
+    >
+        {laneText}</text>
+
+}
+
+function getRoundText(laneText: string) {
     let textplacesvg = classnames('textplacesvg');
     return <text
         className={textplacesvg}
@@ -19,8 +30,19 @@ function getLaneText(laneText: string) {
 
 }
 
-export default function HiitHeader(model: { ticker: number, round: number }) {
+function getTimeText(laneText: string) {
+    let textplacesvg = classnames('textplacesvg');
+    return <text
+        className={textplacesvg}
+        y={windowParams.getBoxTextFromTop()}
+        x={windowParams.getPictureLength() - 0}
+        textAnchor="end"
+    >
+        {laneText}</text>
 
+}
+
+export default function HiitHeader(model: { departure: number, ticker: number, round: number }) {
 
     var gradient_name = classnames('messagetext_main');
 
@@ -54,7 +76,9 @@ export default function HiitHeader(model: { ticker: number, round: number }) {
                     className={gradient_name}
                     d={boxSize}
                 />
-                {getLaneText(text)}
+                {getLeftText(model.departure.toString())}
+                {getRoundText(model.round.toString())}
+                {getTimeText(model.ticker.toString())}
             </g>
         </svg>
         </div></div>
