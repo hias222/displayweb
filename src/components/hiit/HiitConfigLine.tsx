@@ -8,9 +8,9 @@ import { swimmerPosition } from "../../types/SwimmerPosition";
 var windowParams: windowParameter = new windowParameter()
 
 function getLaneText(laneText: string | undefined) {
-    let textplacesvg = classnames('textplacesvg');
+    let textlanehiitsvg = classnames('textlanehiitsvg');
     return <text
-        className={textplacesvg}
+        className={textlanehiitsvg}
         y={windowParams.getBoxTextFromTop()}
         x={windowParams.getPictureLength() / 2}
         textAnchor="middle"
@@ -20,9 +20,9 @@ function getLaneText(laneText: string | undefined) {
 }
 
 function getLeftText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textlanehiitsvg = classnames('textlanehiitsvg');
     return <text
-        className={textplacesvg}
+        className={textlanehiitsvg}
         y={windowParams.getBoxTextFromTop()}
         x={0}
         textAnchor="start"
@@ -54,9 +54,9 @@ function getGradientName(intensity: number) {
 }
 
 function getEndText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textlanehiitsvg = classnames('textlanehiitsvg');
     return <text
-        className={textplacesvg}
+        className={textlanehiitsvg}
         y={windowParams.getBoxTextFromTop()}
         x={windowParams.getPictureLength()}
         textAnchor="end"

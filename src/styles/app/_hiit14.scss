@@ -1,0 +1,47 @@
+.texthiitsvg{    
+    fill: $farbeschrift;
+    font-size: 3em;
+}
+
+.textbacksvg{    
+    fill: $farbehintergrund;
+    font-size: 6em;
+}
+
+.textlanehiitsvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschriftplace;
+    font-size: 9em;
+}
+  
+
+
+.gradient_intense_0 {
+    fill: $farbehintergrund;
+}
+
+.gradient_intense_1 {
+    fill: green;
+}
+
+.gradient_intense_2 {
+    fill: red;
+}
+
+.gradient_intense_3 {
+    fill: rgba(103, 107, 62, 0.403);
+}
+
+.gradient_intense_4 {
+    fill: rgba(0, 0, 180, 0.8);
+}
+
+.gradient_lane_stop {
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
+}
+
+.gradient_name {
+    fill: $farbehintergrund;
+}

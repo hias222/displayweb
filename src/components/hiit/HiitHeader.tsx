@@ -10,7 +10,7 @@ function getLeftText(laneText: string) {
     let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
-        y={windowParams.getBoxTextFromTop()}
+        y={windowParams.getboxHeaderTextfromtop()}
         x={0}
     >
         {laneText}</text>
@@ -21,7 +21,7 @@ function getRoundText(laneText: string) {
     let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
-        y={windowParams.getBoxTextFromTop()}
+        y={windowParams.getboxHeaderTextfromtop()}
         x={windowParams.getPictureLength() / 2}
         textAnchor="middle"
     >
@@ -33,7 +33,7 @@ function getTimeText(laneText: string) {
     let textplacesvg = classnames('texthiitsvg');
     return <text
         className={textplacesvg}
-        y={windowParams.getBoxTextFromTop()}
+        y={windowParams.getboxHeaderTextfromtop()}
         x={windowParams.getPictureLength() - 0}
         textAnchor="end"
     >
@@ -46,9 +46,9 @@ export default function HiitHeader(model: { departure: string, ticker: string, r
     var texthiitsvg = classnames('textbacksvg');
 
     let length = windowParams.getPictureLength() ;
-    let boxheight = windowParams.getBoxheight();
+    let boxheight = windowParams.getTopRowHeight();
 
-    let viewBoxSize = "0 0 " + length + " " + windowParams.getBoxheight()
+    let viewBoxSize = "0 0 " + length + " " + windowParams.getTopRowHeight()
     let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"
 
     let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
@@ -65,7 +65,7 @@ export default function HiitHeader(model: { departure: string, ticker: string, r
             id="svg8"
             version="1.1"
             viewBox={viewBoxSize}
-            height={windowParams.getBoxheight()}
+            height={windowParams.getTopRowHeight()}
         >
             <g id="LaneName1">
                 <path

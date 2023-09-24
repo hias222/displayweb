@@ -1,11 +1,11 @@
 {
   "name": "display",
   "config": {
-    "mode": 12
+    "mode": 14
   },
   "version": "1.0.0",
   "private": true,
-  "homepage": "/mode/12",
+  "homepage": "/mode/14",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

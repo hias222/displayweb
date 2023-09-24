@@ -7,22 +7,45 @@ import { swimmerPosition } from "../../types/SwimmerPosition";
 
 var windowParams: windowParameter = new windowParameter()
 
-function getLaneText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
-    return <text
-        className={textplacesvg}
-        y={windowParams.getBoxTextFromTop()}
-        x={windowParams.getPictureLength() / 2}
-        textAnchor="middle"
-    >
-        {laneText}</text>
+function getLaneText(laneText: string, swimmerName: string | undefined) {
+    let textlanehiitsvg = classnames('textlanehiitsvg');
+
+    if (windowParams.getshowNameInHiit()) {
+
+        if (laneText !== '') {
+            return <text
+                className={textlanehiitsvg}
+                y={windowParams.getBoxTextFromTop()}
+                x={windowParams.getPictureLength() / 2}
+                textAnchor="middle"
+            >
+                {laneText}</text>
+        } else {
+
+            return <text
+                className={textlanehiitsvg}
+                y={windowParams.getBoxTextFromTop()}
+                x={windowParams.getPictureLength() / 2}
+                textAnchor="middle"
+            >
+                {swimmerName}</text>
+        }
+    } else {
+        return <text
+            className={textlanehiitsvg}
+            y={windowParams.getBoxTextFromTop()}
+            x={windowParams.getPictureLength() / 2}
+            textAnchor="middle"
+        >
+            {laneText}</text>
+    }
 
 }
 
 function getLeftText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textlanehiitsvg = classnames('textlanehiitsvg');
     return <text
-        className={textplacesvg}
+        className={textlanehiitsvg}
         y={windowParams.getBoxTextFromTop()}
         x={0}
         textAnchor="start"
@@ -57,9 +80,9 @@ function getGradientName(intensity: number) {
 }
 
 function getEndText(laneText: string) {
-    let textplacesvg = classnames('textplacesvg');
+    let textlanehiitsvg = classnames('textlanehiitsvg');
     return <text
-        className={textplacesvg}
+        className={textlanehiitsvg}
         y={windowParams.getBoxTextFromTop()}
         x={windowParams.getPictureLength()}
         textAnchor="end"
@@ -72,7 +95,7 @@ function getEndText(laneText: string) {
 function getIntense(roundticker: number, varianz: number, gap: number, intensity: number, departure: number): number {
     if (roundticker >= (departure - gap)) {
         return 4
-    } else if (roundticker >= intensity + varianz + 3 ) {
+    } else if (roundticker >= intensity + varianz + 3) {
         return 3
     } else if (roundticker >= intensity + varianz) {
         return 2
@@ -120,7 +143,7 @@ export default function HiitLine(model: { ticker: number, departure: number, gap
                             d={boxSize}
                         />
                         {getLeftText(model.swimmerPos.order.toString())}
-                        {getLaneText(abgang.toString())}
+                        {getLaneText(abgang.toString(), model.swimmerPos.name)}
                         {getEndText(roundTicker.toString())}
                     </g>
                 </svg>

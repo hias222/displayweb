@@ -1,6 +1,7 @@
 export default class windowParameter {
     private boxheight = 45;
     private boxTextfromtop = 35;
+    private boxHeaderTextfromtop = 35;
     private spacing = 5;
     private toprowheight = 30
     private numberboxwidth = 42
@@ -18,6 +19,8 @@ export default class windowParameter {
     private lengthClubFinishlist: number = 22;
 
     private lengthMedalFinishList = 40;
+
+    private showNameInHiit = false;
 
     private onlyLaneAndPlace = false
     private separateSmallWindow = false
@@ -320,6 +323,37 @@ export default class windowParameter {
             this.boxtimewidth = 86;
             this.numberboxwidth = 21;
         }
+
+
+        if (windowmode === 14) {
+            //IPAD 2 Air
+            this.window_width = 1536
+            this.window_height = 1948
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.showClub = false;
+            this.laneNumberTextFromLeft = 1
+            this.boxheight = 182
+            this.boxTextfromtop = 144;
+            this.boxHeaderTextfromtop = 82;
+            this.toprowheight = 112;
+            this.scalefactor = 1;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 186;
+            this.numberboxwidth = 41;
+
+            this.showNameInHiit = true;
+        }
+
     }
 
     public getBoxheight(): number {
@@ -371,6 +405,10 @@ export default class windowParameter {
         return this.boxTextfromtop
     }
 
+    public getboxHeaderTextfromtop(): number {
+        return this.boxHeaderTextfromtop
+    }
+
     public getlengthMedalFinishList(): number {
         return this.lengthMedalFinishList
     }
@@ -397,6 +435,10 @@ export default class windowParameter {
         } else {
             return (this.window_width - (2 * this.spacing) - this.logospace) / 2
         }
+    }
+
+    public getshowNameInHiit(): boolean {
+        return this.showNameInHiit;
     }
 
     public getSeparatorHeight(): number {
