@@ -69,8 +69,8 @@ function getEndText(laneText: string) {
 }
 
 
-function getIntense(roundticker: number, varianz: number, order: number, intensity: number, departure: number): number {
-    if (roundticker >= (departure - 5)) {
+function getIntense(roundticker: number, varianz: number, gap: number, intensity: number, departure: number): number {
+    if (roundticker >= (departure - gap)) {
         return 4
     } else if (roundticker >= intensity + varianz + 3 ) {
         return 3
@@ -91,9 +91,9 @@ export default function HiitLine(model: { ticker: number, departure: number, gap
     var round = Math.floor((model.ticker - ((model.swimmerPos.order - 1) * model.gap)) / model.departure)
     var roundTicker = model.ticker - (round * model.departure) - ((model.swimmerPos.order - 1) * model.gap)
 
-    let intense = getIntense(roundTicker, model.varianz, model.swimmerPos.order, Number.parseFloat(model.swimmerPos.intensity), model.departure)
+    let intense = getIntense(roundTicker, model.varianz, model.gap, Number.parseFloat(model.swimmerPos.intensity), model.departure)
     let countdown = model.departure - roundTicker
-    let abgang = countdown > 5 ? '' : countdown
+    let abgang = countdown > model.gap ? '' : countdown
 
     let viewBoxSize = "0 0 " + length + " " + windowParams.getBoxheight()
     let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + (length + 30) + " z"

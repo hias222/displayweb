@@ -35,11 +35,11 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
             mode: 'config',
             position: [{
                 order: 1,
-                intensity: '20',
+                intensity: '35',
                 id: '1'
             }],
             gap: 5,
-            departure: 30,
+            departure: 55,
             ticker: 0,
             varianz: 1,
             round: 0
@@ -52,10 +52,13 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
             if (this.props.HiitState.event === 'config') {
                 console.log('config')
                 console.log(this.props.HiitState)
-                this.setState({ mode: this.props.HiitState.mode })
-                this.setState({ position: this.props.HiitState.rows })
-                this.setState({ departure: Number.parseFloat(this.props.HiitState.departure) })
-                this.setState({ varianz: Number.parseFloat(this.props.HiitState.varianz) })
+                this.setState({ mode: this.props.HiitState.mode,
+                    gap: Number.parseFloat(this.props.HiitState.gap),
+                    departure: Number.parseFloat(this.props.HiitState.departure),
+                    varianz: Number.parseFloat(this.props.HiitState.varianz),
+                    position: this.props.HiitState.rows
+                 })
+
             }
 
             if (this.props.HiitState.event === 'start') {
@@ -124,7 +127,6 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
     getDisplayDate() {
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
-        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal");
         if (this.state.mode === 'config') {
 
             return <div >
