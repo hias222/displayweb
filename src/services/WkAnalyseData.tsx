@@ -20,6 +20,9 @@ var ROUND_LENGTH =
         ? "33"
         : process.env.REACT_APP_ROUND_LENGTH;
 
+var HIIT_LANE =
+    process.env.REACT_APP_HIIT_LANE === undefined ? 1 : process.env.REACT_APP_HIIT_LANE
+
 function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], header: string }) {
 
     const [connectstate, setConnectstate] = useState<boolean>(false)
@@ -42,7 +45,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         departure: '120',
         gap: '5',
         varianz: '1',
-        rows:[]
+        rows: []
     });
 
     const [textMessage, setTextmessage] = useState<TextMessageType>({
@@ -71,7 +74,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     }
 
     function setHiitData(hiit: any) {
-        setHiit({ mode: hiit.mode, event: hiit.event, departure: hiit.departure, gap: hiit.gap, varianz: hiit.varianz, rows: hiit.rows  })
+        setHiit({ mode: hiit.mode, event: hiit.event, departure: hiit.departure, gap: hiit.gap, varianz: hiit.varianz, rows: hiit.rows })
     }
 
     function resetHeaderInfo() {
@@ -257,10 +260,16 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 break;
             }
             case "hiit": {
-                resetHeaderInfo()
-                setDisplayMode("hiit")
-                setHiitData(jsondata)
-                console.log('->hiit')
+
+                console.log('->hiit ' + HIIT_LANE + " " + jsondata.lane)
+                if (HIIT_LANE.toString() === jsondata.lane.toString()) {
+                    resetHeaderInfo()
+                    setDisplayMode("hiit")
+                    setHiitData(jsondata)
+                } else {
+                    console.log("other lane")
+                }
+
                 break;
             }
             case "lenex": {
@@ -334,7 +343,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     function getDataMapper() {
         if (connectstate) {
-            return ( <Grid item xs={12}>
+            return (<Grid item xs={12}>
                 <DataMapper
                     CompetitionName={CompetitionName}
                     DisplayMode={DisplayMode}

@@ -327,8 +327,8 @@ export default class windowParameter {
 
         if (windowmode === 14) {
             //IPAD 2 Air
-            this.window_width = 1536
-            this.window_height = 1948
+            this.window_width = 1152
+            this.window_height = 1536
             this.detailedheader = false
             this.onlyLaneAndPlace = true
             this.showClub = false;

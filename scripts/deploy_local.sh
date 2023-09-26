@@ -2,7 +2,8 @@
 
 # change mode in package.json same as APP_MODE
 # change 2 times (issue with run build)
-APP_MODE=12
+APP_MODE=$1
+LANE_NR=$2
 #######
 
 REMOTE_SERVER_NAME=rockpi-4b.fritz.box
@@ -15,10 +16,13 @@ REMOTE_SERVER_USER=rock
 #REMOTE_SERVER_NAME=swim.fritz.box
 #REMOTE_SERVER_USER=pi
 
-
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 # BASE_DIR=/home/ubuntu/github/displayweb
 
+./manipulate_json.sh $APP_MODE $LANE_NR
+
+cp $BASE_DIR/package.json $BASE_DIR/package.json_org
+cp out_package.json $BASE_DIR/package.json
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
@@ -30,19 +34,10 @@ APP_NAME=display
 
 echo "Layout:                         $APP_MODE"
 echo "Bahn:                           $REACT_APP_ROUND_LENGTH"
+echo "Hiit Bahn:                      $LANE_NR"
 echo "Clear Startlist:                $REACT_APP_CLEAR_START_LIST_ON_START"
 echo "Base:                           $BASE_DIR"
 echo "Remote:                         $REMOTE_SERVER_USER@$REMOTE_SERVER_NAME"
-
-read -p "Go on (y/n)? " answer
-case ${answer:0:1} in
-    y|Y )
-        echo ...
-    ;;
-    * )
-        exit 0
-    ;;
-esac
 
 APP_DIR=$APP_NAME
 
@@ -50,7 +45,23 @@ if [[ $APP_MODE -gt 0 ]]; then
    APP_DIR="mode/${APP_MODE}" 
 fi
 
-echo "set APP_DIR to $APP_DIR"
+if [[ $LANE_NR -gt 0 ]]; then
+   APP_DIR="mode/${APP_MODE}-${LANE_NR}" 
+fi
+
+#echo "set APP_DIR to $APP_DIR"
+
+#read -p "Go on (y/n)? " answer
+#case ${answer:0:1} in
+#    y|Y )
+#        echo ...
+#    ;;
+#    * )
+#        exit 0
+#    ;;
+#esac
+
+
 
 # linux set time
 ACTUAL_TIME=$(date)
@@ -90,5 +101,6 @@ echo "extract app ${APP_DIR}"
 ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo tar -xvzf ${REMOTE_TMP}/${APP_NAME}.tar.gz -C ${NGINX_DIR}/${APP_DIR} > /dev/null
 ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo rm ${REMOTE_TMP}/${APP_NAME}.tar.gz
 
+# cp $BASE_DIR/package.json_org $BASE_DIR/package.json
 
 echo "Deployed ${APP_DIR}"
