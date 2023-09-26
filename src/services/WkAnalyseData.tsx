@@ -260,14 +260,15 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                 break;
             }
             case "hiit": {
-
-                console.log('->hiit ' + HIIT_LANE + " " + jsondata.lane)
-                if (HIIT_LANE.toString() === jsondata.lane.toString()) {
-                    resetHeaderInfo()
-                    setDisplayMode("hiit")
-                    setHiitData(jsondata)
-                } else {
-                    console.log("other lane")
+                if (jsondata.lane !== undefined) {
+                    console.log('->hiit ' + HIIT_LANE + " " + jsondata.lane)
+                    if (HIIT_LANE.toString() === jsondata.lane.toString()) {
+                        resetHeaderInfo()
+                        setDisplayMode("hiit")
+                        setHiitData(jsondata)
+                    } else {
+                        console.log("other lane")
+                    }
                 }
 
                 break;
