@@ -1,6 +1,8 @@
 #!/bin/bash
 jsonFile=package.json;
 
+# ./manipulate_json.sh $APP_MODE $LANE_NR 
+
 deploy_nr=$1
 
 if [ $# -eq 1 ]; then 

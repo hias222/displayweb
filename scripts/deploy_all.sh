@@ -2,7 +2,7 @@
 
 for i in {1..13}
 do
-   ./deploy_local.sh $i 0
+   ./deploy_local.sh $i
 done
 
 for i in {1..6}

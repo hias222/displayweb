@@ -6,8 +6,11 @@ APP_MODE=$1
 LANE_NR=$2
 #######
 
-REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+REMOTE_SERVER_NAME=rockpie.fritz.box
 REMOTE_SERVER_USER=rock
+
+#REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+#REMOTE_SERVER_USER=rock
 
 # need ssh certs
 #REMOTE_SERVER_NAME=jetson.fritz.box
@@ -19,7 +22,7 @@ REMOTE_SERVER_USER=rock
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 # BASE_DIR=/home/ubuntu/github/displayweb
 
-./manipulate_json.sh $APP_MODE $LANE_NR
+
 
 cp $BASE_DIR/package.json $BASE_DIR/package.json_org
 cp out_package.json $BASE_DIR/package.json
@@ -47,7 +50,13 @@ fi
 
 if [[ $LANE_NR -gt 0 ]]; then
    APP_DIR="mode/${APP_MODE}-${LANE_NR}" 
+   ./manipulate_json.sh $APP_MODE $LANE_NR
+else
+   APP_DIR="mode/${APP_MODE}"
+   ./manipulate_json.sh $APP_MODE
 fi
+
+echo "APP_DIR:                        $APP_DIR"
 
 #echo "set APP_DIR to $APP_DIR"
 
