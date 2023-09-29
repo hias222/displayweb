@@ -12,7 +12,7 @@ import { Best3FrontendComponent } from "./Best3FrontendComponent";
 import { HiitFrontendComponent } from "./hiit/HiitFrontendComponent";
 
 function ChooseComponent(model: ChooseInterface) {
-   
+
     const [chooseComponent, setChooseComponent] = useState<ChooseInterface>();
 
     var windowParams: windowParameter = new windowParameter();
@@ -51,6 +51,23 @@ function ChooseComponent(model: ChooseInterface) {
         </div>);
     }
 
+    function getLayoutBase() {
+
+        if (windowParams.getRenderMode() === 'grid') {
+            return <>{getDisplayData()}</>
+        } else {
+
+            return <div>
+                <Box width={windowParams.window_width} height={windowParams.window_height} className={statictable}>
+                    {getDisplayData()}
+                </Box>
+                <Box>
+                    {buttonfullscreen()}
+                </Box>
+            </div >
+        }
+    }
+
 
     function getDisplayData() {
         if (chooseComponent !== undefined) {
@@ -71,7 +88,7 @@ function ChooseComponent(model: ChooseInterface) {
                         HiitState={chooseComponent.hiit}
                     />
                 )
-            } 
+            }
             else if (chooseComponent.displayMode === 'result') {
                 return (
                     <ResultFrontendComponent
@@ -91,7 +108,7 @@ function ChooseComponent(model: ChooseInterface) {
                         round={chooseComponent.round}
                         lastUpdate={new Date()}
                     />)
-                
+
             } else if (chooseComponent.displayMode.startsWith('lane')) {
                 //console.log('set displaymode ChooseComponent lane ' + chooseComponent?.displayMode )
                 return (
@@ -128,19 +145,12 @@ function ChooseComponent(model: ChooseInterface) {
 
     useEffect(() => {
         setChooseComponent(model)
-        
+
         //console.log(model.lanes)
     }, [model]);
 
     return (
-        <div>
-            <Box width={windowParams.window_width} height={windowParams.window_height} className={statictable}>
-                {getDisplayData()}
-            </Box>
-            <Box>
-                {buttonfullscreen()}
-            </Box>
-        </div >
+        getLayoutBase()
     );
 }
 

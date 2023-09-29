@@ -92,7 +92,7 @@ function DataMapper(model: {
     }
 
     return (
-        <div>
+        <>
             <ChooseComponent
                 ChangeMode={changedMode}
                 startdelayms={model.startdelayms}
@@ -105,7 +105,7 @@ function DataMapper(model: {
                 round={model.Round}
                 hiit={hiit}
             />
-        </div>
+        </>
     );
 }
 

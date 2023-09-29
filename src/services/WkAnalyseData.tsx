@@ -344,7 +344,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
 
     function getDataMapper() {
         if (connectstate) {
-            return (<Grid item xs={12}>
+            return (<>
                 <DataMapper
                     CompetitionName={CompetitionName}
                     DisplayMode={DisplayMode}
@@ -358,7 +358,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                     Round={Round}
                     Hiit={hiit}
                 />
-            </Grid>)
+            </>)
         } else {
             let messagetext_main = classnames('messagetext_main');
 
