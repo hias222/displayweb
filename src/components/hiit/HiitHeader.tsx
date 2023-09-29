@@ -18,9 +18,9 @@ function getLeftText(laneText: string) {
 }
 
 function getRoundText(laneText: string) {
-    let textplacesvg = classnames('texthiitsvg');
+    let texthiitround = classnames('texthiitround');
     return <text
-        className={textplacesvg}
+        className={texthiitround}
         y={windowParams.getboxHeaderTextfromtop()}
         x={windowParams.getPictureLength() / 2}
         textAnchor="middle"

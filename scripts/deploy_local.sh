@@ -6,11 +6,11 @@ APP_MODE=$1
 LANE_NR=$2
 #######
 
-REMOTE_SERVER_NAME=rockpie.fritz.box
-REMOTE_SERVER_USER=rock
-
-#REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+#REMOTE_SERVER_NAME=rockpie.fritz.box
 #REMOTE_SERVER_USER=rock
+
+REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+REMOTE_SERVER_USER=rock
 
 # need ssh certs
 #REMOTE_SERVER_NAME=jetson.fritz.box
@@ -25,7 +25,7 @@ BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 
 
 cp $BASE_DIR/package.json $BASE_DIR/package.json_org
-cp out_package.json $BASE_DIR/package.json
+
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
@@ -58,6 +58,8 @@ fi
 
 echo "APP_DIR:                        $APP_DIR"
 
+cp out_package.json $BASE_DIR/package.json
+
 #echo "set APP_DIR to $APP_DIR"
 
 #read -p "Go on (y/n)? " answer
@@ -69,8 +71,6 @@ echo "APP_DIR:                        $APP_DIR"
 #        exit 0
 #    ;;
 #esac
-
-
 
 # linux set time
 ACTUAL_TIME=$(date)

@@ -1,4 +1,7 @@
 export default class windowParameter {
+
+    private renderMode = 'pixel'
+
     private boxheight = 45;
     private boxTextfromtop = 35;
     private boxHeaderTextfromtop = 35;
@@ -335,8 +338,8 @@ export default class windowParameter {
             this.laneNumberTextFromLeft = 1
             this.boxheight = 182
             this.boxTextfromtop = 144;
-            this.boxHeaderTextfromtop = 82;
-            this.toprowheight = 112;
+            this.boxHeaderTextfromtop = 150;
+            this.toprowheight = 182;
             this.scalefactor = 1;
             this.showAgeResult = false
 
@@ -353,6 +356,37 @@ export default class windowParameter {
 
             this.showNameInHiit = true;
         }
+
+        if (windowmode === 15) {
+// flex
+            this.renderMode = 'grid'
+            this.window_width = 1152
+            this.window_height = 1536
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.showClub = false;
+            this.laneNumberTextFromLeft = 1
+            this.boxheight = 182
+            this.boxTextfromtop = 144;
+            this.boxHeaderTextfromtop = 100;
+            this.toprowheight = 155;
+            this.scalefactor = 1;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 186;
+            this.numberboxwidth = 41;
+
+            this.showNameInHiit = true;
+        }
+        
 
     }
 
@@ -517,6 +551,10 @@ export default class windowParameter {
 
     public getLogoSpace(): number {
         return this.logospace;
+    }
+
+    public getRenderMode(): string {
+        return this.renderMode;
     }
 
 }

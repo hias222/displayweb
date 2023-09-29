@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./deploy_local.sh 1 0
+./deploy_local.sh 15 1
 
 exit 0
 for i in {1..6}

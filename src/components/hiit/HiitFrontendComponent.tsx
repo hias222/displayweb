@@ -5,6 +5,10 @@ import classNames from "classnames";
 import { swimmerPosition } from "../../types/SwimmerPosition";
 import HiitHeader from "./HiitHeader";
 import HiitConfigLine from "./HiitConfigLine";
+import windowParameter from "../../utilities/windowParameter";
+import HiitGridLine from "./HiitGridLine";
+import Grid from "@mui/material/Grid";
+import HiitGridConfig from "./HiitGridConfig";
 
 export type HiitType = {
     mode: string;
@@ -24,12 +28,14 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
     clocktimerid?: NodeJS.Timeout;
     timerseconds: number;
+    winPrameters: windowParameter;
 
     constructor(props: HiitInterface) {
         super(props)
 
         this.clocktimer = this.clocktimer.bind(this)
         this.timerseconds = 0;
+        this.winPrameters = new windowParameter()
 
         this.state = {
             mode: 'config',
@@ -52,12 +58,13 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
             if (this.props.HiitState.event === 'config') {
                 console.log('config')
                 console.log(this.props.HiitState)
-                this.setState({ mode: this.props.HiitState.mode,
+                this.setState({
+                    mode: this.props.HiitState.mode,
                     gap: Number.parseFloat(this.props.HiitState.gap),
                     departure: Number.parseFloat(this.props.HiitState.departure),
                     varianz: Number.parseFloat(this.props.HiitState.varianz),
                     position: this.props.HiitState.rows
-                 })
+                })
 
             }
 
@@ -125,17 +132,35 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
         console.log(result)
     }
 
+    getDisplayMode() {
+        if (this.winPrameters.getRenderMode() === 'grid') {
+            return this.getDisplayGrid()
+        } else {
+            return this.getDisplayDate()
+        }
+    }
+
+    getDisplayGrid() {
+        if (this.state.mode === 'config') {
+            return <HiitGridConfig key={1} round={(this.state.round + 1).toString()} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
+                swimmerPos={this.state.position}></HiitGridConfig>
+        } else {
+            return <HiitGridLine key={1} round={(this.state.round + 1).toString()} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
+                swimmerPos={this.state.position}></HiitGridLine>
+        }
+
+    }
+
     getDisplayDate() {
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
         if (this.state.mode === 'config') {
-
             return <div >
-                    <HiitHeader departure={'Zeit'} ticker={'Gap'} round={'Var'}></HiitHeader>
-                    <HiitHeader departure={this.state.departure.toString()} ticker={this.state.gap.toString()} round={this.state.varianz.toString()}></HiitHeader>
-                    {this.state.position.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
-                        <HiitConfigLine key={index} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
-                            swimmerPos={row}></HiitConfigLine>
-                    ))}
+                <HiitHeader departure={'Zeit'} ticker={'Gap'} round={'Var'}></HiitHeader>
+                <HiitHeader departure={this.state.departure.toString()} ticker={this.state.gap.toString()} round={this.state.varianz.toString()}></HiitHeader>
+                {this.state.position.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
+                    <HiitConfigLine key={index} ticker={this.state.ticker} departure={this.state.departure} gap={this.state.gap} varianz={this.state.varianz}
+                        swimmerPos={row}></HiitConfigLine>
+                ))}
             </div>
 
         }
@@ -155,7 +180,7 @@ export class HiitFrontendComponent extends React.Component<HiitInterface, HiitTy
 
     render() {
         return (
-            this.getDisplayDate()
+            this.getDisplayMode()
         )
     }
 }

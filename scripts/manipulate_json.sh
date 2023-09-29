@@ -15,6 +15,8 @@ fi
 
 echo build $homepage
 
+rm out_${jsonFile} 
+
 node > out_${jsonFile} <<EOF
 //Read data
 var data = require('./${jsonFile}');
