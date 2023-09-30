@@ -3,7 +3,7 @@
 ./deploy_local.sh 15 1
 
 exit 0
-for i in {1..6}
+for i in {1..3}
 do
-./deploy_local.sh 14 $i
+./deploy_local.sh 15 $i
 done

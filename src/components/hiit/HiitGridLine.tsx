@@ -125,7 +125,7 @@ function getGridRow(ticker: number, order: number, gap: number, departure: numbe
         <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background }} >
             {countDown}
         </Grid>
-        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background }} >
+        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background , textAlign: "end" }} >
             {subTicker}
         </Grid>
     </>
@@ -143,7 +143,7 @@ export default function HiitGridLine(model: { ticker: number, round: string, dep
                 <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
                     {model.round}
                 </Grid>
-                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' , textAlign: "end" }}>
                     {model.ticker}
                 </Grid>
                 {model.swimmerPos.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (

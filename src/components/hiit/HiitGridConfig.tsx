@@ -42,7 +42,7 @@ export default function HiitGridConfig(model: { ticker: number, round: string, d
                 <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
                     {model.round}
                 </Grid>
-                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper', textAlign: "end" }}>
                     {model.ticker}
                 </Grid>
                 {model.swimmerPos.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
@@ -51,7 +51,7 @@ export default function HiitGridConfig(model: { ticker: number, round: string, d
                             {row.order}
                         </Grid><Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
                             {row.name}
-                        </Grid><Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                        </Grid><Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' , textAlign: "end"}}>
                             {row.intensity}
                         </Grid>
                     </>
