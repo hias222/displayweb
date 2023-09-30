@@ -7,7 +7,6 @@ import HiitHeader from "./HiitHeader";
 import HiitConfigLine from "./HiitConfigLine";
 import windowParameter from "../../utilities/windowParameter";
 import HiitGridLine from "./HiitGridLine";
-import Grid from "@mui/material/Grid";
 import HiitGridConfig from "./HiitGridConfig";
 
 export type HiitType = {

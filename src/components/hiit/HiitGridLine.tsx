@@ -1,12 +1,40 @@
 import React from "react"
 import classnames from "classnames";
 import windowParameter from "../../utilities/windowParameter";
-import classNames from "classnames";
 import { swimmerPosition } from "../../types/SwimmerPosition";
 import Grid from "@mui/material/Grid";
+import createTheme from "@mui/material/styles/createTheme";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 // model: {message: string}
 
 var windowParams: windowParameter = new windowParameter()
+
+const theme = createTheme({
+    palette: {
+        background: {
+            paper: '#062614',
+            default: '#062614',
+        },
+        text: {
+            primary: '#fff',
+            secondary: '#46505A',
+        },
+        action: {
+            active: '#001E3C',
+        },
+    },
+    components: {
+        MuiGrid: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: 'red',
+                    fontSize: '44px',
+                },
+            },
+        },
+    },
+});
+
 
 function getLaneText(laneText: string, swimmerName: string | undefined) {
 
@@ -49,14 +77,18 @@ function getGradientName(intensity: number) {
 }
 
 
-function getIntense(roundticker: number, varianz: number, gap: number, intensity: number, departure: number): number {
-    if (roundticker >= (departure - gap)) {
+function getIntense(ticker: number, order: number, varianz: number, gap: number, intensity: string, departure: number): number {
+
+    var subTicker = getSubTicker(ticker,order, gap, departure);
+    var numberIntensity =  Number.parseFloat(intensity)
+
+    if (subTicker >= (departure - gap)) {
         return 4
-    } else if (roundticker >= intensity + varianz + 3) {
+    } else if (subTicker >= numberIntensity + varianz + 3) {
         return 3
-    } else if (roundticker >= intensity + varianz) {
+    } else if (subTicker >= numberIntensity + varianz) {
         return 2
-    } else if (roundticker >= intensity - varianz) {
+    } else if (subTicker >= numberIntensity - varianz) {
         return 1
     }
     return 0
@@ -78,35 +110,44 @@ function getNameFieldCountDown(name: string | undefined, departure: number, roun
 
     var clearedLane = name === undefined ? '' : name
 
-    var laneText = getLaneText(abgang.toString(),clearedLane)
+    var laneText = getLaneText(abgang.toString(), clearedLane)
     return laneText
 }
+
+function getGridFirstRow(order: number, intense: number) {
+
+    return <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }} >
+        {order}
+    </Grid>
+}
+
 
 export default function HiitGridLine(model: { ticker: number, round: string, departure: number, gap: number, varianz: number, swimmerPos: swimmerPosition[] }) {
 
     return (
-        <Grid container>
-            <Grid item xs={4}>
-                {model.departure}
+        <ThemeProvider theme={theme}>
+            <Grid container sx={{ bgcolor: 'background.paper' }}>
+                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                    {model.departure}
+                </Grid>
+                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                    {model.round}
+                </Grid>
+                <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                    {model.ticker}
+                </Grid>
+                {model.swimmerPos.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
+                    <>
+                        {
+                            getGridFirstRow(row.order, getIntense(model.ticker,row.order,model.varianz,model.gap,row.intensity,model.departure))}
+                        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                            {getNameFieldCountDown(row.name, model.departure, getSubTicker(model.ticker, row.order, model.gap, model.departure), model.gap)}
+                        </Grid><Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
+                            {getSubTicker(model.ticker, row.order, model.gap, model.departure)}
+                        </Grid>
+                    </>
+                ))}
             </Grid>
-            <Grid item xs={4}>
-                {model.round}
-            </Grid>
-            <Grid item xs={4}>
-                {model.ticker}
-            </Grid>
-            {model.swimmerPos.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
-                <>
-                    <Grid item xs={4}>
-                        {row.order}
-                    </Grid><Grid item xs={4}>
-                        {getNameFieldCountDown(row.name, model.departure, getSubTicker(model.ticker, row.order, model.gap, model.departure), model.gap)}
-                    </Grid><Grid item xs={4}>
-                        {getSubTicker(model.ticker, row.order, model.gap, model.departure)}
-                    </Grid>
-                </>
-            ))}
-        </Grid>
-
+        </ThemeProvider>
     );
 }
