@@ -61,6 +61,7 @@ function getGradientName(intensity: number) {
     var gradient_name_2 = classnames('gradient_intense_2');
     var gradient_name_3 = classnames('gradient_intense_3');
     var gradient_name_4 = classnames('gradient_intense_4');
+    var gradient_name_5 = classnames('gradient_intense_5');
 
     if (intensity === 0) {
         return gradient_name_0
@@ -72,6 +73,8 @@ function getGradientName(intensity: number) {
         return gradient_name_3
     } else if (intensity === 4) {
         return gradient_name_4
+    } else if (intensity === 5) {
+        return gradient_name_5
     }
     else {
         return gradient_name_0
@@ -94,8 +97,10 @@ function getEndText(laneText: string) {
 
 function getIntense(roundticker: number, varianz: number, gap: number, intensity: number, departure: number): number {
     if (roundticker >= (departure - gap)) {
+        return 5
+    } else if (roundticker >= intensity + varianz + 4) {
         return 4
-    } else if (roundticker >= intensity + varianz + 3) {
+    } else if (roundticker >= intensity + varianz + 1) {
         return 3
     } else if (roundticker >= intensity + varianz) {
         return 2

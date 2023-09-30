@@ -1,5 +1,4 @@
 import React from "react"
-import classnames from "classnames";
 import windowParameter from "../../utilities/windowParameter";
 import { swimmerPosition } from "../../types/SwimmerPosition";
 import Grid from "@mui/material/Grid";
@@ -51,40 +50,16 @@ function getLaneText(laneText: string, swimmerName: string | undefined) {
 
 }
 
-function getGradientName(intensity: number) {
-
-    var gradient_name_1 = classnames('gradient_intense_1');
-    var gradient_name_0 = classnames('gradient_intense_0');
-    var gradient_name_2 = classnames('gradient_intense_2');
-    var gradient_name_3 = classnames('gradient_intense_3');
-    var gradient_name_4 = classnames('gradient_intense_4');
-
-    if (intensity === 0) {
-        return gradient_name_0
-    } else if (intensity === 1) {
-        return gradient_name_1
-    } else if (intensity === 2) {
-        return gradient_name_2
-    } else if (intensity === 3) {
-        return gradient_name_3
-    } else if (intensity === 4) {
-        return gradient_name_4
-    }
-    else {
-        return gradient_name_0
-    }
-
-}
-
-
 function getIntense(ticker: number, order: number, varianz: number, gap: number, intensity: string, departure: number): number {
 
-    var subTicker = getSubTicker(ticker,order, gap, departure);
-    var numberIntensity =  Number.parseFloat(intensity)
+    var subTicker = getSubTicker(ticker, order, gap, departure);
+    var numberIntensity = Number.parseFloat(intensity)
 
     if (subTicker >= (departure - gap)) {
+        return 5
+    } else if (subTicker >= numberIntensity + varianz + 4) {
         return 4
-    } else if (subTicker >= numberIntensity + varianz + 3) {
+    } else if (subTicker >= numberIntensity + varianz + 1) {
         return 3
     } else if (subTicker >= numberIntensity + varianz) {
         return 2
@@ -114,11 +89,46 @@ function getNameFieldCountDown(name: string | undefined, departure: number, roun
     return laneText
 }
 
-function getGridFirstRow(order: number, intense: number) {
+function getGridRow(ticker: number, order: number, gap: number, departure: number, varianz: number, intensity: string, name: string | undefined) {
 
-    return <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }} >
-        {order}
-    </Grid>
+    var intense = getIntense(ticker, order, varianz, gap, intensity, departure)
+    var subTicker = getSubTicker(ticker, order, gap, departure)
+    var countDown = getNameFieldCountDown(name, departure, subTicker, gap)
+
+
+    switch (intense) {
+        case 1:
+            var background = '#006400' //gruen
+            break;
+        case 2:
+            var background = '#FFA500' // orange
+            break;
+        case 3:
+            var background = '#FF0000' // rot
+            break;
+        case 4:
+            var background = 'background.default'
+            break;
+        case 5:
+            var background = '#000080' // blau
+            break;
+        default:
+            var background = 'background.default'
+            break;
+    }
+    //var background = intense === 0 ? 'background.paper' : 'background.default'
+
+    return <>
+        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background }} >
+            {order}
+        </Grid>
+        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background }} >
+            {countDown}
+        </Grid>
+        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: background }} >
+            {subTicker}
+        </Grid>
+    </>
 }
 
 
@@ -138,13 +148,7 @@ export default function HiitGridLine(model: { ticker: number, round: string, dep
                 </Grid>
                 {model.swimmerPos.filter(row => Number.parseFloat(row.intensity) > 0).map((row, index) => (
                     <>
-                        {
-                            getGridFirstRow(row.order, getIntense(model.ticker,row.order,model.varianz,model.gap,row.intensity,model.departure))}
-                        <Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
-                            {getNameFieldCountDown(row.name, model.departure, getSubTicker(model.ticker, row.order, model.gap, model.departure), model.gap)}
-                        </Grid><Grid item xs={4} sx={{ color: 'text.primary', bgcolor: 'background.paper' }}>
-                            {getSubTicker(model.ticker, row.order, model.gap, model.departure)}
-                        </Grid>
+                        {getGridRow(model.ticker, row.order, model.gap, model.departure, model.varianz, row.intensity, row.name)}
                     </>
                 ))}
             </Grid>
