@@ -19,21 +19,23 @@ export default class LaneMedal extends React.Component<LaneMedalInterface, {}> {
     }
 
     getMedalColor() {
+        let boxwidth = this.windowParams.getlengthMedalFinishList()
+
         if (this.props.place === "1") {
             return (
-                <WorkspacePremiumIcon sx={{ color: yellow[500] }} />
+                <WorkspacePremiumIcon sx={{ color: yellow[500], width: boxwidth, height: boxwidth }} />
             )
         }
 
         if (this.props.place === "2") {
             return (
-                <WorkspacePremiumIcon sx={{ color: grey[200] }} />
+                <WorkspacePremiumIcon sx={{ color: grey[200], width: boxwidth, height: boxwidth }} />
             )
         }
 
         if (this.props.place === "3") {
             return (
-                <WorkspacePremiumIcon sx={{ color: brown[600] }} />
+                <WorkspacePremiumIcon sx={{ color: brown[600], width: boxwidth, height: boxwidth }} />
             )
         }
     }

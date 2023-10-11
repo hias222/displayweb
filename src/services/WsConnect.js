@@ -19,7 +19,7 @@ const allLaneData = [];
 function WsConnect() {
 
   let styleMode = process.env.REACT_APP_SHOW_MODE
-  console.log("style " + styleMode)
+  //console.log("style " + styleMode)
 
   import("../styles/dynamic/App" + styleMode + ".scss");
   var context_path =

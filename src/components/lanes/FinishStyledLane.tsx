@@ -8,6 +8,7 @@ import windowParameter from "../../utilities/windowParameter";
 import LaneNumberFinishEasy from "../svg/LaneNumberFinishEasy";
 import getFinishTime from "../../utilities/getFinishTime";
 import LaneMedal from "../svg/LaneMedal";
+import LaneMedalLarge from "../svg/LaneMedalLarge";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     windowParams: windowParameter;

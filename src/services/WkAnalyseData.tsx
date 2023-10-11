@@ -57,11 +57,12 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
     })
 
     function setRoundValue(round: string) {
-        console.log('Round ' + round + " " + eventheat.distance)
         try {
             var roundNumber = parseInt(round)
             var roundLength = parseInt(ROUND_LENGTH)
             var distancelength = parseInt(eventheat.distance !== undefined ? eventheat.distance : "50")
+            console.log('Round ' + round + " " + eventheat.distance + "( " + roundLength+ " )")
+       
             if (roundNumber * roundLength > distancelength) {
                 setRound(distancelength)
             } else {
@@ -121,6 +122,10 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
                     swimstyle: jsondata.swimstyle
                 })
 
+            // test no switch startlist
+            // ToDo check
+            setDisplayMode('startlist')
+
             setJsonData(jsondata)
             setCompetitionName(jsondata.competition)
             console.log('WSAnaylseData ------> Heat' + jsondata.heat)
@@ -179,7 +184,7 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         // wird die Zeit aktualisiert
         if (message.type === 'time') {
             if (DisplayMode === 'clear' || DisplayMode === 'race' || DisplayMode === 'startlist') {
-                console.log("save message " + DisplayMode + " --> " + message.type)
+               // console.log("save message " + DisplayMode + " --> " + message.type)
                 setTextmessage(newMessage)
             }
         } else {

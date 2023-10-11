@@ -140,7 +140,7 @@ export default class windowParameter {
         }
 
         if (windowmode === 6) {
-            //Mode 2 16:9 FCN
+            //Mode 2 16:9 FCN 6 Bahnen
             this.window_width = 896
             this.window_height = 512
             this.showClub = true;
@@ -151,16 +151,18 @@ export default class windowParameter {
             this.scalefactor = 1.3;
             this.showAgeResult = false
 
-            this.lengthNameStartlist = 20;
+            this.lengthNameStartlist = 16;
             this.spaceNameStartlist = 380;
-            this.lengthClubStartlist = 15;
+            this.lengthClubStartlist = 14;
 
-            this.lengthNameFinishlist = 16;
-            this.spaceNameFinishlist = 300;
+            this.lengthNameFinishlist = 15;
+            this.spaceNameFinishlist = 360;
             this.lengthClubFinishlist = 11;
 
             this.boxtimewidth = 170;
             this.numberboxwidth = 50;
+
+            this.lengthMedalFinishList = 40
         }
 
         if (windowmode === 7 || windowmode === 11) {
@@ -358,7 +360,7 @@ export default class windowParameter {
         }
 
         if (windowmode === 15) {
-// flex
+            // flex
             this.renderMode = 'grid'
             this.window_width = 1152
             this.window_height = 1536
@@ -386,7 +388,7 @@ export default class windowParameter {
 
             this.showNameInHiit = true;
         }
-        
+
 
     }
 
@@ -490,7 +492,7 @@ export default class windowParameter {
     }
 
     public getMaxPixelLength(): number {
-        if (this.window_height > this.window_width){
+        if (this.window_height > this.window_width) {
             return this.window_width
         } else {
             return this.window_height
