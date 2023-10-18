@@ -299,7 +299,7 @@ export default class windowParameter {
         }
 
         if (windowmode === 13) {
-            //Anzeige Fürth
+            //5 Bahnen
             this.window_width = 128
             this.window_height = 256
             this.detailedheader = false
@@ -311,9 +311,9 @@ export default class windowParameter {
 
             this.laneNumberTextFromLeft = 1
 
-            this.boxheight = 28
-            this.boxTextfromtop = 24;
-            this.toprowheight = 24;
+            this.boxheight = 35
+            this.boxTextfromtop = 28;
+            this.toprowheight = 34;
             this.scalefactor = 1;
             this.showAgeResult = false
 
