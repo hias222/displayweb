@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import windowParameter from '../../utilities/windowParameter';
+import getFinishTime from '../../utilities/getFinishTime';
 
 
 interface HeaderTimeInterface {
@@ -21,7 +22,11 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
     getRoundValue() {
         if (this.props.Round > 0) {
             //console.log("distance " + this.props.Distance)
-            return this.props.Round.toString() + 'm'
+            if (this.windowParams.getOnlyLaneAndPlace()) {
+                return this.props.Round.toString()
+            } else {
+                return this.props.Round.toString() + 'm'
+            }
         } else {
             //console.log("distance else " + this.props.Distance + " - " + this.props.Round)
             return ''
@@ -58,7 +63,7 @@ export default class headertimeline extends React.Component<HeaderTimeInterface,
                     x={internallength}
                     textAnchor="end"
                 >
-                    {this.props.Time}</text>
+                    {getFinishTime(this.props.Time)}</text>
 
                 <text
                     className={headertimeline}

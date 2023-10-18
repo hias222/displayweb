@@ -6,7 +6,16 @@ export default function getFinishTime(finishtime) {
         } else {
             //console.log(res[0])
             if (res[0].startsWith("00")) {
-                return res[1]
+
+                if (res[1].startsWith("0")) {
+                    //console.log(' eine 0 ')
+                    return res[1].slice(1);
+                }
+                else {
+                    return res[1]
+                }
+
+
             } else if (res[0].startsWith("0")) {
                 //console.log(' eine 0 ')
                 return res[0].slice(1) + ":" + res[1]
