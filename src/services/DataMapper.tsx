@@ -36,6 +36,8 @@ function DataMapper(model: {
     if (model.eventheat.heatnr !== eventHeat.heatnr || model.eventheat.eventnr !== eventHeat.eventnr) {
         console.log('DataMapper.tsx old Heat: ' + eventHeat.heatnr + ' WK: ' + eventHeat.eventnr)
         console.log('DataMapper new Heat: ' + model.eventheat.heatnr + ' WK: ' + model.eventheat.eventnr)
+        // bei wait vielleicht falsch
+        setDisplayMode('startlist')
         setEventHeat(model.eventheat)
     }
 
