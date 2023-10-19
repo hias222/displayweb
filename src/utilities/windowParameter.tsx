@@ -298,7 +298,7 @@ export default class windowParameter {
             this.numberboxwidth = 21;
         }
 
-        if (windowmode === 13) {
+        if (windowmode === 13 || windowmode === 16) {
             //5 Bahnen
             this.window_width = 128
             this.window_height = 256
@@ -314,7 +314,7 @@ export default class windowParameter {
             this.boxheight = 35
             this.boxTextfromtop = 28;
             this.toprowheight = 34;
-            this.scalefactor = 1;
+            this.scalefactor = 0.8;
             this.showAgeResult = false
 
             this.lengthNameStartlist = 0;
