@@ -1,9 +1,27 @@
 #!/bin/bash
 
-for i in {1..13}
-do
-   ./deploy_local.sh $i
-done
+./deploy_local.sh 1 100
+./deploy_local.sh 2 100
+./deploy_local.sh 6 50  
+
+./deploy_local.sh 4 50
+./deploy_local.sh 18 100
+./deploy_local.sh 5 100
+./deploy_local.sh 10 100
+
+./deploy_local.sh 9 100
+./deploy_local.sh 12 100
+./deploy_local.sh 7 100
+./deploy_local.sh 11 100
+
+./deploy_local.sh 13 50
+./deploy_local.sh 16 50
+./deploy_local.sh 17 100
+
+./deploy_local.sh 8 100
+
+
+exit 0
 
 for i in {1..6}
 do

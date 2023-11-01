@@ -110,7 +110,7 @@ export default class windowParameter {
             this.toprowheight = 120;
         }
 
-        if (windowmode === 4) {
+        if (windowmode === 4 || windowmode === 18 ) {
             //Anzeige Fürth
             this.window_width = 512
             this.window_height = 384
@@ -298,7 +298,7 @@ export default class windowParameter {
             this.numberboxwidth = 21;
         }
 
-        if (windowmode === 13 || windowmode === 16) {
+        if (windowmode === 13 || windowmode === 16 || windowmode === 17) {
             //5 Bahnen
             this.window_width = 128
             this.window_height = 256

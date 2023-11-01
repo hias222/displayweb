@@ -2,8 +2,19 @@
 
 # change mode in package.json same as APP_MODE
 # change 2 times (issue with run build)
+
+if [ "$#" -lt 2 ]; then
+    echo "Internal error - Illegal number of parameters"
+    exit 1
+fi
+
 APP_MODE=$1
-LANE_NR=$2
+ROUND_LENGTH=$2
+
+if [ "$#" -eq 3 ]; then
+    LANE_NR=$3
+fi
+
 #######
 
 #REMOTE_SERVER_NAME=rockpie.fritz.box
@@ -22,10 +33,7 @@ REMOTE_SERVER_USER=rock
 BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
 #BASE_DIR=/home/ubuntu/github/displayweb
 
-
-
 cp $BASE_DIR/package.json $BASE_DIR/package.json_org
-
 
 TEMP_DIR=/tmp
 REMOTE_TMP=/tmp
@@ -36,7 +44,7 @@ APP_NAME=display
 . ../.env.production
 
 echo "Layout:                         $APP_MODE"
-echo "Bahn:                           $REACT_APP_ROUND_LENGTH"
+echo "Bahn:                           $ROUND_LENGTH"
 echo "Hiit Bahn:                      $LANE_NR"
 echo "Clear Startlist:                $REACT_APP_CLEAR_START_LIST_ON_START"
 echo "Base:                           $BASE_DIR"
@@ -50,10 +58,10 @@ fi
 
 if [[ $LANE_NR -gt 0 ]]; then
    APP_DIR="mode/${APP_MODE}-${LANE_NR}" 
-   ./manipulate_json.sh $APP_MODE $LANE_NR
+   ./manipulate_json.sh $APP_MODE $ROUND_LENGTH $LANE_NR
 else
    APP_DIR="mode/${APP_MODE}"
-   ./manipulate_json.sh $APP_MODE
+   ./manipulate_json.sh $APP_MODE $ROUND_LENGTH
 fi
 
 echo "APP_DIR:                        $APP_DIR"

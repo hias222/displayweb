@@ -4,12 +4,13 @@ jsonFile=package.json;
 # ./manipulate_json.sh $APP_MODE $LANE_NR 
 
 deploy_nr=$1
+roundlength=$2
 
-if [ $# -eq 1 ]; then 
+if [ $# -eq 2 ]; then 
     hiitlane=1
     homepage="/mode/${deploy_nr}"
 else
-    hiitlane=$2
+    hiitlane=$3
     homepage="/mode/${deploy_nr}-${hiitlane}"
 fi
 
@@ -25,6 +26,7 @@ var data = require('./${jsonFile}');
 //delete data.key3
 data.config.mode = ${deploy_nr};
 data.config.hiitlane = $hiitlane;
+data.config.roundlength = $roundlength;
 data.homepage= '${homepage}'
 //Output data
 console.log(JSON.stringify(data, null, 2));
