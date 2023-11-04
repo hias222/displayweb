@@ -14,6 +14,13 @@ else
     homepage="/mode/${deploy_nr}-${hiitlane}"
 fi
 
+if [ $deploy_nr -eq 0 ]; then 
+    echo "base image"
+    hiitlane=1
+    homepage="/display"
+    deploy_nr=4
+fi
+
 echo build $homepage
 
 rm out_${jsonFile} 

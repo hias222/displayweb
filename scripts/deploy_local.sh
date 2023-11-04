@@ -44,7 +44,7 @@ APP_NAME=display
 . ../.env.production
 
 echo "Layout:                         $APP_MODE"
-echo "Bahn:                           $ROUND_LENGTH"
+echo "Round Length (50/100):          $ROUND_LENGTH"
 echo "Hiit Bahn:                      $LANE_NR"
 echo "Clear Startlist:                $REACT_APP_CLEAR_START_LIST_ON_START"
 echo "Base:                           $BASE_DIR"
@@ -60,7 +60,9 @@ if [[ $LANE_NR -gt 0 ]]; then
    APP_DIR="mode/${APP_MODE}-${LANE_NR}" 
    ./manipulate_json.sh $APP_MODE $ROUND_LENGTH $LANE_NR
 else
-   APP_DIR="mode/${APP_MODE}"
+   if [[ $APP_MODE -gt 0 ]]; then
+     APP_DIR="mode/${APP_MODE}"
+   fi
    ./manipulate_json.sh $APP_MODE $ROUND_LENGTH
 fi
 
