@@ -9,8 +9,8 @@ APP_NAME=display
 #REMOTE_SERVER_NAME=jetson.fritz.box
 #REMOTE_SERVER_USER=jetson
 
-REMOTE_SERVER_NAME=jetson.fritz.box
-REMOTE_SERVER_USER=jetson
+REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+REMOTE_SERVER_USER=rock
 
 #REMOTE_SERVER_NAME=swim.fritz.box
 #REMOTE_SERVER_USER=pi

@@ -1,5 +1,7 @@
 export default class windowParameter {
 
+
+
     private renderMode = 'pixel'
 
     private boxheight = 45;
@@ -77,6 +79,18 @@ export default class windowParameter {
             this.window_width = 896
             this.window_height = 512
             this.showClub = true;
+            this.boxheight = 48
+            this.toprowheight = 35;
+            this.logonumber = 2;
+            this.showAgeResult = false
+
+        }
+
+        if (windowmode === 19) {
+            //Mode 2 16:9 FCN
+            this.window_width = 448
+            this.window_height = 512
+            this.showClub = false;
             this.boxheight = 48
             this.toprowheight = 35;
             this.logonumber = 2;

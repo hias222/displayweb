@@ -91,6 +91,8 @@ ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo timedatectl
 if [[ $APP_MODE -gt 0 ]]; then
     echo "add detail index.html"
     scp index.html ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME}:${REMOTE_TMP}
+    scp combine_1.html ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME}:${REMOTE_TMP}
+    scp combine_2.html ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME}:${REMOTE_TMP}
 fi
 
 cd $BASE_DIR || exit 1
@@ -114,6 +116,12 @@ if [[ $APP_MODE -gt 0 ]]; then
     echo "add details page ${NGINX_DIR}/${APP_DIR} (${REMOTE_TMP}/index.html)"
     ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo cp ${REMOTE_TMP}/index.html ${NGINX_DIR}/mode
     ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo rm ${REMOTE_TMP}/index.html
+
+    ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo cp ${REMOTE_TMP}/combine_1.html ${NGINX_DIR}/mode
+    ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo rm ${REMOTE_TMP}/combine_1.html
+
+    ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo cp ${REMOTE_TMP}/combine_2.html ${NGINX_DIR}/mode
+    ssh ${REMOTE_SERVER_USER}@${REMOTE_SERVER_NAME} sudo rm ${REMOTE_TMP}/combine_2.html
 fi
 
 echo "extract app ${APP_DIR}"
