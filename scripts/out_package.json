@@ -3,7 +3,7 @@
   "config": {
     "mode": 19,
     "hiitlane": 1,
-    "roundlength": 50
+    "roundlength": 100
   },
   "version": "1.0.0",
   "private": true,

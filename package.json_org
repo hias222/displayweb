@@ -1,13 +1,13 @@
 {
   "name": "display",
   "config": {
-    "mode": 19,
+    "mode": 2,
     "hiitlane": 1,
-    "roundlength": 50
+    "roundlength": 100
   },
   "version": "1.0.0",
   "private": true,
-  "homepage": "/mode/19",
+  "homepage": "/mode/2",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

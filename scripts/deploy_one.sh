@@ -2,7 +2,9 @@
 
 #./deploy_local.sh 0 50
 
-./deploy_local.sh 19 50
+./deploy_local.sh 2 100
+
+./deploy_local.sh 19 100
 
 exit 0
 for i in {1..3}
