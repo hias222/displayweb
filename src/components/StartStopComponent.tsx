@@ -154,78 +154,93 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
         if (this.windowParams.getDetailsInHeader()) {
             return (
-            <div className={noSpaceContainerHorizontal} >
-                        <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr + "  L: " + this.props.EventHeat.heatnr} IsFirstText={true} Parts={2}></HeaderBoxName>
-                        <HeaderTimeLine
-                            Time={this.format(this.state.displaytime)}
-                            IsFirstText={false}
-                            Round={this.props.round}
-                            Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                            Parts={2} />
-                    </div>
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr + "  L: " + this.props.EventHeat.heatnr} IsFirstText={true} Parts={2}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                        Parts={2} />
+                </div>
             )
-        } else if (this.windowParams.getDetailsInHeader()) {
+        } else if (this.windowParams.getDetailedheaderoneline()) {
+            return (
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr + "  L: " + this.props.EventHeat.heatnr} IsFirstText={true} Parts={3}></HeaderBoxName>
+                    <HeaderBoxName HeaderName={ this.props.EventHeat.name} IsFirstText={true} Parts={3}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                        Parts={3} />
+                </div>
+            )
+        }
 
-                return (
+        else if (this.windowParams.getDetailsInHeader()) {
 
+            return (
+
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
+                    <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                        Parts={3} />
+                </div>
+            )
+        } else if (this.windowParams.getSeparateSmallWindow()) {
+            return (
+                <div className={noSpaceContainerVertical}>
+                    <HeaderBoxName HeaderName={"Wettkampf"} IsFirstText={true} Parts={1}></HeaderBoxName>
+                    <HeaderBoxNameLarge HeaderName={this.props.EventHeat.eventnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
+                    <HeaderBoxName HeaderName={"Lauf"} IsFirstText={true} Parts={1}></HeaderBoxName>
+                    <HeaderBoxNameLarge HeaderName={this.props.EventHeat.heatnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
                     <div className={noSpaceContainerHorizontal} >
-                        <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={3}></HeaderBoxName>
-                        <HeaderBoxName HeaderName={"Lauf: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
                         <HeaderTimeLine
                             Time={this.format(this.state.displaytime)}
-                            IsFirstText={false}
+                            IsFirstText={true}
                             Round={this.props.round}
                             Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                            Parts={3} />
+                            Parts={1} />
                     </div>
-                )
-            } else if (this.windowParams.getSeparateSmallWindow()) {
-                return (
-                    <div className={noSpaceContainerVertical}>
-                        <HeaderBoxName HeaderName={"Wettkampf"} IsFirstText={true} Parts={1}></HeaderBoxName>
-                        <HeaderBoxNameLarge HeaderName={this.props.EventHeat.eventnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
-                        <HeaderBoxName HeaderName={"Lauf"} IsFirstText={true} Parts={1}></HeaderBoxName>
-                        <HeaderBoxNameLarge HeaderName={this.props.EventHeat.heatnr} IsFirstText={true} Parts={1}></HeaderBoxNameLarge>
-                        <div className={noSpaceContainerHorizontal} >
-                            <HeaderTimeLine
-                                Time={this.format(this.state.displaytime)}
-                                IsFirstText={true}
-                                Round={this.props.round}
-                                Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                                Parts={1} />
-                        </div>
-                    </div>)
-            }
-            else if (this.windowParams.getOnlyLaneAndPlace()) {
-                return (
-                    <div className={noSpaceContainerVertical}>
-                        <div className={noSpaceContainerHorizontal} >
-                            <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
-                            <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
-                        </div>
-                        <div className={noSpaceContainerHorizontal} >
-                            <HeaderTimeLine
-                                Time={this.format(this.state.displaytime)}
-                                IsFirstText={true}
-                                Round={this.props.round}
-                                Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                                Parts={1} />
-                        </div>
-                    </div>)
-            } else {
-                return (
+                </div>)
+        }
+        else if (this.windowParams.getOnlyLaneAndPlace()) {
+            return (
+                <div className={noSpaceContainerVertical}>
                     <div className={noSpaceContainerHorizontal} >
-                        <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>
-                        <HeaderBoxName HeaderName={"L: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                        <HeaderBoxName HeaderName={"W " + this.props.EventHeat.eventnr} IsFirstText={true} Parts={2}></HeaderBoxName>
+                        <HeaderBoxName HeaderName={"L " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={2}></HeaderBoxName>
+                    </div>
+                    <div className={noSpaceContainerHorizontal} >
                         <HeaderTimeLine
                             Time={this.format(this.state.displaytime)}
-                            IsFirstText={false}
+                            IsFirstText={true}
                             Round={this.props.round}
                             Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
-                            Parts={3} />
+                            Parts={1} />
                     </div>
-                )
-            }
+                </div>)
+        } else {
+            return (
+                <div className={noSpaceContainerHorizontal} >
+                    <HeaderBoxName HeaderName={"Wk: " + this.props.EventHeat.eventnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderBoxName HeaderName={"L: " + this.props.EventHeat.heatnr} IsFirstText={false} Parts={3}></HeaderBoxName>
+                    <HeaderTimeLine
+                        Time={this.format(this.state.displaytime)}
+                        IsFirstText={false}
+                        Round={this.props.round}
+                        Distance={this.props.EventHeat.distance != null ? this.props.EventHeat.distance : "99"}
+                        Parts={3} />
+                </div>
+            )
+        }
 
 
     }

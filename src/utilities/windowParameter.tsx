@@ -31,6 +31,8 @@ export default class windowParameter {
     private separateSmallWindow = false
     private showClub: boolean = false
     private showAgeResult: boolean = true
+    private detailedheaderoneline: boolean = false
+    private lanestwocolumns: boolean =false
     /*
     0  <Swimmer></Swimmer>
     1    return <SGMittelfranken />
@@ -124,7 +126,7 @@ export default class windowParameter {
             this.toprowheight = 120;
         }
 
-        if (windowmode === 4 || windowmode === 18 ) {
+        if (windowmode === 4 || windowmode === 18) {
             //Anzeige Fürth
             this.window_width = 512
             this.window_height = 384
@@ -403,6 +405,64 @@ export default class windowParameter {
             this.showNameInHiit = true;
         }
 
+        if (windowmode === 20) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 2*3 
+            this.window_width = 256
+            this.window_height = 288
+            this.detailedheader = false
+            this.onlyLaneAndPlace = true
+            this.separateSmallWindow = true
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 1
+
+            this.boxheight = 30
+            this.boxTextfromtop = 26;
+            this.toprowheight = 28;
+            this.scalefactor = 1;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 0;
+            this.spaceNameStartlist = 0;
+            this.lengthClubStartlist = 0;
+
+            this.lengthNameFinishlist = 0;
+            this.spaceNameFinishlist = 0;
+            this.lengthClubFinishlist = 0;
+
+            this.boxtimewidth = 86;
+            this.numberboxwidth = 21;
+            this.showHeader = false;
+        }
+
+        if (windowmode === 21) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 4*2
+            this.window_width = 512
+            this.window_height = 192
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+            this.onlyLaneAndPlace = true
+
+            this.lanestwocolumns = true
+            this.separateSmallWindow = false
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 1
+            this.logonumber = 2;
+
+            this.boxheight = 30
+            this.boxTextfromtop = 26;
+            this.toprowheight = 28;
+            this.scalefactor = 1;
+            this.showAgeResult = false
+
+        }
+
 
     }
 
@@ -571,6 +631,14 @@ export default class windowParameter {
 
     public getRenderMode(): string {
         return this.renderMode;
+    }
+
+    public getDetailedheaderoneline(): boolean {
+        return this.detailedheaderoneline;
+    }
+
+    public getLanestwocolumns(): boolean {
+        return this.lanestwocolumns;
     }
 
 }

@@ -15,7 +15,7 @@ interface HeaderEventHeatInterface {
     round: number;
 }
 
-export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}>{
+export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInterface, {}> {
 
     windowParams: windowParameter;
     constructor(props: HeaderEventHeatInterface) {
@@ -26,12 +26,14 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
 
     getShow() {
 
+    
         let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
 
         let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
 
         if (this.windowParams.getDetailsInHeader()) {
+            //console.log('getShow --------------------')
             return (
 
                 <div className={noSpaceContainerHorizontal}>
@@ -87,6 +89,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                 />
             </div>)
         } else {
+            //console.log('esle ')
             return (
                 <div className={noSpaceContainerHorizontal}>
                     <div className={noSpaceContainerVertical}>

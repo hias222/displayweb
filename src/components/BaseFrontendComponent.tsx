@@ -106,6 +106,7 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
         )
     }
 
+
     checkShowOnlyHeader() {
         const b = this.props.lanes.filter((item) => item.finishtime !== 'undefined').shift()
         if (b === undefined) {
@@ -150,6 +151,15 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
 
     getAllData() {
         if (this.windowParams.getshowHeader()) {
+            return (
+                <div>
+                    {this.getheaderData()}
+                    {this.getbodyData()}
+                </div>
+            )
+        }
+
+        if (this.windowParams.getLanestwocolumns()) {
             return (
                 <div>
                     {this.getheaderData()}
