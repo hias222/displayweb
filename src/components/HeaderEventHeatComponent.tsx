@@ -33,7 +33,6 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
         let EventName = this.props.EventHeat.competition === undefined ? "" : this.props.EventHeat.competition
 
         if (this.windowParams.getDetailsInHeader()) {
-            //console.log('getShow --------------------')
             return (
 
                 <div className={noSpaceContainerHorizontal}>
@@ -78,7 +77,7 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
                     IsFirstText={true}
                     Parts={1} />
             </div>)
-        } else if (this.windowParams.getOnlyLaneAndPlace()) {
+        } else if (this.windowParams.getOnlyLaneAndPlace() || this.windowParams.getDetailedheaderoneline()) {
             //console.log('getOnlyLaneAndPlace')
             return (<div>
                 <StartStopComponent

@@ -446,7 +446,8 @@ export default class windowParameter {
 
             this.detailedheader = false
             this.detailedheaderoneline = true
-            this.onlyLaneAndPlace = true
+            this.showHeader = false
+            this.onlyLaneAndPlace = false
 
             this.lanestwocolumns = true
             this.separateSmallWindow = false

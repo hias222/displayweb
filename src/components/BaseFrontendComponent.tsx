@@ -135,6 +135,55 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
         )
     }
 
+    getbodyDataFirstColumns() {
+        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
+        let firstlanes = this.props.lanes.filter(lane => parseInt(lane.lane) < 5)
+        return (
+            firstlanes.map((lane, index) => (
+                <div key={index + 200} className={noSpaceContainerVertical}>
+                    <SingleLaneStaticComponent
+                        key={index}
+                        lane={lane}
+                        index={index}
+                        displayMode={this.props.displayMode}
+                    />
+                    <LaneSeparator keyindex={index + 100} IsEnabled={true} />
+                </div>
+            )))
+    }
+
+    getbodyDataLastColumns() {
+        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
+        let firstlanes = this.props.lanes.filter(lane => parseInt(lane.lane) > 4)
+        return (
+            firstlanes.map((lane, index) => (
+                <div key={index + 200} className={noSpaceContainerVertical}>
+                    <SingleLaneStaticComponent
+                        key={index}
+                        lane={lane}
+                        index={index}
+                        displayMode={this.props.displayMode}
+                    />
+                    <LaneSeparator keyindex={index + 100} IsEnabled={true} />
+                </div>
+            )))
+    }
+
+    getbodyData2Columns() {
+        let noSpaceContainerHorizontal = classNames("noSpaceContainerHorizontal")
+        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
+        return (
+            <div key={181} className={noSpaceContainerHorizontal}>
+                <div key={182} className={noSpaceContainerVertical}>
+                    {this.getbodyDataFirstColumns()}
+                </div>
+                <div key={183} className={noSpaceContainerVertical}>
+                    {this.getbodyDataLastColumns()}
+                </div>
+            </div>
+        )
+    }
+
     getOnlyOneData() {
         if (this.checkShowOnlyHeader()) {
             return (
@@ -150,6 +199,7 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     }
 
     getAllData() {
+
         if (this.windowParams.getshowHeader()) {
             return (
                 <div>
@@ -163,7 +213,7 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
             return (
                 <div>
                     {this.getheaderData()}
-                    {this.getbodyData()}
+                    {this.getbodyData2Columns()}
                 </div>
             )
         }
