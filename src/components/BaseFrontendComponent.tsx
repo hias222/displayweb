@@ -135,28 +135,12 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
         )
     }
 
-    getbodyDataFirstColumns() {
+    getbodyDataColumns(firstLane: number, lastlane: number) {
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
-        let firstlanes = this.props.lanes.filter(lane => parseInt(lane.lane) < 5)
+        let firstlanes = this.props.lanes.filter(lane => parseInt(lane.lane) <= lastlane)
+        let filterlanes = firstlanes.filter(lane => parseInt(lane.lane) >= firstLane)
         return (
-            firstlanes.map((lane, index) => (
-                <div key={index + 200} className={noSpaceContainerVertical}>
-                    <SingleLaneStaticComponent
-                        key={index}
-                        lane={lane}
-                        index={index}
-                        displayMode={this.props.displayMode}
-                    />
-                    <LaneSeparator keyindex={index + 100} IsEnabled={true} />
-                </div>
-            )))
-    }
-
-    getbodyDataLastColumns() {
-        let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
-        let firstlanes = this.props.lanes.filter(lane => parseInt(lane.lane) > 4)
-        return (
-            firstlanes.map((lane, index) => (
+            filterlanes.map((lane, index) => (
                 <div key={index + 200} className={noSpaceContainerVertical}>
                     <SingleLaneStaticComponent
                         key={index}
@@ -175,10 +159,10 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
         return (
             <div key={181} className={noSpaceContainerHorizontal}>
                 <div key={182} className={noSpaceContainerVertical}>
-                    {this.getbodyDataFirstColumns()}
+                    {this.getbodyDataColumns(1,4)}
                 </div>
                 <div key={183} className={noSpaceContainerVertical}>
-                    {this.getbodyDataLastColumns()}
+                    {this.getbodyDataColumns(5,8)}
                 </div>
             </div>
         )

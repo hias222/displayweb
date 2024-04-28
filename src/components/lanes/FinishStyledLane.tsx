@@ -9,6 +9,8 @@ import LaneNumberFinishEasy from "../svg/LaneNumberFinishEasy";
 import getFinishTime from "../../utilities/getFinishTime";
 import LaneMedal from "../svg/LaneMedal";
 import LaneMedalLarge from "../svg/LaneMedalLarge";
+import LaneNumber from "../svg/LaneNumber";
+import LanePlace from "../svg/LanePlace";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     windowParams: windowParameter;
@@ -64,6 +66,22 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 <LaneTime LaneTime={getFinishTime(finishtime)}
                 />
             </div>
+        } if (this.windowParams.getLanestwocolumns()) {
+            return <div className={noSpaceContainerHorizontal} >
+                <LaneNumber laneNumber={this.props.lane}
+                />
+                <LaneName
+                    LaneName={correctName}
+                    IsOnlyBox={false}
+                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                    ClubName={this.checkClub()}
+                />
+
+                <LaneTime LaneTime={getFinishTime(finishtime)}
+                />
+
+                <LanePlace lanePlace={this.props.place} />
+            </div>
         } else {
             return <div className={noSpaceContainerHorizontal} >
                 <div className={noFlexHorizontal} >
@@ -77,7 +95,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                         AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
                         ClubName={this.checkClub()}
                     />
-                    
+
                     <LaneMedal place={this.props.place !== undefined ? this.props.place : ""}
                     />
 

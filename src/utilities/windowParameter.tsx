@@ -444,6 +444,11 @@ export default class windowParameter {
             this.window_width = 512
             this.window_height = 192
 
+            this.numberboxwidth = 20
+            this.spacing = 6
+
+            this.boxheight = 40
+
             this.detailedheader = false
             this.detailedheaderoneline = true
             this.showHeader = false
@@ -456,11 +461,16 @@ export default class windowParameter {
             this.laneNumberTextFromLeft = 1
             this.logonumber = 2;
 
-            this.boxheight = 30
-            this.boxTextfromtop = 26;
+            this.boxTextfromtop = 30;
             this.toprowheight = 28;
-            this.scalefactor = 1;
+            this.scalefactor = 0.8;
             this.showAgeResult = false
+
+            this.lengthNameStartlist = 16;
+            this.spaceNameStartlist = 380;
+
+            this.lengthNameFinishlist = 8;
+            this.spaceNameFinishlist = 360;
 
         }
 
