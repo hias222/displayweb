@@ -75,7 +75,12 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
 
         let time_length = this.windowParams.getLanestwocolumns() === true ? time_length_half : time_length_normal
 
-        let length = this.props.IsOnlyBox === true ? this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth() : time_length
+        let normal_length = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth();
+        let half_length = (this.windowParams.getPictureLength() / 2) + this.windowParams.getPictureStart() - this.windowParams.getBoxNumberWidth();
+
+        let name_length = this.windowParams.getLanestwocolumns() === true ? half_length : normal_length
+
+        let length = this.props.IsOnlyBox === true ? name_length : time_length
         let boxheight = this.windowParams.getBoxheight();
 
         let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
