@@ -30,9 +30,11 @@ export default class windowParameter {
     private onlyLaneAndPlace = false
     private separateSmallWindow = false
     private showClub: boolean = false
+    private showFirstNameOnlyResult: boolean = false
     private showAgeResult: boolean = true
+    private showAgeStartlist: boolean = true
     private detailedheaderoneline: boolean = false
-    private lanestwocolumns: boolean =false
+    private lanestwocolumns: boolean = false
     /*
     0  <Swimmer></Swimmer>
     1    return <SGMittelfranken />
@@ -444,7 +446,7 @@ export default class windowParameter {
             this.window_width = 512
             this.window_height = 192
 
-            this.numberboxwidth = 20
+            this.numberboxwidth = 22
             this.spacing = 6
 
             this.boxheight = 40
@@ -471,6 +473,9 @@ export default class windowParameter {
 
             this.lengthNameFinishlist = 8;
             this.spaceNameFinishlist = 360;
+
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = true;
 
         }
 
@@ -588,6 +593,10 @@ export default class windowParameter {
         return this.showAgeResult
     }
 
+    public showAgeStartlists(): boolean {
+        return this.showAgeStartlist
+    }
+
     public getLengthNameStartlist(): number {
         return this.lengthNameStartlist
     }
@@ -618,6 +627,10 @@ export default class windowParameter {
 
     public getShowOnlyClub(): boolean {
         return this.showonlyClub
+    }
+
+    public getShowFirstNameOnlyResult(): boolean {
+        return this.showFirstNameOnlyResult
     }
 
     public getTwoPArtsHeader(): boolean {

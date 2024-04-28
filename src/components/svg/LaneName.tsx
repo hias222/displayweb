@@ -38,16 +38,21 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         }
 
     }
+
     getAgeText(length: number) {
-        if (this.props.IsOnlyBox) {
-            let textlanesvg = classnames('textlanesvg');
-            return <text
-                className={textlanesvg}
-                y={this.windowParams.getBoxTextFromTop()}
-                x={length - 5}
-                textAnchor="end"
-            >
-                {this.props.AgeText}</text>
+
+        if (this.windowParams.showAgeStartlists()) {
+
+            if (this.props.IsOnlyBox) {
+                let textlanesvg = classnames('textlanesvg');
+                return <text
+                    className={textlanesvg}
+                    y={this.windowParams.getBoxTextFromTop()}
+                    x={length - 5}
+                    textAnchor="end"
+                >
+                    {this.props.AgeText}</text>
+            }
         }
     }
 

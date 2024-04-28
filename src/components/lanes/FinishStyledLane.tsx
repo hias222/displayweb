@@ -26,17 +26,39 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         let sizeName = this.props.swimmer.name.length;
         let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
 
-        if (sizeName > (namelength - 2)) {
-            return this.props.swimmer.name.substr(0, (namelength - 2));
+
+        if (this.windowParams.getShowFirstNameOnlyResult()) {
+
+            if (!this.props.swimmer.firstName) {
+                return " "
+            } else {
+                if (this.props.swimmer.firstName.length > namelength) {
+                    return this.props.swimmer.firstName.substring(0, (namelength - 1));
+                } else {
+                    return this.props.swimmer.firstName
+                }
+
+            }
+
+        } else {
+
+            if (sizeName > (namelength - 2)) {
+                return this.props.swimmer.name.substr(0, (namelength - 2));
+            }
+
+            if (sizeName + sizeLastName > namelength) {
+                return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0, 1) + ".";
+            }
+
+            let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
+
+            return name
+
         }
 
-        if (sizeName + sizeLastName > namelength) {
-            return this.props.swimmer.name + " " + this.props.swimmer.firstName?.substr(0, 1) + ".";
-        }
+        //let name = this.windowParams.getShowFirstNameOnlyResult() === false ? this.props.swimmer.name + " " + this.props.swimmer.firstName : this.props.swimmer.firstName + " "
 
-        let name = this.props.swimmer.name + " " + this.props.swimmer.firstName
-
-        return name
+        //return name
     }
 
     checkClub() {
