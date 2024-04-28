@@ -511,7 +511,7 @@ export default class windowParameter {
     }
 
     public getBoxWidth(parts: number): number {
-        if (this.onlyLaneAndPlace) {
+        if (this.onlyLaneAndPlace || this.detailedheaderoneline) {
             return (this.window_width - (2 * this.spacing)) / parts
         } else {
             return (this.window_width - this.logospace - (2 * this.spacing)) / parts

@@ -106,8 +106,11 @@ function WkAnalyseData(model: { message: string, connected: boolean, lanes: [], 
         }
 
         if (jsondata.heat !== eventheat.heatnr || jsondata.event !== eventheat.eventnr) {
-            var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
-                ? jsondata.name : jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle)
+
+            var eventNameCheck = jsondata.distance || jsondata.swimstyle ? jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle) : ""
+            var swimstyle = eventNameCheck
+            //var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
+            //    ? jsondata.name : jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle)
 
             setEventHeat(
                 {
