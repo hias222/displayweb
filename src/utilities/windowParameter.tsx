@@ -423,30 +423,38 @@ export default class windowParameter {
             // 2*3 
             this.window_width = 256
             this.window_height = 288
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 30
+
+            this.numberboxwidth = 22
+            this.spacing = 6
+
+            this.boxheight = 40
+
             this.detailedheader = false
-            this.onlyLaneAndPlace = true
-            this.separateSmallWindow = true
+            this.detailedheaderoneline = true
+            this.showHeader = true
+            this.onlyLaneAndPlace = false
+
+            this.lanestwocolumns = false
+            this.separateSmallWindow = false
             this.showClub = false;
 
             this.laneNumberTextFromLeft = 1
 
-            this.boxheight = 30
-            this.boxTextfromtop = 26;
-            this.toprowheight = 28;
-            this.scalefactor = 1;
+            this.boxTextfromtop = 30;
+            this.scalefactor = 0.8;
             this.showAgeResult = false
 
-            this.lengthNameStartlist = 0;
-            this.spaceNameStartlist = 0;
-            this.lengthClubStartlist = 0;
+            this.lengthNameStartlist = 16;
+            this.spaceNameStartlist = 380;
 
-            this.lengthNameFinishlist = 0;
-            this.spaceNameFinishlist = 0;
-            this.lengthClubFinishlist = 0;
+            this.lengthNameFinishlist = 8;
+            this.spaceNameFinishlist = 360;
 
-            this.boxtimewidth = 86;
-            this.numberboxwidth = 21;
-            this.showHeader = false;
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = true;
         }
 
         if (windowmode === 21) {
@@ -489,6 +497,47 @@ export default class windowParameter {
             this.showAgeStartlist = false;
             this.showFirstNameOnlyResult = true;
 
+        }
+
+
+        if (windowmode === 22) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 2*3 
+            this.window_width = 256
+            this.window_height = 288
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 30
+
+            this.numberboxwidth = 22
+            this.spacing = 6
+
+            this.boxheight = 30
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+            this.showHeader = true
+            this.onlyLaneAndPlace = false
+
+            this.lanestwocolumns = false
+            this.separateSmallWindow = false
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 1
+
+            this.boxTextfromtop = 25;
+            this.scalefactor = 0.8;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 16;
+            this.spaceNameStartlist = 380;
+
+            this.lengthNameFinishlist = 8;
+            this.spaceNameFinishlist = 360;
+
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = true;
         }
 
 
