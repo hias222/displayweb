@@ -88,7 +88,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 <LaneTime LaneTime={getFinishTime(finishtime)}
                 />
             </div>
-        } if (this.windowParams.getLanestwocolumns()) {
+        } if (this.windowParams.getLanestwocolumns() || this.windowParams.getWindowWidth() < 300) {
             return <div className={noSpaceContainerHorizontal} >
                 <LaneNumber laneNumber={this.props.lane}
                 />
