@@ -1,3 +1,5 @@
+import { TimerSharp } from "@mui/icons-material";
+
 export default class windowParameter {
 
 
@@ -35,13 +37,21 @@ export default class windowParameter {
     private showAgeStartlist: boolean = true
     private detailedheaderoneline: boolean = false
     private lanestwocolumns: boolean = false
-    /*
-    0  <Swimmer></Swimmer>
-    1    return <SGMittelfranken />
-    2    return <FCNLogo />
-    3    return <LebkuchenLogo />
-    5    return <SGFLogo />
-    */
+    // 0
+    //    return <Swimmer></Swimmer>
+    // 1
+    //     return <SGMittelfranken />
+    // 2
+    //   return <FCNLogo />
+    // 3
+    // return <LebkuchenLogo />
+    // 5
+    // return <SGFLogo />
+    // 6
+    //        return <EmptyLogo />
+    // 10
+    //        return <SADLogo />
+
 
 
     private logonumber: number = 0
@@ -446,6 +456,10 @@ export default class windowParameter {
             this.window_width = 512
             this.window_height = 192
 
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 30
+
             this.numberboxwidth = 22
             this.spacing = 6
 
@@ -461,10 +475,8 @@ export default class windowParameter {
             this.showClub = false;
 
             this.laneNumberTextFromLeft = 1
-            this.logonumber = 2;
 
             this.boxTextfromtop = 30;
-            this.toprowheight = 28;
             this.scalefactor = 0.8;
             this.showAgeResult = false
 

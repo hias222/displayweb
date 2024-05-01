@@ -30,7 +30,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         if (this.windowParams.getShowFirstNameOnlyResult()) {
 
             if (!this.props.swimmer.firstName) {
-                return " "
+                return this.props.swimmer.name.substring(0, (namelength - 1));
             } else {
                 if (this.props.swimmer.firstName.length > namelength) {
                     return this.props.swimmer.firstName.substring(0, (namelength - 1));
