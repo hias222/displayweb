@@ -2,8 +2,6 @@ import { TimerSharp } from "@mui/icons-material";
 
 export default class windowParameter {
 
-
-
     private renderMode = 'pixel'
 
     private boxheight = 45;
@@ -565,6 +563,27 @@ export default class windowParameter {
 
     public getWindowHeight(): number {
         return this.window_height
+    }
+
+    public getVideoWidth(): number {
+        let width = this.window_height * 16 / 9
+
+        if (width < this.window_width) {
+            return width
+        } else {
+            return this.window_width
+        }
+
+    }
+
+    public getVideoHeight(): number {
+        let height = this.window_width / 16 * 9;
+
+        if (height < this.window_height) {
+            return height
+        } else {
+            return this.window_height
+        }
     }
 
     public getWindowTopEmptyPixel(): number {

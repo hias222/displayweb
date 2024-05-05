@@ -60,15 +60,15 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
                 case "video":
                     return <VideoFrontendComponent
                         videoURL={this.getVideoUrl()}
-                        height="100%"
-                        width="100%"
+                        height={this.windowParams.getVideoHeight().toString()}
+                        width={this.windowParams.getVideoWidth().toString()}
                         type={videoformat}
                     />
                 case "image":
                     return <ImageFrontendComponent
                         videoURL={this.getVideoUrl()}
-                        height="100%"
-                        width="100%"
+                        height={this.windowParams.getVideoHeight().toString()}
+                        width={this.windowParams.getVideoWidth().toString()}
                         type={videoformat}
                     />
                 default:
