@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import classnames from 'classnames';
 import { getFileList } from './utilities/getFileList'
 
+
 export interface PlaylistInterface {
     resultdataURL: string;
 }
 
 var runningFile = ""
 
-export default function MediaData() {
+export default function MediaData(model: { height: string, width: string }) {
 
     const [mediaFiles, setMediaFiles] = useState([]);
     const [playingFile, setPlayingFile] = useState("");
@@ -55,13 +56,13 @@ export default function MediaData() {
     let videotable = classnames('videotable-variable');
 
     function getVideoData() {
-        console.log("Video " + playingFile)
+        console.log("Video " + playingFile + " width " + model.width + " " + model.height)
         return (
             < video className={videotable}
                 onEnded={handleChangeEnd}
                 loop={false}
-                height={"100%"}
-                width={"100%"}
+                width={model.width}
+                height={model.height}
                 src={playingFile}
                 autoPlay={true}
             />
@@ -69,7 +70,7 @@ export default function MediaData() {
     }
 
     function getEmptyData() {
-        console.log("Empty please check backend - " + playingFile)
+        console.log("Empty please check backend - " + playingFile + " width " + model.width + " " + model.height)
         console.log(web_data_url)
         setTimeout(() => {
             handleChangeEnd()
@@ -81,8 +82,8 @@ export default function MediaData() {
 
     function getImageData() {
         //5s warten 
-        if( playingFile.localeCompare(runningFile)){
-            console.log("Image wait 5s " + playingFile)
+        if (playingFile.localeCompare(runningFile)) {
+            console.log("Image wait 5s " + playingFile + " width " + model.width + " " + model.height)
             setTimeout(() => {
                 handleChangeEnd()
             }, 5000)
@@ -90,8 +91,8 @@ export default function MediaData() {
 
         return (
             <img
-                width={"100%"}
-                height={"100%"}
+                width={model.width}
+                height={model.height}
                 src={playingFile}
                 alt={playingFile} />
         )

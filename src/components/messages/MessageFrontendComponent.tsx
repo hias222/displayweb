@@ -9,7 +9,7 @@ import classnames from "classnames";
 import { Grid, Typography } from "@mui/material";
 import AnalogClock from "../clock/AnalogClock";
 import windowParameter from "../../utilities/windowParameter";
-import  VideoPlaylistComponent  from "./VideoPlaylistComponent";
+import VideoPlaylistComponent from "./VideoPlaylistComponent";
 
 export type MessageType = {
     displayMode: string;
@@ -54,7 +54,10 @@ export class MessageFrontendComponent extends React.Component<MessageInterface, 
                 width="100%"
             />
         } else if (this.props.VideoVersion === "1") {
-            return <VideoPlaylistComponent/>
+            return <VideoPlaylistComponent
+                height={this.windowParams.getVideoHeight().toString()}
+                width={this.windowParams.getVideoWidth().toString()}
+            />
         } else {
             switch (videoformat) {
                 case "video":

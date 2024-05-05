@@ -1,5 +1,3 @@
-import { TimerSharp } from "@mui/icons-material";
-
 export default class windowParameter {
 
     private renderMode = 'pixel'
