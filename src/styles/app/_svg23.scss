@@ -1,8 +1,15 @@
-$schriftgr_8: 1.7em;
+$schriftgr_8: 1.8em;
 $farbehintergrundplace_8: rgb(130, 0, 0);
 
 .textlanesvg{
     text-align: right;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
+.texttimesvg{
+    text-align: right;
+    font-weight: bold;
     fill: $farbeschrift;
     font-size: $schriftgr_8;
 }
@@ -40,6 +47,7 @@ $farbehintergrundplace_8: rgb(130, 0, 0);
 }
 
 .textplacesvg{
+    text-anchor: middle;
     text-align: right;
     font-weight: bold;
     fill: $farbeschriftplace;

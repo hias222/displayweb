@@ -49,6 +49,9 @@ export default class LanePlace extends React.Component<LanePlaceInterface, {}> {
         let textplacesvg = classnames('textplacesvg');
         let gradient_name = classnames('gradient_name');
 
+        // align setzen! text-anchor: middle;
+        let seperator = this.windowParams.getShowplaceatendofline() ? this.windowParams.getBoxNumberWidth() / 2 + 1 : 4
+
         let viewBoxSize = "0 0 " + (this.windowParams.getBoxNumberWidth() + this.windowParams.getPictureStart()) + "  " + this.windowParams.getBoxheight()
 
         let path_place = "M 0 0 h " + this.windowParams.getBoxNumberWidth() + " l -0 ," + this.windowParams.getBoxheight() + " h -" + this.windowParams.getBoxNumberWidth() + " z"
@@ -112,7 +115,7 @@ export default class LanePlace extends React.Component<LanePlaceInterface, {}> {
                 <text
                     className={textplacesvg}
                     y={this.windowParams.getBoxTextFromTop()}
-                    x={4}
+                    x={seperator}
                 >
                     {this.props.lanePlace}</text>
             </g>

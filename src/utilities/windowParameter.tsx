@@ -59,6 +59,9 @@ export default class windowParameter {
     private twopartsheader = false;
     private showonlyClub = false;
 
+    private showmedals = true;
+    private showplaceatendofline = false;
+
     window_width: number;
     window_height: number;
     window_top_pixel: number;
@@ -540,10 +543,21 @@ export default class windowParameter {
             this.window_width = 896
             this.window_height = 512
             this.showClub = true;
-            this.boxheight = 48
-            this.toprowheight = 35;
+            this.boxheight = 45;
+            this.toprowheight = 40;
             this.logonumber = 2;
             this.showAgeResult = false
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+
+            this.numberboxwidth = 37
+
+            this.showmedals = false
+            this.lengthMedalFinishList = 0
+
+            this.showplaceatendofline = true
+            this.laneNumberTextFromLeft = 4
 
         }
 
@@ -753,5 +767,14 @@ export default class windowParameter {
     public getLanestwocolumns(): boolean {
         return this.lanestwocolumns;
     }
+
+    public getShowMedals(): boolean {
+        return this.showmedals;
+    }
+
+    public getShowplaceatendofline(): boolean {
+        return this.showplaceatendofline;
+    }
+
 
 }

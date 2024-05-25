@@ -104,6 +104,29 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
                 <LanePlace lanePlace={this.props.place} />
             </div>
+        } else if (this.windowParams.getShowplaceatendofline()) {
+            return <div className={noSpaceContainerHorizontal} >
+                <div className={noFlexHorizontal} >
+                    <LaneNumber laneNumber={this.props.lane}
+                    />
+                    <LaneName
+                        LaneName={correctName}
+                        IsOnlyBox={false}
+                        AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                        ClubName={this.checkClub()}
+                    />
+
+                    <LaneMedal place={this.props.place !== undefined ? this.props.place : ""}
+                    />
+
+                    <LaneTime LaneTime={getFinishTime(finishtime)}
+                    />
+
+                    <LanePlace lanePlace={this.props.place} />
+
+                </div>
+            </div>;
+
         } else {
             return <div className={noSpaceContainerHorizontal} >
                 <div className={noFlexHorizontal} >

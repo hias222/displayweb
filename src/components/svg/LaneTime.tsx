@@ -16,7 +16,7 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
     }
 
     render() {
-        let textlanesvg = classnames('textlanesvg');
+        let texttimesvg = classnames('texttimesvg');
         let gradient_name = classnames('gradient_name');
 
         let length = this.windowParams.getBoxTimeLaneWidth()
@@ -40,7 +40,7 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
                     d={boxSize}
                 />
                 <text
-                    className={textlanesvg}
+                    className={texttimesvg}
                     y={this.windowParams.getBoxTextFromTop()}
                     x={this.windowParams.getBoxTimeLaneWidth()}
                     textAnchor='end'
