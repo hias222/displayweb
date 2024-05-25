@@ -495,7 +495,6 @@ export default class windowParameter {
 
         }
 
-
         if (windowmode === 22) {
             // 128 x 96 Pixel für
             // 640 x 480 mm
@@ -534,6 +533,18 @@ export default class windowParameter {
 
             this.showAgeStartlist = false;
             this.showFirstNameOnlyResult = true;
+        }
+
+        if (windowmode === 23) {
+            //Mode 2 16:9 FCN
+            this.window_width = 896
+            this.window_height = 512
+            this.showClub = true;
+            this.boxheight = 48
+            this.toprowheight = 35;
+            this.logonumber = 2;
+            this.showAgeResult = false
+
         }
 
 
