@@ -78,6 +78,13 @@ $farbehintergrundplace_8: rgb(130, 0, 0);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
+.texttimesvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
 .marquee {
     max-width: 600vw; /* iOS braucht das */
     white-space: nowrap;

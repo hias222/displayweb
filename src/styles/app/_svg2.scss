@@ -80,6 +80,14 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
+.texttimesvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschrift;
+    font-size: 4em;
+}
+
+
 .marquee {
     max-width: 600vw; /* iOS braucht das */
     white-space: nowrap;

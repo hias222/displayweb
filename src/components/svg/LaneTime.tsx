@@ -25,6 +25,8 @@ export default class LaneTime extends React.Component<LaneTimeInterface, {}> {
         let viewBoxSize = "0 0 " + length + " " + this.windowParams.getBoxheight()
         let boxSize = "M 0 0 h " + length + " v " + boxheight + " h -" + length + " z"
 
+        //console.log('---> LaneTime <---- ' + this.props.LaneTime)
+
         return (<svg
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMaxYMax meet"

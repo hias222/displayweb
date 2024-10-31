@@ -115,6 +115,8 @@ export default class LaneMedal extends React.Component<LaneMedalInterface, {}> {
             return (
                 this.getMedalSVG()
             )
+        } else {
+            return (this.getSpace())
         }
 
     }

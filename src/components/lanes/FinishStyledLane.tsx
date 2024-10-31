@@ -80,6 +80,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         let noFlexHorizontal = classNames("noFlexHorizontal")
 
         if (this.windowParams.getOnlyLaneAndPlace()) {
+            //console.log('---> line <---- ' + getFinishTime(finishtime))
             return <div className={noSpaceContainerHorizontal} >
                 <LaneNumberFinishEasy
                     laneNumber={this.props.lane}
@@ -116,10 +117,10 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                         ClubName={this.checkClub()}
                     />
 
-                    <LaneMedal place={this.props.place !== undefined ? this.props.place : ""}
+                    <LaneTime LaneTime={getFinishTime(finishtime)}
                     />
 
-                    <LaneTime LaneTime={getFinishTime(finishtime)}
+                    <LaneMedal place={this.props.place !== undefined ? this.props.place : ""}
                     />
 
                     <LanePlace lanePlace={this.props.place} />

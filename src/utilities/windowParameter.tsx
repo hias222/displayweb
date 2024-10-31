@@ -137,13 +137,20 @@ export default class windowParameter {
             this.toprowheight = 120;
         }
 
-        if (windowmode === 4 || windowmode === 18) {
+        if (windowmode === 4 || windowmode === 18 ) {
             //Anzeige Fürth
+            // REACT_APP_WAIT_ON_STOP in env setzen
             this.window_width = 512
             this.window_height = 384
             this.showClub = false;
+
+            this.showplaceatendofline = true
+            this.showmedals = false
+            this.lengthMedalFinishList = 8
+
+            this.numberboxwidth = 32
             this.boxheight = 45
-            this.toprowheight = 30;
+            this.toprowheight = 34;
             this.boxTextfromtop = 32;
             this.logonumber = 5;
             this.logospace = 100
@@ -296,22 +303,23 @@ export default class windowParameter {
 
         if (windowmode === 12) {
             //Anzeige Fürth
+            // 6Bahnen
             this.window_width = 128
             this.window_height = 256
+
             this.detailedheader = false
             this.onlyLaneAndPlace = true
             this.showClub = false;
-
-            //this.showHeader = false;
-            //this.separateSmallWindow = false;
+            this.showHeader = false;
+            this.showAgeResult = false
+            this.separateSmallWindow = true;
 
             this.laneNumberTextFromLeft = 1
 
-            this.boxheight = 28
-            this.boxTextfromtop = 24;
-            this.toprowheight = 24;
-            this.scalefactor = 1;
-            this.showAgeResult = false
+            this.boxheight = 40
+            this.boxTextfromtop = 29;
+            this.toprowheight = 26;
+            this.scalefactor = 0.7;
 
             this.lengthNameStartlist = 0;
             this.spaceNameStartlist = 0;
@@ -554,7 +562,7 @@ export default class windowParameter {
             this.numberboxwidth = 37
 
             this.showmedals = false
-            this.lengthMedalFinishList = 0
+            this.lengthMedalFinishList = 1
 
             this.showplaceatendofline = true
             this.laneNumberTextFromLeft = 4

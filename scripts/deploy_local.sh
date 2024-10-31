@@ -50,6 +50,7 @@ echo "Layout:                         $APP_MODE"
 echo "Round Length (50/100):          $ROUND_LENGTH"
 echo "Hiit Bahn:                      $LANE_NR"
 echo "Clear Startlist:                $REACT_APP_CLEAR_START_LIST_ON_START"
+echo "Wait on stop:                   $REACT_APP_WAIT_ON_STOP"
 echo "Base:                           $BASE_DIR"
 echo "Remote:                         $REMOTE_SERVER_USER@$REMOTE_SERVER_NAME"
 

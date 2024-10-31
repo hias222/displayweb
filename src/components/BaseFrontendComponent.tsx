@@ -108,8 +108,13 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
 
 
     checkShowOnlyHeader() {
-        const b = this.props.lanes.filter((item) => item.finishtime !== 'undefined').shift()
-        if (b === undefined) {
+        const b = this.props.lanes.filter((item) => item.islaptime !== false ).shift()
+        const c = this.props.lanes.filter((item) => item.finishtime !== 'undefined').shift()
+
+        //const c =  'hello'
+        //const b =  'hello'
+        
+        if (b === undefined || c === undefined) {
             //console.log('no times ------>')
             return true
         } else {
@@ -119,6 +124,8 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     }
 
     getbodyData() {
+        // console.log('---> getbodyData <----')
+
         let noSpaceContainerVertical = classNames("noSpaceContainerVertical")
         return (
             this.props.lanes.map((lane, index) => (

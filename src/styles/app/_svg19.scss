@@ -25,6 +25,13 @@ $farbehintergrundplace_8: rgb(130, 0, 0);
     font-size: 1.6em;
 }
 
+.texttimesvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
 .textHeaderHeatEventLarge{
     text-align: right;
     fill: $farbeschrift;
