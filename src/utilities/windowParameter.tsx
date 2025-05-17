@@ -137,7 +137,7 @@ export default class windowParameter {
             this.toprowheight = 120;
         }
 
-        if (windowmode === 4 || windowmode === 18 ) {
+        if (windowmode === 4 || windowmode === 18) {
             //Anzeige Fürth
             // REACT_APP_WAIT_ON_STOP in env setzen
             this.window_width = 512
@@ -568,6 +568,50 @@ export default class windowParameter {
             this.laneNumberTextFromLeft = 4
 
         }
+
+        if (windowmode === 24 || windowmode === 25) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 4*2
+            this.window_width = 384
+            this.window_height = 256
+
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 36
+
+            this.numberboxwidth = 24
+            this.spacing = 6
+
+            this.boxheight = 54
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+            this.showHeader = false
+            this.onlyLaneAndPlace = false
+
+            this.lanestwocolumns = true
+            this.separateSmallWindow = false
+            this.showClub = false;
+
+            this.laneNumberTextFromLeft = 1
+
+            this.boxTextfromtop = 36;
+            // für Logo in der Zeit
+            this.scalefactor = 1.0;
+            this.showAgeResult = false
+
+            this.lengthNameStartlist = 16;
+            this.spaceNameStartlist = 380;
+
+            this.lengthNameFinishlist = 8;
+            this.spaceNameFinishlist = 360;
+
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = true;
+
+        }
+
 
 
     }

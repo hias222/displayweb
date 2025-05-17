@@ -1,0 +1,103 @@
+$schriftgr_8: 2.5em;
+$farbehintergrundplace_8: rgb(130, 0, 0);
+
+.textlanesvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
+.textranksvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
+.textWKNamesvg{
+    fill: $farbeschrift;
+    font-size: 1.8em;
+    text-anchor: middle;
+}
+
+.textHeaderHeatEventsvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: 1.6em;
+}
+
+.textHeaderHeatEventLarge{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: 3em;
+    text-anchor: end;
+}
+
+.textnumbersvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
+.textplacesvg{
+    text-anchor: right;
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschriftplace;
+    font-size: $schriftgr_8;
+}
+  
+.gradient_lane {
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
+}
+
+.gradient_lane_stop {
+    stop-color: $farbehintergrund;
+    stop-opacity: 1;
+}
+
+.gradient_name {
+    fill: $farbehintergrund;
+}
+
+.gradient_place {
+    stop-color: $farbehintergrundplace_8;
+    stop-opacity: 1;
+}
+
+.gradient_icon {
+    fill: white;
+}
+
+.gradient_place_stop {
+    stop-color: $farbehintergrundplace_8;
+    stop-opacity: 1;
+}
+
+.separatorsvg{
+    //fill: $farbeseparator;
+    stop-color:  $farbeseparator;
+}
+
+.headertimeline{
+    fill: $farbeschrift;
+    font-size: 1.4em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.texttimesvg{
+    text-align: right;
+    font-weight: bold;
+    fill: $farbeschrift;
+    font-size: $schriftgr_8;
+}
+
+.marquee {
+    max-width: 600vw; /* iOS braucht das */
+    white-space: nowrap;
+    overflow: hidden;
+    color: $farbeschrift;
+    font-size: 1em;
+    /* hier evtl. noch font-size, color usw. */
+}
