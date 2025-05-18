@@ -59,22 +59,11 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                 <LaneNumber
                     laneNumber={this.props.lane} />
             </div>
-        } if (this.windowParams.getLanestwocolumns()) {
-            return <div className={noSpaceContainerHorizontal} >
-                <LaneNumber laneNumber={this.props.lane}
-                />
-                <LaneName
-                    LaneName={correctName}
-                    IsOnlyBox={true}
-                    AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
-                    ClubName={this.checkClub()}
-                />
-            </div>
-        } else {
-            return <div className={noSpaceContainerHorizontal} >
-                <div className={noFlexHorizontal}>
-                    <LaneNumber
-                        laneNumber={this.props.lane} />
+        }   if (this.windowParams.getLaneNameOnLineOutput()) {
+                return <div className={noSpaceContainerHorizontal} >
+                    <LaneNumber laneNumber={this.props.lane}
+                    />
+
                     <LaneName
                         LaneName={correctName}
                         IsOnlyBox={true}
@@ -82,8 +71,19 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                         ClubName={this.checkClub()}
                     />
                 </div>
-            </div >
-        }
+            }
+            if (this.windowParams.getLaneNameTwoLineOutput()) {
+                return <div className={noSpaceContainerHorizontal} >
+                    <LaneNumber laneNumber={this.props.lane}
+                    />
 
+                    <LaneName
+                        LaneName={correctName}
+                        IsOnlyBox={true}
+                        AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                        ClubName={this.checkClub()}
+                    />
+                </div>
+            }
     }
 }

@@ -78,8 +78,8 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         let time_length_normal_short = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
         let time_length_normal_long = this.windowParams.getPictureLength() + this.windowParams.getPictureStart() - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth() - this.windowParams.getlengthMedalFinishList();
         
-
-        let time_length_normal = this.windowParams.getWindowWidth() > 300 ? time_length_normal_long : time_length_normal_short
+        //this.windowParams.getWindowWidth() > 300 || 
+        let time_length_normal = this.windowParams.getShowMedals() ? time_length_normal_long : time_length_normal_short
         let time_length_half = (this.windowParams.getPictureLength() / 2) - (2 * this.windowParams.getBoxNumberWidth()) - this.windowParams.getBoxTimeLaneWidth();
 
         let time_length = this.windowParams.getLanestwocolumns() === true ? time_length_half : time_length_normal

@@ -50,8 +50,8 @@ export default class LanePlace extends React.Component<LanePlaceInterface, {}> {
         let gradient_name = classnames('gradient_name');
 
         // align setzen! text-anchor: middle;
-        let seperator = this.windowParams.getShowplaceatendofline() ? this.windowParams.getBoxNumberWidth() / 2 + 1 : 4
-
+        let seperator = this.windowParams.getShowplaceatendofline() ? this.windowParams.getshowplaceatendoflinelength() : 4
+        //let seperator = 1
         let viewBoxSize = "0 0 " + (this.windowParams.getBoxNumberWidth() + this.windowParams.getPictureStart()) + "  " + this.windowParams.getBoxheight()
 
         let path_place = "M 0 0 h " + this.windowParams.getBoxNumberWidth() + " l -0 ," + this.windowParams.getBoxheight() + " h -" + this.windowParams.getBoxNumberWidth() + " z"

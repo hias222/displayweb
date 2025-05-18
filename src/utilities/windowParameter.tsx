@@ -11,15 +11,20 @@ export default class windowParameter {
     private boxtimewidth = 110
     private separator = 2
     private logospace = 150
+    private showplaceatendoflinelength = 4
 
     private laneNumberTextFromLeft: number = 10;
     private lengthNameStartlist: number = 22;
     private spaceNameStartlist: number = 365;
     private lengthClubStartlist: number = 26;
 
+    private laneNameOnLineOutput = true;
+    private laneNameTwoLineOutput = false;
     private lengthNameFinishlist: number = 21;
     private spaceNameFinishlist: number = 315;
     private lengthClubFinishlist: number = 22;
+
+    private showMedalAtFinish = true;
 
     private lengthMedalFinishList = 40;
 
@@ -47,8 +52,6 @@ export default class windowParameter {
     //        return <EmptyLogo />
     // 10
     //        return <SADLogo />
-
-
 
     private logonumber: number = 0
 
@@ -145,6 +148,7 @@ export default class windowParameter {
             this.showClub = false;
 
             this.showplaceatendofline = true
+            this.showplaceatendoflinelength = 10
             this.showmedals = false
             this.lengthMedalFinishList = 8
 
@@ -565,11 +569,12 @@ export default class windowParameter {
             this.lengthMedalFinishList = 1
 
             this.showplaceatendofline = true
+            this.showplaceatendoflinelength = 10
             this.laneNumberTextFromLeft = 4
 
         }
 
-        if (windowmode === 24 || windowmode === 25) {
+        if (windowmode === 24) {
             // 128 x 96 Pixel für
             // 640 x 480 mm
             // 4*2
@@ -604,11 +609,61 @@ export default class windowParameter {
             this.lengthNameStartlist = 16;
             this.spaceNameStartlist = 380;
 
+            this.laneNameOnLineOutput = false;
+            this.laneNameTwoLineOutput = true;
+
             this.lengthNameFinishlist = 8;
             this.spaceNameFinishlist = 360;
 
             this.showAgeStartlist = false;
             this.showFirstNameOnlyResult = true;
+
+        }
+
+        if (windowmode === 25) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 4*2
+            this.window_width = 384
+            this.window_height = 256
+
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 26
+
+            this.numberboxwidth = 19
+            this.spacing = 4
+
+            this.boxheight = 27
+            this.lanestwocolumns = false
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+
+            this.showClub = false;
+            this.showmedals = false
+
+            this.laneNumberTextFromLeft = 1
+            this.showplaceatendofline = true
+            this.showplaceatendoflinelength = 4
+
+            this.boxTextfromtop = 23;
+            // für Logo in der Zeit
+            this.scalefactor = 0.8;
+            this.showAgeResult = false
+            this.showplaceatendofline = true
+
+            this.lengthNameStartlist = 26;
+            this.spaceNameStartlist = 380;
+
+            this.laneNameOnLineOutput = false;
+            this.laneNameTwoLineOutput = true;
+
+            this.lengthNameFinishlist = 24;
+            this.spaceNameFinishlist = 360;
+
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = false;
 
         }
 
@@ -827,6 +882,17 @@ export default class windowParameter {
     public getShowplaceatendofline(): boolean {
         return this.showplaceatendofline;
     }
+    public getLaneNameOnLineOutput(): boolean {
+        return this.laneNameOnLineOutput;
+    }
 
+
+    public getLaneNameTwoLineOutput(): boolean {
+        return this.laneNameTwoLineOutput;
+    }
+
+    public getshowplaceatendoflinelength(): number {
+        return this.showplaceatendoflinelength
+    }
 
 }

@@ -89,7 +89,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 <LaneTime LaneTime={getFinishTime(finishtime)}
                 />
             </div>
-        } if (this.windowParams.getLanestwocolumns() || this.windowParams.getWindowWidth() < 300) {
+        } if (this.windowParams.getLanestwocolumns() || this.windowParams.getWindowWidth() < 300 || this.windowParams.getShowMedals()) {
             return <div className={noSpaceContainerHorizontal} >
                 <LaneNumber laneNumber={this.props.lane}
                 />
@@ -105,7 +105,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
                 <LanePlace lanePlace={this.props.place} />
             </div>
-        } else if (this.windowParams.getShowplaceatendofline()) {
+        } else if (this.windowParams.getShowplaceatendofline() && this.windowParams.getShowMedals()) {
             return <div className={noSpaceContainerHorizontal} >
                 <div className={noFlexHorizontal} >
                     <LaneNumber laneNumber={this.props.lane}
@@ -128,6 +128,22 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                 </div>
             </div>;
 
+        } else if (this.windowParams.getShowplaceatendofline() && !this.windowParams.getShowMedals()) {
+            return <div className={noSpaceContainerHorizontal} >
+                <div className={noFlexHorizontal} >
+                    <LaneNumber laneNumber={this.props.lane}
+                    />
+                    <LaneName
+                        LaneName={correctName}
+                        IsOnlyBox={false}
+                        AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
+                        ClubName={this.checkClub()}
+                    />
+                    <LaneTime LaneTime={getFinishTime(finishtime)}
+                    />
+                    <LanePlace lanePlace={this.props.place} />
+                </div>
+            </div>;
         } else {
             return <div className={noSpaceContainerHorizontal} >
                 <div className={noFlexHorizontal} >
