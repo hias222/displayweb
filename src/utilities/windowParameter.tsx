@@ -587,6 +587,7 @@ export default class windowParameter {
 
             this.numberboxwidth = 24
             this.spacing = 6
+            this.boxtimewidth = 130
 
             this.boxheight = 54
 
@@ -597,11 +598,11 @@ export default class windowParameter {
 
             this.lanestwocolumns = true
             this.separateSmallWindow = false
-            this.showClub = false;
+            this.showClub = true;
 
             this.laneNumberTextFromLeft = 1
 
-            this.boxTextfromtop = 36;
+            this.boxTextfromtop = 42;
             // für Logo in der Zeit
             this.scalefactor = 1.0;
             this.showAgeResult = false
@@ -615,7 +616,7 @@ export default class windowParameter {
             this.lengthNameFinishlist = 8;
             this.spaceNameFinishlist = 360;
 
-            this.showAgeStartlist = false;
+            this.showAgeStartlist = true;
             this.showFirstNameOnlyResult = true;
 
         }

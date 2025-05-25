@@ -5,6 +5,7 @@ import windowParameter from "../../utilities/windowParameter";
 import LaneName from "../svg/LaneName";
 
 import LaneNumber from "../svg/LaneNumber";
+import LaneNameTwoLine from "../svg/LaneNameTwoLine";
 
 export default class StyledLane extends React.Component<LaneData, {}> {
 
@@ -77,8 +78,8 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                     <LaneNumber laneNumber={this.props.lane}
                     />
 
-                    <LaneName
-                        LaneName={correctName}
+                    <LaneNameTwoLine
+                        LaneNameTwoLine={correctName}
                         IsOnlyBox={true}
                         AgeText={this.props.swimmer.birthyear !== undefined ? this.props.swimmer.birthyear : ""}
                         ClubName={this.checkClub()}

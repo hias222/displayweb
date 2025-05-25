@@ -3,27 +3,26 @@ import classnames from 'classnames';
 import windowParameter from '../../utilities/windowParameter';
 
 
-interface LaneNameInterface {
-    LaneName: string;
+interface LaneNameTwoLineInterface {
+    LaneNameTwoLine: string;
     AgeText: string;
     ClubName: string;
     IsOnlyBox: boolean;
 }
 
-export default class LaneName extends React.Component<LaneNameInterface, {}> {
+export default class LaneNameTwoLine extends React.Component<LaneNameTwoLineInterface, {}> {
 
     windowParams: windowParameter;
 
-    constructor(props: LaneNameInterface) {
+    constructor(props: LaneNameTwoLineInterface) {
         super(props);
         this.windowParams = new windowParameter();
     }
 
     getNameText() {
+        let textlanetwolinesvg = classnames('textlanetwolinesvg');
         let textlanesvg = classnames('textlanesvg');
-        if (this.windowParams.getLaneNameTwoLineOutput()) {
-            return <text></text>
-        } else if (this.windowParams.getShowOnlyClub()) {
+        if (this.windowParams.getShowOnlyClub()) {
             return <text
                 className={textlanesvg}
                 y={this.windowParams.getBoxTextFromTop()}
@@ -32,11 +31,11 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
                 {this.props.ClubName}</text>
         } else {
             return <text
-                className={textlanesvg}
-                y={this.windowParams.getBoxTextFromTop()}
+                className={textlanetwolinesvg}
+                y={this.windowParams.getBoxTextFromTop()/2}
                 x="0"
             >
-                {this.props.LaneName}</text>
+                {this.props.LaneNameTwoLine}</text>
         }
 
     }
@@ -46,28 +45,35 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
         if (this.windowParams.showAgeStartlists()) {
 
             if (this.props.IsOnlyBox) {
-                let textlanesvg = classnames('textlanesvg');
+                let textlanetwolinesvg = classnames('textlanetwolinesvg');
                 return <text
-                    className={textlanesvg}
-                    y={this.windowParams.getBoxTextFromTop()}
+                    className={textlanetwolinesvg}
+                    y={this.windowParams.getBoxTextFromTop()/2}
                     x={length - 5}
                     textAnchor="end"
                 >
                     {this.props.AgeText}</text>
+            } else {
+                let textlanetwolinesvg = classnames('textlanetwolinesvg');
+                return <text
+                    className={textlanetwolinesvg}
+                    y={this.windowParams.getBoxTextFromTop()}
+                    x={length - 5}
+                    textAnchor="end"
+                >
+                    {this.props.AgeText}xx</text>
             }
         }
     }
 
     getClubText(length: number) {
 
-        var startrNameSpace = this.props.IsOnlyBox ? this.windowParams.getSpaceNameStartlist() + 4 : this.windowParams.getSpaceNameFinishlist() + 4
-
         if (this.windowParams.showClubs()) {
-            let textlanesvg = classnames('textlanesvg');
+            let textlanetwolinesvg = classnames('textlanetwolinesvg');
             return <text
-                className={textlanesvg}
+                className={textlanetwolinesvg}
                 y={this.windowParams.getBoxTextFromTop()}
-                x={startrNameSpace}
+                x="0"
             >
                 {this.props.ClubName}</text>
         }
@@ -106,7 +112,7 @@ export default class LaneName extends React.Component<LaneNameInterface, {}> {
             height={this.windowParams.getBoxheight()}
         >
 
-            <g id="LaneName1">
+            <g id="LaneNameTwoLine1">
                 <path
                     transform="scale(1)"
                     className={gradient_name}

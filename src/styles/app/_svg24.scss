@@ -1,10 +1,17 @@
 $schriftgr_8: 2.5em;
+$schriftgr_twoline_8: 1.1em;
 $farbehintergrundplace_8: rgb(130, 0, 0);
 
 .textlanesvg{
     text-align: right;
     fill: $farbeschrift;
     font-size: $schriftgr_8;
+}
+
+.textlanetwolinesvg{
+    text-align: right;
+    fill: $farbeschrift;
+    font-size: $schriftgr_twoline_8;
 }
 
 .textranksvg{
