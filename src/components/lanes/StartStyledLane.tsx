@@ -72,7 +72,7 @@ export default class StyledLane extends React.Component<LaneData, {}> {
                         ClubName={this.checkClub()}
                     />
                 </div>
-            }
+            } 
             if (this.windowParams.getLaneNameTwoLineOutput()) {
                 return <div className={noSpaceContainerHorizontal} >
                     <LaneNumber laneNumber={this.props.lane}

@@ -2,7 +2,7 @@
 
 #./deploy_local.sh 0 50
 
-./deploy_local.sh 24 100
+./deploy_local.sh 25 100
 
 # ./deploy_local.sh 19 100
 

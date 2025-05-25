@@ -657,8 +657,8 @@ export default class windowParameter {
             this.lengthNameStartlist = 26;
             this.spaceNameStartlist = 380;
 
-            this.laneNameOnLineOutput = false;
-            this.laneNameTwoLineOutput = true;
+            //this.laneNameOnLineOutput = true;
+            //this.laneNameTwoLineOutput = false;
 
             this.lengthNameFinishlist = 24;
             this.spaceNameFinishlist = 360;
