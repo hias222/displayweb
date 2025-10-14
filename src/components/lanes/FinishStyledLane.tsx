@@ -11,6 +11,7 @@ import LaneMedal from "../svg/LaneMedal";
 import LaneMedalLarge from "../svg/LaneMedalLarge";
 import LaneNumber from "../svg/LaneNumber";
 import LanePlace from "../svg/LanePlace";
+import RowSeparator from "../svg/RowSeparator";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     windowParams: windowParameter;
@@ -141,6 +142,8 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
                     />
                     <LaneTime LaneTime={getFinishTime(finishtime)}
                     />
+                    {/* <RowSeparator keyindex={this.props.lane} /> */}
+                    <RowSeparator keyindex={this.props.lane} />
                     <LanePlace lanePlace={this.props.place} />
                 </div>
             </div>;

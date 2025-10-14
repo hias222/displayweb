@@ -189,6 +189,14 @@ export default class windowParameter {
             this.scalefactor = 1.3;
             this.showAgeResult = false
 
+            // rang am Ende
+            //this.showmedals = true
+            this.showplaceatendoflinelength = 13
+            this.showplaceatendofline = true
+            this.showmedals = false
+
+            this.lengthMedalFinishList = 0
+
             this.lengthNameStartlist = 16;
             this.spaceNameStartlist = 380;
             this.lengthClubStartlist = 14;
@@ -197,10 +205,10 @@ export default class windowParameter {
             this.spaceNameFinishlist = 360;
             this.lengthClubFinishlist = 11;
 
+
+
             this.boxtimewidth = 170;
             this.numberboxwidth = 50;
-
-            this.lengthMedalFinishList = 40
         }
 
         if (windowmode === 7 || windowmode === 11) {
