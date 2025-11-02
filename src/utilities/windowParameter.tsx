@@ -676,6 +676,41 @@ export default class windowParameter {
 
         }
 
+        if (windowmode === 26) {
+            //Mode 2 16:9 FCN 6 Bahnen
+            // für DMS nur Vereine
+            this.window_width = 896
+            this.window_height = 512
+
+            this.showClub = false;
+            this.showonlyClub = true;
+            
+            this.boxheight = 60
+            this.boxTextfromtop = 46;
+            this.toprowheight = 45;
+            this.logonumber = 2;
+            this.scalefactor = 1.3;
+            this.showAgeResult = false
+            this.showAgeStartlist = false
+
+            // rang am Ende
+            //this.showmedals = true
+            this.showplaceatendoflinelength = 13
+            this.showplaceatendofline = true
+            this.showmedals = false
+
+            this.lengthMedalFinishList = 0
+
+            this.lengthNameStartlist = 16;
+            this.spaceNameStartlist = 380;
+
+            this.lengthClubStartlist = 32;                  
+            this.lengthClubFinishlist = 27;
+
+            this.boxtimewidth = 180;
+            this.numberboxwidth = 50;
+        }
+
 
 
     }

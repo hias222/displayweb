@@ -20,15 +20,15 @@ fi
 #REMOTE_SERVER_NAME=rockpie.fritz.box
 #REMOTE_SERVER_USER=rock
 
-# REMOTE_SERVER_NAME=rockpi-4b.fritz.box
-# REMOTE_SERVER_USER=rock
+REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+REMOTE_SERVER_USER=rock
 
 # need ssh certs
 # REMOTE_SERVER_NAME=jetson.fritz.box
 # REMOTE_SERVER_USER=jetson
 
-REMOTE_SERVER_NAME=colorado.fritz.box
-REMOTE_SERVER_USER=ubuntu
+# REMOTE_SERVER_NAME=colorado.fritz.box
+# REMOTE_SERVER_USER=ubuntu
 
 #REMOTE_SERVER_NAME=swim.fritz.box
 #REMOTE_SERVER_USER=pi

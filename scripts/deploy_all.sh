@@ -3,6 +3,7 @@
 ./deploy_local.sh 1 100
 ./deploy_local.sh 2 100
 ./deploy_local.sh 6 50  
+./deploy_local.sh 26 50  
 
 ./deploy_local.sh 4 50
 ./deploy_local.sh 18 100
