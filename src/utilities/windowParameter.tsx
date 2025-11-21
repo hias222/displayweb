@@ -711,6 +711,60 @@ export default class windowParameter {
             this.numberboxwidth = 50;
         }
 
+          if (windowmode === 27) {
+            // 128 x 96 Pixel für
+            // 640 x 480 mm
+            // 4*2
+            // 6 Bahnen
+            this.window_width = 384
+            this.window_height = 256
+
+            this.logospace = 10
+            this.logonumber = 6;
+            this.toprowheight = 26
+
+            this.numberboxwidth = 19
+            this.spacing = 4
+
+            this.boxheight = 25
+            this.lanestwocolumns = false
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+
+            this.showClub = false;
+            this.showmedals = false
+
+            this.showplaceatendofline = true
+            this.showplaceatendoflinelength = 10
+            this.lengthMedalFinishList = 8
+
+            this.numberboxwidth = 32
+            this.boxheight = 35
+            this.toprowheight = 34;
+            this.boxTextfromtop = 28;
+            this.logonumber = 5;
+            this.logospace = 100
+            this.showAgeResult = false
+
+            this.laneNumberTextFromLeft = 1
+
+            // für Logo in der Zeit
+            this.scalefactor = 0.8;
+
+            this.lengthNameStartlist = 26;
+            this.spaceNameStartlist = 380;
+
+            //this.laneNameOnLineOutput = true;
+            //this.laneNameTwoLineOutput = false;
+
+            this.lengthNameFinishlist = 24;
+            this.spaceNameFinishlist = 360;
+
+            this.showAgeStartlist = false;
+            this.showFirstNameOnlyResult = false;
+
+        }
 
 
     }
