@@ -780,14 +780,14 @@ export default class windowParameter {
             this.detailedheader = false
             this.detailedheaderoneline = true
 
-            this.numberboxwidth = 37
+            this.numberboxwidth = 35
 
             this.showmedals = false
             this.lengthMedalFinishList = 1
 
             this.showplaceatendofline = true
-            this.showplaceatendoflinelength = 10
-            this.laneNumberTextFromLeft = 4
+            this.showplaceatendoflinelength = 16
+            this.laneNumberTextFromLeft = 6
 
             // new
             this.useLaneNull = true;
