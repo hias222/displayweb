@@ -74,7 +74,7 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
 
   updateData() {
     //console.log(this.props.lane)
-    //console.log("update " + this.props.lane.lane)
+    console.log("update " + this.props.lane.lane)
     if (this.props.lane.swimmerData.name !== undefined) {
       this.setState(this.props.lane)
       /*

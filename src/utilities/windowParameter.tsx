@@ -684,7 +684,7 @@ export default class windowParameter {
 
             this.showClub = false;
             this.showonlyClub = true;
-            
+
             this.boxheight = 60
             this.boxTextfromtop = 46;
             this.toprowheight = 45;
@@ -704,14 +704,14 @@ export default class windowParameter {
             this.lengthNameStartlist = 16;
             this.spaceNameStartlist = 380;
 
-            this.lengthClubStartlist = 32;                  
+            this.lengthClubStartlist = 32;
             this.lengthClubFinishlist = 27;
 
             this.boxtimewidth = 180;
             this.numberboxwidth = 50;
         }
 
-          if (windowmode === 27) {
+        if (windowmode === 27) {
             // 128 x 96 Pixel für
             // 640 x 480 mm
             // 4*2
@@ -763,6 +763,30 @@ export default class windowParameter {
 
             this.showAgeStartlist = false;
             this.showFirstNameOnlyResult = false;
+
+        }
+
+        if (windowmode === 28) {
+            //Mode 2 16:9 FCN
+            this.window_width = 896
+            this.window_height = 512
+            this.showClub = true;
+            this.boxheight = 45;
+            this.toprowheight = 40;
+            this.logonumber = 2;
+            this.showAgeResult = false
+
+            this.detailedheader = false
+            this.detailedheaderoneline = true
+
+            this.numberboxwidth = 37
+
+            this.showmedals = false
+            this.lengthMedalFinishList = 1
+
+            this.showplaceatendofline = true
+            this.showplaceatendoflinelength = 10
+            this.laneNumberTextFromLeft = 4
 
         }
 
