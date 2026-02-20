@@ -60,8 +60,8 @@ function DataMapper(model: {
     }
 
     useEffect(() => {
-        //console.log('Mapper Change')
-        //console.log(model.Jsonlanes)
+        // console.log('Mapper Change')
+        // console.log(model.Jsonlanes)
         setLanes(model.Jsonlanes)
     }, [model.Jsonlanes]);
 
@@ -86,8 +86,8 @@ function DataMapper(model: {
         if (model.jsonData.lane !== undefined) {
             if (model.jsonData !== jsonData) {
                 setJsonData(model.jsonData)
-                //console.log('DataMapper jsondata ' + model.jsonData.lane)
-                //onLaneChange(model.jsonData.lane,model.jsonData)
+                // console.log('DataMapper jsondata ' + model.jsonData.lane)
+                // onLaneChange(model.jsonData.lane,model.jsonData)
                 setLanesData(model.Jsonlanes);
             }
         }

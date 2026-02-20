@@ -64,6 +64,7 @@ export default class windowParameter {
 
     private showmedals = true;
     private showplaceatendofline = false;
+    private useLaneNull = false;
 
     window_width: number;
     window_height: number;
@@ -788,6 +789,9 @@ export default class windowParameter {
             this.showplaceatendoflinelength = 10
             this.laneNumberTextFromLeft = 4
 
+            // new
+            this.useLaneNull = true;
+
         }
 
 
@@ -1008,6 +1012,9 @@ export default class windowParameter {
         return this.laneNameOnLineOutput;
     }
 
+    public getUseLaneNull(): boolean {
+        return this.useLaneNull;
+    }
 
     public getLaneNameTwoLineOutput(): boolean {
         return this.laneNameTwoLineOutput;

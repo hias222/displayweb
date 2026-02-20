@@ -4,12 +4,16 @@ import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import WkAnalyseData from "./WkAnalyseData";
 import React from "react";
+import windowParameter from '../utilities/windowParameter';
 //import "../styles/dynamic/App6.scss"
 
 //import(utilsPath);
 //import { LaneState } from "../state/LaneState";
 
-let correctValueForLaneNull = 0;
+let windowParameterInstance = new windowParameter()
+let correctValueForLaneNull = windowParameterInstance.getUseLaneNull() === true ? 1 : 0    
+
+// let correctValueForLaneNull = 1;
 let waittimervar = false;
 let waitTimerDate = Date.now();
 //let maxDelayTimeMS = 30000
@@ -176,7 +180,7 @@ function WsConnect() {
     });
 
     const messageListener = (newmessage) => {
-      //console.log(newmessage)
+      // console.log(newmessage)
       var jsondata = JSON.parse(newmessage);
       // lane data -> store in array
       // sonst kommt nur die letzte bahn in den hook -> zu schnell
