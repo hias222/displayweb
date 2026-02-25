@@ -20,21 +20,21 @@ fi
 #REMOTE_SERVER_NAME=rockpie.fritz.box
 #REMOTE_SERVER_USER=rock
 
-REMOTE_SERVER_NAME=rockpi-4b.fritz.box
-REMOTE_SERVER_USER=rock
+# REMOTE_SERVER_NAME=rockpi-4b.fritz.box
+# REMOTE_SERVER_USER=rock
 
 # need ssh certs
 # REMOTE_SERVER_NAME=jetson.fritz.box
 # REMOTE_SERVER_USER=jetson
 
-# REMOTE_SERVER_NAME=colorado.fritz.box
-# REMOTE_SERVER_USER=ubuntu
+REMOTE_SERVER_NAME=colorado.fritz.box
+REMOTE_SERVER_USER=ubuntu
 
 #REMOTE_SERVER_NAME=swim.fritz.box
 #REMOTE_SERVER_USER=pi
 
-BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
-# BASE_DIR=/home/ubuntu/github/displayweb
+# BASE_DIR=/Users/matthiasfuchs/Projects/schwimmen/displayweb
+BASE_DIR=/home/ubuntu/github/displayweb
 
 cp $BASE_DIR/package.json $BASE_DIR/package.json_org
 

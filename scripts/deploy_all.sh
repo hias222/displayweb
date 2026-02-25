@@ -5,6 +5,7 @@
 ./deploy_local.sh 6 50  
 ./deploy_local.sh 26 50  
 ./deploy_local.sh 27 50 
+./deploy_local.sh 28 100
 
 ./deploy_local.sh 4 50
 ./deploy_local.sh 18 100
